@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "294041031400",
+    "firebase_url": "https://funding-app-82483.firebaseio.com",
+    "project_id": "funding-app-82483",
+    "storage_bucket": "funding-app-82483.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294041031400:android:2f0657b8a2fac523",
+        "android_client_info": {
+          "package_name": "com.russjowell.CampaignFinanceNew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294041031400-950dhms98iog5pruel43c6un1lqe0dte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqO4vhzoKFrVIlKbA91sIsn8-ALJAoS4w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

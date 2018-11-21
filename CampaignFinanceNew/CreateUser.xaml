@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateUser">
+    <ContentPage.Content>
+        <RelativeLayout HorizontalOptions="Center" VerticalOptions="Center">
+       
+        <StackLayout x:Name="thisLayout" HorizontalOptions="Center" VerticalOptions="Start">
+             <Label x:Name="createWindowLabel"/>
+            <Label x:Name="firstNameLabel" Text="First Name" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="firstNameField" HorizontalOptions="Center"/>
+            <Label x:Name="lastNameLabel" Text="Last Name" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="lastNameField" HorizontalOptions="Center"/>
+            <Label x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="eMailField" HorizontalOptions="Center"/>
+            <Label x:Name="phoneLabel" Text="Phone Number" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="phoneNumberField" HorizontalOptions="Center"/>
+            <Label x:Name="partyLabel" Text="Party Affiliation" HorizontalOptions="Center"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="300" Spacing="50">
+                <Button Text="Democratic" x:Name="demButton" Clicked="ProcessPartyButton"/>
+                <Button Text="Republican" x:Name="gopButton" Clicked="ProcessPartyButton"/>
+                <Button Text="Other" x:Name="otherPartyButton" Clicked="ProcessPartyButton"/>
+            </StackLayout>
+            <Label Text="Enter Party Name" x:Name="otherPartyLabel" HorizontalOptions="Center"/>
+            <Entry x:Name="candidateParty" WidthRequest="300"/>
+            <Label x:Name="websiteLabel" Text="Campaign Website" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="candidateWebsite" HorizontalOptions="Center"/>
+            <Label x:Name="usernameLabel" Text="Username" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="usernameField" HorizontalOptions="Center"/>
+             <Label x:Name="passwordLabel" Text="Password" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="passwordField" HorizontalOptions="Center"/>
+            <Button Text="Submit" Clicked="SubmitDataAsync"/>
+            
+            
+        </StackLayout>
+            
+            <Frame x:Name="successFrame" RelativeLayout.XConstraint="50" RelativeLayout.YConstraint="150">
+                    <StackLayout>
+                <Label Text="Application Submitted."/>
+                <Button Text="Click Here to go to Login" Clicked="ReturnToLogin"/>
+                    </StackLayout>
+            </Frame>
+                
+           </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

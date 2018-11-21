@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
+    <ContentPage.Content>
+                <StackLayout>
+            <Label x:Name="thisLabel" Text=""/>
+            <Button Text="Create Campaign" Clicked="OpenCreateCampaign"/>
+            <ListView x:Name="campaignDisplay" RowHeight="120">
+              <ListView.ItemTemplate>
+                    <DataTemplate  x:Name="thisTemplate">
+                       <ViewCell>
+                            
+                            <StackLayout MinimumHeightRequest="500" Spacing="3">
+                            <Label x:Name="labelID" IsVisible="false" Text="1000"/>
+                            <Label x:Name="campNameLabel" Text="{Binding campaignName}"/>
+                            <Label x:Name="campDescLabel" Text="{Binding campaignDescription}"/>
+                            <Label Text="{Binding endDate}"/>
+                           <Button Text="Edit" HorizontalOptions="End"/>
+                               </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+       
+        
+            
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="Returning Users" HorizontalOptions="Center"/>
+        <Label Text="Username" HorizontalOptions="Center"/>
+        
+        <Entry x:Name="usernameField" WidthRequest="300"/>
+        <Label Text="Password" HorizontalOptions="Center"/>
+         <Entry x:Name="passwordField" WidthRequest="300"/>
+        <Button Text="Login" x:Name="Login" Clicked="ProcessLogin"/>
+        <Label Text=" "/>
+        <Label Text="New Users" HorizontalOptions="Center"/>
+        <Button x:Name="createCandidate" Text="I am a candidate" Clicked="CreateUser"/>
+        <Button x:Name="createSupporter" Text="I am a supporter" Clicked="CreateUser"/>
+    
+   </StackLayout>
+
+</ContentPage>

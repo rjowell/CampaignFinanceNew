@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateCampaign">
+    <ContentPage.Content>
+          <StackLayout HorizontalOptions="Center">
+        <Label Text="Create Campaign" HorizontalOptions="Center"/>
+        <Label Text="Campaign Name" HorizontalOptions="Center"/>
+        <Entry x:Name="campaignName" WidthRequest="300"/>
+        <Label Text="Campaign Description" HorizontalOptions="Center"/>
+        <Entry x:Name="campaignDescription" WidthRequest="300"/>
+        <Label Text="Fundraising Goal" HorizontalOptions="Center"/>
+        <Entry x:Name="fundGoal" WidthRequest="30"/>
+        <Label Text="Start Date" HorizontalOptions="Center"/>
+        <DatePicker x:Name="startDate">
+                
+            </DatePicker>
+        <Label Text="End Date" HorizontalOptions="Center"/>
+            <DatePicker x:Name="endDate"></DatePicker>
+            <Button Text="Create Campaign" Clicked="SubmitCampaignAsync"/>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
