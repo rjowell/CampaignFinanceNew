@@ -17,11 +17,11 @@ namespace CampaignFinanceNew
 
         private void ProcessLogin(object sender, EventArgs e)
         {
-            /*
+
             DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(usernameField.Text, passwordField.Text);
             var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
             //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
-            Console.WriteLine(isLoggedIn);*/
+            Console.WriteLine(isLoggedIn);
 
 
             Navigation.PushAsync(new CandidateDashboard());

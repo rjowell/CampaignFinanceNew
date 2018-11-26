@@ -5,16 +5,17 @@
             <Label x:Name="thisLabel" Text=""/>
             <Button Text="Create Campaign" Clicked="OpenCreateCampaign"/>
             <ListView x:Name="campaignDisplay" RowHeight="120">
-              <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
+              
                     <DataTemplate  x:Name="thisTemplate">
                        <ViewCell>
                             
                             <StackLayout MinimumHeightRequest="500" Spacing="3">
-                            <Label x:Name="labelID" IsVisible="false" Text="1000"/>
+                            <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             <Label x:Name="campNameLabel" Text="{Binding campaignName}"/>
                             <Label x:Name="campDescLabel" Text="{Binding campaignDescription}"/>
                             <Label Text="{Binding endDate}"/>
-                           <Button Text="Edit" HorizontalOptions="End"/>
+                           <Button x:Name="editButton" Text="Edit" HorizontalOptions="End"/>
                                </StackLayout>
                             
                         </ViewCell>

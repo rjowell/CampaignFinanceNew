@@ -5,12 +5,31 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CampaignFinanceNew
 {
+
+    public class CurrentUserInfo
+    {
+        public String firstName { get; set; }
+        public String lastName { get; set; }
+        public String systemID { get; set; }
+
+
+        public CurrentUserInfo()
+        {
+
+        }
+    }
+
+
+
     public partial class App : Application
     {
+
+        public static CurrentUserInfo currentUser;
+
         public App()
         {
             InitializeComponent();
-
+            //currentUser = new CurrentUserInfo();
             MainPage = new NavigationPage(new MainPage());
         }
 

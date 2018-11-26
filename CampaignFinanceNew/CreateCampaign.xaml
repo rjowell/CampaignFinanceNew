@@ -4,17 +4,15 @@
           <StackLayout HorizontalOptions="Center">
         <Label Text="Create Campaign" HorizontalOptions="Center"/>
         <Label Text="Campaign Name" HorizontalOptions="Center"/>
-        <Entry x:Name="campaignName" WidthRequest="300"/>
+        <Entry x:Name="campaignName" Text="{Binding campaignName}" WidthRequest="300"/>
         <Label Text="Campaign Description" HorizontalOptions="Center"/>
-        <Entry x:Name="campaignDescription" WidthRequest="300"/>
+        <Entry x:Name="campaignDescription" Text="{Binding campaignDescription}" WidthRequest="300"/>
         <Label Text="Fundraising Goal" HorizontalOptions="Center"/>
-        <Entry x:Name="fundGoal" WidthRequest="30"/>
+        <Entry x:Name="fundGoal" Text="{Binding fundGoal}" WidthRequest="30"/>
         <Label Text="Start Date" HorizontalOptions="Center"/>
-        <DatePicker x:Name="startDate">
-                
-            </DatePicker>
+        <DatePicker x:Name="startDate" Date="{Binding startDate}"></DatePicker>
         <Label Text="End Date" HorizontalOptions="Center"/>
-            <DatePicker x:Name="endDate"></DatePicker>
+            <DatePicker x:Name="endDate" Date="{Binding endDate}"></DatePicker>
             <Button Text="Create Campaign" Clicked="SubmitCampaignAsync"/>
         </StackLayout>
 

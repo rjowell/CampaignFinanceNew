@@ -11,11 +11,16 @@ namespace CampaignFinanceNew.iOS
     {
 
         WebClient newClient = new WebClient();
+        String userJsonData;
 
         public bool GetIdInfo()
         {
             var currentToken = Auth.DefaultInstance.CurrentUser.Uid;
-            Console.WriteLine("Token is " + currentToken);
+            //var sendingParameters = new System.Collections.Specialized.NameValueCollection();
+            
+            userJsonData =new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID="+currentToken);
+            Console.WriteLine(currentToken);
+            Console.WriteLine(userJsonData);
             if(currentToken != null)
             {
                 return true;
@@ -38,14 +43,17 @@ namespace CampaignFinanceNew.iOS
             Auth.DefaultInstance.CreateUser(email, password, (authResult, error) => {
 
                 //Console.WriteLine(bioInfo + "&firebaseID=" + authResult.User.Uid + "&isSupporter=false");
+                var inputVars = "firstName=" + userData.Get("firstName") + "&lastName=" + userData.Get("lastName") + "&eMail=" + userData.Get("eMail") + "&phone=" + userData.Get("phone") + "&website=www.google.com&party=" + userData.Get("party") + "&isSupporter=false&firebaseID=AABBCC";
                 var sendingParameters = new System.Collections.Specialized.NameValueCollection();
                 newClient.Encoding = System.Text.Encoding.UTF8;
                 Console.WriteLine("ID is " + authResult.User.Uid);
-                //userData.Add("isSupporter", "false");
+                userData.Add("isSupporter", "false");
                 userData.Add("firebaseID", authResult.User.Uid);
-                Console.WriteLine(userData);
-                var resultData = newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
-                Console.WriteLine(System.Text.Encoding.ASCII.GetString(resultData));
+                Console.WriteLine("information is" + userData.Get("firebaseID")+" "+userData.Get("lastName"));
+                Console.WriteLine(userData.AllKeys);
+                var thisStatus=newClient.UploadString("http://www.cvx4u.com/web_service/create_user.php", inputVars);
+                Console.WriteLine(thisStatus);
+                //Console.WriteLine(System.Text.Encoding.ASCII.GetString(thisStatus));
                
                 //Console.WriteLine(resultData[0]+" "+resultData[1]+" "+resultData[2]);
                 //newClient.Headers[HttpRequestHeader.ContentType]= "application/x-www-form-urlencoded";
