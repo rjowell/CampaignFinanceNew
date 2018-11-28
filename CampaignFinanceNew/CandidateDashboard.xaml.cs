@@ -44,27 +44,33 @@ namespace CampaignFinanceNew
         public CandidateDashboard()
         {
             WebClient thisClient = new WebClient();
-
+            Console.WriteLine("point A");
 
             var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
+            Console.WriteLine("point B");
             //Console.WriteLine("idents iss"+App.currentUser.userFirebaseID);
             App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+            Console.WriteLine("point C");
             String rawData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id="+App.currentUser.systemID);
+            Console.WriteLine("point D "+ App.currentUser.systemID);
             fieldData = new List<Campaign>();
             JArray array = JArray.Parse(rawData);
-
+            Console.WriteLine("point E");
 
             //thisLabel.Text = thisThing.ToString();
 
             //Console.WriteLine(array);
-            foreach(JObject thisThing in array)
+            foreach (JObject thisThing in array)
             {
+                Console.WriteLine("point F");
                 Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+                Console.WriteLine("point G");
                 thisCampaign.posIndex = (fieldData.Count).ToString();
                 Console.WriteLine("Current count is " + thisCampaign.posIndex);
                 fieldData.Add(thisCampaign);
+                Console.WriteLine("point H");
 
-               
+
             }
         
 
@@ -82,9 +88,18 @@ namespace CampaignFinanceNew
         private void OpenCreateCampaign(Button sender, EventArgs e)
         {
 
-            Console.WriteLine("The is is "+ sender.ClassId);
+            if(sender.ClassId==null)
+            {
+                Navigation.PushAsync(null);
+            }
+            else
+            {
+                Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
+            }
 
-            Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
+            //Console.WriteLine("The is is "+ sender.ClassId);
+
+
         }
     }
 }

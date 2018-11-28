@@ -41,12 +41,12 @@ namespace CampaignFinanceNew
 
             if (currentButton.Text == "I am a candidate")
             {
-                Console.WriteLine("candiate button clicked");
+                //Console.WriteLine("candiate button clicked");
                 Navigation.PushAsync(new CreateUser(false));
             }
             else
             {
-                Console.WriteLine("candiate button clicked--1");
+                //Console.WriteLine("candiate button clicked--1");
                 Navigation.PushAsync(new CreateUser(true));
             }
         }

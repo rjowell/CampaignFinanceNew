@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Net;
 using CampaignFinanceNew.Droid;
 using Xamarin.Forms;
+using Newtonsoft.Json.Linq;
 using Java.Lang;
 using Android.Gms.Tasks;
 //[assembly: Dependency(typeof(FirebaseAuthenticator))]
@@ -65,8 +66,52 @@ namespace CampaignFinanceNew.Droid
 
         public Task<bool> LoginWithEmailPassword(string email, string password)
         {
-            return null;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password);
+            WebClient thisClient = new WebClient();
+            Console.WriteLine("point 1");
+            var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
+            Console.WriteLine("point 2");
+            App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
+            Console.WriteLine("point 3");
+            App.currentUser.systemID=JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+            tcs.SetResult(true);
+
+            return tcs.Task;
         }
+
+
+        /*public Task<bool> LoginWithEmailPassword(string email, string password)
+        {
+            //var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
+
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+
+            Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
+
+                WebClient thisClient = new WebClient();
+               
+
+                //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+                userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+                App.currentUser.userFirebaseID = authResult.User.Uid;
+                App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+                Console.WriteLine("Your id is " + App.currentUser.systemID);
+                tcs.SetResult(true);
+
+
+            });
+
+            return tcs.Task;
+
+            //return await user.User.GetIdTokenAsync();
+            //userJsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + currentToken);
+
+
+        }*/
 
         public string GetCurrentUserInfo()
         {

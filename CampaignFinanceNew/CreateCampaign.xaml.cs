@@ -10,7 +10,7 @@ namespace CampaignFinanceNew
         Uri submitCandidate = new Uri("http://www.cvx4u.com/web_service/create_campaign.php");
         WebClient sendClient = new WebClient();
 
-        bool isEditing;
+
         Campaign currentCampaign;
 
 
@@ -22,15 +22,22 @@ namespace CampaignFinanceNew
             if(currentData==null)
             {
                 currentCampaign = null;
+                titleLabel.Text = "Create Campaign";
+                submitButton.Text = "Edit Campaign";
             }
             else
             {
+                titleLabel.Text = "Edit Campaign";
+                submitButton.Text = "Submit Changes";
                 currentCampaign = currentData;
                 campaignName.Text = currentData.campaignName;
                 campaignDescription.Text = currentData.campaignDescription;
                 fundGoal.Text = currentData.fundGoal;
-                startDate.Date = new DateTime().AddMonths(Convert.ToInt32(currentData.startDate.Substring(0, 2))).AddDays(Convert.ToInt32(currentData.startDate.Substring(4,2))).AddYears(Convert.ToInt32(currentData.startDate.Substring(8)));
-                endDate.Date = new DateTime().AddMonths(Convert.ToInt32(currentData.endDate.Substring(0, 2))).AddDays(Convert.ToInt32(currentData.endDate.Substring(4, 2))).AddYears(Convert.ToInt32(currentData.endDate.Substring(8)));
+                String[] startDateRaw = currentData.startDate.Split('/');
+                String[] endDateRaw = currentData.endDate.Split('/');
+                Console.WriteLine(startDateRaw[0]+" "+startDateRaw[1]+" "+startDateRaw[2]);
+                startDate.Date = new DateTime().AddMonths(Convert.ToInt32(startDateRaw[0])-1).AddDays(Convert.ToInt32(startDateRaw[1])-1).AddYears(Convert.ToInt32(startDateRaw[2])-1);
+                endDate.Date = new DateTime().AddMonths(Convert.ToInt32(endDateRaw[0])-1).AddDays(Convert.ToInt32(endDateRaw[1])-1).AddYears(Convert.ToInt32(endDateRaw[2])-1);
             }
         }
 
@@ -44,6 +51,7 @@ namespace CampaignFinanceNew
             sendingParameters.Add("goal", fundGoal.Text);
             sendingParameters.Add("startDate", startDate.Date.ToShortDateString());
             sendingParameters.Add("endDate", endDate.Date.ToShortDateString());
+            sendingParameters.Add("candidateId", App.currentUser.systemID);
             if (currentCampaign == null)
             {
                 sendingParameters.Add("campaignToUpdate", "0");
@@ -52,11 +60,9 @@ namespace CampaignFinanceNew
             {
                 sendingParameters.Add("campaignToUpdate", currentCampaign.campaignID);
             }
-            sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
-            //String submitString = "campaignName=" + campaignName.Text.Replace(" ", "%20") + "&goal=" + fundGoal.Text + "&startDate=" + startDate.Date.ToShortDateString() + "&endDate=" + endDate.Date.ToShortDateString();
-            //Console.WriteLine(submitString);
-            //var sentString = new StringContent(submitString, System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
-            //await connClient.PostAsync(submitCandidate, sentString);
+            var response=sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
+            Console.WriteLine(System.Text.Encoding.Default.GetString(response));
+           
         }
 
     }
