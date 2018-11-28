@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using CampaignFinanceNew.iOS;
 using Firebase.Auth;
 using Firebase.Core;
+using Newtonsoft.Json.Linq;
 using System.Net;
+using Xamarin.Forms;
 [assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthenticator))]
 namespace CampaignFinanceNew.iOS
 {
@@ -12,6 +14,10 @@ namespace CampaignFinanceNew.iOS
 
         WebClient newClient = new WebClient();
         String userJsonData;
+
+
+      
+
 
         public bool GetIdInfo()
         {
@@ -42,22 +48,14 @@ namespace CampaignFinanceNew.iOS
 
             Auth.DefaultInstance.CreateUser(email, password, (authResult, error) => {
 
-                //Console.WriteLine(bioInfo + "&firebaseID=" + authResult.User.Uid + "&isSupporter=false");
-                var inputVars = "firstName=" + userData.Get("firstName") + "&lastName=" + userData.Get("lastName") + "&eMail=" + userData.Get("eMail") + "&phone=" + userData.Get("phone") + "&website=www.google.com&party=" + userData.Get("party") + "&isSupporter=false&firebaseID=AABBCC";
-                var sendingParameters = new System.Collections.Specialized.NameValueCollection();
-                newClient.Encoding = System.Text.Encoding.UTF8;
-                Console.WriteLine("ID is " + authResult.User.Uid);
-                userData.Add("isSupporter", "false");
+               
                 userData.Add("firebaseID", authResult.User.Uid);
                 Console.WriteLine("information is" + userData.Get("firebaseID")+" "+userData.Get("lastName"));
                 Console.WriteLine(userData.AllKeys);
-                var thisStatus=newClient.UploadString("http://www.cvx4u.com/web_service/create_user.php", inputVars);
-                Console.WriteLine(thisStatus);
-                //Console.WriteLine(System.Text.Encoding.ASCII.GetString(thisStatus));
                
-                //Console.WriteLine(resultData[0]+" "+resultData[1]+" "+resultData[2]);
-                //newClient.Headers[HttpRequestHeader.ContentType]= "application/x-www-form-urlencoded";
-                //newClient.UploadString("http://www.cvx4u.com/web_service/create_user.php", bioInfo + "&firebaseID=" + authResult.User.Uid + "&isSupporter=false");
+
+                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
+
 
             });
 
@@ -83,14 +81,40 @@ namespace CampaignFinanceNew.iOS
             //return tcs.Task.Result;
         }
 
-        public async Task<string> LoginWithEmailPassword(string email, string password)
+        public Task<bool> LoginWithEmailPassword(string email, string password)
         {
-            var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
-            return await user.User.GetIdTokenAsync();
+            //var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
+
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+
+            Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
+
+                WebClient thisClient = new WebClient();
+               
+
+                //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+                userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+                App.currentUser.userFirebaseID = authResult.User.Uid;
+                App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+                Console.WriteLine("Your id is " + App.currentUser.systemID);
+                tcs.SetResult(true);
+
+
+            });
+
+            return tcs.Task;
+
+            //return await user.User.GetIdTokenAsync();
+            //userJsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + currentToken);
 
 
         }
 
-
+        public string GetCurrentUserInfo()
+        {
+            return App.currentUser.systemID;
+        }
     }
 }

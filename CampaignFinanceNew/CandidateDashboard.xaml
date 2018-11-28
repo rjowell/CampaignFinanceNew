@@ -14,8 +14,8 @@
                             <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             <Label x:Name="campNameLabel" Text="{Binding campaignName}"/>
                             <Label x:Name="campDescLabel" Text="{Binding campaignDescription}"/>
-                            <Label Text="{Binding endDate}"/>
-                           <Button x:Name="editButton" Text="Edit" HorizontalOptions="End"/>
+                            <Label x:Name="campEndDate" Text="{Binding endDate}"/>
+                            <Button x:Name="editButton" ClassId="{Binding posIndex}" Pressed="OpenCreateCampaign" Text="Edit" HorizontalOptions="End"/>
                                </StackLayout>
                             
                         </ViewCell>

@@ -38,57 +38,53 @@ namespace CampaignFinanceNew
     public partial class CandidateDashboard : ContentPage
     {
         List<Campaign> fieldData;
-        String jsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php");
+        //String jsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php");
        
 
         public CandidateDashboard()
         {
-            //JObject thisJunk = JObject.Parse(jsonData);
-          
-            fieldData = new List<Campaign>();
-            //var thisThing = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
-            //Console.WriteLine(thisThing.ToString());
+            WebClient thisClient = new WebClient();
 
-            InitializeComponent();
+
+            var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
+            //Console.WriteLine("idents iss"+App.currentUser.userFirebaseID);
+            App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+            String rawData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id="+App.currentUser.systemID);
+            fieldData = new List<Campaign>();
+            JArray array = JArray.Parse(rawData);
+
+
             //thisLabel.Text = thisThing.ToString();
-            JArray array = JArray.Parse(jsonData);
+
             //Console.WriteLine(array);
             foreach(JObject thisThing in array)
             {
-                Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), "11/12/18", thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+                Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
                 thisCampaign.posIndex = (fieldData.Count).ToString();
+                Console.WriteLine("Current count is " + thisCampaign.posIndex);
                 fieldData.Add(thisCampaign);
 
-                //Console.WriteLine(thisThing.GetValue("CampaignName"));
+               
             }
         
 
 
-            //Console.WriteLine(stuff.Count);
+       
 
-            //Console.WriteLine(stuff);     
-
-            //JArray newStuff = (Newtonsoft.Json.Linq.JArray)stuff["C1001_1"];
-            //Console.WriteLine(newStuff.Count);
-
-
-            //Object stuff = thisJunk;
-
-            //List<InputObject> inObjects = JsonConvert.DeserializeObject<List<InputObject>>(jsonData);
-            //Console.WriteLine(inObjects);
-
-
+            InitializeComponent();
             campaignDisplay.ItemsSource = fieldData;
+            
+           
 
 
         }
 
-        private void OpenCreateCampaign(object sender, EventArgs e)
+        private void OpenCreateCampaign(Button sender, EventArgs e)
         {
-            
 
+            Console.WriteLine("The is is "+ sender.ClassId);
 
-            //Navigation.PushAsync(new CreateCampaign());
+            Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
         }
     }
 }

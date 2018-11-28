@@ -11,11 +11,14 @@ namespace CampaignFinanceNew
         public String firstName { get; set; }
         public String lastName { get; set; }
         public String systemID { get; set; }
+        public String userFirebaseID { get; set; }
+
+       
 
 
         public CurrentUserInfo()
         {
-
+            
         }
     }
 
@@ -29,7 +32,7 @@ namespace CampaignFinanceNew
         public App()
         {
             InitializeComponent();
-            //currentUser = new CurrentUserInfo();
+            currentUser = new CurrentUserInfo();
             MainPage = new NavigationPage(new MainPage());
         }
 

@@ -5,8 +5,9 @@ namespace CampaignFinanceNew
 {
     public interface IFirebaseAuthenticator
     {
-        Task<string> LoginWithEmailPassword(string email, string password);
+        Task<bool> LoginWithEmailPassword(string email, string password);
         string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData);
+        string GetCurrentUserInfo();
         bool GetIdInfo();
     }
 }

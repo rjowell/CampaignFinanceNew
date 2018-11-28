@@ -63,9 +63,14 @@ namespace CampaignFinanceNew.Droid
             //throw new NotImplementedException();
         }
 
-        public Task<string> LoginWithEmailPassword(string email, string password)
+        public Task<bool> LoginWithEmailPassword(string email, string password)
         {
-            throw new NotImplementedException();
+            return null;
+        }
+
+        public string GetCurrentUserInfo()
+        {
+            return Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid;
         }
     }
 }

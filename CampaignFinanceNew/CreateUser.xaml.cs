@@ -100,15 +100,17 @@ namespace CampaignFinanceNew
                     Console.WriteLine("success");
                     //Console.WriteLine(content);
                     //var sentString = new StringContent(content, System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
-                    var sendingParameters = new System.Collections.Specialized.NameValueCollection();
-                    sendingParameters.Add("firstName", firstNameField.Text);
-                    sendingParameters.Add("lastName", lastNameField.Text);
-                    sendingParameters.Add("eMail", eMailField.Text);
-                    sendingParameters.Add("isSupporter", isSupporter.ToString());
-                    sendingParameters.Add("phone", phoneNumberField.Text);
-                    sendingParameters.Add("website", candidateWebsite.Text);
-                    sendingParameters.Add("party", partySelection);
-
+                    var sendingParameters = new System.Collections.Specialized.NameValueCollection
+                    {
+                        { "firstName", firstNameField.Text },
+                        { "lastName", lastNameField.Text },
+                        { "eMail", eMailField.Text },
+                        { "isSupporter", isSupporter.ToString() },
+                        { "phone", phoneNumberField.Text },
+                        { "website", candidateWebsite.Text },
+                        { "party", partySelection }
+                    };
+                    Console.WriteLine(sendingParameters.AllKeys);
                     //Console.WriteLine("jerkoff");
                     DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
                     //await connClient.PostAsync(submitCandidate, sentString);
