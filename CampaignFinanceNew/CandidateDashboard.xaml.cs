@@ -88,9 +88,9 @@ namespace CampaignFinanceNew
         private void OpenCreateCampaign(Button sender, EventArgs e)
         {
 
-            if(sender.ClassId==null)
+            if (sender.ClassId == null)
             {
-                Navigation.PushAsync(null);
+                Navigation.PushAsync(new CreateCampaign(null));
             }
             else
             {

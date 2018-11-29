@@ -23,7 +23,7 @@ namespace CampaignFinanceNew
             {
                 currentCampaign = null;
                 titleLabel.Text = "Create Campaign";
-                submitButton.Text = "Edit Campaign";
+                submitButton.Text = "Submit Campaign";
             }
             else
             {
@@ -39,12 +39,15 @@ namespace CampaignFinanceNew
                 startDate.Date = new DateTime().AddMonths(Convert.ToInt32(startDateRaw[0])-1).AddDays(Convert.ToInt32(startDateRaw[1])-1).AddYears(Convert.ToInt32(startDateRaw[2])-1);
                 endDate.Date = new DateTime().AddMonths(Convert.ToInt32(endDateRaw[0])-1).AddDays(Convert.ToInt32(endDateRaw[1])-1).AddYears(Convert.ToInt32(endDateRaw[2])-1);
             }
+
+
         }
 
         private void SubmitCampaignAsync(object sender, EventArgs e)
         {
             Console.WriteLine(campaignName.Text);
             Console.WriteLine(startDate.Date);
+            Console.WriteLine("campaign is-- " + currentCampaign);
             var sendingParameters = new System.Collections.Specialized.NameValueCollection();
             sendingParameters.Add("campaignName", campaignName.Text);
             sendingParameters.Add("campaignDescription", campaignDescription.Text);
@@ -54,12 +57,20 @@ namespace CampaignFinanceNew
             sendingParameters.Add("candidateId", App.currentUser.systemID);
             if (currentCampaign == null)
             {
-                sendingParameters.Add("campaignToUpdate", "0");
+                Console.WriteLine("it is null");
+                sendingParameters.Add("campaignID", "0");
             }
             else
             {
-                sendingParameters.Add("campaignToUpdate", currentCampaign.campaignID);
+                sendingParameters.Add("campaignID", currentCampaign.campaignID);
             }
+            Console.WriteLine("change is  " + sendingParameters.Get("campaignID"));
+            Console.WriteLine("change isa  " + sendingParameters.Get("campaignName"));
+            Console.WriteLine("change isb  " + sendingParameters.Get("campaignDescription"));
+            Console.WriteLine("change isc  " + sendingParameters.Get("goal"));
+            Console.WriteLine("change isd  " + sendingParameters.Get("startDate"));
+            Console.WriteLine("change ise  " + sendingParameters.Get("endDate"));
+            Console.WriteLine("change isf  " + sendingParameters.Get("candidateId"));
             var response=sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
             Console.WriteLine(System.Text.Encoding.Default.GetString(response));
            
