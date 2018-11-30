@@ -67,7 +67,7 @@ namespace CampaignFinanceNew.Droid
         public Task<bool> LoginWithEmailPassword(string email, string password)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-
+            Console.WriteLine("Step 1");
             Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password);
             WebClient thisClient = new WebClient();
             Console.WriteLine("point 1");
