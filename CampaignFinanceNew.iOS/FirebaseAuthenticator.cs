@@ -44,7 +44,7 @@ namespace CampaignFinanceNew.iOS
             //string userId = "";
             //NewUserID theThing = new NewUserID();
 
-            //TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
+            //TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
             Auth.DefaultInstance.CreateUser(email, password, (authResult, error) => {
 
@@ -76,8 +76,8 @@ namespace CampaignFinanceNew.iOS
             });*/
             Console.WriteLine("Your result lis");
             //Console.WriteLine(tcs.Task.Result);
-
-            return "hello";
+            //tcs.SetResult(true);
+            return "true";
             //return tcs.Task.Result;
         }
 
@@ -98,6 +98,7 @@ namespace CampaignFinanceNew.iOS
                 userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
                 App.currentUser.userFirebaseID = authResult.User.Uid;
                 App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+                Console.WriteLine("info is" + JObject.Parse(userJsonData).GetValue("CandidateId"));
                 Console.WriteLine("Your id is " + App.currentUser.systemID);
                 tcs.SetResult(true);
 

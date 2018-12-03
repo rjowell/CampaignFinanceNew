@@ -17,13 +17,15 @@ namespace CampaignFinanceNew.Droid
 
 
 
-    public class FirebaseAuthenticator: IFirebaseAuthenticator
+    public class FirebaseAuthenticator: Java.Lang.Object,IFirebaseAuthenticator, IOnCompleteListener 
     {
         public FirebaseAuthenticator()
         {
         }
 
         WebClient newClient = new WebClient();
+
+        //public new IntPtr Handle => throw new NotImplementedException();
 
         public bool GetIdInfo()
         {
@@ -39,18 +41,39 @@ namespace CampaignFinanceNew.Droid
                 return false;
             }
         }
+
+
+        public void MoveOn()
+        {
+
+        }
+
+
+        NameValueCollection mainUserData;
+        bool isCreateUser;
+        string userEmail;
+        string userPassword;
         public string CreateNewUser(string email, string password, NameValueCollection userData)
         {
-            newClient.Encoding = System.Text.Encoding.UTF8;
-            Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password);
-            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password);
+            //newClient.Encoding = System.Text.Encoding.UTF8;
+            mainUserData = userData;
+            userPassword = password;
+            userEmail = email;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            Console.WriteLine("system A1");
+            //await Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+            isCreateUser = true;
+            Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password).AddOnCompleteListener(this);
+            Console.WriteLine("system B");
+
+            Console.WriteLine("system C");
             Console.WriteLine("your id is " + Firebase.Auth.FirebaseAuth.Instance.Uid);
             //userData.Add("isSupporter", "false");
-            userData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
-            newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
-
+           
+            //Console.WriteLine(response);
 
             Console.WriteLine("it worked1233");
+            //tcs.SetResult(true);
             return "hello";
 
             /* var sendingParameters = new System.Collections.Specialized.NameValueCollection();
@@ -66,16 +89,30 @@ namespace CampaignFinanceNew.Droid
 
         public Task<bool> LoginWithEmailPassword(string email, string password)
         {
+            //Firebase.Auth.FirebaseAuth.Instance.SignOut();
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             Console.WriteLine("Step 1");
-            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password);
+            isCreateUser = false;
+            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password).AddOnCompleteListener(this);
             WebClient thisClient = new WebClient();
             Console.WriteLine("point 1");
             var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
-            Console.WriteLine("point 2");
+            Console.WriteLine("point 2A "+ Firebase.Auth.FirebaseAuth.Instance.Uid);
             App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
-            Console.WriteLine("point 3");
-            App.currentUser.systemID=JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+            var currentUserData = JObject.Parse(userJsonData);
+            Console.WriteLine("jeepers "+currentUserData.ContainsKey("CandidateId"));
+            if(currentUserData.ContainsKey("CandidateId")==false)
+            {
+                Console.WriteLine("chickee");
+                App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
+            }
+            else
+            {
+                Console.WriteLine("point 3" + JObject.Parse(userJsonData).GetValue("CandidateId"));
+                App.currentUser.systemID = currentUserData.GetValue("CandidateId").ToString();
+            }
+
+
             tcs.SetResult(true);
 
             return tcs.Task;
@@ -116,6 +153,28 @@ namespace CampaignFinanceNew.Droid
         public string GetCurrentUserInfo()
         {
             return Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid;
+        }
+
+        public void OnComplete(Android.Gms.Tasks.Task task)
+        {
+            if (isCreateUser == true)
+            {
+
+                Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(userEmail, userPassword);
+
+                mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
+                var response = newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
+                Console.WriteLine(System.Text.Encoding.Default.GetString(response));
+            }
+            else
+            {
+                //login
+            }
+        }
+
+        public new void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

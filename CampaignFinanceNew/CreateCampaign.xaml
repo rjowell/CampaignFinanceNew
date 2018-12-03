@@ -13,8 +13,11 @@
         <DatePicker x:Name="startDate" Date="{Binding startDate}"></DatePicker>
         <Label Text="End Date" HorizontalOptions="Center"/>
             <DatePicker x:Name="endDate" Date="{Binding endDate}"></DatePicker>
-            <Button x:Name="submitButton" Text="" Clicked="SubmitCampaignAsync"/>
+             <StackLayout Orientation="Horizontal">
+            <Button x:Name="submitButton" Text="" Clicked="SubmitCampaignAsync"/><Button x:Name="cancelButton" Text="Cancel" Clicked="GoToCampaignWindow"/>
+                    
         </StackLayout>
+            </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

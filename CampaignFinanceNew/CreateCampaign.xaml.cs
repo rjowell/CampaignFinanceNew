@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Xamarin.Forms;
 using System.Net;
+using System.Threading.Tasks;
+
 namespace CampaignFinanceNew
 {
     public partial class CreateCampaign : ContentPage
@@ -43,6 +45,11 @@ namespace CampaignFinanceNew
 
         }
 
+        private void GoToCampaignWindow(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CandidateDashboard());
+        }
+
         private void SubmitCampaignAsync(object sender, EventArgs e)
         {
             Console.WriteLine(campaignName.Text);
@@ -71,8 +78,13 @@ namespace CampaignFinanceNew
             Console.WriteLine("change isd  " + sendingParameters.Get("startDate"));
             Console.WriteLine("change ise  " + sendingParameters.Get("endDate"));
             Console.WriteLine("change isf  " + sendingParameters.Get("candidateId"));
+
             var response=sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
+
+            //sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
             Console.WriteLine(System.Text.Encoding.Default.GetString(response));
+            GoToCampaignWindow(null, null);
+
            
         }
 

@@ -12,8 +12,8 @@ namespace CampaignFinanceNew
         public String lastName { get; set; }
         public String systemID { get; set; }
         public String userFirebaseID { get; set; }
+        public bool isSupporter { get; set; }
 
-       
 
 
         public CurrentUserInfo()

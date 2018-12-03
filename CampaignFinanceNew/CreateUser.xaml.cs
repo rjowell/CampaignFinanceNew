@@ -38,6 +38,7 @@ namespace CampaignFinanceNew
                 partyLabel.IsVisible = false;
                 demButton.IsVisible = false;
                 gopButton.IsVisible = false;
+                otherPartyButton.IsVisible = false;
                 websiteLabel.IsVisible = false;
                 candidateWebsite.IsVisible = false;
                 createWindowLabel.Text = "Create Supporter";
@@ -72,6 +73,7 @@ namespace CampaignFinanceNew
         private void SubmitDataAsync(object sender, EventArgs e)
         {
             int count = 0;
+            Console.WriteLine("step A");
             bool formComplete = true;
             foreach (Entry entries in entryArray)
             {
@@ -81,23 +83,17 @@ namespace CampaignFinanceNew
                     formComplete = false;
                 }
                 count++;
+                Console.WriteLine("step B");
             }
-            if (partySelection == null)
-            {
-                formComplete = false;
-            }
-
+           
+            Console.WriteLine("step C");
             if (formComplete == true)
             {
 
-                if (isSupporter == true)
-                {
+                Console.WriteLine("step D");
 
-                }
-                else
-                {
-                    //String content = "firstName=" + firstNameField.Text + "&lastName=" + lastNameField.Text + "&eMail=" + eMailField.Text + "&phone=" + phoneNumberField.Text + "&website=" + candidateWebsite.Text + "&party=" + partySelection;
-                    Console.WriteLine("success");
+                //String content = "firstName=" + firstNameField.Text + "&lastName=" + lastNameField.Text + "&eMail=" + eMailField.Text + "&phone=" + phoneNumberField.Text + "&website=" + candidateWebsite.Text + "&party=" + partySelection;
+                Console.WriteLine("success");
                     //Console.WriteLine(content);
                     //var sentString = new StringContent(content, System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
                     var sendingParameters = new System.Collections.Specialized.NameValueCollection
@@ -120,7 +116,7 @@ namespace CampaignFinanceNew
                     //var thisObject = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
                     //Console.WriteLine(thisObject.Length);
-                }
+                
                 successFrame.IsVisible = true;
             }
         }
