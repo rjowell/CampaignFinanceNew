@@ -53,6 +53,8 @@ namespace CampaignFinanceNew.Droid
         bool isCreateUser;
         string userEmail;
         string userPassword;
+
+
         public string CreateNewUser(string email, string password, NameValueCollection userData)
         {
             //newClient.Encoding = System.Text.Encoding.UTF8;
@@ -87,6 +89,9 @@ namespace CampaignFinanceNew.Droid
             //throw new NotImplementedException();
         }
 
+
+        WebClient thisClient = new WebClient();
+
         public Task<bool> LoginWithEmailPassword(string email, string password)
         {
             //Firebase.Auth.FirebaseAuth.Instance.SignOut();
@@ -94,7 +99,7 @@ namespace CampaignFinanceNew.Droid
             Console.WriteLine("Step 1");
             isCreateUser = false;
             Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password).AddOnCompleteListener(this);
-            WebClient thisClient = new WebClient();
+
             Console.WriteLine("point 1");
             var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
             Console.WriteLine("point 2A "+ Firebase.Auth.FirebaseAuth.Instance.Uid);
@@ -168,7 +173,24 @@ namespace CampaignFinanceNew.Droid
             }
             else
             {
-                //login
+                Console.WriteLine("point 2A " + Firebase.Auth.FirebaseAuth.Instance.Uid);
+                App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
+                var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
+                var currentUserData = JObject.Parse(userJsonData);
+                Console.WriteLine("jeepers " + currentUserData.ContainsKey("CandidateId"));
+                if (currentUserData.ContainsKey("CandidateId") == false)
+                {
+                    Console.WriteLine("chickee");
+                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
+                    App.currentUser.isSupporter = true;
+                    Console.WriteLine("Sys user id " + App.currentUser.systemID);
+                }
+                else
+                {
+                    Console.WriteLine("point 3" + JObject.Parse(userJsonData).GetValue("CandidateId"));
+                    App.currentUser.systemID = currentUserData.GetValue("CandidateId").ToString();
+                    App.currentUser.isSupporter = false;
+                }
             }
         }
 
@@ -179,60 +201,4 @@ namespace CampaignFinanceNew.Droid
     }
 }
 
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * using System;
-using System.Threading.Tasks;
 
-using CampaignFinanceNew.Droid;
-using Xamarin.Forms;
-[assembly: Dependency(typeof(FirebaseAuthenticator))]
-
-namespace CampaignFinanceNew.Droid
-{
-    public class FirebaseAuthenticator: IFirebaseAuthenticator
-    {
-        public FirebaseAuthenticator()
-        {
-        }
-
-        public string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
-        {
-            Console.WriteLine("hhhhh");
-            //var thing=Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password);
-            bool userCreateSuccessful = Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password).IsCompletedSuccessfully;
-            if (userCreateSuccessful == true)
-            {
-                //var user = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                //var theToken = await user.User.GetIdTokenAsync(false);
-                //Console.WriteLine(theToken.Token);
-            }
-            else
-            {
-                Console.WriteLine("it failed");
-            }
-
-            //Firebase.Auth.UserProfileChangeRequest request = new Firebase.Auth.UserProfileChangeRequest.Builder().SetDisplayName("John Smith").Build();
-
-            //thing.User.UpdateProfile(request);
-            //return "Hello";
-            return "hello";
-        }
-
-        public async Task<string> LoginWithEmailPassword(string email, string password)
-        {
-            var user = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-            var userID = user.User.Uid;
-            Console.WriteLine(userID);
-            var token = await user.User.GetTokenAsync(false);
-            return token.Token;
-        }
-    }
-}*/

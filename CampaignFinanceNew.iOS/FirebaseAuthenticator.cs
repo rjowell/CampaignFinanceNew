@@ -107,8 +107,7 @@ namespace CampaignFinanceNew.iOS
 
             return tcs.Task;
 
-            //return await user.User.GetIdTokenAsync();
-            //userJsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + currentToken);
+
 
 
         }

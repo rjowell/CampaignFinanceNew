@@ -46,12 +46,21 @@ namespace CampaignFinanceNew
             WebClient thisClient = new WebClient();
             Console.WriteLine("point A");
 
-            var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
+            //var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
             Console.WriteLine("point B");
             //Console.WriteLine("idents iss"+App.currentUser.userFirebaseID);
-            App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+            //App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
             Console.WriteLine("point C");
-            String rawData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id="+App.currentUser.systemID);
+            String rawData;
+            if(App.currentUser.isSupporter==true)
+            {
+                rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=0");
+            }
+            else
+            {
+                rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=" + App.currentUser.systemID);
+            }
+           
             Console.WriteLine("point D "+ App.currentUser.systemID);
             fieldData = new List<Campaign>();
             JArray array = JArray.Parse(rawData);
