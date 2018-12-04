@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Geolocator;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CampaignFinanceNew
@@ -29,9 +30,13 @@ namespace CampaignFinanceNew
 
         public static CurrentUserInfo currentUser;
 
+         
+
         public App()
         {
             InitializeComponent();
+            var locator = CrossGeolocator.Current;
+
             currentUser = new CurrentUserInfo();
             MainPage = new NavigationPage(new MainPage());
         }

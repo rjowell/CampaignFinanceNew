@@ -94,6 +94,11 @@ namespace CampaignFinanceNew
 
         }
 
+        private void ShowDonateWindow(Button sender, EventArgs e)
+        {
+
+        }
+
         private void OpenCreateCampaign(Button sender, EventArgs e)
         {
 

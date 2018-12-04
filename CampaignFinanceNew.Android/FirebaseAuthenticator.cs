@@ -104,6 +104,7 @@ namespace CampaignFinanceNew.Droid
             var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
             Console.WriteLine("point 2A "+ Firebase.Auth.FirebaseAuth.Instance.Uid);
             App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
+            Console.WriteLine("here we go");
             var currentUserData = JObject.Parse(userJsonData);
             Console.WriteLine("jeepers "+currentUserData.ContainsKey("CandidateId"));
             if(currentUserData.ContainsKey("CandidateId")==false)

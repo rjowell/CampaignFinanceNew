@@ -16,7 +16,8 @@
                             <Label x:Name="campDescLabel" Text="{Binding campaignDescription}"/>
                             <Label x:Name="campEndDate" Text="{Binding endDate}"/>
                             <Button x:Name="editButton" ClassId="{Binding posIndex}" Pressed="OpenCreateCampaign" Text="Edit" HorizontalOptions="End"/>
-                               </StackLayout>
+                            <Button x:Name="donateButton" ClassId="{Binding posIndex}"/>   
+                            </StackLayout>
                             
                         </ViewCell>
                     </DataTemplate>

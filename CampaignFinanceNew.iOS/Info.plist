@@ -28,6 +28,8 @@
 	<string>com.russjowell.CampaignFinanceNew</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>This app needs access to location when open.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
