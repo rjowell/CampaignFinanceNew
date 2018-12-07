@@ -13,6 +13,16 @@
             <Entry WidthRequest="300" x:Name="eMailField" HorizontalOptions="Center"/>
             <Label x:Name="phoneLabel" Text="Phone Number" HorizontalOptions="Center"/>
             <Entry WidthRequest="300" x:Name="phoneNumberField" HorizontalOptions="Center"/>
+            <Label x:Name="addressLabel" Text="Mailing Address" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="addressField" HorizontalOptions="Center"/>
+            <Label x:Name="cityLabel" Text="City" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="cityField" HorizontalOptions="Center"/>
+                
+                 <Label x:Name="stateLabel" Text="State" HorizontalOptions="Center"/>
+            <Picker x:Name="stateSelection"/>
+                
+                
+                
             <Label x:Name="partyLabel" Text="Party Affiliation" HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="300" Spacing="50">
                 <Button Text="Democratic" x:Name="demButton" Clicked="ProcessPartyButton"/>
