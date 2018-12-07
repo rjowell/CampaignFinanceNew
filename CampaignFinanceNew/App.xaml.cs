@@ -35,8 +35,8 @@ namespace CampaignFinanceNew
         public App()
         {
             InitializeComponent();
-            var locator = CrossGeolocator.Current;
-
+           
+            //Console.WriteLine(address);
             currentUser = new CurrentUserInfo();
             MainPage = new NavigationPage(new MainPage());
         }

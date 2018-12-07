@@ -37,20 +37,24 @@ namespace CampaignFinanceNew
             stateSelection.ItemsSource = states;
             isSupporter = setSupporter;
             otherPartyLabel.IsVisible = false;
-            candidateParty.IsVisible = false;
+
             successFrame.IsVisible = false;
+
             if (isSupporter == true)
             {
                 partyLabel.IsVisible = false;
+                candidateParty.IsVisible = false;
                 demButton.IsVisible = false;
                 gopButton.IsVisible = false;
                 otherPartyButton.IsVisible = false;
                 websiteLabel.IsVisible = false;
+                contactPerson.IsVisible = false;
+                contactPersonField.IsVisible = false;
                 candidateWebsite.IsVisible = false;
                 createWindowLabel.Text = "Create Supporter";
 
-                entryArray = new Entry[] { firstNameField, lastNameField, eMailField, phoneNumberField, usernameField, passwordField };
-                entryLabels = new Label[] { firstNameLabel, lastNameLabel, eMailLabel, phoneLabel, usernameLabel, passwordLabel };
+                entryArray = new Entry[] { firstNameField, lastNameField, eMailField, phoneNumberField, passwordField };
+                entryLabels = new Label[] { firstNameLabel, lastNameLabel, eMailLabel, phoneLabel, passwordLabel };
             }
             else
             {
@@ -58,8 +62,8 @@ namespace CampaignFinanceNew
                 partyButtons = new Button[] { demButton, gopButton, otherPartyButton };
 
 
-                entryArray = new Entry[] { firstNameField, lastNameField, eMailField, phoneNumberField, candidateWebsite, usernameField, passwordField };
-                entryLabels = new Label[] { firstNameLabel, lastNameLabel, eMailLabel, phoneLabel, websiteLabel, usernameLabel, passwordLabel };
+                entryArray = new Entry[] { firstNameField, lastNameField, eMailField, phoneNumberField, candidateWebsite, passwordField };
+                entryLabels = new Label[] { firstNameLabel, lastNameLabel, eMailLabel, phoneLabel, websiteLabel, passwordLabel };
 
             }
 
@@ -110,8 +114,13 @@ namespace CampaignFinanceNew
                         { "isSupporter", isSupporter.ToString() },
                         { "phone", phoneNumberField.Text },
                         { "website", candidateWebsite.Text },
-                        { "party", partySelection }
-                    };
+                        { "party", partySelection },
+                        {"mailingAddress", addressField.Text},
+                        {"city", cityField.Text},
+                        { "state", stateAbbr[stateSelection.SelectedIndex]},
+                        {"zipCode", zipCodeField.Text},
+                        {"contactPerson", contactPersonField.Text}
+            };
                     Console.WriteLine(sendingParameters.AllKeys);
                     //Console.WriteLine("jerkoff");
                     DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);

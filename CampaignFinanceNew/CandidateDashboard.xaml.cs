@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 
 using Xamarin.Forms;
 using CampaignFinanceNew;
+using Plugin.Geolocator;
 
 namespace CampaignFinanceNew
 {
@@ -43,6 +44,16 @@ namespace CampaignFinanceNew
 
         public CandidateDashboard()
         {
+
+            Console.WriteLine("helo george");
+     
+            var locator=CrossGeolocator.Current;
+
+            Console.WriteLine(locator.GetPositionAsync().Result.Latitude);
+
+            //var address = locator.GetAddressesForPositionAsync(locator.GetPositionAsync().Result);
+
+
             WebClient thisClient = new WebClient();
             Console.WriteLine("point A");
 
