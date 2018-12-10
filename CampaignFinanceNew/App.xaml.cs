@@ -16,11 +16,21 @@ namespace CampaignFinanceNew
         public bool isSupporter { get; set; }
 
 
+  
+    }
 
-        public CurrentUserInfo()
-        {
-            
-        }
+    public class CurrentLocationInfo
+    {
+        public String state { get; set; }
+        public String[] countyType = new string[] { "county", "parish", "borough" };
+        public int getCountyType { get; set; }
+        public String countyName { get; set; }
+        public String cityName { get; set; }
+        public int cityCouncilDistrict { get; set; }
+        public int countyCouncilDistrict { get; set; }
+        public int congressDistrict { get; set; }
+        public int stateSenateDistrict { get; set; }
+        public int stateHouseDistrict { get; set; }
     }
 
 
@@ -29,8 +39,9 @@ namespace CampaignFinanceNew
     {
 
         public static CurrentUserInfo currentUser;
+        public static CurrentLocationInfo currentLocation;
 
-         
+
 
         public App()
         {
@@ -38,6 +49,7 @@ namespace CampaignFinanceNew
            
             //Console.WriteLine(address);
             currentUser = new CurrentUserInfo();
+            currentLocation = new CurrentLocationInfo();
             MainPage = new NavigationPage(new MainPage());
         }
 
