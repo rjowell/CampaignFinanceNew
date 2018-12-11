@@ -30,13 +30,18 @@ namespace CampaignFinanceNew
 
         }
 
-        public CreateUser(bool setSupporter)
+        public void setSupporter(bool supporterBool)
+        {
+            isSupporter = supporterBool;
+        }
+
+        public CreateUser()
         {
 
             InitializeComponent();
             stateSelection.ItemsSource = states;
             officeRunningFor.ItemsSource = offices;
-            isSupporter = setSupporter;
+            //isSupporter = setSupporter;
             otherPartyLabel.IsVisible = false;
 
             successFrame.IsVisible = false;

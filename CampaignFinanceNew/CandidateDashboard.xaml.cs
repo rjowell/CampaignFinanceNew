@@ -6,8 +6,8 @@ using Newtonsoft.Json.Linq;
 
 using Xamarin.Forms;
 using CampaignFinanceNew;
-using Plugin.Geolocator;
-using System.Threading.Tasks;
+
+
 
 namespace CampaignFinanceNew
 {
@@ -44,108 +44,11 @@ namespace CampaignFinanceNew
 
 
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
-        string googleCivicURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw&address=";
+       
 
 
 
-        public async Task<string> GetLocationInformation()
-        {
 
-            var locator = CrossGeolocator.Current;
-            Console.WriteLine("this pos");
-            var currentPosition = await locator.GetPositionAsync();
-            Console.WriteLine("this pos-2");
-            var address = await locator.GetAddressesForPositionAsync(currentPosition);
-            Console.WriteLine("this pos-3");
-            string currentUserString=""; 
-            foreach(var item in address)
-            {
-
-                //Console.WriteLine(item.AdminArea + " " + item.CountryCode + " " + item.FeatureName + " " + item.Locality + " " + item.PostalCode + " " + item.SubAdminArea + " " + item.SubLocality + " " + item.SubThoroughfare + " " + item.Thoroughfare);
-
-                // MD US 6707 Democracy Blvd Bethesda 20817 Montgomery  6707 Democracy Blvd
-
-               currentUserString=item.FeatureName.Replace(" ", "%20") + "%20"+item.Locality.Replace(" ","%20")+"%20"+item.AdminArea;
-                }
-            Console.WriteLine(currentUserString);
-            WebClient newClient = new WebClient();
-            //var rawLocationData = newClient.DownloadString(googleCivicURL + currentUserString);
-            Console.WriteLine("cheese-1");
-            JObject parseData = JObject.Parse(newClient.DownloadString(googleCivicURL + currentUserString));
-            Console.WriteLine("cheese-2");
-            JObject divisionData = JObject.Parse(parseData.GetValue("divisions").ToString());
-            Console.WriteLine("cheese-3");
-            //JArray newData = JArray.Parse(parseData.GetValue("divisions").ToString());
-            Console.WriteLine("cheese-43");
-            var currKeys = divisionData.Properties();
-
-            foreach(var things in currKeys)
-            {
-                string[] currentThings=things.Name.Split('/');
-
-                string[] currentItem = currentThings[currentThings.Length - 1].Split(':');
-
-                if(currentItem[0]=="state")
-                {
-                    App.currentLocation.state = currentItem[1];
-                }
-                else if(currentItem[0]=="county")
-                {
-                    App.currentLocation.getCountyType = 0;
-                    App.currentLocation.countyName = currentItem[1];
-
-                }
-                else if(currentItem[0]=="parish")
-                {
-                    App.currentLocation.getCountyType = 1;
-                    App.currentLocation.countyName = currentItem[1];
-                }
-                else if (currentItem[0] == "borough")
-                {
-                    App.currentLocation.getCountyType = 2;
-                    App.currentLocation.countyName = currentItem[1];
-                }
-                else if (currentItem[0] == "cd")
-                {
-                    App.currentLocation.congressDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentItem[0] == "sldl")
-                {
-                    App.currentLocation.stateHouseDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentItem[0] == "sldu")
-                {
-                    App.currentLocation.stateSenateDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentItem[0] == "sldu")
-                {
-                    App.currentLocation.stateSenateDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentItem[0] == "place")
-                {
-                    App.currentLocation.cityName = currentItem[1].Replace('_', ' ');
-                }
-                else if (currentThings[currentThings.Length-2].Split(':')[0]=="place")
-                {
-                    App.currentLocation.cityCouncilDistrict =   Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentThings[currentThings.Length - 2].Split(':')[0] == "county" || currentThings[currentThings.Length - 2].Split(':')[0] == "parish" || currentThings[currentThings.Length - 2].Split(':')[0] == "borough")
-                {
-                    App.currentLocation.countyCouncilDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else
-                {
-
-                }
-
-                //Console.WriteLine(currentThings[currentThings.Length - 1]);
-
-            }
-
-
-
-            return "hello";
-        }
 
 
 
@@ -156,8 +59,9 @@ namespace CampaignFinanceNew
             Console.WriteLine("helo george");
 
 
-            GetLocationInformation();
 
+            //GetLocationInformation();
+            Console.WriteLine(App.currentLocation.cityName + " " + App.currentLocation.state+" "+App.currentLocation.congressDistrict);
             Console.WriteLine("helo george-1");
            
 
@@ -206,6 +110,9 @@ namespace CampaignFinanceNew
        
 
             InitializeComponent();
+
+            campNameLabelA.FontFamily="Times";
+
             campaignDisplay.ItemsSource = fieldData;
             
            
