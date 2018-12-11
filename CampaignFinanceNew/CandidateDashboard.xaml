@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
+<ContentPage BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
     <ContentPage.Content>
-                <StackLayout>
+        
+        <StackLayout>
             <Label x:Name="thisLabel" Text=""/>
             <Button Text="Create Campaign" Clicked="OpenCreateCampaign"/>
+        
+            
+        
+            <StackLayout WidthRequest="300" BackgroundColor="#101d30">
+            <Label Margin="10,5,0,0" FontSize="25" x:Name="campNameLabel" FontAttributes="Bold,Italic"  Text="Save The Rainforest!"/>
+            <StackLayout Orientation="Horizontal">
+            <Label Margin="10,-5,0,0" x:Name="candidateLabel" Text="John Doe |"/>
+            <Label Margin="0,-5,6,8" x:Name="campaignLabel" Text="Running for: U.S. House TX-3"/>
+                        </StackLayout>
+            <Label x:Name="campaignDescription" Text="Help us save all the rainforests! We're counting on you"/>
+            <Label Text="Progress: 1850 / 2500"/>
+            <ProgressBar x:Name="fundProgress" Progress=".5" WidthRequest="300"/> 
+                <StackLayout Orientation="Horizontal" WidthRequest="250" >
+                <Button x:Name="donateButton" Text="Donate" WidthRequest="80" HeightRequest="25" BackgroundColor="Transparent"   HorizontalOptions="Start"/>
+         <Label x:Name="endDate" HorizontalOptions="Center" Text="Ends: 2/19/18"/>
+            </StackLayout>
+              </StackLayout>
+                
+        
+        
+       
+         
+             
+        
+        
+                
             <ListView x:Name="campaignDisplay" RowHeight="120">
                 <ListView.ItemTemplate>
               
@@ -13,7 +40,7 @@
                             <StackLayout MinimumHeightRequest="500" Spacing="3">
                             <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             <Label x:Name="campNameLabel" Text="{Binding campaignName}"/>
-                            <Label x:Name="campDescLabel" Text="{Binding campaignDescription}"/>
+                            <Label x:Name="campDescLabel" Text="{Binding campaignDescription}" />
                             <Label x:Name="campEndDate" Text="{Binding endDate}"/>
                             <Button x:Name="editButton" ClassId="{Binding posIndex}" Pressed="OpenCreateCampaign" Text="Edit" HorizontalOptions="End"/>
                             <Button x:Name="donateButton" ClassId="{Binding posIndex}"/>   

@@ -125,7 +125,18 @@ namespace CampaignFinanceNew
                 {
                     App.currentLocation.cityName = currentItem[1].Replace('_', ' ');
                 }
+                else if (currentThings[currentThings.Length-2].Split(':')[0]=="place")
+                {
+                    App.currentLocation.cityCouncilDistrict =   Convert.ToInt32(currentItem[1]);
+                }
+                else if (currentThings[currentThings.Length - 2].Split(':')[0] == "county" || currentThings[currentThings.Length - 2].Split(':')[0] == "parish" || currentThings[currentThings.Length - 2].Split(':')[0] == "borough")
+                {
+                    App.currentLocation.countyCouncilDistrict = Convert.ToInt32(currentItem[1]);
+                }
+                else
+                {
 
+                }
 
                 //Console.WriteLine(currentThings[currentThings.Length - 1]);
 

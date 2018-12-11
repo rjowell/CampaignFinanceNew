@@ -23,7 +23,8 @@
                 
                  <Label x:Name="zipCodeLabel" Text="Zip Code" HorizontalOptions="Center"/>
                 <Entry MaxLength="5" x:Name="zipCodeField" HorizontalOptions="Center"/>
-                
+                 <Label x:Name="runningLabel" Text="Office Running For" HorizontalOptions="Center"/>
+                <Picker x:Name="officeRunningFor"/>
             <Label x:Name="partyLabel" Text="Party Affiliation" HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="300" Spacing="50">
                 <Button Text="Democratic" x:Name="demButton" Clicked="ProcessPartyButton"/>
