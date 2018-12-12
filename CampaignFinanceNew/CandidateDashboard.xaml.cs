@@ -39,6 +39,7 @@ namespace CampaignFinanceNew
 
     public partial class CandidateDashboard : ContentPage
     {
+
         List<Campaign> fieldData;
         //String jsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php");
 
@@ -111,9 +112,11 @@ namespace CampaignFinanceNew
 
             InitializeComponent();
 
+           
 
             campNameLabelA.FontFamily="Times";
-
+            menuButton.Source = ImageSource.FromResource("CampaignFinanceNew.menusandwich.png");
+            searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
             campaignDisplay.ItemsSource = fieldData;
             
