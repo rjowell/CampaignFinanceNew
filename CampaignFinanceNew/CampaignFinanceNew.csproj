@@ -18,4 +18,10 @@
   <ItemGroup>
     <Compile Remove="CurrentUserInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="MenuSandwich.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="menusandwich.png" />
+  </ItemGroup>
 </Project>

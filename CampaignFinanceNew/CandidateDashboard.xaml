@@ -2,10 +2,29 @@
 <ContentPage BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
     <ContentPage.Content>
         
+        
+        
+        
+        
         <StackLayout>
+            
+            <Grid HeightRequest="100">
+            <Grid.RowDefinitions>
+                
+                <RowDefinition/>
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="Center"  x:Name="titleLable" Text="Welcome, Russell" Grid.Row="0" Grid.Column="1"/>
+           <Image Source="CampaignFinanceNew.menusandwich.png" Grid.Row="0" Grid.Column="2"/>
+            </Grid>
             <Label x:Name="thisLabel" Text=""/>
             <Button Text="Create Campaign" Clicked="OpenCreateCampaign"/>
-        
+        <Button x:Name="menuButton"  Image="" BackgroundColor="Red" Margin="15,0,15,0"/>
+       
             
         
             <StackLayout WidthRequest="300" BackgroundColor="#101d30">

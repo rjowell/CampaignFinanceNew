@@ -111,8 +111,10 @@ namespace CampaignFinanceNew
 
             InitializeComponent();
 
+
             campNameLabelA.FontFamily="Times";
 
+            //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
             campaignDisplay.ItemsSource = fieldData;
             
            
