@@ -89,19 +89,20 @@
              
                
                 
-                <Grid>
+                <Grid HorizontalOptions="End">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="33"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                   
                     </Grid.ColumnDefinitions>
                     
                     
                     
-                     <Grid Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
+                     <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
             <Grid.RowDefinitions>
                 
                 <RowDefinition/>
@@ -113,15 +114,15 @@
                      </Grid.ColumnDefinitions>
                 <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLable" Text="Welcome, Russell" Grid.Row="0" Grid.Column="1"/>
           
-            <ImageButton Margin="2,5,0,2" HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
+            <ImageButton Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
                 <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
             </Grid> 
                     
-                <StackLayout BackgroundColor="Navy" Grid.Row="1" Grid.Column="0">
+                <StackLayout x:Name="menuBlock" BackgroundColor="Navy" Grid.Row="1" Grid.Column="0">
                     
                     <Button BackgroundColor="Transparent" Text="Create Campaign"/>
                     <Button BackgroundColor="Transparent" Text="Edit Profile"/>
-                    <Button BackgroundColor="Transparent" Text="Logout"/>
+                    <Button BackgroundColor="Transparent" Clicked="SignOutUser" Text="Logout"/>
                     
                 </StackLayout>
                 

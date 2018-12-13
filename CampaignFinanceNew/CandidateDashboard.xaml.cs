@@ -130,6 +130,24 @@ namespace CampaignFinanceNew
 
         }
 
+        public void SignOutUser(Button sender, EventArgs e)
+        {
+            DependencyService.Get<IFirebaseAuthenticator>().Logout();
+
+        }
+
+        private void ShowMenu(Button sender, EventArgs e)
+        {
+            if(menuBlock.IsVisible==true)
+            {
+                menuBlock.IsVisible = false;
+            }
+            else
+            {
+                menuBlock.IsVisible = true;
+            }
+        }
+
         private void OpenCreateCampaign(Button sender, EventArgs e)
         {
 
