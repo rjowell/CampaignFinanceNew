@@ -10,25 +10,29 @@
         <StackLayout>
            
             
-            
-            <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="28"/>
-                    
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
+             <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
+            <Grid.RowDefinitions>
+                
+                <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                      
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text=""/>
-                    </Grid>
+                        <ColumnDefinition />
+                    <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLable" Text="Welcome, Russell" Grid.Row="0" Grid.Column="1"/>
+          
+            <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
+                <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
+            </Grid> 
+           
             
         
        
             
         
-            <StackLayout WidthRequest="300" BackgroundColor="#101d30">
-            <Label Margin="10,5,0,0" x:Name="campNameLabelA" TextColor="White" FontSize="Large" Text="Save The Rainforest!"/>
+            <StackLayout WidthRequest="300" BackgroundColor="#101d30" Margin="0,-7,0,0">
+            <Label Margin="0,0,0,0" x:Name="campNameLabelA" TextColor="White" FontSize="Large" Text="Save The Rainforest!"/>
             <StackLayout Orientation="Horizontal">
             <Label Margin="10,-5,0,0" x:Name="candidateLabel" Text="John Doe |"/>
             <Label Margin="0,-5,6,8" x:Name="campaignLabel" Text="Running for: U.S. House TX-3"/>
@@ -48,12 +52,24 @@
                         <ColumnDefinition/>
                      </Grid.ColumnDefinitions>
                     <Label x:Name="endDateA" HorizontalOptions="End"  Text="Ends: 2--/19/18" Grid.Row="0" Grid.Column="1"  />
-                    <Button x:Name="donateButtonA" Text="Donate" HeightRequest="25" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"/>
+                    <Button x:Name="donateButtonA" Text="Donate" HeightRequest="25" BackgroundColor="Green" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"/>
               
                 </Grid>
               
               </StackLayout>
                 
+     <!--
+                
+                
+                
+               
+                
+                
+                
+                
+                
+                
+                -->
         
         
        
@@ -89,57 +105,21 @@
              
                
                 
-                <Grid HorizontalOptions="End">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="33"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                   
-                    </Grid.ColumnDefinitions>
-                    
-                    
-                    
-                     <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
-            <Grid.RowDefinitions>
                 
-                <RowDefinition/>
-                </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition />
-                    <ColumnDefinition/>
-                     </Grid.ColumnDefinitions>
-                <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLable" Text="Welcome, Russell" Grid.Row="0" Grid.Column="1"/>
-          
-            <ImageButton Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
-                <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
-            </Grid> 
                     
-                <StackLayout x:Name="menuBlock" BackgroundColor="Navy" Grid.Row="1" Grid.Column="0">
                     
-                    <Button BackgroundColor="Transparent" Text="Create Campaign"/>
+                    
+                    
+                    
+                <StackLayout Margin="0,40,0,0" x:Name="menuBlock" BackgroundColor="Navy" Grid.Row="1" Grid.Column="0">
+                    
+                    <Button BackgroundColor="Transparent" x:Name="createCampaignButton" Text="Create Campaign"/>
                     <Button BackgroundColor="Transparent" Text="Edit Profile"/>
                     <Button BackgroundColor="Transparent" Clicked="SignOutUser" Text="Logout"/>
                     
                 </StackLayout>
                 
-                
-                
-                
-               
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                </Grid>
-                
+           
      
             
        </RelativeLayout>

@@ -116,5 +116,10 @@ namespace CampaignFinanceNew.iOS
         {
             return App.currentUser.systemID;
         }
+
+        public void Logout()
+        {
+            Auth.DefaultInstance.SignOut(out Foundation.NSError error);
+        }
     }
 }

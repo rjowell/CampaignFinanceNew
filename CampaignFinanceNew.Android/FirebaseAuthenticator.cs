@@ -199,6 +199,11 @@ namespace CampaignFinanceNew.Droid
         {
             throw new NotImplementedException();
         }
+
+        public void Logout()
+        {
+            Firebase.Auth.FirebaseAuth.Instance.SignOut();
+        }
     }
 }
 

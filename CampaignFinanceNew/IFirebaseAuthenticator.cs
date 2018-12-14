@@ -9,5 +9,6 @@ namespace CampaignFinanceNew
         string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData);
         string GetCurrentUserInfo();
         bool GetIdInfo();
+        void Logout();
     }
 }
