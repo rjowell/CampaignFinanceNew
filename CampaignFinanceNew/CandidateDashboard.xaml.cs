@@ -18,19 +18,26 @@ namespace CampaignFinanceNew
         public String endDate { get; set; }
         public String progress { get; set; }
         public String fundGoal { get; set; }
+        public double progressFactor { get; set; }
+        public String progressDisplay { get; set; }
         public String campaignDescription { get; set; }
         public String campaignID { get; set; }
         public String posIndex { get; set; }
+        public String candidateDisplayName { get; set; }
+        public String office { get; set; }
 
-        public Campaign(string ID, string Name, string Description, string Start, string End, string Progress, string Goal)
+        public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
-            campaignName = Name;
-            startDate = Start;
-            endDate = End;
-            progress = Progress;
-            campaignDescription = Description;
-            campaignID = ID;
-            fundGoal = Goal;
+            campaignName = campName;
+            candidateDisplayName = firstName + " " + lastName + "|Running For: " + office + " " + state + "-" + district;
+            startDate = start;
+            endDate = end;
+            progress = campProgress;
+            progressDisplay = progress + "/" + goal;
+            progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal),2);
+            campaignDescription = campDescription;
+            campaignID = iD;
+            fundGoal = goal;
         }
     }
 
@@ -91,12 +98,13 @@ namespace CampaignFinanceNew
             Console.WriteLine("point E");
 
             //thisLabel.Text = thisThing.ToString();
+            //public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
 
             //Console.WriteLine(array);
             foreach (JObject thisThing in array)
             {
                 Console.WriteLine("point F");
-                Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+                Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
                 Console.WriteLine("point G");
                 thisCampaign.posIndex = (fieldData.Count).ToString();
                 Console.WriteLine("Current count is " + thisCampaign.posIndex);
@@ -105,10 +113,15 @@ namespace CampaignFinanceNew
 
 
             }
-        
+
+            foreach(Campaign theese in fieldData)
+            {
+                Console.WriteLine(theese.campaignID + " " + theese.campaignName + " " + theese.candidateDisplayName + " " + theese.progressFactor);
+            }
 
 
-       
+
+
 
             InitializeComponent();
 
@@ -125,7 +138,7 @@ namespace CampaignFinanceNew
             menuButton.Source = ImageSource.FromResource("CampaignFinanceNew.menusandwich.png");
             searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
-            campaignDisplay.ItemsSource = fieldData;
+            //campaignDisplay.ItemsSource = fieldData;
             
            
 
