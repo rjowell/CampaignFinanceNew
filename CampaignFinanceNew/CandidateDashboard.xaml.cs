@@ -112,6 +112,13 @@ namespace CampaignFinanceNew
 
             InitializeComponent();
 
+            if(App.currentUser.isSupporter==false)
+            {
+                createCampaignButton.IsVisible = false;
+            }
+           
+
+            menuBlock.IsVisible = false;
            
 
             campNameLabelA.FontFamily="Times";

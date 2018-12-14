@@ -62,7 +62,34 @@
                 
                 
                 
-               
+<StackLayout WidthRequest="300" BackgroundColor="#101d30" Margin="0,-7,0,0">
+            <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
+                            
+            <Label Margin="0,0,0,0" x:Name="campNameLabel" TextColor="White" FontSize="Large" Text="{Binding campaignName}"/>
+            <StackLayout Orientation="Horizontal">
+            <Label Margin="10,-5,0,0" x:Name="candidateLabel" Text="{Binding candidateName} + |"/>
+            <Label Margin="0,-5,6,8" x:Name="campaignLabel" Text="Running for: {Binding candidateOffice}U.S. House TX-3"/>
+                        </StackLayout>
+            <Label x:Name="campaignDescription" Text="Help us save all the rainforests! We're counting on you. No, really, we really need your support"/>
+            <Label Text="Progress: 1850 / 2500"/>
+            <ProgressBar x:Name="fundProgress" Progress=".5" WidthRequest="300"/>
+                
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        
+                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                    <Label x:Name="endDateA" HorizontalOptions="End"  Text="Ends: 2--/19/18" Grid.Row="0" Grid.Column="1"  />
+                    <Button x:Name="donateButtonA" Text="Donate" HeightRequest="25" BackgroundColor="Green" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"/>
+              
+                </Grid>
+              
+              </StackLayout>               
                 
                 
                 
@@ -75,7 +102,6 @@
        
          
              
-        
         
                 
             <ListView x:Name="campaignDisplay" RowHeight="120">
