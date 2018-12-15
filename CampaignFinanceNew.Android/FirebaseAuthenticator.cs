@@ -192,6 +192,8 @@ namespace CampaignFinanceNew.Droid
                     App.currentUser.systemID = currentUserData.GetValue("CandidateId").ToString();
                     App.currentUser.isSupporter = false;
                 }
+
+                Console.WriteLine("is support is " + App.currentUser.isSupporter);
             }
         }
 

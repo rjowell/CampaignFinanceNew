@@ -25,6 +25,7 @@ namespace CampaignFinanceNew
         public String posIndex { get; set; }
         public String candidateDisplayName { get; set; }
         public String office { get; set; }
+        public String setEditButton { get; set; }
 
         public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
@@ -38,6 +39,14 @@ namespace CampaignFinanceNew
             campaignDescription = campDescription;
             campaignID = iD;
             fundGoal = goal;
+            if(App.currentUser.isSupporter==true)
+            {
+                setEditButton = "Donate";
+            }
+            else
+            {
+                setEditButton = "Edit";
+            }
         }
     }
 
@@ -64,7 +73,7 @@ namespace CampaignFinanceNew
         public CandidateDashboard()
         {
 
-            Console.WriteLine("helo george");
+            //Console.WriteLine("helo georg "+App.currentUser.isSupporter);
 
 
 
@@ -127,19 +136,21 @@ namespace CampaignFinanceNew
 
             if(App.currentUser.isSupporter==false)
             {
-                createCampaignButton.IsVisible = false;
+                createCampaignButton.IsVisible = true;
+               
+
             }
            
 
             menuBlock.IsVisible = false;
            
 
-            campNameLabelA.FontFamily="Times";
+            //campNameLabel.FontFamily="Times";
             menuButton.Source = ImageSource.FromResource("CampaignFinanceNew.menusandwich.png");
             searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
-            //campaignDisplay.ItemsSource = fieldData;
-            
+            campaignDisplay.ItemsSource = fieldData;
+           
            
 
 
@@ -147,7 +158,7 @@ namespace CampaignFinanceNew
 
         private void ShowDonateWindow(Button sender, EventArgs e)
         {
-
+            Console.WriteLine(sender.ClassId);
         }
 
         public void SignOutUser(Button sender, EventArgs e)
