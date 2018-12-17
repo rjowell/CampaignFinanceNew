@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreditCardProcess">
+    <ContentPage.Content>
+        <StackLayout>
+    <Entry x:Name="creditCardNumber" MaxLength="16"/>
+    <Entry x:Name="ccExpiryMonth" MaxLength="2"/>
+    <Entry x:Name="ccExpiryYear" MaxLength="2"/>
+    <Entry x:Name="CVC" Margin="3"/>
+    <Button Text="Go"/> 
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

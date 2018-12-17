@@ -6,8 +6,7 @@ using Newtonsoft.Json.Linq;
 
 using Xamarin.Forms;
 using CampaignFinanceNew;
-
-
+using System.Collections.Specialized;
 
 namespace CampaignFinanceNew
 {
@@ -58,8 +57,8 @@ namespace CampaignFinanceNew
 
         List<Campaign> fieldData;
         //String jsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php");
-
-
+        WebClient client = new WebClient();
+        NameValueCollection donationData=new NameValueCollection();
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
        
 
@@ -159,6 +158,35 @@ namespace CampaignFinanceNew
         private void ShowDonateWindow(Button sender, EventArgs e)
         {
             Console.WriteLine(sender.ClassId);
+            currentSelectedCampaign = sender.ClassId;
+        }
+
+        private void ProcessDonation(Button sender, EventArgs e)
+        {
+
+            bool donationExists=false;
+            foreach(string currentDonations in App.currentUser.campaignsSupported)
+            {
+                string[] currentItem = currentDonations.Split(':');
+                if(currentItem[0]==currentSelectedCampaign)
+                {
+                    donationExists = true;
+                }
+
+            }
+            if (donationExists == false)
+            {
+                donationData.Add("supporterID", App.currentUser.systemID);
+                donationData.Add("donorAmount", donationField.Text);
+                donationData.Add("campaignID", currentSelectedCampaign);
+                App.currentUser.campaignsSupported=client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
+            }
+            else
+            {
+
+            }
+
+
         }
 
         public void SignOutUser(Button sender, EventArgs e)
@@ -166,7 +194,7 @@ namespace CampaignFinanceNew
             DependencyService.Get<IFirebaseAuthenticator>().Logout();
 
         }
-
+        String currentSelectedCampaign;
         private void ShowMenu(Button sender, EventArgs e)
         {
             if(menuBlock.IsVisible==true)

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
 using Java.Lang;
 using Android.Gms.Tasks;
+
 //[assembly: Dependency(typeof(FirebaseAuthenticator))]
 [assembly: Dependency (typeof(FirebaseAuthenticator))]
 
@@ -184,6 +185,7 @@ namespace CampaignFinanceNew.Droid
                     Console.WriteLine("chickee");
                     App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
                     App.currentUser.isSupporter = true;
+                    App.currentUser.campaignsSupported= JObject.Parse(userJsonData).GetValue("CampaignsSupported").ToString().Split(',');
                     Console.WriteLine("Sys user id " + App.currentUser.systemID);
                 }
                 else

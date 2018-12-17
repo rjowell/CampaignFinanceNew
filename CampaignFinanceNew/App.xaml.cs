@@ -14,9 +14,9 @@ namespace CampaignFinanceNew
         public String systemID { get; set; }
         public String userFirebaseID { get; set; }
         public bool isSupporter { get; set; }
+        public String[] campaignsSupported { get; set; }
 
 
-  
     }
 
     public class CurrentLocationInfo

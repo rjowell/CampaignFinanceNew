@@ -97,9 +97,20 @@ namespace CampaignFinanceNew.iOS
                 //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
                 userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
                 App.currentUser.userFirebaseID = authResult.User.Uid;
-                App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
-                Console.WriteLine("info is" + JObject.Parse(userJsonData).GetValue("CandidateId"));
-                Console.WriteLine("Your id is " + App.currentUser.systemID);
+
+
+                if(JObject.Parse(userJsonData).ContainsKey("CandidateId")==false)
+                {
+                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
+                    App.currentUser.isSupporter = true;
+                    App.currentUser.campaignsSupported = JObject.Parse(userJsonData).GetValue("CampaignsSupported").ToString().Split(',');
+                }
+                else
+                {
+                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+                    App.currentUser.isSupporter = false;
+                }
+
                 tcs.SetResult(true);
 
 
