@@ -99,7 +99,7 @@
             
             
              
-               
+              
                 
                 
                     
@@ -115,10 +115,21 @@
                     
                 </StackLayout>
                 
+            <StackLayout x:Name="donateWindow" TranslationX="70" TranslationY="200" BackgroundColor="Olive">
+                <Label Text="How much would you like to donate?"/>
+                <Entry Keyboard="Numeric" x:Name="donationField" MaxLength="10"/>
+                <Button Clicked="ProcessDonation" Text="Submit"/>
+                
+            </StackLayout>
+            
+            
+            
+            
            
-     
+           
             
        </RelativeLayout>
-        
+         
+     
     </ContentPage.Content>
 </ContentPage>
