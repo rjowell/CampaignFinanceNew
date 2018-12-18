@@ -14,7 +14,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
-    <PackageReference Include="Stripe" Version="1.12.0" />
+    <PackageReference Include="Stripe.net" Version="21.7.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="CurrentUserInfo.cs" />
@@ -23,6 +23,7 @@
     <None Remove="MenuSandwich.png" />
     <None Remove="menusandwich.png" />
     <None Remove="searchglass.png" />
+    <None Remove="ANMlogo1.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="menusandwich.png" />
@@ -30,5 +31,6 @@
   <ItemGroup>
     <EmbeddedResource Include="menusandwich.png" />
     <EmbeddedResource Include="searchglass.png" />
+    <EmbeddedResource Include="ANMlogo1.png" />
   </ItemGroup>
 </Project>

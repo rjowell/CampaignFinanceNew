@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage BackgroundColor="Navy"   xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    
+    
+   
+    
+    <RelativeLayout HorizontalOptions="Center" VerticalOptions="Center">
+         <Image x:Name="titleImage" Scale="1.5" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=-2, Constant=25}"/> 
+        
         <Label TextColor="White" Text="Returning Users" HorizontalOptions="Center"/>
         <Label Text="Username" HorizontalOptions="Center"/>
         
@@ -13,6 +19,9 @@
         <Button x:Name="createCandidate" Text="I am a candidate" Clicked="CreateUser"/>
         <Button x:Name="createSupporter" Text="I am a supporter" Clicked="CreateUser"/>
     
-   </StackLayout>
+        
+    </RelativeLayout>
+    
+   
 
 </ContentPage>

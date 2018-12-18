@@ -15,6 +15,7 @@ namespace CampaignFinanceNew
         public MainPage()
         {
             InitializeComponent();
+            titleImage.Source = ImageSource.FromResource("CampaignFinanceNew.ANMlogo1.png");
 
         }
 
