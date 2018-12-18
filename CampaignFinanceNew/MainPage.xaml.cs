@@ -15,12 +15,59 @@ namespace CampaignFinanceNew
         public MainPage()
         {
             InitializeComponent();
+
             titleImage.Source = ImageSource.FromResource("CampaignFinanceNew.ANMlogo1.png");
+            eMailLabel.IsVisible = false;
+            eMailField.IsVisible = false;
+            passwordLabel.IsVisible = false;
+            passwordField.IsVisible = false;
+            supporterButton.IsVisible = false;
+            candidateButton.IsVisible = false;
+            loginButton.IsVisible = false;
+
+
+
+       /*
+        * <Image x:Name="titleImage" Scale="2"/> 
+        <Button  ClassId="0" Text="I am a Returning User" x:Name="returningUser"/>
+        <Label TextColor="White" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
+        <Entry x:Name="eMailField" Keyboard="Email" WidthRequest="300"  />
+        <Label TextColor="White"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
+        <Entry WidthRequest="300"  x:Name="passwordField"/>
+        <Button x:Name="loginButton" Text="Login"/>
+        <Button ClassId="1" Text="I am a New User" />
+        <Button x:Name="supporterButton" Text="I want to support candidates"/>
+        <Button Text="I am a candidate" />*/
 
         }
 
 
+        public void ShowOptions(Button sender, EventArgs e)
+        {
+            Console.WriteLine("Clas is " + sender.ClassId);
 
+            if(sender.ClassId=="0")
+            {
+                eMailLabel.IsVisible = true;
+                eMailField.IsVisible = true;
+                passwordLabel.IsVisible = true;
+                passwordField.IsVisible = true;
+                supporterButton.IsVisible = false;
+                candidateButton.IsVisible = false;
+                loginButton.IsVisible = true;
+            }
+            else
+            {
+                eMailLabel.IsVisible = false;
+                eMailField.IsVisible = false;
+                passwordLabel.IsVisible = false;
+                passwordField.IsVisible = false;
+                supporterButton.IsVisible = true;
+                candidateButton.IsVisible = true;
+                loginButton.IsVisible = false;
+            }
+
+        }
 
 
         public async Task<string> GetLocationInformation()
@@ -138,7 +185,7 @@ namespace CampaignFinanceNew
         private async void ProcessLogin(object sender, EventArgs e)
         {
 
-            await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(usernameField.Text, passwordField.Text);
+            //await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
             //var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
             //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
@@ -149,8 +196,7 @@ namespace CampaignFinanceNew
 
 
 
-            Console.WriteLine(usernameField.Text);
-            Console.WriteLine(passwordField.Text);
+           
 
         }
 

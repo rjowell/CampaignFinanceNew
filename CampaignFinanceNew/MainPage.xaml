@@ -3,25 +3,22 @@
     
     
    
-    
-    <RelativeLayout HorizontalOptions="Center" VerticalOptions="Center">
-         <Image x:Name="titleImage" Scale="1.5" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=-2, Constant=25}"/> 
+    <StackLayout VerticalOptions="Center">
         
-        <Label TextColor="White" Text="Returning Users" HorizontalOptions="Center"/>
-        <Label Text="Username" HorizontalOptions="Center"/>
         
-        <Entry x:Name="usernameField" WidthRequest="300"/>
-        <Label Text="Password" HorizontalOptions="Center"/>
-         <Entry x:Name="passwordField" WidthRequest="300"/>
-        <Button Text="Login" x:Name="Login" Clicked="ProcessLogin"/>
-        <Label Text=" "/>
-        <Label Text="New Users" HorizontalOptions="Center"/>
-        <Button x:Name="createCandidate" Text="I am a candidate" Clicked="CreateUser"/>
-        <Button x:Name="createSupporter" Text="I am a supporter" Clicked="CreateUser"/>
+        <Image x:Name="titleImage" Scale="2"/> 
+        <Button BackgroundColor="Transparent" TextColor="White"  ClassId="0" Clicked="ShowOptions" Text="I am a Returning User" x:Name="returningUser"/>
+        <Label TextColor="White" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
+        <Entry x:Name="eMailField" Keyboard="Email" WidthRequest="300"  />
+        <Label TextColor="White"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
+        <Entry WidthRequest="300"  x:Name="passwordField"/>
+        <Button BackgroundColor="Transparent" TextColor="White" x:Name="loginButton" Text="Login"/>
+        <Button BackgroundColor="Transparent" TextColor="White" ClassId="1" Clicked="ShowOptions" Text="I am a New User" />
+        <Button BackgroundColor="Transparent" TextColor="White" x:Name="supporterButton" Text="I want to support candidates"/>
+        <Button BackgroundColor="Transparent" TextColor="White" x:Name="candidateButton" Text="I am a candidate" />
     
         
-    </RelativeLayout>
-    
-   
+        
+    </StackLayout>
 
 </ContentPage>
