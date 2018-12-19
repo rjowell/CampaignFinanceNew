@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateUser">
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateUser">
     <ContentPage.Content>
         <RelativeLayout HorizontalOptions="Center" VerticalOptions="Center">
        
-        <StackLayout x:Name="thisLayout" HorizontalOptions="Center" VerticalOptions="Start">
-             <Label x:Name="createWindowLabel"/>
-            <Label x:Name="firstNameLabel" Text="First Name" HorizontalOptions="Center"/>
+            
+            
+            
+            
+            
+            <ScrollView HeightRequest="900"  Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand" Content="thisLayout" >
+        <StackLayout HeightRequest="1500" Orientation="Vertical" x:Name="thisLayout" VerticalOptions="Start" Margin="0,15,0,15">
+             <Label x:Name="createWindowLabel" HorizontalOptions="Center" FontSize="Large" TextColor="White"/>
+                    <Label Text="" FontSize="25"/>
+            <Label x:Name="firstNameLabel" Text="First Name" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" x:Name="firstNameField" HorizontalOptions="Center"/>
-            <Label x:Name="lastNameLabel" Text="Last Name" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="lastNameField" HorizontalOptions="Center"/>
-            <Label x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="eMailField" HorizontalOptions="Center"/>
-            <Label x:Name="phoneLabel" Text="Phone Number" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="phoneNumberField" HorizontalOptions="Center"/>
-            <Label x:Name="addressLabel" Text="Mailing Address" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="addressField" HorizontalOptions="Center"/>
-            <Label x:Name="cityLabel" Text="City" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="cityField" HorizontalOptions="Center"/>
+            <Label x:Name="lastNameLabel" Text="Last Name" HorizontalOptions="Center" TextColor="White"/>
+            <Entry WidthRequest="300" x:Name="lastNameField" HorizontalOptions="Center" />
+            <Label x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center" TextColor="White"/>
+            <Entry WidthRequest="300" Keyboard="Email" x:Name="eMailField" HorizontalOptions="Center" />
+            <Label x:Name="phoneLabel" Text="Phone Number" HorizontalOptions="Center" TextColor="White"/>
+            <Entry WidthRequest="300" Keyboard="Telephone" x:Name="phoneNumberField" HorizontalOptions="Center"/>
+            <Label x:Name="addressLabel" Text="Mailing Address" HorizontalOptions="Center" TextColor="White"/>
+            <Entry WidthRequest="300" x:Name="addressField" HorizontalOptions="Center" />
+            <Label x:Name="cityLabel" Text="City" HorizontalOptions="Center" TextColor="White"/>
+            <Entry WidthRequest="300" x:Name="cityField" HorizontalOptions="Center"  />
                 
-                 <Label x:Name="stateLabel" Text="State" HorizontalOptions="Center"/>
+                 <Label x:Name="stateLabel" Text="State" HorizontalOptions="Center" TextColor="White"/>
             <Picker x:Name="stateSelection"/>
                 
-                 <Label x:Name="zipCodeLabel" Text="Zip Code" HorizontalOptions="Center"/>
-                <Entry MaxLength="5" x:Name="zipCodeField" HorizontalOptions="Center"/>
-                 <Label x:Name="runningLabel" Text="Office Running For" HorizontalOptions="Center"/>
+                 <Label x:Name="zipCodeLabel" Text="Zip Code" HorizontalOptions="Center"   TextColor="White"/>
+                <Entry
+                    
+                    x:Name="zipCodeField" HorizontalOptions="Center" />
+                 <Label x:Name="runningLabel" Text="Office Running For" HorizontalOptions="Center" TextColor="White"/>
                 <Picker x:Name="officeRunningFor"/>
+                    <Label x:Name="otherOfficeLabel" TextColor="White" Text="Enter Office"/>
+                    <Entry x:Name="otherOfficeEntry" TextColor="White"/>
+                        
             <Label x:Name="partyLabel" Text="Party Affiliation" HorizontalOptions="Center"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="300" Spacing="50">
-                <Button Text="Democratic" x:Name="demButton" Clicked="ProcessPartyButton"/>
-                <Button Text="Republican" x:Name="gopButton" Clicked="ProcessPartyButton"/>
-                <Button Text="Other" x:Name="otherPartyButton" Clicked="ProcessPartyButton"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                <Button Text="Democratic" x:Name="demButton" Clicked="ProcessPartyButton" TextColor="White"/>
+                <Button Text="Republican" x:Name="gopButton" Clicked="ProcessPartyButton" TextColor="White"/>
+                <Button Text="Other" x:Name="otherPartyButton" Clicked="ProcessPartyButton" TextColor="White"/>
             </StackLayout>
-            <Label Text="Enter Party Name" x:Name="otherPartyLabel" HorizontalOptions="Center"/>
+            <Label Text="Enter Party Name" TextColor="White" x:Name="otherPartyLabel" HorizontalOptions="Center"/>
             <Entry x:Name="candidateParty" WidthRequest="300"/>
             
-                <Label x:Name="contactPerson" Text="Contact Person" HorizontalOptions="Center"/>
+                <Label x:Name="contactPerson"  TextColor="White" Text="Contact Person" HorizontalOptions="Center"/>
                 <Entry x:Name="contactPersonField" WidthRequest="300" HorizontalOptions="Center"/>
                   
                 
@@ -47,7 +59,7 @@
             
             
         </StackLayout>
-            
+            </ScrollView>
             <Frame x:Name="successFrame" RelativeLayout.XConstraint="50" RelativeLayout.YConstraint="150">
                     <StackLayout>
                 <Label Text="Application Submitted."/>

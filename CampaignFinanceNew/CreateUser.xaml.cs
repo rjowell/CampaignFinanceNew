@@ -30,21 +30,27 @@ namespace CampaignFinanceNew
 
         }
 
-        public void setSupporter(bool supporterBool)
+       
+        
+            public void setSupporter(bool supporterBool)
         {
             isSupporter = supporterBool;
         }
 
-        public CreateUser()
+        public CreateUser(bool supporter)
         {
 
             InitializeComponent();
+            isSupporter = supporter;
+            Console.WriteLine("supporter is" + isSupporter);
             stateSelection.ItemsSource = states;
             officeRunningFor.ItemsSource = offices;
-            //isSupporter = setSupporter;
-            otherPartyLabel.IsVisible = false;
 
-            successFrame.IsVisible = false;
+            //passwordField.Focus();
+
+            otherPartyLabel.IsVisible = false;
+           
+              successFrame.IsVisible = false;
 
             if (isSupporter == true)
             {
@@ -57,14 +63,14 @@ namespace CampaignFinanceNew
                 contactPerson.IsVisible = false;
                 contactPersonField.IsVisible = false;
                 candidateWebsite.IsVisible = false;
-                createWindowLabel.Text = "Create Supporter";
+                createWindowLabel.Text = "Tell us about yourself as a supporter";
 
                 entryArray = new Entry[] { firstNameField, lastNameField, eMailField, phoneNumberField, passwordField };
                 entryLabels = new Label[] { firstNameLabel, lastNameLabel, eMailLabel, phoneLabel, passwordLabel };
             }
             else
             {
-                createWindowLabel.Text = "Create Candidate";
+                createWindowLabel.Text = "Tell us about yourself as a candidate";
                 partyButtons = new Button[] { demButton, gopButton, otherPartyButton };
 
 

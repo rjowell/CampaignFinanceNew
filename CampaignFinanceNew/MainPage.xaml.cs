@@ -186,7 +186,7 @@ namespace CampaignFinanceNew
         private async void ProcessLogin(object sender, EventArgs e)
         {
 
-            //await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
+            await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
             //var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
             //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
@@ -201,27 +201,58 @@ namespace CampaignFinanceNew
 
         }
 
-        private void CreateUser(object sender, EventArgs e)
+
+        private async void ProcessButtons(Button sender, EventArgs e)
         {
-
-            Button currentButton = sender as Button;
-            CreateUser newWindow = new CreateUser();
-
-            if (currentButton.Text == "I am a candidate")
+            switch(sender.ClassId)
             {
-                //Console.WriteLine("candiate button clicked");
-                newWindow.setSupporter(false);
+                case "returning":
+                    Console.WriteLine("button returning");
+                    eMailLabel.IsVisible = true;
+                    eMailField.IsVisible = true;
+                    passwordLabel.IsVisible = true;
+                    passwordField.IsVisible = true;
+                    supporterButton.IsVisible = false;
+                    candidateButton.IsVisible = false;
+                    loginButton.IsVisible = true;
+                    break;
+                case "newUser":
+                    Console.WriteLine("button newUser");
+                    eMailLabel.IsVisible = false;
+                    eMailField.IsVisible = false;
+                    passwordLabel.IsVisible = false;
+                    passwordField.IsVisible = false;
+                    supporterButton.IsVisible = true;
+                    candidateButton.IsVisible = true;
+                    loginButton.IsVisible = false;
+                    break;
+                case "login":
+                    Console.WriteLine("button login");
+                    await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
+                    await Navigation.PushAsync(new CandidateDashboard());
+                    break;
+                case "supporter":
+                    Console.WriteLine("button supporter");
+                  
+                  
+                    
+                    await Navigation.PushAsync(new CreateUser(true));
 
-                Navigation.PushAsync(newWindow);
-            }
-            else
-            {
-                //Console.WriteLine("candiate button clicked--1");
+                    break;
+                case "candidate":
+                    Console.WriteLine("button candidate");
+                   
 
-                newWindow.setSupporter(true);
-                Navigation.PushAsync(newWindow);
+                    await Navigation.PushAsync(new CreateUser(false));
+                    break;
+
+
             }
         }
+
+
+
+       
 
     }
 }
