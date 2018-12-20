@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OfficeSelection">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            
+        <Label HorizontalOptions="Center" Text="What office are you running for?"/>
+        <Picker HorizontalOptions="Center"/>
+             <Label HorizontalOptions="Center" Text="Enter Office"/>
+            <Entry HorizontalOptions="Center" x:Name="otherOfficeLabel"/>
+            <Label HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
+            <Entry HorizontalOptions="Center" x:Name="jurisdictionLabel"/>
+            <Label HorizontalOptions="Center" Text="Party"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
+                <Button HorizontalOptions="StartAndExpand" Text="Democratic"/><Button  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button HorizontalOptions="EndAndExpand" Text="Other"/>
+            </StackLayout>
+            <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
+            <Button HorizontalOptions="Start" Text="Go Back"/><Button HorizontalOptions="EndAndExpand" Text="Next"/>
+            </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

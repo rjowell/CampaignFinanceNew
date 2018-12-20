@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.ContactInfoPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+        <Label HorizontalOptions="Center" Text="Mailing Address / Contact Info"/>
+        <Label HorizontalOptions="Center" Text="Address"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="addressEntry"/>
+        <Label HorizontalOptions="Center" Text="City"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="cityEntry"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label HorizontalOptions="Center" Text="State"/> <Label HorizontalOptions="Center" Text="ZIP Code"/>
+        <Entry HorizontalOptions="Center" WidthRequest="20"  x:Name="zipCodeEntry"/>
+                </StackLayout>
+        
+       
+       
+        <Label HorizontalOptions="Center" Text="Phone Number"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="phoneEntry"/>
+            <Label HorizontalOptions="Center" Text="Campaign Website"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="websiteEntry"/>
+        <Label HorizontalOptions="Center" Text="E-Mail (this will also be your username)"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="emailEntry"/>
+        <Label HorizontalOptions="Center" Text="Password"/>
+        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="passwordEntry"/>
+            <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
+            <Button HorizontalOptions="Start" Text="Go Back"/><Button HorizontalOptions="EndAndExpand" Text="Next"/>
+            </StackLayout>
+             </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,15 +9,17 @@
             
             
             <ScrollView HeightRequest="900"  Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand" Content="thisLayout" >
-        <StackLayout HeightRequest="1500" Orientation="Vertical" x:Name="thisLayout" VerticalOptions="Start" Margin="0,15,0,15">
+        <StackLayout HeightRequest="1600" Orientation="Vertical" x:Name="thisLayout" VerticalOptions="Start" Margin="0,15,0,15">
              <Label x:Name="createWindowLabel" HorizontalOptions="Center" FontSize="Large" TextColor="White"/>
                     <Label Text="" FontSize="25"/>
             <Label x:Name="firstNameLabel" Text="First Name" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" x:Name="firstNameField" HorizontalOptions="Center"/>
             <Label x:Name="lastNameLabel" Text="Last Name" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" x:Name="lastNameField" HorizontalOptions="Center" />
-            <Label x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center" TextColor="White"/>
+            <Label x:Name="eMailLabel" Text="E-Mail (also your username)" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" Keyboard="Email" x:Name="eMailField" HorizontalOptions="Center" />
+                     <Label TextColor="White" x:Name="passwordLabel" Text="Password" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" x:Name="passwordField" HorizontalOptions="Center"/>
             <Label x:Name="phoneLabel" Text="Phone Number" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" Keyboard="Telephone" x:Name="phoneNumberField" HorizontalOptions="Center"/>
             <Label x:Name="addressLabel" Text="Mailing Address" HorizontalOptions="Center" TextColor="White"/>
@@ -28,14 +30,19 @@
                  <Label x:Name="stateLabel" Text="State" HorizontalOptions="Center" TextColor="White"/>
             <Picker x:Name="stateSelection"/>
                 
-                 <Label x:Name="zipCodeLabel" Text="Zip Code" HorizontalOptions="Center"   TextColor="White"/>
-                <Entry
-                    
-                    x:Name="zipCodeField" HorizontalOptions="Center" />
+                 <Label  x:Name="zipCodeLabel" Text="Zip Code" HorizontalOptions="Center"   TextColor="White"/>
+                <Entry WidthRequest="200" MaxLength="5" x:Name="zipCodeField" HorizontalOptions="Center" />
                  <Label x:Name="runningLabel" Text="Office Running For" HorizontalOptions="Center" TextColor="White"/>
                 <Picker x:Name="officeRunningFor"/>
-                    <Label x:Name="otherOfficeLabel" TextColor="White" Text="Enter Office"/>
-                    <Entry x:Name="otherOfficeEntry" TextColor="White"/>
+                    
+                  <Label x:Name="districtLabel" TextColor="White" Text="District (if applicable)" HorizontalOptions="Center"/>
+                    <Entry WidthRequest="200" MaxLength="3" x:Name="districtField" HorizontalOptions="Center" />
+                
+                    
+                    
+                    
+                    <Label x:Name="otherOfficeLabel" TextColor="White" Text="Enter Office" HorizontalOptions="Center"/>
+                    <Entry WidthRequest="300" x:Name="otherOfficeEntry" TextColor="White"/>
                         
             <Label x:Name="partyLabel" Text="Party Affiliation" HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
@@ -51,10 +58,9 @@
                   
                 
                 <Label x:Name="websiteLabel" Text="Campaign Website" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="candidateWebsite" HorizontalOptions="Center"/>
+            <Entry WidthRequest="300" Keyboard="Url" x:Name="candidateWebsite" HorizontalOptions="Center"/>
            
-             <Label x:Name="passwordLabel" Text="Password" HorizontalOptions="Center"/>
-            <Entry WidthRequest="300" x:Name="passwordField" HorizontalOptions="Center"/>
+            
             <Button Text="Submit" Clicked="SubmitDataAsync"/>
             
             
