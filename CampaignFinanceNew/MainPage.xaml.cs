@@ -233,17 +233,45 @@ namespace CampaignFinanceNew
                     break;
                 case "supporter":
                     Console.WriteLine("button supporter");
-                  
-                  
-                    
-                    await Navigation.PushAsync(new CreateUser(true));
+                    App.newUserIsSupporter = true;
+
+                    App.newUser = new NewUserInfo();
+                    App.newUser.firstName = "";
+                    App.newUser.lastName = "";
+                    App.newUser.office = "";
+                    App.newUser.district = "";
+                    App.newUser.party = "";
+                    App.newUser.streetAddress = "";
+                    App.newUser.city = "";
+                    App.newUser.state = "";
+                    App.newUser.zipCode = "";
+                    App.newUser.phone = "";
+                    App.newUser.website = "";
+                    App.newUser.eMailAddress = "";
+
+                    await Navigation.PushAsync(new CreateName());
 
                     break;
                 case "candidate":
                     Console.WriteLine("button candidate");
-                   
+                    App.newUserIsSupporter = false;
 
-                    await Navigation.PushAsync(new CreateUser(false));
+                    App.newUser = new NewUserInfo();
+                    App.newUser.firstName = "";
+                    App.newUser.lastName = "";
+                    App.newUser.office = "";
+                    App.newUser.district = "";
+                    App.newUser.party = "";
+                    App.newUser.streetAddress = "";
+                    App.newUser.city = "";
+                    App.newUser.state = "";
+                    App.newUser.zipCode = "";
+                    App.newUser.phone = "";
+                    App.newUser.website = "";
+                    App.newUser.eMailAddress = "";
+                    
+
+                    await Navigation.PushAsync(new CreateName());
                     break;
 
 

@@ -4,17 +4,20 @@
         <StackLayout VerticalOptions="Center">
             
         <Label HorizontalOptions="Center" Text="What office are you running for?"/>
-        <Picker HorizontalOptions="Center"/>
-             <Label HorizontalOptions="Center" Text="Enter Office"/>
-            <Entry HorizontalOptions="Center" x:Name="otherOfficeLabel"/>
+        <Picker x:Name="officePicker" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center"/>
+             <Label x:Name="otherOfficeLabel" HorizontalOptions="Center" Text="Enter Office"/>
+            <Entry HorizontalOptions="Center" WidthRequest="250" x:Name="otherOfficeField"/>
             <Label HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
-            <Entry HorizontalOptions="Center" x:Name="jurisdictionLabel"/>
+            <Entry HorizontalOptions="Center" WidthRequest="50" x:Name="jurisdictionLabel"/>
             <Label HorizontalOptions="Center" Text="Party"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
-                <Button HorizontalOptions="StartAndExpand" Text="Democratic"/><Button  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button HorizontalOptions="EndAndExpand" Text="Other"/>
+                <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic"/><Button x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
             </StackLayout>
+            <Label HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
+            <Entry HorizontalOptions="Center" x:Name="otherPartyField" WidthRequest="300"/>
+                
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button HorizontalOptions="Start" Text="Go Back"/><Button HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
             </StackLayout>
     </ContentPage.Content>
