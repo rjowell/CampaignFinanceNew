@@ -11,7 +11,7 @@
             <Entry HorizontalOptions="Center" WidthRequest="50" x:Name="jurisdictionLabel"/>
             <Label HorizontalOptions="Center" Text="Party"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
-                <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic"/><Button x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
+                <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic" Clicked="ProcessPartyButton"/><Button Clicked="ProcessPartyButton" x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button Clicked="ProcessPartyButton" x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
             </StackLayout>
             <Label HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
             <Entry HorizontalOptions="Center" x:Name="otherPartyField" WidthRequest="300"/>

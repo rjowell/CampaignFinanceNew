@@ -25,7 +25,7 @@ namespace CampaignFinanceNew
                 otherOfficeLabel.IsVisible = false;
             }
 
-            if(App.newUser.party != "Republican" || App.newUser.party != "Democratic")
+            if(App.newUser.party != "Republican" && App.newUser.party != "Democratic" && App.newUser.party != "")
             {
                 otherPartyField.IsVisible = true;
                 otherPartyLabel.IsVisible = true;
@@ -61,6 +61,10 @@ namespace CampaignFinanceNew
             {
                 demButton.TextColor = Color.White;
                 demButton.BackgroundColor = Color.Green;
+                repButton.TextColor = Color.Default;
+                repButton.BackgroundColor = Color.Default;
+                otherButton.TextColor = Color.Default;
+                otherButton.BackgroundColor = Color.Default;
                 otherPartyField.IsVisible = false;
                 otherPartyLabel.IsVisible = false;
                 App.newUser.party = "Democratic";
@@ -69,6 +73,10 @@ namespace CampaignFinanceNew
             {
                 repButton.TextColor = Color.White;
                 repButton.BackgroundColor = Color.Green;
+                demButton.TextColor = Color.Default;
+                demButton.BackgroundColor = Color.Default;
+                otherButton.TextColor = Color.Default;
+                otherButton.BackgroundColor = Color.Default;
                 otherPartyField.IsVisible = false;
                 otherPartyLabel.IsVisible = false;
                 App.newUser.party = "Republican";
@@ -77,9 +85,13 @@ namespace CampaignFinanceNew
             {
                 otherButton.TextColor = Color.White;
                 otherButton.BackgroundColor = Color.Green;
+                demButton.TextColor = Color.Default;
+                demButton.BackgroundColor = Color.Default;
+                repButton.TextColor = Color.Default;
+                repButton.BackgroundColor = Color.Default;
                 otherPartyField.IsVisible = true;
                 otherPartyLabel.IsVisible = true;
-                App.newUser.party = otherPartyField.Text;
+
             }
         }
 
@@ -93,8 +105,9 @@ namespace CampaignFinanceNew
             else
             {
                 App.newUser.office = App.offices[officePicker.SelectedIndex];
-            }
 
+            }
+            App.newUser.party = otherPartyField.Text;
             App.newUser.district = jurisdictionLabel.Text;
             
            

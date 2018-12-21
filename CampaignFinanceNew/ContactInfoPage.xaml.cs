@@ -36,22 +36,25 @@ namespace CampaignFinanceNew
                     {
                         { "firstName", App.newUser.firstName },
                         { "lastName", App.newUser.lastName },
-                        { "eMail", App.newUser.eMailAddress },
+                        { "eMail", emailEntry.Text },
                         { "isSupporter", App.newUserIsSupporter.ToString() },
-                        { "phone", App.newUser.phone },
-                        { "website", App.newUser.website },
+                        { "phone", phoneEntry.Text },
+                        { "website", websiteEntry.Text },
                         { "party", App.newUser.party },
-                        {"mailingAddress", App.newUser.streetAddress},
-                        {"city", App.newUser.city},
-                        { "state", App.newUser.state},
-                        {"zipCode", App.newUser.zipCode},
+                        {"mailingAddress", addressEntry.Text},
+                        {"city", cityEntry.Text},
+                        { "state", App.states[statePicker.SelectedIndex]},
+                        {"zipCode", zipCodeEntry.Text},
                         {"office", App.newUser.office}
 
 
             };
-            Console.WriteLine(sendingParameters.AllKeys);
+            foreach(var keys in sendingParameters.AllKeys)
+            {
+                Console.WriteLine(keys + " " + sendingParameters.Get(keys));
+            }
             //Console.WriteLine("jerkoff");
-            DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(emailEntry.Text, passwordEntry.Text, sendingParameters);
+            //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(emailEntry.Text, passwordEntry.Text, sendingParameters);
         }
 
         public async void GoBack(Button sender, EventArgs e)

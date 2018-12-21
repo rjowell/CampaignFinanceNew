@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
+    <ContentPage.Content>
+        <StackLayout WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+            <Label HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
+            <Entry x:Name="ccNumber" WidthRequest="150"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="Center" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
+                <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0"/>
+                <Label HorizontalOptions="Center" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
+                <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1"/>
+                <Label Text="  " Grid.Row="0" Grid.Column="2"/>
+                <Label HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
+                <Label Text="  " Grid.Row="1" Grid.Column="2"/>
+                <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
