@@ -36,12 +36,9 @@
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="phoneEntry"/>
             <Label x:Name="websiteLabel" HorizontalOptions="Center" Text="Campaign Website"/>
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="websiteEntry"/>
-        <Label HorizontalOptions="Center" Text="E-Mail (this will also be your username)"/>
-        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="emailEntry"/>
-        <Label HorizontalOptions="Center" Text="Password"/>
-        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="passwordEntry"/>
+       
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button HorizontalOptions="Start" Clicked="GoBack" Text="Go Back"/><Button Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
              </StackLayout>
     </ContentPage.Content>

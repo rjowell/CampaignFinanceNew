@@ -25,47 +25,39 @@ namespace CampaignFinanceNew
                 websiteEntry.Text = App.newUser.website;
             }
 
-            emailEntry.Text = App.newUser.eMailAddress;
+
 
             statePicker.ItemsSource = App.states;
         }
 
-        public void ProcessNewUser(Button sender, EventArgs e)
+       
+
+        public async void ProcessButton(Button sender, EventArgs e)
         {
-            var sendingParameters = new System.Collections.Specialized.NameValueCollection
-                    {
-                        { "firstName", App.newUser.firstName },
-                        { "lastName", App.newUser.lastName },
-                        { "eMail", emailEntry.Text },
-                        { "isSupporter", App.newUserIsSupporter.ToString() },
-                        { "phone", phoneEntry.Text },
-                        { "website", websiteEntry.Text },
-                        { "party", App.newUser.party },
-                        {"mailingAddress", addressEntry.Text},
-                        {"city", cityEntry.Text},
-                        { "state", App.states[statePicker.SelectedIndex]},
-                        {"zipCode", zipCodeEntry.Text},
-                        {"office", App.newUser.office}
+            App.newUser.streetAddress = addressEntry.Text;
+            App.newUser.city = cityEntry.Text;
+            App.newUser.state = App.stateAbbr[statePicker.SelectedIndex];
+            App.newUser.zipCode = zipCodeEntry.Text;
+            App.newUser.phone = phoneEntry.Text;
+            App.newUser.website = websiteEntry.Text;
 
 
-            };
-            foreach(var keys in sendingParameters.AllKeys)
+            if(sender.ClassId=="Back")
             {
-                Console.WriteLine(keys + " " + sendingParameters.Get(keys));
-            }
-            //Console.WriteLine("jerkoff");
-            //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(emailEntry.Text, passwordEntry.Text, sendingParameters);
-        }
 
-        public async void GoBack(Button sender, EventArgs e)
-        {
-            if(App.newUserIsSupporter==true)
+            
+            if (App.newUserIsSupporter==true)
             {
                 await Navigation.PushAsync(new CreateName());
             }
             else
             {
                 await Navigation.PushAsync(new OfficeSelection());
+            }
+            }
+            else
+            {
+                await Navigation.PushAsync(new PaymentPage());
             }
 
         }

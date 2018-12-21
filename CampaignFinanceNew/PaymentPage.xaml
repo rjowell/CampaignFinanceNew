@@ -15,15 +15,23 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label HorizontalOptions="Center" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
                 <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0"/>
-                <Label HorizontalOptions="Center" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
                 <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1"/>
                 <Label Text="  " Grid.Row="0" Grid.Column="2"/>
-                <Label HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
+                <Label VerticalTextAlignment="Center" HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
                 <Label Text="  " Grid.Row="1" Grid.Column="2"/>
                 <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
             </Grid>
+            <Label x:Name="ccDisclamer" Text=""/>
+            <Label HorizontalTextAlignment="Center" Text="E-Mail (this will also be your username)"/>
+            <Entry x:Name="eMailField" Keyboard="Email"/>
+            <Label Text="Password"/>
+            <Entry x:Name="passwordField"/>
+              <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
+            <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" Text="Go Back"/><Button ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

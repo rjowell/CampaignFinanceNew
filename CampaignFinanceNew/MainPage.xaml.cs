@@ -249,7 +249,7 @@ namespace CampaignFinanceNew
                     App.newUser.website = "";
                     App.newUser.eMailAddress = "";
 
-                    await Navigation.PushAsync(new CreateName());
+                    await Navigation.PushAsync(new IntroPage());
 
                     break;
                 case "candidate":
@@ -271,7 +271,7 @@ namespace CampaignFinanceNew
                     App.newUser.eMailAddress = "";
                     
 
-                    await Navigation.PushAsync(new CreateName());
+                    await Navigation.PushAsync(new IntroPage());
                     break;
 
 
