@@ -11,10 +11,7 @@ namespace CampaignFinanceNew
 
 
 
-        public string CreateNewCustomer()
-        {
-
-        }
+       
 
 
 
