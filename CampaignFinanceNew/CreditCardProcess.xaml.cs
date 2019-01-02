@@ -11,6 +11,12 @@ namespace CampaignFinanceNew
 
 
 
+        public string CreateNewCustomer()
+        {
+
+        }
+
+
 
         public CreditCardProcess(string cardNumber, string cardExpMonth, string cardExpYear, string cardCVC)
         {
@@ -31,7 +37,14 @@ namespace CampaignFinanceNew
             var tokenService = new Stripe.TokenService();
             Stripe.Token stripeToken = tokenService.Create(tokenOptions);
 
-            Console.WriteLine(stripeToken.Id);
+            var customerOptions = new CustomerCreateOptions();
+            var customerService = new CustomerService();
+            customerOptions.SourceToken = stripeToken.Id;
+            customerOptions.Email = App.newUser.eMailAddress;
+            Customer newCustomer = customerService.Create(customerOptions);
+            Console.WriteLine(newCustomer.Id);
+
+            //Console.WriteLine("Token is"+stripeToken.Id);
 
 
 

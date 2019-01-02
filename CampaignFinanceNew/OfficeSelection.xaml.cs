@@ -11,7 +11,7 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
 
-
+            officePicker.ItemsSource = App.offices;
             officePicker.SelectedIndex = App.newUser.officePickerIndex;
             if(officePicker.SelectedIndex==8)
             {
@@ -37,7 +37,7 @@ namespace CampaignFinanceNew
                 otherPartyLabel.IsVisible = false;
             }
 
-            officePicker.ItemsSource = App.offices;
+
         }
 
         public void ShowOtherOffice(Picker sender, EventArgs e)

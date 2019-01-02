@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Stripe;
 using Xamarin.Forms;
 
 namespace CampaignFinanceNew
@@ -27,6 +27,35 @@ namespace CampaignFinanceNew
 
         public void ProcessNewUser(Button sender, EventArgs e)
         {
+
+
+            var tokenOptions = new Stripe.TokenCreateOptions()
+            {
+                Card = new Stripe.CreditCardOptions()
+                {
+                    Number = ccNumber.Text,
+                    ExpYear = long.Parse(ccExpiryYears[expiryYear.SelectedIndex]),
+                    ExpMonth = long.Parse(ccExpiryMonths[expiryMonth.SelectedIndex]),
+                    Cvc = cvcEntry.Text
+                }
+            };
+
+
+
+            var tokenService = new Stripe.TokenService();
+            Stripe.Token stripeToken = tokenService.Create(tokenOptions);
+            var customerOptions = new CustomerCreateOptions();
+            var customerService = new CustomerService();
+            customerOptions.SourceToken = stripeToken.Id;
+            customerOptions.Email = App.newUser.eMailAddress;
+            Customer newCustomer = customerService.Create(customerOptions);
+            Console.WriteLine(newCustomer.Id);
+
+
+
+
+
+
             var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {
                         { "firstName", App.newUser.firstName },
@@ -40,16 +69,53 @@ namespace CampaignFinanceNew
                         {"city", App.newUser.city},
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
-                        {"office", App.newUser.office}
+                        {"office", App.newUser.office},
+                        {"stripeCustomerId",newCustomer.Id}
 
 
             };
+
+
+
+
+
+
+
             foreach (var keys in sendingParameters.AllKeys)
             {
                 Console.WriteLine(keys + " " + sendingParameters.Get(keys));
             }
+
+            //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
+
             //Console.WriteLine("jerkoff");
             //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
         }
     }
 }
+
+/*StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
+
+            var tokenOptions = new Stripe.TokenCreateOptions()
+            {
+                Card = new Stripe.CreditCardOptions()
+                {
+                    Number = cardNumber,
+                    ExpYear = long.Parse(cardExpYear),
+                    ExpMonth = long.Parse(cardExpMonth),
+                    Cvc = cardCVC
+                }
+            };
+
+            var tokenService = new Stripe.TokenService();
+            Stripe.Token stripeToken = tokenService.Create(tokenOptions);
+
+            var customerOptions = new CustomerCreateOptions();
+            var customerService = new CustomerService();
+            customerOptions.SourceToken = stripeToken.Id;
+            customerOptions.Email = App.newUser.eMailAddress;
+            Customer newCustomer = customerService.Create(customerOptions);
+            Console.WriteLine(newCustomer.Id);
+
+            //Console.WriteLine("Token is"+stripeToken.Id);
+*/

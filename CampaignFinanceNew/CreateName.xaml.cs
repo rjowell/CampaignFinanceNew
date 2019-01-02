@@ -42,6 +42,7 @@ namespace CampaignFinanceNew
                 {
                     App.newUser.firstName = firstNameField.Text;
                     App.newUser.lastName = lastNameField.Text;
+
                     if (App.newUserIsSupporter == false)
                     {
                         await Navigation.PushAsync(new OfficeSelection());
