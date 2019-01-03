@@ -59,36 +59,36 @@ namespace CampaignFinanceNew
         {
             if(sender.ClassId=="D")
             {
-                demButton.TextColor = Color.White;
-                demButton.BackgroundColor = Color.Green;
-                repButton.TextColor = Color.Default;
-                repButton.BackgroundColor = Color.Default;
-                otherButton.TextColor = Color.Default;
-                otherButton.BackgroundColor = Color.Default;
+                demButton.TextColor = Color.Blue;
+                demButton.BackgroundColor = Color.CornflowerBlue;
+                repButton.TextColor = Color.White;
+                repButton.BackgroundColor = Color.Transparent;
+                otherButton.TextColor = Color.White;
+                otherButton.BackgroundColor = Color.Transparent;
                 otherPartyField.IsVisible = false;
                 otherPartyLabel.IsVisible = false;
                 App.newUser.party = "Democratic";
             }
             else if(sender.ClassId=="R")
             {
-                repButton.TextColor = Color.White;
-                repButton.BackgroundColor = Color.Green;
-                demButton.TextColor = Color.Default;
-                demButton.BackgroundColor = Color.Default;
-                otherButton.TextColor = Color.Default;
-                otherButton.BackgroundColor = Color.Default;
+                repButton.TextColor = Color.Blue;
+                repButton.BackgroundColor = Color.CornflowerBlue;
+                demButton.TextColor = Color.White;
+                demButton.BackgroundColor = Color.Transparent;
+                otherButton.TextColor = Color.White;
+                otherButton.BackgroundColor = Color.Transparent;
                 otherPartyField.IsVisible = false;
                 otherPartyLabel.IsVisible = false;
                 App.newUser.party = "Republican";
             }
             else
             {
-                otherButton.TextColor = Color.White;
-                otherButton.BackgroundColor = Color.Green;
-                demButton.TextColor = Color.Default;
-                demButton.BackgroundColor = Color.Default;
-                repButton.TextColor = Color.Default;
-                repButton.BackgroundColor = Color.Default;
+                otherButton.TextColor = Color.Blue;
+                otherButton.BackgroundColor = Color.CornflowerBlue;
+                demButton.TextColor = Color.White;
+                demButton.BackgroundColor = Color.Transparent;
+                repButton.TextColor = Color.White;
+                repButton.BackgroundColor = Color.Transparent;
                 otherPartyField.IsVisible = true;
                 otherPartyLabel.IsVisible = true;
 

@@ -7,9 +7,25 @@ namespace CampaignFinanceNew
 {
     public partial class ContactInfoPage : ContentPage
     {
+
+        List<Entry> entries = new List<Entry>();
+        List<Label> labels = new List<Label>();
+
         public ContactInfoPage()
         {
             InitializeComponent();
+            entries.Add(addressEntry);
+            entries.Add(cityEntry);
+            entries.Add(zipCodeEntry);
+            entries.Add(phoneEntry);
+            entries.Add(websiteEntry);
+            labels.Add(addressLabel);
+            labels.Add(cityLabel);
+            labels.Add(stateLabel);
+            labels.Add(zipLabel);
+            labels.Add(phoneLabel);
+            labels.Add(websiteLabel);
+           
             addressEntry.Text = App.newUser.streetAddress;
             cityEntry.Text = App.newUser.city;
             statePicker.SelectedIndex = Array.IndexOf(App.states, App.newUser.state);
@@ -34,6 +50,20 @@ namespace CampaignFinanceNew
 
         public async void ProcessButton(Button sender, EventArgs e)
         {
+
+            bool moveOn=true;
+
+            foreach(Entry field in entries)
+            {
+                if(field.Text=="")
+                {
+                    labels[entries.IndexOf(field)].TextColor = Color.Red;
+                    moveOn = false;
+                }
+            }
+
+
+             
             App.newUser.streetAddress = addressEntry.Text;
             App.newUser.city = cityEntry.Text;
             App.newUser.state = App.stateAbbr[statePicker.SelectedIndex];
@@ -46,18 +76,23 @@ namespace CampaignFinanceNew
             {
 
             
-            if (App.newUserIsSupporter==true)
-            {
-                await Navigation.PushAsync(new CreateName());
-            }
+                if (App.newUserIsSupporter==true)
+                 {
+                     await Navigation.PushAsync(new CreateName());
+                     }
+                    else
+                    {
+                         await Navigation.PushAsync(new OfficeSelection());
+                     }
+                 }
             else
             {
-                await Navigation.PushAsync(new OfficeSelection());
-            }
-            }
-            else
-            {
-                await Navigation.PushAsync(new PaymentPage());
+                if (moveOn == true)
+                {
+
+
+                    await Navigation.PushAsync(new PaymentPage());
+                }
             }
 
         }

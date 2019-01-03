@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OfficeSelection">
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OfficeSelection">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center">
+        <StackLayout VerticalOptions="Center" Margin="10,10,10,10">
             
-        <Label HorizontalOptions="Center" Text="What office are you running for?"/>
-        <Picker x:Name="officePicker" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center"/>
+        <Label FontSize="Medium" TextColor="White" HorizontalOptions="Center" Text="What office are you running for?"/>
+        <Picker x:Name="officePicker" WidthRequest="200" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center">
+                <Picker.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Picker.TextColor>
+                </Picker>
              <Label x:Name="otherOfficeLabel" HorizontalOptions="Center" Text="Enter Office"/>
-            <Entry HorizontalOptions="Center" WidthRequest="250" x:Name="otherOfficeField"/>
-            <Label HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
-            <Label HorizontalOptions="Center" Text="*Do not enter state here, only your district. You will enter your state on the next page"/>
-            <Entry HorizontalOptions="Center" WidthRequest="50" x:Name="jurisdictionLabel"/>
-            <Label HorizontalOptions="Center" Text="Party"/>
+            <Entry HorizontalOptions="Center" WidthRequest="250" x:Name="otherOfficeField">
+                 <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
+            <Label TextColor="White" FontSize="Medium" HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
+            <Label  TextColor="White"  FontSize="Small" FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="*Do not enter state here, only your district. You will enter your state on the next page"/>
+            <Entry HorizontalOptions="Center" WidthRequest="50" x:Name="jurisdictionLabel">
+                 <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
+            <Label TextColor="White" HorizontalOptions="Center" Text="Party"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
-                <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic" Clicked="ProcessPartyButton"/><Button Clicked="ProcessPartyButton" x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button Clicked="ProcessPartyButton" x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
+                <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic" TextColor="White" Clicked="ProcessPartyButton"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
             </StackLayout>
-            <Label HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
-            <Entry HorizontalOptions="Center" x:Name="otherPartyField" WidthRequest="300"/>
+            <Label TextColor="White"  HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
+            <Entry HorizontalOptions="Center" x:Name="otherPartyField" WidthRequest="300">
+                
+                 <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
                 
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button TextColor="White" BackgroundColor="Transparent" ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button TextColor="White" BackgroundColor="Transparent" ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
             </StackLayout>
     </ContentPage.Content>

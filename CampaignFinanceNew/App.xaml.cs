@@ -71,7 +71,7 @@ namespace CampaignFinanceNew
 
             //Console.WriteLine(address);
 
-            offices = new string[] { "U.S. Senate", "U.S. House", "Governor", "State Senate", "State House", "County Board", "City Council", "Mayor", "Other" };
+            offices = new string[] {"Select Office", "U.S. Senate", "U.S. House", "Governor", "State Senate", "State House", "County Board", "City Council", "Mayor", "Other" };
             currentUser = new CurrentUserInfo();
             currentLocation = new CurrentLocationInfo();
             MainPage = new NavigationPage(new MainPage());
