@@ -15,9 +15,9 @@
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-            <Label TextColor="White" FontSize="Medium" HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
-            <Label  TextColor="White"  FontSize="Small" FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="*Do not enter state here, only your district. You will enter your state on the next page"/>
-            <Entry HorizontalOptions="Center" WidthRequest="50" x:Name="jurisdictionLabel">
+            <Label TextColor="White" x:Name="districtLabel" FontSize="Medium" HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
+            <Label  TextColor="White"  FontSize="Small" x:Name="districtDisclamer" FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="*Do not enter state here, only your district. You will enter your state on the next page"/>
+            <Entry HorizontalOptions="Center" WidthRequest="200" x:Name="jurisdictionLabel">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>

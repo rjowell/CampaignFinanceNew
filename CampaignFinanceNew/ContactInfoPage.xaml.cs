@@ -86,13 +86,12 @@ namespace CampaignFinanceNew
                      }
                  }
 
-            else if(App.newUser.isSupporter==false)
-            {
-                Console.WriteLine(App.newUser.firstName+" "+App.newUser.lastName+" "+App.newUser.office+" "+App.newUser.party+" "+App.newUser.streetAddress)
+
+                //Console.WriteLine(App.newUser.firstName + " " + App.newUser.lastName + " " + App.newUser.office + " " + App.newUser.district+" " +App.newUser.party + " " + App.newUser.streetAddress+" "+App.newUser.city+" "+App.newUser.state+" "+App.newUser.zipCode);
 
 
                 //await Navigation.PushAsync(new CandidateDashboard());
-            }
+            
 
 
             else

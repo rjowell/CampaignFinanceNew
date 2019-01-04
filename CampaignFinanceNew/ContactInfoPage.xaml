@@ -3,7 +3,18 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Spacing="2">
         <Label TextColor="White" HorizontalOptions="Center" FontSize="Medium" x:Name="contactLabel" Text="Contact Information"/>
-        <Label TextColor="White" HorizontalOptions="Center" x:Name="addressLabel" Text="Mailing Address"/>
+        
+            
+            <Label Text="Contact Person" HorizontalOptions="Center" x:Name="contactPersonLabel" TextColor="White"/>
+            
+            <Entry HorizontalOptions="Center" WidthRequest="300" x:Name="contactPersonEntry">
+                 <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
+            
+            
+            <Label TextColor="White" HorizontalOptions="Center" x:Name="addressLabel" Text="Mailing Address"/>
             
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="addressEntry">
                  <Entry.TextColor>

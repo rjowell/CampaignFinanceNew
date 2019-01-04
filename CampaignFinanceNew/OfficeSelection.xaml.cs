@@ -13,7 +13,7 @@ namespace CampaignFinanceNew
 
             officePicker.ItemsSource = App.offices;
             officePicker.SelectedIndex = App.newUser.officePickerIndex;
-            if(officePicker.SelectedIndex==8)
+            if(officePicker.SelectedIndex==9)
             {
                 otherOfficeField.IsVisible = true;
                 otherOfficeLabel.IsVisible = true;
@@ -43,15 +43,25 @@ namespace CampaignFinanceNew
         public void ShowOtherOffice(Picker sender, EventArgs e)
         {
             App.newUser.officePickerIndex = sender.SelectedIndex;
-            if(sender.SelectedIndex==8)
+            if(sender.SelectedIndex==9)
             {
                 otherOfficeField.IsVisible = true;
                 otherOfficeLabel.IsVisible = true;
+                districtLabel.Text = "";
+            }
+            else if(sender.SelectedIndex==8)
+            {
+                districtLabel.Text = "City";
+                otherOfficeField.IsVisible = false;
+                otherOfficeLabel.IsVisible = false;
+
             }
             else
             {
+                districtLabel.Text = "District/Jurisdiction";
                 otherOfficeField.IsVisible = false;
                 otherOfficeLabel.IsVisible = false;
+
             }
 
 

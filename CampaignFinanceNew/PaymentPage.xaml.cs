@@ -14,6 +14,13 @@ namespace CampaignFinanceNew
         public PaymentPage()
         {
             InitializeComponent();
+            if(App.newUser.isSupporter==false)
+            {
+                ccNumber.IsVisible = false;
+                expiryMonth.IsVisible = false;
+                expiryYear.IsVisible = false;
+                ccDisclamer.IsVisible = false;
+            }
             expiryMonth.ItemsSource = ccExpiryMonths;
             expiryYear.ItemsSource = ccExpiryYears;
             ccDisclamer.Text = ccNotice;
@@ -62,6 +69,7 @@ namespace CampaignFinanceNew
                         { "lastName", App.newUser.lastName },
                         { "eMail", eMailField.Text },
                         { "isSupporter", App.newUserIsSupporter.ToString() },
+                        { "contactPerson",App.newUser.contactPerson},
                         { "phone", App.newUser.phone },
                         { "website", App.newUser.website },
                         { "party", App.newUser.party },
