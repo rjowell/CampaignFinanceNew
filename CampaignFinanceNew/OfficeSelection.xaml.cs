@@ -53,6 +53,8 @@ namespace CampaignFinanceNew
                 otherOfficeField.IsVisible = false;
                 otherOfficeLabel.IsVisible = false;
             }
+
+
         }
 
         public void ProcessPartyButton(Button sender, EventArgs e)

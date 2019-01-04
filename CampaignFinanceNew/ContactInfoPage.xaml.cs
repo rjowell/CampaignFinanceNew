@@ -85,6 +85,16 @@ namespace CampaignFinanceNew
                          await Navigation.PushAsync(new OfficeSelection());
                      }
                  }
+
+            else if(App.newUser.isSupporter==false)
+            {
+                Console.WriteLine(App.newUser.firstName+" "+App.newUser.lastName+" "+App.newUser.office+" "+App.newUser.party+" "+App.newUser.streetAddress)
+
+
+                //await Navigation.PushAsync(new CandidateDashboard());
+            }
+
+
             else
             {
                 if (moveOn == true)
