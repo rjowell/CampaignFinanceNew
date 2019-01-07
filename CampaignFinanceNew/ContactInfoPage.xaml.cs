@@ -14,6 +14,7 @@ namespace CampaignFinanceNew
         public ContactInfoPage()
         {
             InitializeComponent();
+
             entries.Add(addressEntry);
             entries.Add(cityEntry);
             entries.Add(zipCodeEntry);
@@ -31,10 +32,12 @@ namespace CampaignFinanceNew
             statePicker.SelectedIndex = Array.IndexOf(App.states, App.newUser.state);
             zipCodeEntry.Text = App.newUser.zipCode;
             phoneEntry.Text = App.newUser.phone;
-            if(App.newUserIsSupporter==true)
+            if(App.newUser.isSupporter==true)
             {
                 websiteEntry.IsVisible = false;
                 websiteLabel.IsVisible = false;
+                contactPersonLabel.IsVisible = false;
+                contactPersonEntry.IsVisible = false;
             }
             else
             {
@@ -70,6 +73,7 @@ namespace CampaignFinanceNew
             App.newUser.zipCode = zipCodeEntry.Text;
             App.newUser.phone = phoneEntry.Text;
             App.newUser.website = websiteEntry.Text;
+            App.newUser.contactPerson = contactPersonEntry.Text;
 
 
             if(sender.ClassId=="Back")

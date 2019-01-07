@@ -13,7 +13,7 @@ namespace CampaignFinanceNew
         public IntroPage()
         {
             InitializeComponent();
-            if(App.newUserIsSupporter==true)
+            if(App.newUser.isSupporter==true)
             {
                 introLabel.Text = supporterIntroText;
             }

@@ -10,9 +10,10 @@ namespace CampaignFinanceNew
         public CreateName()
         {
             InitializeComponent();
+            Console.WriteLine(App.newUser.isSupporter);
             firstNameField.Text = App.newUser.firstName;
             lastNameField.Text = App.newUser.lastName;
-            if(App.newUserIsSupporter==true)
+            if(App.newUser.isSupporter==true)
             {
                 titleLabel.Text = "What is your name?";
             }
@@ -43,7 +44,7 @@ namespace CampaignFinanceNew
                     App.newUser.firstName = firstNameField.Text;
                     App.newUser.lastName = lastNameField.Text;
 
-                    if (App.newUserIsSupporter == false)
+                    if (App.newUser.isSupporter == false)
                     {
                         await Navigation.PushAsync(new OfficeSelection());
                     }

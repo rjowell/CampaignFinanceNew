@@ -233,9 +233,10 @@ namespace CampaignFinanceNew
                     break;
                 case "supporter":
                     Console.WriteLine("button supporter");
-                    App.newUserIsSupporter = true;
+
 
                     App.newUser = new NewUserInfo();
+                    App.newUser.isSupporter = true;
                     App.newUser.firstName = "";
                     App.newUser.lastName = "";
                     App.newUser.office = "";
@@ -254,9 +255,10 @@ namespace CampaignFinanceNew
                     break;
                 case "candidate":
                     Console.WriteLine("button candidate");
-                    App.newUserIsSupporter = false;
+
 
                     App.newUser = new NewUserInfo();
+                    App.newUser.isSupporter = false;
                     App.newUser.firstName = "";
                     App.newUser.lastName = "";
                     App.newUser.office = "";

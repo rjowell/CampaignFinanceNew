@@ -14,7 +14,8 @@ namespace CampaignFinanceNew
         public PaymentPage()
         {
             InitializeComponent();
-            if(App.newUser.isSupporter==false)
+            StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
+            if (App.newUser.isSupporter==false)
             {
                 ccNumber.IsVisible = false;
                 expiryMonth.IsVisible = false;
@@ -35,33 +36,7 @@ namespace CampaignFinanceNew
         public void ProcessNewUser(Button sender, EventArgs e)
         {
 
-
-            var tokenOptions = new Stripe.TokenCreateOptions()
-            {
-                Card = new Stripe.CreditCardOptions()
-                {
-                    Number = ccNumber.Text,
-                    ExpYear = long.Parse(ccExpiryYears[expiryYear.SelectedIndex]),
-                    ExpMonth = long.Parse(ccExpiryMonths[expiryMonth.SelectedIndex]),
-                    Cvc = cvcEntry.Text
-                }
-            };
-
-
-
-            var tokenService = new Stripe.TokenService();
-            Stripe.Token stripeToken = tokenService.Create(tokenOptions);
-            var customerOptions = new CustomerCreateOptions();
-            var customerService = new CustomerService();
-            customerOptions.SourceToken = stripeToken.Id;
-            customerOptions.Email = App.newUser.eMailAddress;
-            Customer newCustomer = customerService.Create(customerOptions);
-            Console.WriteLine(newCustomer.Id);
-
-
-
-
-
+           
 
             var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {
@@ -78,20 +53,54 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
-                        {"stripeCustomerId",newCustomer.Id}
+
 
 
             };
 
 
+            if (App.newUser.isSupporter == true)
+            {
+                var tokenOptions = new Stripe.TokenCreateOptions()
+                {
+                    Card = new Stripe.CreditCardOptions()
+                    {
+                        Number = ccNumber.Text,
+                        ExpYear = long.Parse(ccExpiryYears[expiryYear.SelectedIndex]),
+                        ExpMonth = long.Parse(ccExpiryMonths[expiryMonth.SelectedIndex]),
+                        Cvc = cvcEntry.Text
+                    }
+                };
 
+
+
+                var tokenService = new Stripe.TokenService();
+                Stripe.Token stripeToken = tokenService.Create(tokenOptions);
+                Console.WriteLine(stripeToken.Id);
+               /* var customerOptions = new CustomerCreateOptions();
+                var customerService = new CustomerService();
+                customerOptions.SourceToken = stripeToken.Id;
+                customerOptions.Email = App.newUser.eMailAddress;
+                Customer newCustomer = customerService.Create(customerOptions);
+                Console.WriteLine(newCustomer.Id);*/
+                sendingParameters.Set("stripeToken", stripeToken.Id);
+
+
+            }
+
+
+
+
+
+          
 
 
 
 
             foreach (var keys in sendingParameters.AllKeys)
             {
-                Console.WriteLine(keys + " " + sendingParameters.Get(keys));
+                //Console.WriteLine(keys + " " + sendingParameters.Get(keys));
+                //Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
             }
 
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
