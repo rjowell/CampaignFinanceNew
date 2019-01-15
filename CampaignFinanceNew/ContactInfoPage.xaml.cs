@@ -38,6 +38,7 @@ namespace CampaignFinanceNew
                 websiteLabel.IsVisible = false;
                 contactPersonLabel.IsVisible = false;
                 contactPersonEntry.IsVisible = false;
+                Console.WriteLine("still supporter");
             }
             else
             {
@@ -80,7 +81,7 @@ namespace CampaignFinanceNew
             {
 
             
-                if (App.newUserIsSupporter==true)
+                if (App.newUser.isSupporter==true)
                  {
                      await Navigation.PushAsync(new CreateName());
                      }

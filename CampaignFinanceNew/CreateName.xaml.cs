@@ -10,7 +10,15 @@ namespace CampaignFinanceNew
         public CreateName()
         {
             InitializeComponent();
-            Console.WriteLine(App.newUser.isSupporter);
+            Console.WriteLine("false is"+App.newUser.isSupporter);
+            if(App.newUser.isSupporter==true)
+            {
+                Console.WriteLine("troo");
+            }
+            else
+            {
+                Console.WriteLine("flase");
+            }
             firstNameField.Text = App.newUser.firstName;
             lastNameField.Text = App.newUser.lastName;
             if(App.newUser.isSupporter==true)

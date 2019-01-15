@@ -15,6 +15,7 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
             StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
+            Console.WriteLine("final valu s"+App.newUser.isSupporter);
             if (App.newUser.isSupporter==false)
             {
                 ccNumber.IsVisible = false;
@@ -43,7 +44,7 @@ namespace CampaignFinanceNew
                         { "firstName", App.newUser.firstName },
                         { "lastName", App.newUser.lastName },
                         { "eMail", eMailField.Text },
-                        { "isSupporter", App.newUserIsSupporter.ToString() },
+                        { "isSupporter", App.newUser.isSupporter.ToString() },
                         { "contactPerson",App.newUser.contactPerson},
                         { "phone", App.newUser.phone },
                         { "website", App.newUser.website },
@@ -99,14 +100,14 @@ namespace CampaignFinanceNew
 
             foreach (var keys in sendingParameters.AllKeys)
             {
-                //Console.WriteLine(keys + " " + sendingParameters.Get(keys));
-                //Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
+                Console.WriteLine(keys + " " + sendingParameters.Get(keys));
+                Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
             }
 
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
 
             //Console.WriteLine("jerkoff");
-            //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
         }
     }
 }

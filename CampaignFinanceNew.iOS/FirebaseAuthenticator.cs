@@ -61,19 +61,6 @@ namespace CampaignFinanceNew.iOS
 
 
 
-
-            /*Auth.DefaultInstance.CreateUser(email, password, (authResult, error) =>
-            {
-                Console.WriteLine("this is" + error.Description);
-                //Console.WriteLine("idd is " + authResult.User.Uid);
-                Console.WriteLine("info is " + bioInfo);
-                //userId = authResult.User.Uid;
-                //tcs.SetResult(authResult.User.Uid);
-                //theThing.setNewID(authResult.User.Uid);
-                newClient.UploadString("http://www.cvx4u.com/web_service/create_user.php", bioIn+"&firebaseID="+authResult.User.Uid+"&isSupporter=false");
-                //theThing.setNewID("done");
-
-            });*/
             Console.WriteLine("Your result lis");
             //Console.WriteLine(tcs.Task.Result);
             //tcs.SetResult(true);
@@ -91,11 +78,11 @@ namespace CampaignFinanceNew.iOS
 
             Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
 
-                WebClient thisClient = new WebClient();
+               
                
 
                 //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-                userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+                userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
                 App.currentUser.userFirebaseID = authResult.User.Uid;
 
 
