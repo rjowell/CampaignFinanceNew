@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.ContactInfoPage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout VerticalOptions="Center" Spacing="2">
         <Label TextColor="White" HorizontalOptions="Center" FontSize="Medium" x:Name="contactLabel" Text="Contact Information"/>
         
@@ -76,5 +77,6 @@
             <Button BackgroundColor="Transparent" TextColor="White" ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button  BackgroundColor="Transparent" TextColor="White"  ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
              </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

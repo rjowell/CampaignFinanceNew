@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
     <ContentPage.Content>
         <StackLayout WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-            <Label HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
+            <Label TextColor="White" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
             <Entry x:Name="ccNumber" WidthRequest="150"/>
             <Grid>
                 <Grid.RowDefinitions>
@@ -15,19 +15,19 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
+                <Label TextColor="White"  HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
                 <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0"/>
-                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
+                <Label TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
                 <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1"/>
-                <Label Text="  " Grid.Row="0" Grid.Column="2"/>
-                <Label VerticalTextAlignment="Center" HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
-                <Label Text="  " Grid.Row="1" Grid.Column="2"/>
+                <Label TextColor="White"  Text="  " Grid.Row="0" Grid.Column="2"/>
+                <Label TextColor="White"  VerticalTextAlignment="Center" HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
+                <Label TextColor="White"  Text="  " Grid.Row="1" Grid.Column="2"/>
                 <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
             </Grid>
-            <Label x:Name="ccDisclamer" Text=""/>
-            <Label HorizontalTextAlignment="Center" Text="E-Mail (this will also be your username)"/>
+            <Label TextColor="White"  x:Name="ccDisclamer" Text=""/>
+            <Label TextColor="White"  HorizontalTextAlignment="Center" Text="E-Mail (this will also be your username)"/>
             <Entry x:Name="eMailField" Keyboard="Email"/>
-            <Label Text="Password"/>
+            <Label TextColor="White"  Text="Password"/>
             <Entry x:Name="passwordField"/>
               <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
             <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" Text="Go Back"/><Button ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>

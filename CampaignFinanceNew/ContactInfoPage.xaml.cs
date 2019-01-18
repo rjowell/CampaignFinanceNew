@@ -8,15 +8,18 @@ namespace CampaignFinanceNew
     public partial class ContactInfoPage : ContentPage
     {
 
-        List<Entry> entries = new List<Entry>();
+        List<Entry> entries=new List<Entry>();        
         List<Label> labels = new List<Label>();
+       
 
         public ContactInfoPage()
         {
             InitializeComponent();
 
-            entries.Add(addressEntry);
+            entries.Add(contactPersonEntry);
+           entries.Add(addressEntry);
             entries.Add(cityEntry);
+            //entries.Add(statePicker);
             entries.Add(zipCodeEntry);
             entries.Add(phoneEntry);
             entries.Add(websiteEntry);
@@ -48,6 +51,37 @@ namespace CampaignFinanceNew
 
 
             statePicker.ItemsSource = App.states;
+
+            if(contactPersonEntry.IsVisible==true)
+            {
+                contactPersonEntry.Focus();
+            }
+            else
+            {
+                addressEntry.Focus();
+            }
+            foreach(Entry thisEntry in entries)
+            {
+
+                if(entries.IndexOf(thisEntry) != entries.Count-1)
+                {
+                    thisEntry.Completed += (s, e) =>
+                    {
+                        if (entries.IndexOf(thisEntry) == 2)
+                        {
+                            statePicker.Focus();
+                        }
+
+                        else
+                        {
+
+                            entries[entries.IndexOf(thisEntry) + 1].Focus();
+                        }
+                    };
+                }
+
+            }
+
         }
 
        
@@ -59,10 +93,11 @@ namespace CampaignFinanceNew
 
             foreach(Entry field in entries)
             {
-                if(field.Text=="")
+                if(field.IsVisible==true &&  field.Text=="")
                 {
                     labels[entries.IndexOf(field)].TextColor = Color.Red;
                     moveOn = false;
+                    Console.WriteLine("dumbass");
                 }
             }
 

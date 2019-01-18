@@ -7,9 +7,13 @@ namespace CampaignFinanceNew
 {
     public partial class CreateName : ContentPage
     {
+
+        Entry[] fields;
+
         public CreateName()
         {
             InitializeComponent();
+            fields = new Entry[] {firstNameField, lastNameField };
             Console.WriteLine("false is"+App.newUser.isSupporter);
             if(App.newUser.isSupporter==true)
             {
@@ -21,7 +25,31 @@ namespace CampaignFinanceNew
             }
             firstNameField.Text = App.newUser.firstName;
             lastNameField.Text = App.newUser.lastName;
-            if(App.newUser.isSupporter==true)
+            firstNameField.Focus();
+
+
+            foreach(Entry current in fields)
+            {
+                if (Array.IndexOf(fields, current) != fields.Length-1)
+                {
+                    current.Completed += (s, e) =>
+                    {
+
+                        fields[Array.IndexOf(fields, current) + 1].Focus();
+
+                    };
+                }
+            }
+
+
+
+            firstNameField.Completed += (s,e) => {
+            
+             
+
+               };
+
+            if (App.newUser.isSupporter==true)
             {
                 titleLabel.Text = "What is your name?";
             }

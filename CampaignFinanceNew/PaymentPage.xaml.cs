@@ -10,10 +10,39 @@ namespace CampaignFinanceNew
         string[] ccExpiryMonths = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
         string[] ccExpiryYears = new string[] { "19", "20", "21", "22", "23", "24", "25", "26" };
         string ccNotice = "*We do not store your credit card info directly on our servers. Rather, we use Stripe.com, a highly trusted payment processor, to securely store and process payments. Learn more at Stripe.com";
-
+        List<Entry> entries = new List<Entry>();
         public PaymentPage()
         {
             InitializeComponent();
+            entries.Add(ccNumber);
+            entries.Add(cvcEntry);
+            entries.Add(eMailField);
+            entries.Add(passwordField);
+
+            foreach (Entry thisEntry in entries)
+            {
+
+                if (entries.IndexOf(thisEntry) != entries.Count - 1)
+                {
+                    thisEntry.Completed += (s, e) =>
+                    {
+                        if (entries.IndexOf(thisEntry) == 0)
+                        {
+                            expiryMonth.Focus();
+                        }
+
+                        else
+                        {
+
+                            entries[entries.IndexOf(thisEntry) + 1].Focus();
+                        }
+                    };
+                }
+
+            }
+
+
+
             StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
             Console.WriteLine("final valu s"+App.newUser.isSupporter);
             if (App.newUser.isSupporter==false)
