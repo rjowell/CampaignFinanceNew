@@ -48,7 +48,12 @@ namespace CampaignFinanceNew
             if (App.newUser.isSupporter==false)
             {
                 ccNumber.IsVisible = false;
+                ccNumLabel.IsVisible = false;
                 expiryMonth.IsVisible = false;
+                expYearLabel.IsVisible = false;
+                expMonthLabel.IsVisible = false;
+                cvcEntry.IsVisible = false;
+                cvcLabel.IsVisible = false;
                 expiryYear.IsVisible = false;
                 ccDisclamer.IsVisible = false;
             }
@@ -83,6 +88,7 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
+                        {"district",App.newUser.district}
 
 
 
