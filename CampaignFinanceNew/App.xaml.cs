@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Geolocator;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CampaignFinanceNew
@@ -15,6 +17,35 @@ namespace CampaignFinanceNew
         public String userFirebaseID { get; set; }
         public bool isSupporter { get; set; }
         public String[] campaignsSupported { get; set; }
+        public String[] currentCampaigns { get; set; }
+
+        WebClient newClient = new WebClient();
+
+        public void SetUserInfo(String firebaseID)
+        {
+
+            String userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + firebaseID);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+            userFirebaseID = firebaseID;
+            JObject currentUserString = JObject.Parse(userJsonData);
+            firstName = currentUserString.GetValue("FirstName").ToString();
+            lastName = currentUserString.GetValue("LastName").ToString();
+            /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
+            */
+            if (JObject.Parse(userJsonData).ContainsKey("CandidateId") == false)
+            {
+
+
+                systemID = currentUserString.GetValue("SupporterID").ToString();
+                isSupporter = true;
+                campaignsSupported = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
+            }
+            else
+            {
+                systemID = currentUserString.GetValue("CandidateId").ToString();
+                currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
+                isSupporter = false;
+            }
+        }
 
 
     }

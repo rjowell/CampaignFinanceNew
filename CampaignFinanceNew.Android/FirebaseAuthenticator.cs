@@ -101,6 +101,9 @@ namespace CampaignFinanceNew.Droid
             isCreateUser = false;
             Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password).AddOnCompleteListener(this);
 
+            App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
+
+            /*
             Console.WriteLine("point 1");
             var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
             Console.WriteLine("point 2A "+ Firebase.Auth.FirebaseAuth.Instance.Uid);
@@ -119,7 +122,7 @@ namespace CampaignFinanceNew.Droid
                 App.currentUser.systemID = currentUserData.GetValue("CandidateId").ToString();
             }
 
-
+            */
             tcs.SetResult(true);
 
             return tcs.Task;

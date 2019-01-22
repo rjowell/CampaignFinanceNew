@@ -78,25 +78,31 @@ namespace CampaignFinanceNew.iOS
 
             Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
 
-               
-               
+
+                App.currentUser.SetUserInfo(authResult.User.Uid);
 
                 //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-                userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+               /* userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
                 App.currentUser.userFirebaseID = authResult.User.Uid;
+                JObject currentUserString = JObject.Parse(userJsonData);
+                App.currentUser.firstName = currentUserString.GetValue("FirstName").ToString();
+                App.currentUser.lastName = currentUserString.GetValue("LastName").ToString();
+                /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
 
-
-                if(JObject.Parse(userJsonData).ContainsKey("CandidateId")==false)
+                if (JObject.Parse(userJsonData).ContainsKey("CandidateId")==false)
                 {
-                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
+
+                    
+                    App.currentUser.systemID = currentUserString.GetValue("SupporterID").ToString();
                     App.currentUser.isSupporter = true;
-                    App.currentUser.campaignsSupported = JObject.Parse(userJsonData).GetValue("CampaignsSupported").ToString().Split(',');
+                    App.currentUser.campaignsSupported = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
                 }
                 else
                 {
-                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
+                    App.currentUser.systemID = currentUserString.GetValue("CandidateId").ToString();
+                    App.currentUser.currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
                     App.currentUser.isSupporter = false;
-                }
+                }*/
 
                 tcs.SetResult(true);
 
