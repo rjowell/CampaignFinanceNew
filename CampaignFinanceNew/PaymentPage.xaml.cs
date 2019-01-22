@@ -143,6 +143,9 @@ namespace CampaignFinanceNew
 
             //Console.WriteLine("jerkoff");
             DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
+            Console.WriteLine("you made it!!");
+            Navigation.PushAsync(new CandidateDashboard());
         }
     }
 }
