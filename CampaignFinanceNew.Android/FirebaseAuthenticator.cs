@@ -66,8 +66,15 @@ namespace CampaignFinanceNew.Droid
             Console.WriteLine("system A1");
             //await Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
             isCreateUser = true;
+            userData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
             Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password).AddOnCompleteListener(this);
+
+
+            Console.WriteLine("system B-1");
+            newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
             Console.WriteLine("system B");
+            App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
+
 
             Console.WriteLine("system C");
             Console.WriteLine("your id is " + Firebase.Auth.FirebaseAuth.Instance.Uid);
@@ -140,12 +147,13 @@ namespace CampaignFinanceNew.Droid
         {
             if (isCreateUser == true)
             {
+                Console.WriteLine("this point coyote");
+                //Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(userEmail, userPassword);
 
-                Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(userEmail, userPassword);
-
-                mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
-                var response = newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
-                Console.WriteLine(System.Text.Encoding.Default.GetString(response));
+                //mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
+                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
+                Console.WriteLine("this point - Android");
+                //Console.WriteLine(System.Text.Encoding.Default.GetString(response));
             }
             else
             {
@@ -164,6 +172,11 @@ namespace CampaignFinanceNew.Droid
         public void Logout()
         {
             Firebase.Auth.FirebaseAuth.Instance.SignOut();
+        }
+
+        public Task<string> CreateNewUserAsync(string email, string password, System.Collections.Specialized.NameValueCollection userData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

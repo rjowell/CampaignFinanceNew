@@ -77,13 +77,12 @@ namespace CampaignFinanceNew
 
 
             //GetLocationInformation();
-            Console.WriteLine(App.currentLocation.cityName + " " + App.currentLocation.state+" "+App.currentLocation.congressDistrict);
-            Console.WriteLine("helo george-1");
-           
+
+
 
 
             WebClient thisClient = new WebClient();
-            Console.WriteLine("point A");
+
 
             //var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
             Console.WriteLine("point B");
@@ -132,8 +131,8 @@ namespace CampaignFinanceNew
 
 
             InitializeComponent();
-
-            if(App.currentUser.isSupporter==false)
+            titleLabel.Text = "Welcome," + App.currentUser.firstName;
+            if (App.currentUser.isSupporter==false)
             {
                 createCampaignButton.IsVisible = true;
                

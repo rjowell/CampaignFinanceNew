@@ -20,7 +20,7 @@
                         <ColumnDefinition />
                     <ColumnDefinition/>
                      </Grid.ColumnDefinitions>
-                <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLable" Text="Welcome, Russell" Grid.Row="0" Grid.Column="1"/>
+                <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLabel" Text="" Grid.Row="0" Grid.Column="1"/>
           
             <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
                 <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>

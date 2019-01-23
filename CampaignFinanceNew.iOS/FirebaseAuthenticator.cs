@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Text;
 using CampaignFinanceNew.iOS;
 using Firebase.Auth;
 using Firebase.Core;
@@ -40,38 +41,24 @@ namespace CampaignFinanceNew.iOS
 
         public string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
         {
-            Console.WriteLine("hhhhh");
-            //string userId = "";
-            //NewUserID theThing = new NewUserID();
+           
+            Auth.DefaultInstance.CreateUser(email, password,(authResult, error) => {
 
-            //TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-
-            
-            Auth.DefaultInstance.CreateUser(email, password, (authResult, error) => {
-
-                Console.WriteLine(error.UserInfo.ValueForKey((Foundation.NSString)"NSLocalizedFailureReasonErrorKey"));
-                Console.WriteLine("informationnnn" + authResult.User.Uid);
+                Console.WriteLine(authResult.User.Uid);
+                Console.WriteLine("test print");
                 userData.Add("firebaseID", authResult.User.Uid);
-                Console.WriteLine("information is" + userData.Get("firebaseID")+" "+userData.Get("lastName"));
-                //Console.WriteLine(userData.AllKeys);
-                Console.WriteLine("step two");
-
                 newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
-                Console.WriteLine("step three");
-                LoginWithEmailPassword(email, password);
-
-
-
+                App.currentUser.SetUserInfo(authResult.User.Uid);
+            
             });
 
 
+            return "True";
 
-            Console.WriteLine("Your result lis");
-            //Console.WriteLine(tcs.Task.Result);
-            //tcs.SetResult(true);
-            return "true";
-            //return tcs.Task.Result;
         }
+
+
+
 
         public Task<bool> LoginWithEmailPassword(string email, string password)
         {
@@ -83,32 +70,11 @@ namespace CampaignFinanceNew.iOS
 
             Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
 
+                Console.WriteLine("You're in as " + authResult.User.Email);
 
                 App.currentUser.SetUserInfo(authResult.User.Uid);
 
-                //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-               /* userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-                App.currentUser.userFirebaseID = authResult.User.Uid;
-                JObject currentUserString = JObject.Parse(userJsonData);
-                App.currentUser.firstName = currentUserString.GetValue("FirstName").ToString();
-                App.currentUser.lastName = currentUserString.GetValue("LastName").ToString();
-                /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
-
-                if (JObject.Parse(userJsonData).ContainsKey("CandidateId")==false)
-                {
-
-                    
-                    App.currentUser.systemID = currentUserString.GetValue("SupporterID").ToString();
-                    App.currentUser.isSupporter = true;
-                    App.currentUser.campaignsSupported = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
-                }
-                else
-                {
-                    App.currentUser.systemID = currentUserString.GetValue("CandidateId").ToString();
-                    App.currentUser.currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
-                    App.currentUser.isSupporter = false;
-                }*/
-
+               
                 tcs.SetResult(true);
 
 
@@ -129,6 +95,24 @@ namespace CampaignFinanceNew.iOS
         public void Logout()
         {
             Auth.DefaultInstance.SignOut(out Foundation.NSError error);
+        }
+
+        public async Task<string> CreateNewUserAsync(string email, string password, System.Collections.Specialized.NameValueCollection userData)
+        {
+
+
+
+            await Auth.DefaultInstance.CreateUserAsync(email, password);
+            //await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
+            Console.WriteLine("Current user is"+Auth.DefaultInstance.CurrentUser.Uid);
+            Console.WriteLine("more info is" + Auth.DefaultInstance.CurrentUser.Email);
+            userData.Add("firebaseID", Auth.DefaultInstance.CurrentUser.Uid);
+            newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
+            Console.WriteLine("step three");
+            await App.currentUser.SetUserInfo(Auth.DefaultInstance.CurrentUser.Uid);
+
+
+            return "hello";
         }
     }
 }

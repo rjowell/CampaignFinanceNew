@@ -68,7 +68,7 @@ namespace CampaignFinanceNew
         }
 
 
-        public void ProcessNewUser(Button sender, EventArgs e)
+        public async void ProcessNewUser(Button sender, EventArgs e)
         {
 
            
@@ -88,8 +88,8 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
-                        {"district",App.newUser.district}
-
+                        {"district",App.newUser.district},
+                        {"lastFour",ccNumber.ToString().Substring(12,4)}
 
 
             };
@@ -112,13 +112,8 @@ namespace CampaignFinanceNew
 
                 var tokenService = new Stripe.TokenService();
                 Stripe.Token stripeToken = tokenService.Create(tokenOptions);
-                Console.WriteLine(stripeToken.Id);
-               /* var customerOptions = new CustomerCreateOptions();
-                var customerService = new CustomerService();
-                customerOptions.SourceToken = stripeToken.Id;
-                customerOptions.Email = App.newUser.eMailAddress;
-                Customer newCustomer = customerService.Create(customerOptions);
-                Console.WriteLine(newCustomer.Id);*/
+
+               
                 sendingParameters.Set("stripeToken", stripeToken.Id);
 
 
@@ -136,16 +131,17 @@ namespace CampaignFinanceNew
             foreach (var keys in sendingParameters.AllKeys)
             {
                 Console.WriteLine(keys + " " + sendingParameters.Get(keys));
-                Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
+                //Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
             }
 
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
 
             //Console.WriteLine("jerkoff");
             DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 
-            Console.WriteLine("you made it!!");
-            Navigation.PushAsync(new CandidateDashboard());
+            await Navigation.PushAsync(new CandidateDashboard());
+
         }
     }
 }

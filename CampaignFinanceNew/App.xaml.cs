@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Plugin.Geolocator;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CampaignFinanceNew
@@ -21,14 +22,16 @@ namespace CampaignFinanceNew
 
         WebClient newClient = new WebClient();
 
-        public void SetUserInfo(String firebaseID)
+        public async Task<string> SetUserInfo(String firebaseID)
         {
 
             String userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + firebaseID);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
             userFirebaseID = firebaseID;
+            Console.WriteLine(userJsonData);
             JObject currentUserString = JObject.Parse(userJsonData);
             firstName = currentUserString.GetValue("FirstName").ToString();
             lastName = currentUserString.GetValue("LastName").ToString();
+            Console.WriteLine("Your name is " + firstName + " " + lastName);
             /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
             */
             if (JObject.Parse(userJsonData).ContainsKey("CandidateId") == false)
@@ -45,6 +48,7 @@ namespace CampaignFinanceNew
                 currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
                 isSupporter = false;
             }
+            return "true";
         }
 
 
