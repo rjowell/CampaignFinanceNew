@@ -101,7 +101,7 @@ namespace CampaignFinanceNew.Droid
             isCreateUser = false;
             Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(email, password).AddOnCompleteListener(this);
 
-            App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
+
 
             /*
             Console.WriteLine("point 1");
@@ -129,36 +129,7 @@ namespace CampaignFinanceNew.Droid
         }
 
 
-        /*public Task<bool> LoginWithEmailPassword(string email, string password)
-        {
-            //var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
-
-
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-
-
-            Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
-
-                WebClient thisClient = new WebClient();
-               
-
-                //thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-                userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
-                App.currentUser.userFirebaseID = authResult.User.Uid;
-                App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
-                Console.WriteLine("Your id is " + App.currentUser.systemID);
-                tcs.SetResult(true);
-
-
-            });
-
-            return tcs.Task;
-
-            //return await user.User.GetIdTokenAsync();
-            //userJsonData = new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + currentToken);
-
-
-        }*/
+     
 
         public string GetCurrentUserInfo()
         {
@@ -180,26 +151,9 @@ namespace CampaignFinanceNew.Droid
             {
                 Console.WriteLine("point 2A " + Firebase.Auth.FirebaseAuth.Instance.Uid);
                 App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
-                var userJsonData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + Firebase.Auth.FirebaseAuth.Instance.Uid);
-                var currentUserData = JObject.Parse(userJsonData);
-                Console.WriteLine("jeepers " + currentUserData.ContainsKey("CandidateId"));
-                if (currentUserData.ContainsKey("CandidateId") == false)
-                {
-                    Console.WriteLine("chickee");
-                    App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("SupporterID").ToString();
-                    App.currentUser.isSupporter = true;
-                    App.currentUser.campaignsSupported= JObject.Parse(userJsonData).GetValue("CampaignsSupported").ToString().Split(',');
-                    Console.WriteLine("Sys user id " + App.currentUser.systemID);
-                }
-                else
-                {
-                    Console.WriteLine("point 3" + JObject.Parse(userJsonData).GetValue("CandidateId"));
-                    App.currentUser.systemID = currentUserData.GetValue("CandidateId").ToString();
-                    App.currentUser.isSupporter = false;
-                }
-
-                Console.WriteLine("is support is " + App.currentUser.isSupporter);
+               
             }
+            App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
         }
 
         public new void Dispose()

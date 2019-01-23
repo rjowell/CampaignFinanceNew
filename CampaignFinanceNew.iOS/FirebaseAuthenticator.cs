@@ -46,15 +46,20 @@ namespace CampaignFinanceNew.iOS
 
             //TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
+            
             Auth.DefaultInstance.CreateUser(email, password, (authResult, error) => {
 
-               
+                Console.WriteLine(error.UserInfo.ValueForKey((Foundation.NSString)"NSLocalizedFailureReasonErrorKey"));
+                Console.WriteLine("informationnnn" + authResult.User.Uid);
                 userData.Add("firebaseID", authResult.User.Uid);
                 Console.WriteLine("information is" + userData.Get("firebaseID")+" "+userData.Get("lastName"));
-                Console.WriteLine(userData.AllKeys);
-               
+                //Console.WriteLine(userData.AllKeys);
+                Console.WriteLine("step two");
 
                 newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
+                Console.WriteLine("step three");
+                LoginWithEmailPassword(email, password);
+
 
 
             });
