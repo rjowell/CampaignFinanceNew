@@ -22,10 +22,11 @@ namespace CampaignFinanceNew
 
         WebClient newClient = new WebClient();
 
-        public async Task<string> SetUserInfo(String firebaseID)
+        public Task<string> SetUserInfo(String firebaseID)
         {
 
-            String userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + firebaseID);         //("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + authResult.User.Uid);
+            String userJsonData = newClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID="+firebaseID);
+            TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
             userFirebaseID = firebaseID;
             Console.WriteLine(userJsonData);
             JObject currentUserString = JObject.Parse(userJsonData);
@@ -48,7 +49,10 @@ namespace CampaignFinanceNew
                 currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
                 isSupporter = false;
             }
-            return "true";
+
+            tcs.SetResult("true");
+            return tcs.Task;
+
         }
 
 
@@ -127,5 +131,7 @@ namespace CampaignFinanceNew
         {
             // Handle when your app resumes
         }
+
+
     }
 }

@@ -3,10 +3,10 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout VerticalOptions="Center" Spacing="2">
-        <Label TextColor="White" HorizontalOptions="Center" FontSize="Medium" x:Name="contactLabel" Text="Contact Information"/>
+        <Label TextColor="White" HorizontalOptions="Center" FontSize="Large" x:Name="contactLabel" Text="Contact Information"/>
         
             
-            <Label Text="Contact Person" HorizontalOptions="Center" x:Name="contactPersonLabel" TextColor="White"/>
+            <Label FontSize="Medium" Text="Contact Person" HorizontalOptions="Center" x:Name="contactPersonLabel" TextColor="#c5d8f7"/>
             
             <Entry HorizontalOptions="Center" WidthRequest="300" x:Name="contactPersonEntry">
                  <Entry.TextColor>
@@ -15,14 +15,14 @@
                 </Entry>
             
             
-            <Label TextColor="White" HorizontalOptions="Center" x:Name="addressLabel" Text="Mailing Address"/>
+            <Label TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" x:Name="addressLabel" Text="Mailing Address"/>
             
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="addressEntry">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-        <Label x:Name="cityLabel" TextColor="White" HorizontalOptions="Center" Text="City"/>
+        <Label x:Name="cityLabel" TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" Text="City"/>
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="cityEntry">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
@@ -38,14 +38,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                  <Label x:Name="stateLabel" TextColor="White" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="State"/>
-                  <Label x:Name="zipLabel" TextColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="ZIP Code"/>
-                <Entry HorizontalOptions="Center" WidthRequest="70" Grid.Row="1" Grid.Column="1" x:Name="zipCodeEntry">
+                  <Label x:Name="stateLabel" TextColor="#c5d8f7" FontSize="Medium" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="State"/>
+                  <Label x:Name="zipLabel" TextColor="#c5d8f7" FontSize="Medium" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="ZIP Code"/>
+                <Entry HorizontalOptions="Center" MaxLength="5" WidthRequest="70" Grid.Row="1" Grid.Column="1" x:Name="zipCodeEntry">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>    
                 </Entry>
-            <Picker x:Name="statePicker" Grid.Row="1" Grid.Column="0">
+            <Picker x:Name="statePicker" FontSize="Medium" Grid.Row="1" Grid.Column="0">
                  <Picker.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Picker.TextColor>    
@@ -53,20 +53,17 @@
             </Grid>
             
             
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-               
-        
-                </StackLayout>
+            
         
        
        
-        <Label x:Name="phoneLabel" TextColor="White" HorizontalOptions="Center" Text="Phone Number"/>
-        <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="phoneEntry">
+        <Label x:Name="phoneLabel" TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" Text="Phone Number"/>
+        <Entry HorizontalOptions="Center" Keyboard="Telephone" MaxLength="10" WidthRequest="300"  x:Name="phoneEntry">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor> 
                 </Entry>
-            <Label TextColor="White" x:Name="websiteLabel" HorizontalOptions="Center" Text="Campaign Website"/>
+            <Label TextColor="#c5d8f7" FontSize="Medium" x:Name="websiteLabel" HorizontalOptions="Center" Text="Campaign Website"/>
         <Entry HorizontalOptions="Center" WidthRequest="300"  x:Name="websiteEntry">
              <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
@@ -74,7 +71,7 @@
             </Entry>
        
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button BackgroundColor="Transparent" TextColor="White" ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button  BackgroundColor="Transparent" TextColor="White"  ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button BackgroundColor="Transparent" TextColor="White" FontSize="Large" ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
              </StackLayout>
             </ScrollView>

@@ -16,16 +16,19 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
 
-            entries.Add(contactPersonEntry);
+            Console.WriteLine("index is " + statePicker.SelectedIndex);
+
+                     entries.Add(contactPersonEntry);
            entries.Add(addressEntry);
             entries.Add(cityEntry);
             //entries.Add(statePicker);
             entries.Add(zipCodeEntry);
             entries.Add(phoneEntry);
             entries.Add(websiteEntry);
+            labels.Add(contactPersonLabel);
             labels.Add(addressLabel);
             labels.Add(cityLabel);
-            labels.Add(stateLabel);
+            //labels.Add(stateLabel);
             labels.Add(zipLabel);
             labels.Add(phoneLabel);
             labels.Add(websiteLabel);
@@ -63,8 +66,11 @@ namespace CampaignFinanceNew
             foreach(Entry thisEntry in entries)
             {
 
-                if(entries.IndexOf(thisEntry) != entries.Count-1)
+                Console.WriteLine(entries.IndexOf(thisEntry));
+
+                if (entries.IndexOf(thisEntry) != entries.Count-1)
                 {
+                    Console.WriteLine("Doo dee");
                     thisEntry.Completed += (s, e) =>
                     {
                         if (entries.IndexOf(thisEntry) == 2)
@@ -79,6 +85,8 @@ namespace CampaignFinanceNew
                         }
                     };
                 }
+
+                
 
             }
 
@@ -97,15 +105,34 @@ namespace CampaignFinanceNew
                 {
                     labels[entries.IndexOf(field)].TextColor = Color.Red;
                     moveOn = false;
-                    Console.WriteLine("dumbass");
+
                 }
+                else
+                {
+
+                    labels[entries.IndexOf(field)].TextColor = Color.FromHex("#c5d8f7");
+
+                }
+
+            }
+            Console.WriteLine("point 3");
+            if (statePicker.SelectedIndex==-1)
+            {
+                stateLabel.TextColor = Color.Red;
+                moveOn = false;
+
+            }
+            else
+            {
+                App.newUser.state = App.stateAbbr[statePicker.SelectedIndex];
+                stateLabel.TextColor= Color.FromHex("#c5d8f7");
             }
 
+            Console.WriteLine("point 2");
 
-             
             App.newUser.streetAddress = addressEntry.Text;
             App.newUser.city = cityEntry.Text;
-            App.newUser.state = App.stateAbbr[statePicker.SelectedIndex];
+
             App.newUser.zipCode = zipCodeEntry.Text;
             App.newUser.phone = phoneEntry.Text;
             App.newUser.website = websiteEntry.Text;
@@ -127,18 +154,10 @@ namespace CampaignFinanceNew
                  }
 
 
-                //Console.WriteLine(App.newUser.firstName + " " + App.newUser.lastName + " " + App.newUser.office + " " + App.newUser.district+" " +App.newUser.party + " " + App.newUser.streetAddress+" "+App.newUser.city+" "+App.newUser.state+" "+App.newUser.zipCode);
-
-
-                //await Navigation.PushAsync(new CandidateDashboard());
-            
-
-
             else
             {
                 if (moveOn == true)
                 {
-
 
                     await Navigation.PushAsync(new PaymentPage());
                 }

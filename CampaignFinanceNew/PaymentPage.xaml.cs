@@ -18,6 +18,14 @@ namespace CampaignFinanceNew
             entries.Add(cvcEntry);
             entries.Add(eMailField);
             entries.Add(passwordField);
+            if(App.newUser.isSupporter==true)
+            {
+                titleLabel.Text = "Payment Info & Login";
+            }
+            else
+            {
+                titleLabel.Text = "Login Info";
+            }
 
             foreach (Entry thisEntry in entries)
             {
@@ -89,7 +97,7 @@ namespace CampaignFinanceNew
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
                         {"district",App.newUser.district},
-                        {"lastFour",ccNumber.ToString().Substring(12,4)}
+                        {"lastFour",ccNumber.Text.Substring(12,4)}
 
 
             };
@@ -137,11 +145,10 @@ namespace CampaignFinanceNew
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
 
             //Console.WriteLine("jerkoff");
-            await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
             //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 
-            Navigation.PushAsync(new CandidateDashboard());
-
+           
         }
     }
 }

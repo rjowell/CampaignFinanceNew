@@ -186,7 +186,7 @@ namespace CampaignFinanceNew
         private async void ProcessLogin(object sender, EventArgs e)
         {
 
-            await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
+            DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
             //var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
             //DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
@@ -228,7 +228,7 @@ namespace CampaignFinanceNew
                     break;
                 case "login":
                     Console.WriteLine("button login");
-                    await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
+                    DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
                     await Navigation.PushAsync(new CandidateDashboard());
                     break;
                 case "supporter":

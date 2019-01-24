@@ -9,11 +9,13 @@ namespace CampaignFinanceNew
     {
 
         Entry[] fields;
+        Label[] labels;
 
         public CreateName()
         {
             InitializeComponent();
-            fields = new Entry[] {firstNameField, lastNameField };
+            labels = new Label[] {firstNameLabel, lastNameLabel};
+            fields = new Entry[] {firstNameField, lastNameField};
             Console.WriteLine("false is"+App.newUser.isSupporter);
             if(App.newUser.isSupporter==true)
             {
@@ -61,21 +63,30 @@ namespace CampaignFinanceNew
 
         public async void ChangeWindows(Button thing, EventArgs e)
         {
+            bool moveOn=true;
             if(thing.ClassId=="Back")
             {
                 await Navigation.PushAsync(new MainPage());
             }
             else
             {
-                if(firstNameField.Text=="")
+
+               foreach(Entry things in fields)
                 {
-                    firstNameLabel.TextColor = Color.Red;
+                    if(things.Text=="")
+                    {
+                        labels[Array.IndexOf(fields, things)].TextColor = Color.Red;
+                        moveOn = false;
+                    }
+                    else
+                    {
+                        labels[Array.IndexOf(fields, things)].TextColor = Color.FromHex("#c5d8f7");
+                    }
+
                 }
-                else if(lastNameField.Text=="")
-                {
-                    lastNameLabel.TextColor = Color.Red;
-                }
-                else
+
+
+                if(moveOn==true)
                 {
                     App.newUser.firstName = firstNameField.Text;
                     App.newUser.lastName = lastNameField.Text;

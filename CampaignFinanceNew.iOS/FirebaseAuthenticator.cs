@@ -39,50 +39,52 @@ namespace CampaignFinanceNew.iOS
 
         }
 
-        public string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
+        System.Collections.Specialized.NameValueCollection localUserData;
+
+
+        public void CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
         {
+
+
            
-            Auth.DefaultInstance.CreateUser(email, password, async (authResult, error) => {
-
-                Console.WriteLine(authResult.User.Uid);
-                Console.WriteLine("test print");
-                userData.Add("firebaseID", authResult.User.Uid);
-                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
-                App.currentUser.SetUserInfo(authResult.User.Uid);
-
+            localUserData = userData;
+            isCreateUser = true;
+            Auth.DefaultInstance.CreateUser(email, password, HandleAuthDataResultHandler);
 
             
-            });
 
-            
-            return "True";
 
+
+        }
+        bool isCreateUser;
+
+        async void HandleAuthDataResultHandler(AuthDataResult authResult, Foundation.NSError error)
+        {
+            Console.WriteLine(authResult.User.Uid);
+            Console.WriteLine("test print");
+            if (isCreateUser == true)
+            {
+                localUserData.Add("firebaseID", authResult.User.Uid);
+                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", localUserData);
+            }
+            await App.currentUser.SetUserInfo(authResult.User.Uid);
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new CandidateDashboard());
         }
 
 
 
 
-        public Task<bool> LoginWithEmailPassword(string email, string password)
+        public void LoginWithEmailPassword(string email, string password)
         {
             //var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
 
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
 
-            Auth.DefaultInstance.SignInWithPassword(email, password, (authResult, error) => {
-
-                Console.WriteLine("You're in as " + authResult.User.Email);
-
-                App.currentUser.SetUserInfo(authResult.User.Uid);
-
-               
-                tcs.SetResult(true);
+            isCreateUser = false;
+            Auth.DefaultInstance.SignInWithPassword(email, password, HandleAuthDataResultHandler);
 
 
-            });
-
-            return tcs.Task;
 
 
 
@@ -111,7 +113,7 @@ namespace CampaignFinanceNew.iOS
             userData.Add("firebaseID", Auth.DefaultInstance.CurrentUser.Uid);
             newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
             Console.WriteLine("step three");
-            await App.currentUser.SetUserInfo(Auth.DefaultInstance.CurrentUser.Uid);
+            App.currentUser.SetUserInfo(Auth.DefaultInstance.CurrentUser.Uid);
 
 
             return "hello";

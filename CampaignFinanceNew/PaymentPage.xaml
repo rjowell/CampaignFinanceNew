@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-            <Label TextColor="White" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
-            <Entry x:Name="ccNumber" WidthRequest="150"/>
+            <Label Text="" HorizontalOptions="Center" x:Name="titleLabel" FontSize="Large" TextColor="White"/>
+            <Label TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
+            <Entry x:Name="ccNumber" WidthRequest="150">
+                 <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -15,23 +21,46 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label TextColor="White"  HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expMonthLabel" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
-                <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0"/>
-                <Label TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expYearLabel" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
-                <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1"/>
+                <Label  HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expMonthLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
+                <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0">
+                <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expYearLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
+                <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1">
+                     <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
                 <Label TextColor="White"  Text="  " Grid.Row="0" Grid.Column="2"/>
-                <Label TextColor="White" x:Name="cvcLabel"  VerticalTextAlignment="Center" HorizontalOptions="Center" Text="CVC" Grid.Row="0" Grid.Column="3"/>
+                <Label  x:Name="cvcLabel"  VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="CVC" Grid.Row="0" Grid.Column="3"/>
                 <Label TextColor="White"  Text="  " Grid.Row="1" Grid.Column="2"/>
-                <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
+                <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3">
+                     <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
             </Grid>
-            <Label TextColor="White"  x:Name="ccDisclamer" Text=""/>
-            <Label TextColor="White"  HorizontalTextAlignment="Center" Text="E-Mail (this will also be your username)"/>
-            <Entry x:Name="eMailField" Keyboard="Email"/>
-            <Label TextColor="White"  Text="Password"/>
-            <Entry x:Name="passwordField" IsPassword="true"/>
+            <Label TextColor="#c5d8f7" FontAttributes="Italic" HorizontalOptions="Center" FontSize="14" LineHeight=".9"  x:Name="ccDisclamer" Text=""/>
+            <Label Text="" FontSize="Small"/>
+            <Label TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="E-Mail"/>
+            <Label HorizontalOptions="Center" Text="(this will also be your username)" FontSize="Small" TextColor="#c5d8f7"/>
+            <Entry x:Name="eMailField" Keyboard="Email">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>
+                </Entry>
+            <Label HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium"  Text="Password"/>
+            <Entry x:Name="passwordField" IsPassword="true">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>
+                </Entry>
               <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" Text="Go Back"/><Button ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/><Button TextColor="White" BackgroundColor="Transparent" FontSize="Large" ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
         </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>
