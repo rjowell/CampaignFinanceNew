@@ -79,7 +79,7 @@ namespace CampaignFinanceNew
             //GetLocationInformation();
 
 
-
+            Console.WriteLine("this name is" + App.currentUser.firstName);
 
             WebClient thisClient = new WebClient();
 

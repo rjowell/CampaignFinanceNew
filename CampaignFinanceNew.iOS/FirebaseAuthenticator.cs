@@ -42,17 +42,19 @@ namespace CampaignFinanceNew.iOS
         public string CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
         {
            
-            Auth.DefaultInstance.CreateUser(email, password,(authResult, error) => {
+            Auth.DefaultInstance.CreateUser(email, password, async (authResult, error) => {
 
                 Console.WriteLine(authResult.User.Uid);
                 Console.WriteLine("test print");
                 userData.Add("firebaseID", authResult.User.Uid);
                 newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", userData);
                 App.currentUser.SetUserInfo(authResult.User.Uid);
+
+
             
             });
 
-
+            
             return "True";
 
         }

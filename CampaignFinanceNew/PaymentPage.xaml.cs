@@ -137,10 +137,10 @@ namespace CampaignFinanceNew
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
 
             //Console.WriteLine("jerkoff");
-            DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
             //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 
-            await Navigation.PushAsync(new CandidateDashboard());
+            Navigation.PushAsync(new CandidateDashboard());
 
         }
     }
