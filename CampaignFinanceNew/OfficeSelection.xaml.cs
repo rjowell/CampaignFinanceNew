@@ -9,7 +9,15 @@ namespace CampaignFinanceNew
     {
         public OfficeSelection()
         {
+
+
+
+
+
             InitializeComponent();
+
+
+           
 
             officePicker.ItemsSource = App.offices;
             officePicker.SelectedIndex = App.newUser.officePickerIndex;
@@ -103,12 +111,22 @@ namespace CampaignFinanceNew
                 repButton.BackgroundColor = Color.Transparent;
                 otherPartyField.IsVisible = true;
                 otherPartyLabel.IsVisible = true;
+                App.newUser.party = otherPartyField.Text;
 
             }
         }
 
         public async void ChangeWindows(Button thing, EventArgs e)
         {
+
+            bool moveOn = true;
+            if(officePicker.SelectedIndex==-1)
+            {
+                officePickerLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+
+
 
             if (otherOfficeField.IsVisible == true)
             {
@@ -119,10 +137,14 @@ namespace CampaignFinanceNew
                 App.newUser.office = App.offices[officePicker.SelectedIndex];
 
             }
-            App.newUser.party = otherPartyField.Text;
-            App.newUser.district = jurisdictionLabel.Text;
-            
+
+
+
            
+            App.newUser.district = jurisdictionLabel.Text;
+
+            Console.WriteLine("office is "+App.newUser.office + " " + App.newUser.party + " " + App.newUser.district);
+
 
             if (thing.ClassId == "Back")
             {

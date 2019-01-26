@@ -4,7 +4,7 @@
         <StackLayout VerticalOptions="Center" Margin="10,10,10,10">
             
         <Label Text="Campaign Information" TextColor="White" HorizontalOptions="Center" FontSize="Large"/>
-            <Label FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
+            <Label x:Name="officePickerLabel" FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
         <Picker x:Name="officePicker" FontSize="Small" WidthRequest="200" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center">
                 <Picker.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="#c4d5ef" iOS="Black"/>

@@ -96,8 +96,7 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
-                        {"district",App.newUser.district},
-                        {"lastFour",ccNumber.Text.Substring(12,4)}
+                        {"district",App.newUser.district}
 
 
             };
@@ -123,6 +122,7 @@ namespace CampaignFinanceNew
 
                
                 sendingParameters.Set("stripeToken", stripeToken.Id);
+                sendingParameters.Set("lastFour", ccNumber.Text.Substring(12, 4));
 
 
             }
