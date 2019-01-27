@@ -23,7 +23,9 @@
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-            <Label FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center" Text="Party"/>
+            <Label x:Name="stateLabel" Text="State" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center"/>
+            <Picker TextColor="#c5d8f7" x:Name="stateSelector" FontSize="Small" WidthRequest="200" HorizontalOptions="Center"/>
+            <Label x:Name="partyLabel" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center" Text="Party"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
                 <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic" TextColor="White" Clicked="ProcessPartyButton"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
             </StackLayout>

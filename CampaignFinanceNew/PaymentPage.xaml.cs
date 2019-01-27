@@ -96,7 +96,8 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
-                        {"district",App.newUser.district}
+                        {"district",App.newUser.district},
+                        {"officeState",App.newUser.officeState}
 
 
             };
@@ -118,11 +119,19 @@ namespace CampaignFinanceNew
 
 
                 var tokenService = new Stripe.TokenService();
-                Stripe.Token stripeToken = tokenService.Create(tokenOptions);
 
+                try
+                {
+                    Stripe.Token stripeToken = tokenService.Create(tokenOptions);
+                    Console.WriteLine(stripeToken.StripeResponse);
+                    sendingParameters.Set("stripeToken", stripeToken.Id);
+                    sendingParameters.Set("lastFour", ccNumber.Text.Substring(12, 4));
+                }
+                catch(StripeException stripeExcept)
+                {
+                    Console.WriteLine("errros is " + stripeExcept.StripeError.Message+" "+stripeExcept.StripeError.Code+" "+stripeExcept.StripeError.ErrorDescription);
+                }
                
-                sendingParameters.Set("stripeToken", stripeToken.Id);
-                sendingParameters.Set("lastFour", ccNumber.Text.Substring(12, 4));
 
 
             }

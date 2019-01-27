@@ -16,9 +16,11 @@ namespace CampaignFinanceNew
 
             InitializeComponent();
 
+            Picker[] pickers = new Picker[] { officePicker, stateSelector};
 
-           
 
+
+            stateSelector.ItemsSource = App.stateAbbr;
             officePicker.ItemsSource = App.offices;
             officePicker.SelectedIndex = App.newUser.officePickerIndex;
             if(officePicker.SelectedIndex==9)
@@ -125,35 +127,100 @@ namespace CampaignFinanceNew
                 officePickerLabel.TextColor = Color.Red;
                 moveOn = false;
             }
-
-
-
-            if (otherOfficeField.IsVisible == true)
+            else
             {
-                App.newUser.office = otherOfficeField.Text;
+                officePickerLabel.TextColor = Color.FromHex("#c5d8f7");
+            }
+
+            if(officePicker.SelectedIndex==9 && otherPartyField.Text=="")
+            {
+                officePickerLabel.TextColor = Color.Red;
+                moveOn = false;
             }
             else
             {
-                App.newUser.office = App.offices[officePicker.SelectedIndex];
+                officePickerLabel.TextColor = Color.FromHex("#c5d8f7");
+            }
+
+            if(jurisdictionLabel.Text=="")
+            {
+                districtLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            else
+            {
+                districtLabel.TextColor= Color.FromHex("#c5d8f7");
 
             }
+
+            if(stateSelector.SelectedIndex==-1)
+            {
+                stateLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            else
+            {
+                stateLabel.TextColor= Color.FromHex("#c5d8f7");
+            }
+
+            if(App.newUser.party=="")
+            {
+                partyLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            else
+            {
+                partyLabel.TextColor= Color.FromHex("#c5d8f7");
+            }
+
+            if(otherButton.IsEnabled==true && otherPartyField.Text=="")
+            {
+                otherPartyLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            else
+            {
+                otherPartyLabel.TextColor= Color.FromHex("#c5d8f7");
+            }
+
+
+
+            if(moveOn==true)
+            {
+                if (otherOfficeField.IsVisible == true)
+                {
+                    App.newUser.office = otherOfficeField.Text;
+                }
+                else
+                {
+                    App.newUser.office = App.offices[officePicker.SelectedIndex];
+
+                }
+                App.newUser.district = jurisdictionLabel.Text;
+                App.newUser.officeState = App.stateAbbr[stateSelector.SelectedIndex];
+
+                if (thing.ClassId == "Back")
+                {
+                    await Navigation.PushAsync(new CreateName());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new ContactInfoPage());
+                }
+            }
+
+
+           
 
 
 
            
-            App.newUser.district = jurisdictionLabel.Text;
-
-            Console.WriteLine("office is "+App.newUser.office + " " + App.newUser.party + " " + App.newUser.district);
 
 
-            if (thing.ClassId == "Back")
-            {
-                await Navigation.PushAsync(new CreateName());
-            }
-            else
-            {
-                await Navigation.PushAsync(new ContactInfoPage());
-            }
+            //Console.WriteLine("office is "+App.newUser.office + " " + App.newUser.party + " " + App.newUser.district);
+
+
+
         }
     }
 }

@@ -75,6 +75,7 @@ namespace CampaignFinanceNew
         public String eMailAddress { get; set; }
         public bool isSupporter { get; set; }
         public String contactPerson { get; set; }
+        public String officeState { get; set; }
     }
 
     public class CurrentLocationInfo
