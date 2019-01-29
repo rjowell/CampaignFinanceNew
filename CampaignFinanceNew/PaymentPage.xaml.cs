@@ -11,7 +11,7 @@ namespace CampaignFinanceNew
         string[] ccExpiryYears = new string[] { "19", "20", "21", "22", "23", "24", "25", "26" };
         string ccNotice = "*We do not store your credit card info directly on our servers. Rather, we use Stripe.com, a highly trusted payment processor, to securely store and process payments. Learn more at Stripe.com";
         string ccWarning = "Credit Card Info is invalid. Please Try Again";
-        string userNotice = "A User already exsits with that e-mail. Please Try Again";
+        string userNotice = "A User already exsits with that e-mail. Please Try Again--";
 
         List<Entry> entries = new List<Entry>();
         public PaymentPage()
