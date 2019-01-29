@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
     <ContentPage.Content>
-      <RelativeLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
-     <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+      <RelativeLayout x:Name="masterLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
+     <ScrollView x:Name="scrollLayout" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
         
            
         <StackLayout x:Name="paymentForm" WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
@@ -67,8 +67,9 @@
         </StackLayout>
             </ScrollView>
            
-            <StackLayout TranslationX="30" TranslationY="100" BackgroundColor="Lime">
+            <StackLayout x:Name="noticeWindow" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Lime">
         <Label Text="Test"/>
+                <Button Text="OK"/>
            </StackLayout>
             
            
