@@ -14,10 +14,13 @@ namespace CampaignFinanceNew
         public PaymentPage()
         {
             InitializeComponent();
+            //errorWindow.IsVisible = false;
             entries.Add(ccNumber);
             entries.Add(cvcEntry);
             entries.Add(eMailField);
             entries.Add(passwordField);
+            paymentForm.HeightRequest= Xamarin.Forms.Application.Current.MainPage.Height;
+
             if(App.newUser.isSupporter==true)
             {
                 titleLabel.Text = "Payment Info & Login";
@@ -76,10 +79,10 @@ namespace CampaignFinanceNew
         }
 
 
-        public async void ProcessNewUser(Button sender, EventArgs e)
+        public void ProcessNewUser(Button sender, EventArgs e)
         {
 
-           
+            bool moveOn = true;
 
             var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {
@@ -130,6 +133,8 @@ namespace CampaignFinanceNew
                 catch(StripeException stripeExcept)
                 {
                     Console.WriteLine("errros is " + stripeExcept.StripeError.Message+" "+stripeExcept.StripeError.Code+" "+stripeExcept.StripeError.ErrorDescription);
+                    moveOn = false;
+                    //errorWindow.IsVisible = true;
                 }
                
 
@@ -154,7 +159,12 @@ namespace CampaignFinanceNew
             //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
 
             //Console.WriteLine("jerkoff");
-            DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            if (moveOn == true)
+            {
+
+
+                DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+            }
             //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 
            

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+      <RelativeLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
+     <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+        
+           
+        <StackLayout x:Name="paymentForm" WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
             <Label Text="" HorizontalOptions="Center" x:Name="titleLabel" FontSize="Large" TextColor="White"/>
             <Label TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
             <Entry x:Name="ccNumber" WidthRequest="150">
@@ -60,7 +63,17 @@
               <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
             <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/><Button TextColor="White" BackgroundColor="Transparent" FontSize="Large" ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
+                
         </StackLayout>
             </ScrollView>
+           
+            <StackLayout TranslationX="30" TranslationY="100" BackgroundColor="Lime">
+        <Label Text="Test"/>
+           </StackLayout>
+            
+           
+            </RelativeLayout>
+       
+   
     </ContentPage.Content>
 </ContentPage>
