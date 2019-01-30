@@ -193,7 +193,7 @@ namespace CampaignFinanceNew
             //Console.WriteLine(isLoggedIn);
 
             //await GetLocationInformation();
-            await Navigation.PushAsync(new CandidateDashboard());
+
 
 
 
@@ -229,7 +229,7 @@ namespace CampaignFinanceNew
                 case "login":
                     Console.WriteLine("button login");
                     DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
-                    await Navigation.PushAsync(new CandidateDashboard());
+                    //await Navigation.PushAsync(new CandidateDashboard());
                     break;
                 case "supporter":
                     Console.WriteLine("button supporter");

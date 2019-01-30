@@ -115,16 +115,15 @@ namespace CampaignFinanceNew.Droid
             {
                 if(task.Exception.Message== "The email address is already in use by another account.")
                 {
-                    Console.WriteLine("you won");
+                    //Console.WriteLine("you won");
+                    MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
                 }
-                Console.WriteLine("messssage");
-                Console.WriteLine(fbe.Source+" "+fbe.Message);
-                Console.Write("info is " + task.Exception.Message+" "+task.Exception.LocalizedMessage+" "+task.Exception.Data.Keys);
+
             }
 
 
             Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
-            Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
+            //Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
 
             if (isCreateUser == true)
             {

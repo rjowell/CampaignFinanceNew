@@ -105,6 +105,7 @@ namespace CampaignFinanceNew
         public static string[] stateAbbr = new string[] { "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY" };
         public static string[] offices; 
 
+
         public App()
         {
             InitializeComponent();
@@ -117,6 +118,7 @@ namespace CampaignFinanceNew
             currentLocation = new CurrentLocationInfo();
             MainPage = new NavigationPage(new MainPage());
         }
+
 
         protected override void OnStart()
         {

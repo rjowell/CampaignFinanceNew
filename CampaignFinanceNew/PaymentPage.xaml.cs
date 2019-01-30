@@ -27,6 +27,14 @@ namespace CampaignFinanceNew
             noticeWindow.IsVisible = false;
             noticeWindow.TranslationY = 200;
             noticeWindow.TranslationX = 40;
+
+            MessagingCenter.Subscribe<IFirebaseAuthenticator>(this,"Go",(sender) => {
+
+                noticeText.Text = "A user already exists\nwith that e-mail\nPlease Try Again";
+                noticeButton.IsVisible = true;
+            
+            });
+
             if (App.newUser.isSupporter==true)
             {
                 titleLabel.Text = "Payment Info & Login";
@@ -179,7 +187,12 @@ namespace CampaignFinanceNew
             {
                 Console.WriteLine("hello rge");
 
-                DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+
+
+
+                    DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+
+               
             }
             //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 

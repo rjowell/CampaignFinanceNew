@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="Navy"   xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
     
     
-   
+   <ScrollView>
     <StackLayout VerticalOptions="Center" WidthRequest="100" Margin="15,0,15,0">
         
         <Label Text=""/>
@@ -11,7 +11,7 @@
         <Label FontSize="Large" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
         <Entry  x:Name="eMailField" Keyboard="Email" WidthRequest="200"  />
         <Label FontSize="Large" TextColor="#9fc2fc"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
-        <Entry WidthRequest="200"  x:Name="passwordField"/>
+        <Entry WidthRequest="200" IsPassword="true" x:Name="passwordField"/>
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
@@ -20,5 +20,5 @@
         
         
     </StackLayout>
-
+    </ScrollView>
 </ContentPage>

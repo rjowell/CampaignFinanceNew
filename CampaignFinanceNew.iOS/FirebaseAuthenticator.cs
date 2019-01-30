@@ -7,6 +7,7 @@ using Firebase.Core;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using Xamarin.Forms;
+using CampaignFinanceNew;
 [assembly: Xamarin.Forms.Dependency(typeof(FirebaseAuthenticator))]
 namespace CampaignFinanceNew.iOS
 {
@@ -17,7 +18,7 @@ namespace CampaignFinanceNew.iOS
         String userJsonData;
 
 
-      
+    
 
 
         public bool GetIdInfo()
@@ -42,16 +43,21 @@ namespace CampaignFinanceNew.iOS
         System.Collections.Specialized.NameValueCollection localUserData;
 
 
+
+
         public void CreateNewUser(string email, string password, System.Collections.Specialized.NameValueCollection userData)
         {
 
 
-           
+
             localUserData = userData;
+
             isCreateUser = true;
+           
             Auth.DefaultInstance.CreateUser(email, password, HandleAuthDataResultHandler);
 
-            
+
+
 
 
 
@@ -60,15 +66,28 @@ namespace CampaignFinanceNew.iOS
 
         async void HandleAuthDataResultHandler(AuthDataResult authResult, Foundation.NSError error)
         {
-            Console.WriteLine(authResult.User.Uid);
-            Console.WriteLine("test print");
-            if (isCreateUser == true)
+
+            //Console.WriteLine(error.UserInfo["error_name"]);
+            if (error != null && error.UserInfo["error_name"].ToString() == "ERROR_EMAIL_ALREADY_IN_USE")
             {
-                localUserData.Add("firebaseID", authResult.User.Uid);
-                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", localUserData);
+                Console.WriteLine("DUPLICATE_EMAIL_ERROR");
+                MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
             }
-            await App.currentUser.SetUserInfo(authResult.User.Uid);
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new CandidateDashboard());
+            else
+            {
+
+                if (isCreateUser == true)
+                {
+                    localUserData.Add("firebaseID", authResult.User.Uid);
+                    newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", localUserData);
+                }
+                await App.currentUser.SetUserInfo(authResult.User.Uid);
+                await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new CandidateDashboard());
+
+
+
+            }
+
         }
 
 
