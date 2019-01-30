@@ -10,7 +10,7 @@ namespace CampaignFinanceNew
         string[] ccExpiryMonths = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
         string[] ccExpiryYears = new string[] { "19", "20", "21", "22", "23", "24", "25", "26" };
         string ccNotice = "*We do not store your credit card info directly on our servers. Rather, we use Stripe.com, a highly trusted payment processor, to securely store and process payments. Learn more at Stripe.com";
-        string ccWarning = "Credit Card Info is invalid. Please Try Again";
+        string ccWarning = "Credit Card Info is invalid.\nPlease Try Again";
         string userNotice = "A User already exsits with that e-mail. Please Try Again--";
 
         List<Entry> entries = new List<Entry>();
@@ -23,8 +23,8 @@ namespace CampaignFinanceNew
             entries.Add(eMailField);
             entries.Add(passwordField);
             //paymentForm.HeightRequest= Xamarin.Forms.Application.Current.MainPage.Height;
-            Console.WriteLine("height is"+noticeWindow.);
 
+            noticeWindow.IsVisible = false;
             noticeWindow.TranslationY = 200;
             noticeWindow.TranslationX = 40;
             if (App.newUser.isSupporter==true)
@@ -84,11 +84,19 @@ namespace CampaignFinanceNew
             await Navigation.PushAsync(new ContactInfoPage());
         }
 
+        public void CloseWindow(Button button, EventArgs e)
+        {
+            noticeWindow.IsVisible = false;
+        }
+
 
         public void ProcessNewUser(Button sender, EventArgs e)
         {
 
             bool moveOn = true;
+            noticeWindow.IsVisible = true;
+            noticeButton.IsVisible = false;
+            noticeText.Text = "Sending...";
 
             var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {
@@ -139,6 +147,8 @@ namespace CampaignFinanceNew
                 catch(StripeException stripeExcept)
                 {
                     Console.WriteLine("errros is " + stripeExcept.StripeError.Message+" "+stripeExcept.StripeError.Code+" "+stripeExcept.StripeError.ErrorDescription);
+                    noticeText.Text = ccWarning;
+                    noticeButton.IsVisible = true;
                     moveOn = false;
                     //errorWindow.IsVisible = true;
                 }
@@ -167,7 +177,7 @@ namespace CampaignFinanceNew
             //Console.WriteLine("jerkoff");
             if (moveOn == true)
             {
-
+                Console.WriteLine("hello rge");
 
                 DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
             }

@@ -50,16 +50,24 @@ namespace CampaignFinanceNew.Droid
 
         NameValueCollection mainUserData;
         bool isCreateUser;
-      
+        string mainPassword;
+        string mainEmail;
 
 
         public void CreateNewUser(string email, string password, NameValueCollection userData)
         {
             //newClient.Encoding = System.Text.Encoding.UTF8;
             mainUserData = userData;
-
+            mainEmail = email;
+            mainPassword = password;
+            Console.WriteLine("Android make user");
+            foreach(var keys in userData.AllKeys)
+            {
+                Console.WriteLine(keys + " " + userData.Get(keys));
+            }
 
             isCreateUser = true;
+
 
             Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password).AddOnCompleteListener(this);
 
@@ -96,6 +104,26 @@ namespace CampaignFinanceNew.Droid
         public async void OnComplete(Android.Gms.Tasks.Task task)
         {
 
+            //Console.WriteLine("here you are bill");
+            bool moveOn;
+            try
+            {
+
+                Console.WriteLine("here is " + task.Result);
+            }
+            catch(Android.Gms.Tasks.RuntimeExecutionException fbe)
+            {
+                if(task.Exception.Message== "The email address is already in use by another account.")
+                {
+                    Console.WriteLine("you won");
+                }
+                Console.WriteLine("messssage");
+                Console.WriteLine(fbe.Source+" "+fbe.Message);
+                Console.Write("info is " + task.Exception.Message+" "+task.Exception.LocalizedMessage+" "+task.Exception.Data.Keys);
+            }
+
+
+            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
             Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
 
             if (isCreateUser == true)

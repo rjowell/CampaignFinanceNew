@@ -67,9 +67,9 @@
         </StackLayout>
             </ScrollView>
            
-            <StackLayout x:Name="noticeWindow" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Lime">
-        <Label Text="Test"/>
-                <Button Text="OK"/>
+            <StackLayout x:Name="noticeWindow" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#afcbf7">
+        <Label Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
+                <Button x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
            </StackLayout>
             
            
