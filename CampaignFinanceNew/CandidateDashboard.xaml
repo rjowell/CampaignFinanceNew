@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
+<ContentPage xmlns:local="using:CampaignFinanceNew" BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
   <ContentPage.Resources>
         <ResourceDictionary>
               <DataTemplate x:Key="campaignTemplate">
-                            
+                <ViewCell>
+                           <Label Text="hello george"/> 
+                    </ViewCell>
                         </DataTemplate>
             <DataTemplate x:Key="crowdfundTemplate">
                             <ViewCell x:Name="viewCellA" Height="180">
                                 <StackLayout BackgroundColor="#bad4ff">
             <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             
-            <Label x:Name="campNameLabel" TextColor="White" FontSize="Large" Text="{Binding campaignName}"/>
+            <Label x:Name="campNameLabel" TextColor="#20314c" FontSize="Large" Text="{Binding campaignName}"/>
             <StackLayout Orientation="Horizontal">
             <Label  x:Name="candidateLabel" Text="{Binding candidateDisplayName}"/>
             
@@ -29,8 +31,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                      </Grid.ColumnDefinitions>
-                    <Label x:Name="endDate" BackgroundColor="Navy" TextColor="Lime" HorizontalOptions="End"  Text="{Binding endDate}" Grid.Row="0" Grid.Column="1"  />
-                    <Button Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="Navy" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"/>
+                    <Label x:Name="endDate" BackgroundColor="#20314c" TextColor="White" HorizontalOptions="End"  Text="{Binding endDate}" Grid.Row="0" Grid.Column="1"  />
+                    <Button Margin="3,0,0,3" WidthRequest="60" HeightRequest="50"  TextColor="White" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
               
                 </Grid>
               
@@ -95,7 +97,7 @@
         
                 
             <ListView ItemTemplate="{StaticResource campaignCellPicker}" BackgroundColor="#004b6e" x:Name="campaignDisplay" RowHeight="170">
-                
+               
                    
                     
                    

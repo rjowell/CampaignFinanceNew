@@ -21,12 +21,15 @@ namespace CampaignFinanceNew
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
+            Console.WriteLine("this new point here "+((Campaign)item).campaignName);
             if(((Campaign)item).campaignType==0)
             {
+                Console.WriteLine("point AA");
                 return CampaignTemplate;
             }
             else
             {
+                Console.WriteLine("point BB");
                 return CrowdfundTemplate;
             }
         }
@@ -49,11 +52,12 @@ namespace CampaignFinanceNew
         public String office { get; set; }
         public String setEditButton { get; set; }
 
-        public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
+        public Campaign(int type, string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
             campaignName = campName;
             candidateDisplayName = firstName + " " + lastName + "|Running For: " + office + " " + state + "-" + district;
             startDate = start;
+            campaignType = type;
             endDate = end;
             progress = campProgress;
             progressDisplay = progress + "/" + goal;
@@ -85,8 +89,7 @@ namespace CampaignFinanceNew
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
 
 
-        DataTemplate campaignTemplate;
-        DataTemplate crowdfundTemplate;
+      
 
 
 
@@ -134,8 +137,8 @@ namespace CampaignFinanceNew
             //Console.WriteLine(array);
             foreach (JObject thisThing in array)
             {
-                Console.WriteLine("point F");
-                Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+                Console.WriteLine("point F "+thisThing.GetValue("CampaignType"));
+                Campaign thisCampaign = new Campaign(Convert.ToInt32(thisThing.GetValue("CampaignType")),thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
                 Console.WriteLine("point G");
                 thisCampaign.posIndex = (fieldData.Count).ToString();
                 Console.WriteLine("Current count is " + thisCampaign.posIndex);
@@ -172,13 +175,17 @@ namespace CampaignFinanceNew
             menuButton.Source = ImageSource.FromResource("CampaignFinanceNew.menusandwich.png");
             searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
+            CampaignCellSelector  campaignCellPicker = new CampaignCellSelector();
+            Console.WriteLine("this is the song");
             campaignDisplay.ItemsSource = fieldData;
-            campaignDisplay.ItemTemplate = new CampaignCellSelector {
+            Console.WriteLine("this is the song-1");
+            /*campaignDisplay.ItemTemplate = new CampaignCellSelector {
 
                 CampaignTemplate = campaignTemplate, 
-                CrowdfundTemplate=crowdfundTemplate
+                CrowdfundTemplate = crowdfundTemplate
             
-            };
+            };*/
+            Console.WriteLine("this is the song-2");
 
 
 

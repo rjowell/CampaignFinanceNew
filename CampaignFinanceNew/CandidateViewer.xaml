@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateViewer">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="campaignName" Text="CampaignName"/>
+            <Label x:Name="candidateName" Text="Candidate Name"/>
+            <Label Text="Running for:"/>
+            <Label x:Name="runningFor" Text="State Senate | 3D"/>
+            <Label x:Name="campaignDescription" Text="The ozone is burning up. We really need to fix it now!"/>
+            <Label x:Name="donationProgress" Text="37 people have given $1500 to this campaign"/>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
