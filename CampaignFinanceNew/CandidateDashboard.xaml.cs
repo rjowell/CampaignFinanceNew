@@ -10,9 +10,32 @@ using System.Collections.Specialized;
 
 namespace CampaignFinanceNew
 {
+
+    public class CampaignCellSelector : DataTemplateSelector
+    {
+
+        public DataTemplate CampaignTemplate { get; set; }
+        public DataTemplate CrowdfundTemplate { get; set; }
+
+        
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            if(((Campaign)item).campaignType==0)
+            {
+                return CampaignTemplate;
+            }
+            else
+            {
+                return CrowdfundTemplate;
+            }
+        }
+    }
+
     public class Campaign
     {
         public String campaignName { get; set; }
+        public int campaignType { get; set; }
         public String startDate { get; set; }
         public String endDate { get; set; }
         public String progress { get; set; }
@@ -60,9 +83,10 @@ namespace CampaignFinanceNew
         WebClient client = new WebClient();
         NameValueCollection donationData=new NameValueCollection();
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
-       
 
 
+        DataTemplate campaignTemplate;
+        DataTemplate crowdfundTemplate;
 
 
 
@@ -131,6 +155,7 @@ namespace CampaignFinanceNew
 
 
             InitializeComponent();
+            donateWindow.IsVisible = false;
             titleLabel.Text = "Welcome," + App.currentUser.firstName;
             if (App.currentUser.isSupporter==false)
             {
@@ -148,8 +173,15 @@ namespace CampaignFinanceNew
             searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
             campaignDisplay.ItemsSource = fieldData;
-           
-           
+            campaignDisplay.ItemTemplate = new CampaignCellSelector {
+
+                CampaignTemplate = campaignTemplate, 
+                CrowdfundTemplate=crowdfundTemplate
+            
+            };
+
+
+
 
 
         }

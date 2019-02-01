@@ -106,11 +106,24 @@ namespace CampaignFinanceNew.Droid
 
             //Console.WriteLine("here you are bill");
             bool moveOn;
-            try
+
+
+
+            //
+            //Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
+
+            if (isCreateUser == true)
             {
+                Console.WriteLine("this point coyote");
+                 try
+                 {
 
                 Console.WriteLine("here is " + task.Result);
-            }
+                    mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
+                    newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
+                    Console.WriteLine("this point - Android");
+                    Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
+                }
             catch(Android.Gms.Tasks.RuntimeExecutionException fbe)
             {
                 if(task.Exception.Message== "The email address is already in use by another account.")
@@ -122,17 +135,6 @@ namespace CampaignFinanceNew.Droid
             }
 
 
-            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
-            //Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
-
-            if (isCreateUser == true)
-            {
-                Console.WriteLine("this point coyote");
-               
-
-                mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
-                newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
-                Console.WriteLine("this point - Android");
 
             }
             else

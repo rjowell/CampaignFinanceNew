@@ -1,54 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CandidateDashboard">
-    <ContentPage.Content>
-        
-       
-        <RelativeLayout>
-        
-        
-        
-        <StackLayout>
-           
-            
-             <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
-            <Grid.RowDefinitions>
-                
-                <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition />
-                    <ColumnDefinition/>
-                     </Grid.ColumnDefinitions>
-                <Label VerticalOptions="Center" HorizontalOptions="Center"  x:Name="titleLabel" Text="" Grid.Row="0" Grid.Column="1"/>
-          
-            <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
-                <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
-            </Grid> 
-           
-            
-        
-       
-            
-        
-            
-                
-     
-        
-        
-       
-         
-             
-        
-                
-            <ListView x:Name="campaignDisplay" RowHeight="170">
-                <ListView.ItemTemplate>
-              
-                    
-                        
-                        <DataTemplate x:Name="newTemplate">
+  <ContentPage.Resources>
+        <ResourceDictionary>
+              <DataTemplate x:Key="campaignTemplate">
+                            
+                        </DataTemplate>
+            <DataTemplate x:Key="crowdfundTemplate">
                             <ViewCell x:Name="viewCellA" Height="180">
-                                <StackLayout BackgroundColor="#101d30">
+                                <StackLayout BackgroundColor="#bad4ff">
             <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             
             <Label x:Name="campNameLabel" TextColor="White" FontSize="Large" Text="{Binding campaignName}"/>
@@ -82,16 +41,64 @@
                                 
                             </ViewCell>   
                         </DataTemplate>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                       
-                </ListView.ItemTemplate>
+            <local:CampaignCellSelector x:Key="campaignCellPicker"
+                            CampaignTemplate="{StaticResource campaignTemplate}"
+                            CrowdfundTemplate="{StaticResource crowdfundTemplate}"            
+                                        
+                                        />
+                
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+    
+    
+    
+    <ContentPage.Content>
+        
+       
+        <RelativeLayout>
+        
+        
+        
+        <StackLayout>
+           
+            
+             <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
+            <Grid.RowDefinitions>
+                
+                <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                    <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"  x:Name="titleLabel" Text="" Grid.Row="0" Grid.Column="1"/>
+          
+            <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
+                <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
+            </Grid> 
+           
+            
+        
+       
+            
+        
+            
+                
+     
+        
+        
+       
+         
+             
+        
+                
+            <ListView ItemTemplate="{StaticResource campaignCellPicker}" BackgroundColor="#004b6e" x:Name="campaignDisplay" RowHeight="170">
+                
+                   
+                    
+                   
             </ListView>
        
             </StackLayout>
