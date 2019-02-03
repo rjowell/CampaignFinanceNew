@@ -164,7 +164,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                          <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessDonation" Text="Submit" HorizontalOptions="Start" VerticalOptions="End" />
-                          <Button Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessDonation" Text="Cancel" HorizontalOptions="End" VerticalOptions="End" />
+                          <Button Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" TextColor="White" Clicked="CloseWindow" Text="Cancel" HorizontalOptions="End" VerticalOptions="End" />
                          
                     </Grid>
             </StackLayout>

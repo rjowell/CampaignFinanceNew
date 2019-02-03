@@ -205,6 +205,11 @@ namespace CampaignFinanceNew
             //currentSelectedCampaign = sender.ClassId;
         }
 
+        private void CloseWindow(Button sender, EventArgs e)
+        {
+            donateWindow.IsVisible = false;
+        }
+
         private void ProcessDonation(Button sender, EventArgs e)
         {
 
