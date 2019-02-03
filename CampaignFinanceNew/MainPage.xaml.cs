@@ -12,9 +12,26 @@ namespace CampaignFinanceNew
 {
     public partial class MainPage : ContentPage
     {
+
+        Entry[] fields;
+
         public MainPage()
         {
             InitializeComponent();
+            fields = new Entry[] { eMailField, passwordField };
+            foreach (Entry current in fields)
+            {
+                if (Array.IndexOf(fields, current) != fields.Length - 1)
+                {
+                    current.Completed += (s, e) =>
+                    {
+
+                        fields[Array.IndexOf(fields, current) + 1].Focus();
+
+                    };
+                }
+            }
+
 
             titleImage.Source = ImageSource.FromResource("CampaignFinanceNew.ANMlogo1.png");
             eMailLabel.IsVisible = false;

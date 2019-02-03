@@ -51,6 +51,8 @@ namespace CampaignFinanceNew
         public String candidateDisplayName { get; set; }
         public String office { get; set; }
         public String setEditButton { get; set; }
+        public String setInfoButton { get; set; }
+        public bool isSupporter { get; set; }
 
         public Campaign(int type, string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
@@ -59,6 +61,7 @@ namespace CampaignFinanceNew
             startDate = start;
             campaignType = type;
             endDate = end;
+            isSupporter = App.currentUser.isSupporter;
             progress = campProgress;
             progressDisplay = progress + "/" + goal;
             progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal),2);
@@ -68,10 +71,12 @@ namespace CampaignFinanceNew
             if(App.currentUser.isSupporter==true)
             {
                 setEditButton = "Donate";
+                setInfoButton = "More Info";
             }
             else
             {
                 setEditButton = "Edit";
+
             }
         }
     }
@@ -196,7 +201,8 @@ namespace CampaignFinanceNew
         private void ShowDonateWindow(Button sender, EventArgs e)
         {
             Console.WriteLine(sender.ClassId);
-            currentSelectedCampaign = sender.ClassId;
+            donateWindow.IsVisible = true;
+            //currentSelectedCampaign = sender.ClassId;
         }
 
         private void ProcessDonation(Button sender, EventArgs e)

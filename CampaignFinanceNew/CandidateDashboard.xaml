@@ -4,25 +4,17 @@
         <ResourceDictionary>
               <DataTemplate x:Key="campaignTemplate">
                 <ViewCell>
-                           <Label Text="hello george"/> 
-                    </ViewCell>
-                        </DataTemplate>
-            <DataTemplate x:Key="crowdfundTemplate">
-                            <ViewCell x:Name="viewCellA" Height="180">
-                                <StackLayout BackgroundColor="#bad4ff">
-            <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
+                    <Frame Padding="5" BackgroundColor="#004b6e">
+                           <StackLayout BackgroundColor="#bad4ff">
+                        <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             
             <Label x:Name="campNameLabel" TextColor="#20314c" FontSize="Large" Text="{Binding campaignName}"/>
-            <StackLayout Orientation="Horizontal">
-            <Label  x:Name="candidateLabel" Text="{Binding candidateDisplayName}"/>
             
-                        </StackLayout>
+            <Label  x:Name="candidateLabel" FontSize="Small" HeightRequest="25" Text="{Binding candidateDisplayName}"/>
+            
+                        
             <Label x:Name="campaignDescription" Text="{Binding campaignDescription}"/>
-            <Label Text="{Binding progressDisplay}"/>
-            <ProgressBar x:Name="fundProgress" Progress="{Binding progressFactor}" WidthRequest="300"/>
-                
-                
-                <Grid x:Name="bottomGrid">
+                         <Grid x:Name="bottomGrid" Padding="3">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         
@@ -31,16 +23,48 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                      </Grid.ColumnDefinitions>
-                    <Label x:Name="endDate" BackgroundColor="#20314c" TextColor="White" HorizontalOptions="End"  Text="{Binding endDate}" Grid.Row="0" Grid.Column="1"  />
-                    <Button Margin="3,0,0,3" WidthRequest="60" HeightRequest="50"  TextColor="White" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
-              
+                     <Button HeightRequest="40" FontSize="Small" TextColor="#bcd6ff" IsVisible="{Binding isSupporter}" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
+                     <Button HeightRequest="40" x:Name="moreInfoButton" Text="{Binding setInfoButton}" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End" ClassId="{Binding campaignID}" BackgroundColor="#20314c" TextColor="#bcd6ff"/>
+                </Grid>
+                    </StackLayout> 
+                        </Frame>
+                    </ViewCell>
+                        </DataTemplate>
+            <DataTemplate x:Key="crowdfundTemplate">
+                            <ViewCell x:Name="viewCellA">
+                     <Frame Padding="5" BackgroundColor="#004b6e">
+                                <StackLayout BackgroundColor="#bad4ff">
+            <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
+                            
+            <Label x:Name="campNameLabel" TextColor="#20314c" FontSize="Large" Text="{Binding campaignName}"/>
+            
+            <Label  x:Name="candidateLabel" Text="{Binding candidateDisplayName}"/>
+            
+                        
+            <Label x:Name="campaignDescription" Text="{Binding campaignDescription}"/>
+            <Label Text="{Binding progressDisplay}"/>
+            <ProgressBar x:Name="fundProgress" Progress="{Binding progressFactor}" WidthRequest="300"/>
+                
+                
+                <Grid x:Name="bottomGrid" Padding="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        
+                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+                        <Button HeightRequest="40" FontSize="Small" TextColor="#bcd6ff" IsVisible="{Binding isSupporter}" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
+                     <Button HeightRequest="40" x:Name="moreInfoButton" Text="{Binding setInfoButton}" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End" ClassId="{Binding campaignID}" BackgroundColor="#20314c" TextColor="#bcd6ff"/>
+                
                 </Grid>
               
               </StackLayout>    
                                 
                                 
                                 
-                                
+                                </Frame>
                             </ViewCell>   
                         </DataTemplate>
             <local:CampaignCellSelector x:Key="campaignCellPicker"
@@ -96,7 +120,7 @@
              
         
                 
-            <ListView ItemTemplate="{StaticResource campaignCellPicker}" BackgroundColor="#004b6e" x:Name="campaignDisplay" RowHeight="170">
+            <ListView HasUnevenRows="true" ItemTemplate="{StaticResource campaignCellPicker}" BackgroundColor="#004b6e" x:Name="campaignDisplay">
                
                    
                     
@@ -123,13 +147,28 @@
                     <Button BackgroundColor="Transparent" Clicked="SignOutUser" Text="Logout"/>
                     
                 </StackLayout>
-                
-            <StackLayout x:Name="donateWindow" TranslationX="70" TranslationY="200" BackgroundColor="Olive">
-                <Label Text="How much would you like to donate?"/>
-                <Entry Keyboard="Numeric" x:Name="donationField" MaxLength="10"/>
-                <Button Clicked="ProcessDonation" Text="Submit"/>
-                
+              <Frame RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8,Constant=0}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0.1}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=0.3}" x:Name="donateWindow" BackgroundColor="#c5cbd6" Padding="4"> 
+            <StackLayout  BackgroundColor="#092147" >
+                <Label TextColor="White" HorizontalTextAlignment="Center" Text="How much would you like to donate to this campaign?" FontSize="Medium"/>
+                <Entry HorizontalTextAlignment="Center" Keyboard="Numeric" x:Name="donationField" MaxLength="5" WidthRequest="50">
+                         <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
+               <Grid>
+                    <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                         <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessDonation" Text="Submit" HorizontalOptions="Start" VerticalOptions="End" />
+                          <Button Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessDonation" Text="Cancel" HorizontalOptions="End" VerticalOptions="End" />
+                         
+                    </Grid>
             </StackLayout>
+                </Frame> 
             
             
             
