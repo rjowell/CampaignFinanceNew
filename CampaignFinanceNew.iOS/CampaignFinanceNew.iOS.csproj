@@ -169,6 +169,8 @@
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\menusandwich.png" />
+    <BundleResource Include="Resources\American_Typewriter_Regular.ttf" />
+    <BundleResource Include="Resources\DroidSans.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />

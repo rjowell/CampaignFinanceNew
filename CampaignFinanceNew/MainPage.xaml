@@ -7,7 +7,7 @@
         
         <Label Text=""/>
         <Image x:Name="titleImage" Scale="2.2"/> 
-        <Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="returning" Clicked="ProcessButtons" Text="I am a Returning User" x:Name="returningUser"/>
+        <Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="returning" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a Returning User" x:Name="returningUser"/>
         <Label FontSize="Large" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
         <Entry  x:Name="eMailField" Keyboard="Email" WidthRequest="200"  >
                 <Entry.TextColor>
@@ -21,7 +21,7 @@
             </Entry.TextColor>
                 </Entry>
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
-        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
+        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a New User" />
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
         <Button FontSize="Large" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="candidateButton" Clicked="ProcessButtons" Text="I am a candidate" ClassId="candidate" />
     

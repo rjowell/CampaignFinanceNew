@@ -8,7 +8,7 @@
                            <StackLayout BackgroundColor="#bad4ff">
                         <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             
-            <Label x:Name="campNameLabel" TextColor="#20314c" FontSize="Large" Text="{Binding campaignName}"/>
+            <Label FontFamily="{StaticResource DroidFont}" x:Name="campNameLabel" TextColor="#20314c" FontSize="Large" Text="{Binding campaignName}"/>
             
             <Label  x:Name="candidateLabel" FontSize="Small" HeightRequest="25" Text="{Binding candidateDisplayName}"/>
             

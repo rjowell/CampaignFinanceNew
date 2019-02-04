@@ -1,5 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TypewriterFont">
+                <On Platform="iOS" Value="American_Typewriter_Regular.ttf"/>
+                 <On Platform="Android" Value="American_Typewriter_Regular.ttf#American Typewriter"/>
+            </OnPlatform>
+             <OnPlatform x:TypeArguments="x:String" x:Key="DroidFont">
+                <On Platform="iOS" Value="DroidSans.ttf"/>
+                 <On Platform="Android" Value="DroidSans.ttf#Droid Sans"/>
+            </OnPlatform>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
