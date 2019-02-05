@@ -4,7 +4,7 @@
         <ResourceDictionary>
               <DataTemplate x:Key="campaignTemplate">
                 <ViewCell>
-                    <Frame Padding="5" BackgroundColor="#004b6e">
+                    <Frame CornerRadius="21" Padding="5" BackgroundColor="#004b6e">
                            <StackLayout BackgroundColor="#bad4ff">
                         <Label x:Name="labelID" IsVisible="false" Text="{Binding campaignID}"/>
                             
@@ -23,8 +23,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                      </Grid.ColumnDefinitions>
-                     <Button HeightRequest="40" FontSize="Small" TextColor="#bcd6ff" IsVisible="{Binding isSupporter}" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
-                     <Button HeightRequest="40" x:Name="moreInfoButton" Text="{Binding setInfoButton}" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End" ClassId="{Binding campaignID}" BackgroundColor="#20314c" TextColor="#bcd6ff"/>
+                     <Button CornerRadius="8" HeightRequest="40" FontSize="Small" TextColor="#bcd6ff" IsVisible="{Binding isSupporter}" Clicked="ShowDonateWindow" x:Name="donateButton" ClassId="{Binding campaignID}" Text="{Binding setEditButton}" BackgroundColor="#20314c" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start" VerticalOptions="End"/>
+                     <Button CornerRadius="8" HeightRequest="40" x:Name="moreInfoButton" Text="{Binding setInfoButton}" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="End" ClassId="{Binding campaignID}" BackgroundColor="#20314c" TextColor="#bcd6ff"/>
                 </Grid>
                     </StackLayout> 
                         </Frame>
@@ -149,7 +149,11 @@
                 </StackLayout>
               <Frame RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8,Constant=0}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0.1}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=0.3}" x:Name="donateWindow" BackgroundColor="#c5cbd6" Padding="4"> 
             <StackLayout  BackgroundColor="#092147" >
-                <Label TextColor="White" HorizontalTextAlignment="Center" Text="How much would you like to donate to this campaign?" FontSize="Medium"/>
+                    <Label x:Name="confirmLabel" Text="Are you sure you want to donate"/>
+                    <Label x:Name="confirmAmount" Text=""/>
+                    <Label x:Name="confirmTo" Text="To"/>
+                    <Label x:Name="confirmCampaign" Text=""/>
+                    <Label x:Name="donateQuery" TextColor="White" HorizontalTextAlignment="Center" Text="How much would you like to donate to this campaign?" FontSize="Medium"/>
                 <Entry HorizontalTextAlignment="Center" Keyboard="Numeric" x:Name="donationField" MaxLength="5" WidthRequest="50">
                          <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>

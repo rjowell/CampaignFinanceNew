@@ -110,7 +110,10 @@ namespace CampaignFinanceNew
 
             //GetLocationInformation();
 
-
+            confirmTo.IsVisible = false;
+            confirmLabel.IsVisible = false;
+            confirmAmount.IsVisible = false;
+            confirmCampaign.IsVisible = false;
             Console.WriteLine("this name is" + App.currentUser.firstName);
 
             WebClient thisClient = new WebClient();
@@ -205,9 +208,34 @@ namespace CampaignFinanceNew
             //currentSelectedCampaign = sender.ClassId;
         }
 
+
+        double confirmDonationAmount;
+        private void ConfirmDonation(Button sender, EventArgs e)
+        {
+
+            if(double.TryParse(donationField.Text,out confirmDonationAmount)==true)
+            {
+                confirmAmount.Text = "$ " + confirmDonationAmount;
+
+                donateQuery.IsVisible = false;
+                donationField.IsVisible = false;
+                confirmTo.IsVisible = true;
+                confirmLabel.IsVisible = true;
+                confirmAmount.IsVisible = true;
+                confirmCampaign.IsVisible = true;
+            }
+            else
+            {
+                //amount is not a number
+            }
+
+
+        }
+
         private void CloseWindow(Button sender, EventArgs e)
         {
             donateWindow.IsVisible = false;
+            Console.WriteLine("Campaing ins "+sender.ClassId);
         }
 
         private void ProcessDonation(Button sender, EventArgs e)

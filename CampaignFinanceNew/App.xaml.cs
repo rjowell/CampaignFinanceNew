@@ -5,10 +5,19 @@ using Plugin.Geolocator;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CampaignFinanceNew
 {
+
+    public class CampaignInfo
+    {
+        public String campaignId { get; set; }
+        public String amount { get; set; }
+        public String dateGiven { get; set; }
+    }
+
 
     public class CurrentUserInfo
     {
@@ -17,8 +26,9 @@ namespace CampaignFinanceNew
         public String systemID { get; set; }
         public String userFirebaseID { get; set; }
         public bool isSupporter { get; set; }
-        public String[] campaignsSupported { get; set; }
+        //public String[] campaignsSupported { get; set; }
         public String[] currentCampaigns { get; set; }
+        public List<CampaignInfo> campaignsSupported { get; set; }
 
         WebClient newClient = new WebClient();
 
@@ -41,12 +51,26 @@ namespace CampaignFinanceNew
 
                 systemID = currentUserString.GetValue("SupporterID").ToString();
                 isSupporter = true;
-                campaignsSupported = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
+                string[] campaignData;
+                campaignData = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
+                foreach(String item in campaignData)
+                {
+                    String[] currentItem = item.Split(':');
+                    CampaignInfo currentCamp = new CampaignInfo();
+                    currentCamp.amount = currentItem[1];
+                    currentCamp.campaignId = currentItem[0];
+                    currentCamp.dateGiven = currentItem[2];
+                    campaignsSupported.Add(currentCamp);
+
+
+                }
             }
             else
             {
                 systemID = currentUserString.GetValue("CandidateId").ToString();
+
                 currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
+
                 isSupporter = false;
             }
 
