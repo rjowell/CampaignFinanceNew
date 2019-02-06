@@ -52,7 +52,8 @@ namespace CampaignFinanceNew
         public String office { get; set; }
         public String setEditButton { get; set; }
         public String setInfoButton { get; set; }
-        public bool isSupporter { get; set; }
+
+
 
         public Campaign(int type, string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
@@ -61,17 +62,25 @@ namespace CampaignFinanceNew
             startDate = start;
             campaignType = type;
             endDate = end;
-            isSupporter = App.currentUser.isSupporter;
+
             progress = campProgress;
             progressDisplay = progress + "/" + goal;
             progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal),2);
             campaignDescription = campDescription;
             campaignID = iD;
             fundGoal = goal;
-            if(App.currentUser.isSupporter==true)
+          
+            if (App.currentUser.isSupporter==true)
             {
                 setEditButton = "Donate";
                 setInfoButton = "More Info";
+                foreach (CampaignInfo current in App.currentUser.campaignsSupported)
+                {
+                    if (current.campaignId == campaignID)
+                    {
+                        setEditButton = "Change";
+                    }
+                }
             }
             else
             {
@@ -205,6 +214,7 @@ namespace CampaignFinanceNew
         {
             Console.WriteLine(sender.ClassId);
             donateWindow.IsVisible = true;
+            donateSubmit.ClassId = sender.ClassId;
             //currentSelectedCampaign = sender.ClassId;
         }
 
@@ -241,28 +251,16 @@ namespace CampaignFinanceNew
         private void ProcessDonation(Button sender, EventArgs e)
         {
 
-            bool donationExists=false;
-            foreach(string currentDonations in App.currentUser.campaignsSupported)
-            {
-                string[] currentItem = currentDonations.Split(':');
-                if(currentItem[0]==currentSelectedCampaign)
-                {
-                    donationExists = true;
-                }
 
-            }
-            if (donationExists == false)
+            if(sender.Text=="Donate")
             {
                 donationData.Add("supporterID", App.currentUser.systemID);
                 donationData.Add("donorAmount", donationField.Text);
-                donationData.Add("campaignID", currentSelectedCampaign);
-                App.currentUser.campaignsSupported=client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
-            }
-            else
-            {
+                donationData.Add("campaignID", donateSubmit.ClassId);
+                App.currentUser.ProcessCampDonations(client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString());
+                //App.currentUser.campaignsSupported = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
 
             }
-
 
         }
 

@@ -32,6 +32,26 @@ namespace CampaignFinanceNew
 
         WebClient newClient = new WebClient();
 
+
+        public void ProcessCampDonations(String dataIn)
+        {
+
+            campaignsSupported.Clear();
+            String[] currentInfo = dataIn.Split(',');
+
+            foreach (String item in currentInfo)
+            {
+                String[] currentItem = item.Split(':');
+                CampaignInfo currentCamp = new CampaignInfo();
+                currentCamp.amount = currentItem[1];
+                currentCamp.campaignId = currentItem[0];
+                currentCamp.dateGiven = currentItem[2];
+                campaignsSupported.Add(currentCamp);
+            }
+
+        }
+
+
         public Task<string> SetUserInfo(String firebaseID)
         {
 
@@ -51,19 +71,9 @@ namespace CampaignFinanceNew
 
                 systemID = currentUserString.GetValue("SupporterID").ToString();
                 isSupporter = true;
-                string[] campaignData;
-                campaignData = currentUserString.GetValue("CampaignsSupported").ToString().Split(',');
-                foreach(String item in campaignData)
-                {
-                    String[] currentItem = item.Split(':');
-                    CampaignInfo currentCamp = new CampaignInfo();
-                    currentCamp.amount = currentItem[1];
-                    currentCamp.campaignId = currentItem[0];
-                    currentCamp.dateGiven = currentItem[2];
-                    campaignsSupported.Add(currentCamp);
-
-
-                }
+               
+                ProcessCampDonations(currentUserString.GetValue("CampaignsSupported").ToString());
+               
             }
             else
             {
