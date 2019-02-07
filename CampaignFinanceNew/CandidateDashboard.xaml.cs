@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using CampaignFinanceNew;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 
 namespace CampaignFinanceNew
 {
@@ -57,25 +58,37 @@ namespace CampaignFinanceNew
 
         public Campaign(int type, string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
+            Console.WriteLine("poop");
             campaignName = campName;
+            Console.WriteLine("poop1");
             candidateDisplayName = firstName + " " + lastName + "|Running For: " + office + " " + state + "-" + district;
+            Console.WriteLine("poop2");
             startDate = start;
+            Console.WriteLine("poop3");
             campaignType = type;
+            Console.WriteLine("poop4");
             endDate = end;
-
+            Console.WriteLine("poop5");
             progress = campProgress;
+            Console.WriteLine("poop6");
             progressDisplay = progress + "/" + goal;
+            Console.WriteLine("poop7");
             progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal),2);
+            Console.WriteLine("poop8");
             campaignDescription = campDescription;
+            Console.WriteLine("poop9");
             campaignID = iD;
+            Console.WriteLine("poop10");
             fundGoal = goal;
-          
+            Console.WriteLine("poop11 "+App.currentUser.campaignsSupported.Count);
             if (App.currentUser.isSupporter==true)
             {
                 setEditButton = "Donate";
                 setInfoButton = "More Info";
+                Console.WriteLine("poop12");
                 foreach (CampaignInfo current in App.currentUser.campaignsSupported)
                 {
+                    Console.WriteLine("poop13");
                     if (current.campaignId == campaignID)
                     {
                         setEditButton = "Change";
@@ -118,11 +131,8 @@ namespace CampaignFinanceNew
 
 
             //GetLocationInformation();
+          
 
-            confirmTo.IsVisible = false;
-            confirmLabel.IsVisible = false;
-            confirmAmount.IsVisible = false;
-            confirmCampaign.IsVisible = false;
             Console.WriteLine("this name is" + App.currentUser.firstName);
 
             WebClient thisClient = new WebClient();
@@ -145,6 +155,7 @@ namespace CampaignFinanceNew
            
             Console.WriteLine("point D "+ App.currentUser.systemID);
             fieldData = new List<Campaign>();
+            Console.WriteLine("Data is " + rawData + " End");
             JArray array = JArray.Parse(rawData);
             Console.WriteLine("point E");
 
@@ -156,6 +167,10 @@ namespace CampaignFinanceNew
             {
                 Console.WriteLine("point F "+thisThing.GetValue("CampaignType"));
                 Campaign thisCampaign = new Campaign(Convert.ToInt32(thisThing.GetValue("CampaignType")),thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+
+                //Data is [{"CampaignName":"Help us win in 2020!","CampaignType":"1","CampaignDescription":"We need to win in 2020!","Goal":"1235556","StartDate":"1\/1\/1900","EndDate":"1\/1\/1900","FirstName":"Lucy","LastName":"Brown","CandidateOffice":null,"State":"CA","District":null,"AmountRaised":0,"CampaignID":"C1001_1"},{"CampaignName":"Help us beat the democrats","CampaignType":"0","CampaignDescription":"this thing is great","Goal":"100000","StartDate":"1\/1\/1900","EndDate":"1\/1\/1900","FirstName":"Lucy","LastName":"Brown","CandidateOffice":null,"State":"CA","District":null,"AmountRaised":0,"CampaignID":"C1001_2"}] End
+
+
                 Console.WriteLine("point G");
                 thisCampaign.posIndex = (fieldData.Count).ToString();
                 Console.WriteLine("Current count is " + thisCampaign.posIndex);
@@ -175,6 +190,13 @@ namespace CampaignFinanceNew
 
 
             InitializeComponent();
+            confirmTo.IsVisible = false;
+
+            confirmLabel.IsVisible = false;
+
+            confirmAmount.IsVisible = false;
+
+            confirmCampaign.IsVisible = false;
             donateWindow.IsVisible = false;
             titleLabel.Text = "Welcome," + App.currentUser.firstName;
             if (App.currentUser.isSupporter==false)
@@ -209,11 +231,13 @@ namespace CampaignFinanceNew
 
 
         }
-
+        String currentSelectedCampaign;
         private void ShowDonateWindow(Button sender, EventArgs e)
         {
-            Console.WriteLine(sender.ClassId);
+            currentSelectedCampaign=sender.Parent.Parent.ClassId;
             donateWindow.IsVisible = true;
+            donateConfirm.IsVisible = false;
+
             donateSubmit.ClassId = sender.ClassId;
             //currentSelectedCampaign = sender.ClassId;
         }
@@ -223,21 +247,23 @@ namespace CampaignFinanceNew
         private void ConfirmDonation(Button sender, EventArgs e)
         {
 
-            if(double.TryParse(donationField.Text,out confirmDonationAmount)==true)
-            {
-                confirmAmount.Text = "$ " + confirmDonationAmount;
+            Console.WriteLine("Confirmer");
+            donateSubmit.IsVisible = false;
+            confirmDonationAmount = Convert.ToDouble(donationField.Text);
+            donateConfirm.IsVisible = true;
 
+                confirmAmount.Text = "$ " + confirmDonationAmount;
+           
+            confirmCampaign.Text = currentSelectedCampaign;
                 donateQuery.IsVisible = false;
+                
                 donationField.IsVisible = false;
                 confirmTo.IsVisible = true;
                 confirmLabel.IsVisible = true;
+
                 confirmAmount.IsVisible = true;
                 confirmCampaign.IsVisible = true;
-            }
-            else
-            {
-                //amount is not a number
-            }
+           
 
 
         }
@@ -248,19 +274,32 @@ namespace CampaignFinanceNew
             Console.WriteLine("Campaing ins "+sender.ClassId);
         }
 
+
+
+       
+
+
         private void ProcessDonation(Button sender, EventArgs e)
         {
 
 
-            if(sender.Text=="Donate")
-            {
-                donationData.Add("supporterID", App.currentUser.systemID);
-                donationData.Add("donorAmount", donationField.Text);
-                donationData.Add("campaignID", donateSubmit.ClassId);
-                App.currentUser.ProcessCampDonations(client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString());
-                //App.currentUser.campaignsSupported = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
+            Console.WriteLine("processor");
 
-            }
+
+
+                donationData.Add("supporterID", App.currentUser.systemID);
+                donationData.Add("donorAmount", confirmDonationAmount.ToString());
+                donationData.Add("campaignID", donateSubmit.ClassId);
+
+
+            Byte[] newData = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData);
+            Console.WriteLine(System.Text.Encoding.UTF8.GetString(newData));
+                //App.currentUser.ProcessCampDonations(client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString());
+                //App.currentUser.campaignsSupported = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
+                campaignDisplay.ItemsSource = null;
+                campaignDisplay.ItemsSource = fieldData;
+
+
 
         }
 
@@ -269,7 +308,7 @@ namespace CampaignFinanceNew
             DependencyService.Get<IFirebaseAuthenticator>().Logout();
 
         }
-        String currentSelectedCampaign;
+       
         private void ShowMenu(Button sender, EventArgs e)
         {
             if(menuBlock.IsVisible==true)

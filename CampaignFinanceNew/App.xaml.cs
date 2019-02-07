@@ -35,18 +35,33 @@ namespace CampaignFinanceNew
 
         public void ProcessCampDonations(String dataIn)
         {
-
-            campaignsSupported.Clear();
+            Console.WriteLine("point G");
+            campaignsSupported = new List<CampaignInfo>();
+            Console.WriteLine("point G-1");
+            Console.WriteLine(dataIn[0]);
             String[] currentInfo = dataIn.Split(',');
-
+            Console.WriteLine("point H");
+            Console.WriteLine("liength is " + currentInfo.Length);
             foreach (String item in currentInfo)
             {
-                String[] currentItem = item.Split(':');
-                CampaignInfo currentCamp = new CampaignInfo();
-                currentCamp.amount = currentItem[1];
-                currentCamp.campaignId = currentItem[0];
-                currentCamp.dateGiven = currentItem[2];
-                campaignsSupported.Add(currentCamp);
+                Console.WriteLine("ITem is " + item + ".e");
+                if (item != "")
+                {
+                    Console.WriteLine("point I");
+                    String[] currentItem = item.Split(':');
+                    Console.WriteLine("point J "+ currentItem[0]+" "+ currentItem[1]+" "+ currentItem[2]);
+
+                    CampaignInfo currentCamp = new CampaignInfo();
+                    Console.WriteLine("point K");
+                    currentCamp.amount = currentItem[1];
+                    Console.WriteLine("point L");
+                    currentCamp.campaignId = currentItem[0];
+                    Console.WriteLine("point M");
+                    currentCamp.dateGiven = currentItem[2];
+                    Console.WriteLine("point ZZ");
+                    campaignsSupported.Add(currentCamp);
+                    Console.WriteLine("point O");
+                }
             }
 
         }
@@ -65,22 +80,29 @@ namespace CampaignFinanceNew
             Console.WriteLine("Your name is " + firstName + " " + lastName);
             /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
             */
+            Console.WriteLine("point A");
             if (JObject.Parse(userJsonData).ContainsKey("CandidateId") == false)
             {
-
+                Console.WriteLine("point B");
 
                 systemID = currentUserString.GetValue("SupporterID").ToString();
                 isSupporter = true;
-               
-                ProcessCampDonations(currentUserString.GetValue("CampaignsSupported").ToString());
+                Console.WriteLine("point C");
+                Console.WriteLine("Info si "+currentUserString.GetValue("CampaignsSupported"));
+                campaignsSupported = new List<CampaignInfo>();
+                if (currentUserString.GetValue("CampaignsSupported").ToString() != "")
+                {
+                    ProcessCampDonations(currentUserString.GetValue("CampaignsSupported").ToString());
+                }
                
             }
             else
             {
                 systemID = currentUserString.GetValue("CandidateId").ToString();
+                Console.WriteLine("point E");
 
                 currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');
-
+                Console.WriteLine("point F");
                 isSupporter = false;
             }
 
