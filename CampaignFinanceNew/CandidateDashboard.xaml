@@ -89,20 +89,20 @@
         <StackLayout>
            
             
-             <Grid Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"  BackgroundColor="Blue">
+             <Grid BackgroundColor="Blue">
             <Grid.RowDefinitions>
                 
                 <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="30"/>
                         <ColumnDefinition />
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
                      </Grid.ColumnDefinitions>
                 <Label VerticalOptions="Center" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"  x:Name="titleLabel" Text="" Grid.Row="0" Grid.Column="1"/>
           
-            <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="Start" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
-                <ImageButton Margin="0,5,2,2" HorizontalOptions="End" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
+            <ImageButton Clicked="ShowMenu" Margin="2,5,0,2"   HorizontalOptions="End" VerticalOptions="Center" x:Name="menuButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
+                <ImageButton Margin="0,5,2,2" HorizontalOptions="Start" VerticalOptions="Center" x:Name="searchButton" HeightRequest="20" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2"/>
             </Grid> 
            
             

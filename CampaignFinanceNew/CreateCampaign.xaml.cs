@@ -16,7 +16,7 @@ namespace CampaignFinanceNew
         Campaign currentCampaign;
 
 
-        public CreateCampaign(Campaign currentData)
+        public CreateCampaign()
         {
             InitializeComponent();
 
