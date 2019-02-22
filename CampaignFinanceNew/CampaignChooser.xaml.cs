@@ -24,7 +24,7 @@ namespace CampaignFinanceNew
             }
             else if(sender.StyleId=="cancel")
             {
-
+                Navigation.PushAsync(new CandidateDashboard());
             }
             else
             {

@@ -11,7 +11,7 @@
                 <Grid.ColumnDefinitions>
                      <ColumnDefinition/><ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Clicked="processButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Text="Next" Grid.Row="0" Grid.Column="1"/>
+                <Button Clicked="ProcessButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Text="Next" Grid.Row="0" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
