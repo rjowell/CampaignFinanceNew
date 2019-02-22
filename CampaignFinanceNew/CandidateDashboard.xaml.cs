@@ -326,11 +326,11 @@ namespace CampaignFinanceNew
 
             if (sender.ClassId == null)
             {
-                Navigation.PushAsync(new CreateCampaign(null));
+                //Navigation.PushAsync(new CreateCampaign(null));
             }
             else
             {
-                Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
+                //Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
             }
 
             //Console.WriteLine("The is is "+ sender.ClassId);

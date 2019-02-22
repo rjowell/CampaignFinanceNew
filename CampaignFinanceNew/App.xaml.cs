@@ -148,6 +148,15 @@ namespace CampaignFinanceNew
         public int stateHouseDistrict { get; set; }
     }
 
+    public class CurrentCampaign
+    {
+        public String campaignName { get; set; }
+        public bool isCrowdfund { get; set; }
+        public String campaignDescription { get; set; }
+        public String campaignGoal { get; set; }
+        public String endDate { get; set; }
+    }
+
 
 
     public partial class App : Application
@@ -155,6 +164,7 @@ namespace CampaignFinanceNew
 
         public static CurrentUserInfo currentUser;
         public static CurrentLocationInfo currentLocation;
+        public static CurrentCampaign newCampaign;
         public static bool newUserIsSupporter;
         public static NewUserInfo newUser;
         public static string[] states = new string[] { "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "District of Columbia", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming" };
@@ -172,6 +182,7 @@ namespace CampaignFinanceNew
             offices = new string[] {"Select Office", "U.S. Senate", "U.S. House", "Governor", "State Senate", "State House", "County Board", "City Council", "Mayor", "Other" };
             currentUser = new CurrentUserInfo();
             currentLocation = new CurrentLocationInfo();
+            newCampaign = new CurrentCampaign();
             MainPage = new NavigationPage(new MainPage());
         }
 

@@ -20,7 +20,7 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
 
-
+            /*
             if(currentData==null)
             {
                 currentCampaign = null;
@@ -41,7 +41,7 @@ namespace CampaignFinanceNew
                 startDate.Date = new DateTime().AddMonths(Convert.ToInt32(startDateRaw[0])-1).AddDays(Convert.ToInt32(startDateRaw[1])-1).AddYears(Convert.ToInt32(startDateRaw[2])-1);
                 endDate.Date = new DateTime().AddMonths(Convert.ToInt32(endDateRaw[0])-1).AddDays(Convert.ToInt32(endDateRaw[1])-1).AddYears(Convert.ToInt32(endDateRaw[2])-1);
             }
-
+            */
 
         }
 

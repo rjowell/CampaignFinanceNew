@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CampaignChooser">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="What kind of campaign is this?" HorizontalOptions="Center"/>
+            <Button StyleId="general" x:Name="general" Text="General Campaign"/>
+            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="An open campaign where supporters can contribute any amount they want. Payout every 2 weeks"/>
+            <Button StyleId="crowd" x:Name="crowdfund" Text="Crowdfunding Campaign"/>
+            <Label HorizontalTextAlignment="Center" Text="A crowdfunding-style campaign where you set a goal and get paid out only if you meet the goal"/>
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                     <ColumnDefinition/><ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button StyleId="cancel" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button StyleId="next" Text="Next" Grid.Row="0" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

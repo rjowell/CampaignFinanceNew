@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CampaignName">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Label HorizontalOptions="Center" Text="Give your campaign a catchy title"/>
+            <Entry x:Name="campaignTitle"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                     <ColumnDefinition/><ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Clicked="processButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Text="Next" Grid.Row="0" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

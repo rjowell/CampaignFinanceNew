@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateCampaign">
     <ContentPage.Content>
-          <StackLayout HorizontalOptions="Center">
+          <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Label x:Name="titleLabel" Text="" HorizontalOptions="Center"/>
-        <Label Text="Campaign Name" HorizontalOptions="Center"/>
+        <Label Text="Campaign Title" HorizontalOptions="Center"/>
         <Entry x:Name="campaignName" Text="{Binding campaignName}" WidthRequest="300"/>
-        <Label Text="Campaign Description" HorizontalOptions="Center"/>
+        <Label Text="Campaign Tagline/Description" HorizontalOptions="Center"/>
         <Entry x:Name="campaignDescription" Text="{Binding campaignDescription}" WidthRequest="300"/>
         <Label Text="Fundraising Goal" HorizontalOptions="Center"/>
-        <Entry x:Name="fundGoal" Text="{Binding fundGoal}" WidthRequest="30"/>
+        <Entry Keyboard="Numeric" x:Name="fundGoal" Text="{Binding fundGoal}" WidthRequest="20"/>
         <Label Text="Start Date" HorizontalOptions="Center"/>
         <DatePicker x:Name="startDate" Date="{Binding startDate}"></DatePicker>
         <Label Text="End Date" HorizontalOptions="Center"/>
