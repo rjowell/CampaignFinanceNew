@@ -171,6 +171,7 @@
     <BundleResource Include="Resources\menusandwich.png" />
     <BundleResource Include="Resources\American_Typewriter_Regular.ttf" />
     <BundleResource Include="Resources\DroidSans.ttf" />
+    <BundleResource Include="Resources\rowhouses.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />

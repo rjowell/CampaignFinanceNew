@@ -3,13 +3,13 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <Label HorizontalTextAlignment="Center" Text="Give your campaign a catchy description"/>
-            <Editor HeightRequest="100"/>
+            <Editor x:Name="campDescription" HeightRequest="100" MaxLength="200"/>
             <Label x:Name="goalLabel" HorizontalOptions="Center" Text="What is your campaign goal?"/>
            <StackLayout x:Name="dollarEntry" Orientation="Horizontal" HorizontalOptions="Center">
            <Label VerticalTextAlignment="Center" WidthRequest="10" HorizontalOptions="End" Text="$" Grid.Row="0" Grid.Column="0"/> <Entry Grid.Row="0" Grid.Column="1" WidthRequest="80" x:Name="goalInput" Keyboard="Numeric"/>
                 </StackLayout>
             <Label x:Name="endLabel" HorizontalOptions="Center" Text="When do you want this campaign to end?"/>
-            <StackLayout x:Name="endDateEntry" WidthRequest="200" HorizontalOptions="Center"><DatePicker WidthRequest="100"/></StackLayout>
+            <StackLayout x:Name="endDateEntry" WidthRequest="200" HorizontalOptions="Center"><DatePicker x:Name="endDate" WidthRequest="100"/></StackLayout>
             
             <Grid>
                 <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
                 <Grid.ColumnDefinitions>
                      <ColumnDefinition/><ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Text="Submit" Grid.Row="0" Grid.Column="1"/>
+                <Button Clicked="ProcessButton" x:Name="cancelButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Clicked="ProcessButton" x:Name="submitButton" Text="Submit" Grid.Row="0" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
