@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage BackgroundImage="rowhouses.jpg" BackgroundColor="Navy"   xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
+   
+   <RelativeLayout Padding="0" FlowDirection="MatchParent">
+    <Image Aspect="AspectFill" Source="appBackground.png" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
     
     
-   <ScrollView>
-    <StackLayout VerticalOptions="Center" WidthRequest="100" Margin="15,0,15,0">
+   
+    
+   
+    <StackLayout RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
         
         <Label Text=""/>
-        <Image x:Name="titleImage" Scale="2.2"/> 
+        <Image x:Name="titleImage">
+        <Image.Scale>
+                    
+                   <OnPlatform x:TypeArguments="x:Double" iOS="1.8" Android="2.9"/>
+                </Image.Scale>
+            
+            </Image>
         <Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="returning" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a Returning User" x:Name="returningUser"/>
         <Label FontSize="Large" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
         <Entry  x:Name="eMailField" Keyboard="Email" WidthRequest="200"  >
@@ -28,5 +42,6 @@
         
         
     </StackLayout>
-    </ScrollView>
+    
+    </RelativeLayout>
 </ContentPage>

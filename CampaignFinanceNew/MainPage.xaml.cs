@@ -19,6 +19,10 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
             fields = new Entry[] { eMailField, passwordField };
+
+           
+
+
             foreach (Entry current in fields)
             {
                 if (Array.IndexOf(fields, current) != fields.Length - 1)

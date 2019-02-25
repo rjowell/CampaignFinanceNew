@@ -172,6 +172,7 @@
     <BundleResource Include="Resources\American_Typewriter_Regular.ttf" />
     <BundleResource Include="Resources\DroidSans.ttf" />
     <BundleResource Include="Resources\rowhouses.jpg" />
+    <BundleResource Include="Resources\appBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />
