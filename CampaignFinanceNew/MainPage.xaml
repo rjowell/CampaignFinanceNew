@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
    
    <RelativeLayout Padding="0" FlowDirection="MatchParent">
-    <Image Aspect="AspectFill" Source="appBackground.png" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+    <Image Aspect="AspectFill" Source="windmills.png" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
         
     
@@ -17,27 +17,29 @@
         <Image x:Name="titleImage">
         <Image.Scale>
                     
-                   <OnPlatform x:TypeArguments="x:Double" iOS="1.8" Android="2.9"/>
+                   <OnPlatform x:TypeArguments="x:Double" iOS="1.8" Android="2.5"/>
                 </Image.Scale>
             
             </Image>
         <Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="returning" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a Returning User" x:Name="returningUser"/>
-        <Label FontSize="Large" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
+        <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
         <Entry  x:Name="eMailField" Keyboard="Email" WidthRequest="200"  >
                 <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
+                
+                
                 </Entry>
-        <Label FontSize="Large" TextColor="#9fc2fc"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
+        <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" TextColor="#9fc2fc"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
         <Entry WidthRequest="200" IsPassword="true" x:Name="passwordField">
                 <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
-        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a New User" />
-        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
-        <Button FontSize="Large" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="candidateButton" Clicked="ProcessButtons" Text="I am a candidate" ClassId="candidate" />
+        <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
+        <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
+        <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
+        <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="candidateButton" Clicked="ProcessButtons" Text="I am a candidate" ClassId="candidate" />
     
         
         

@@ -87,6 +87,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\appBackground.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\windmills.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
