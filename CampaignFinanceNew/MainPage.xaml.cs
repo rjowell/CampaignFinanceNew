@@ -18,8 +18,9 @@ namespace CampaignFinanceNew
         public MainPage()
         {
             InitializeComponent();
+            Random rand = new Random();
             fields = new Entry[] { eMailField, passwordField };
-
+            backImage.Source = rand.Next(5).ToString() + ".png";
            
 
 

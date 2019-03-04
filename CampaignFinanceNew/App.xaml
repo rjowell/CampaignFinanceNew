@@ -3,11 +3,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <OnPlatform x:TypeArguments="x:String" x:Key="TypewriterFont">
-                <On Platform="iOS" Value="American_Typewriter_Regular.ttf"/>
+                <On Platform="iOS" Value="American_Typewriter_Regular"/>
                  <On Platform="Android" Value="American_Typewriter_Regular.ttf#American Typewriter"/>
             </OnPlatform>
              <OnPlatform x:TypeArguments="x:String" x:Key="DroidFont">
-                <On Platform="iOS" Value="DroidSans.ttf"/>
+                <On Platform="iOS" Value="DroidSans"/>
                  <On Platform="Android" Value="DroidSans.ttf#Droid Sans"/>
             </OnPlatform>
         </ResourceDictionary>

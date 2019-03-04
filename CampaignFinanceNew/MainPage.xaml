@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CampaignFinanceNew" x:Class="CampaignFinanceNew.MainPage">
    
    <RelativeLayout Padding="0" FlowDirection="MatchParent">
-    <Image Aspect="AspectFill" Source="windmills.png" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+    <Image Aspect="AspectFill" x:Name="backImage" Source="houses.png" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
         
     

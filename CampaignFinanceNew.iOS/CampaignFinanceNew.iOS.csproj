@@ -169,11 +169,16 @@
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\menusandwich.png" />
-    <BundleResource Include="Resources\American_Typewriter_Regular.ttf" />
+    <BundleResource Include="Resources\American_Typewriter_Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
     <BundleResource Include="Resources\DroidSans.ttf" />
     <BundleResource Include="Resources\rowhouses.jpg" />
-    <BundleResource Include="Resources\appBackground.png" />
-    <BundleResource Include="Resources\windmills.png" />
+    <BundleResource Include="Resources\0.png" />
+    <BundleResource Include="Resources\1.png" />
+    <BundleResource Include="Resources\2.png" />
+    <BundleResource Include="Resources\4.png" />
+    <BundleResource Include="Resources\3.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />

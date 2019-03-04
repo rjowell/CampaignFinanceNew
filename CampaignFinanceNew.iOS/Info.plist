@@ -20,12 +20,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-<key>UIAppFonts</key>
-<array>
-    <string>American_Typewriter_Regular.ttf</string>
-<string>DroidSans.ttf</string>
-    </array>	
-<key>MinimumOSVersion</key>
+	<key>UIAppFonts</key>
+	<array>
+		<string>American_Typewriter_Regular.ttf</string>
+		<string>DroidSans.ttf</string>
+	</array>
+	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>CampaignFinanceNew</string>
