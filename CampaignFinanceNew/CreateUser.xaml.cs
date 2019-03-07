@@ -41,6 +41,8 @@ namespace CampaignFinanceNew
         {
 
             InitializeComponent();
+            Random rand = new Random();
+            backImage.Source = rand.Next(5).ToString() + ".png";
             isSupporter = supporter;
             Console.WriteLine("supporter is" + isSupporter);
             stateSelection.ItemsSource = states;

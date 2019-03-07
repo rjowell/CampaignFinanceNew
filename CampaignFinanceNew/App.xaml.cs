@@ -23,6 +23,17 @@ namespace CampaignFinanceNew
     {
         public String firstName { get; set; }
         public String lastName { get; set; }
+        public String contactPerson { get; set; }
+        public String mailingAddress { get; set; }
+        public String city { get; set; }
+        public String mailState { get; set; }
+        public String officeState { get; set; }
+        public String zipCode { get; set; }
+        public String phoneNumber { get; set; }
+        public String office { get; set; }
+        public String district { get; set; }
+        public String party { get; set; }
+        public String website { get; set; }
         public String systemID { get; set; }
         public String userFirebaseID { get; set; }
         public bool isSupporter { get; set; }
@@ -77,6 +88,15 @@ namespace CampaignFinanceNew
             JObject currentUserString = JObject.Parse(userJsonData);
             firstName = currentUserString.GetValue("FirstName").ToString();
             lastName = currentUserString.GetValue("LastName").ToString();
+            mailingAddress = currentUserString.GetValue("MailingAddress").ToString();
+
+            city = currentUserString.GetValue("City").ToString();
+            mailState = currentUserString.GetValue("State").ToString();
+            zipCode = currentUserString.GetValue("Zip").ToString();
+
+            phoneNumber = currentUserString.GetValue("Phone").ToString();
+
+            //contactPerson = currentUserString.GetValue("ContactPerson").ToString();
             Console.WriteLine("Your name is " + firstName + " " + lastName);
             /*{"FirstName":"Russell","LastName":"Jowell","MailingAddress":"4500 Connecticut Ave nw #203","City":"Washington ","State":"DC","Zip":"20008","EMail":"russ.jowell@gmail.com","Phone":"2814608568","CampaignsSupported":null,"SupporterID":"1000","FirebaseID":"h9s7cK7qoqSCxOaGDcftnnTwtS22","StripeCustomerID":"cus_ELQh45iGJf5gt9"}
             */
@@ -99,6 +119,11 @@ namespace CampaignFinanceNew
             else
             {
                 systemID = currentUserString.GetValue("CandidateId").ToString();
+                office = currentUserString.GetValue("Office").ToString();
+                district = currentUserString.GetValue("District").ToString();
+                contactPerson = currentUserString.GetValue("ContactPerson").ToString();
+                party = currentUserString.GetValue("Affiliation").ToString();
+                website = currentUserString.GetValue("Website").ToString();
                 Console.WriteLine("point E");
 
                 currentCampaigns = currentUserString.GetValue("CampaignIDs").ToString().Split(',');

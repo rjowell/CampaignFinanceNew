@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OfficeSelection">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Margin="10,10,10,10">
+        <ScrollView>
+          <RelativeLayout Padding="0" FlowDirection="MatchParent">
+    <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        
+        <StackLayout RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
+        
+        
             
-        <Label Text="Campaign Information" TextColor="White" HorizontalOptions="Center" FontSize="Large"/>
-            <Label x:Name="officePickerLabel" FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
+        <Label FontFamily="{StaticResource TypewriterFont}" Text="Campaign Information" TextColor="White" HorizontalOptions="Center" FontSize="Large"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="officePickerLabel" FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
         <Picker x:Name="officePicker" FontSize="Small" WidthRequest="200" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center">
                 <Picker.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="#c4d5ef" iOS="Black"/>
             </Picker.TextColor>
                 </Picker>
-             <Label x:Name="otherOfficeLabel" HorizontalOptions="Center" Text="Enter Office"/>
+             <Label FontFamily="{StaticResource TypewriterFont}" x:Name="otherOfficeLabel" HorizontalOptions="Center" Text="Enter Office"/>
             <Entry HorizontalOptions="Center" WidthRequest="250" x:Name="otherOfficeField">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-            <Label TextColor="#c5d8f7" x:Name="districtLabel" FontSize="Medium" HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
-            <Label  TextColor="#c5d8f7" FontSize="12" WidthRequest="260" x:Name="districtDisclamer" FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="*Do not enter state here, only your district. You will enter your state on the next page"/>
-            <Entry HorizontalOptions="Center" WidthRequest="200" x:Name="jurisdictionLabel">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" x:Name="districtLabel" FontSize="Medium" HorizontalOptions="Center" Text="District/Jurisdiction (if applicable)"/>
+           <Entry HorizontalOptions="Center" WidthRequest="200" x:Name="jurisdictionLabel">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-            <Label x:Name="stateLabel" Text="State" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center"/>
-            <Picker TextColor="#c5d8f7" x:Name="stateSelector" FontSize="Small" WidthRequest="200" HorizontalOptions="Center"/>
-            <Label x:Name="partyLabel" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center" Text="Party"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="stateLabel" Text="State" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center"/>
+            <Picker x:Name="stateSelector" FontSize="Small" WidthRequest="200" HorizontalOptions="Center">
+                <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="partyLabel" FontSize="Medium"  TextColor="#c5d8f7" HorizontalOptions="Center" Text="Party"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="270">
                 <Button x:Name="demButton" BackgroundColor="Transparent" ClassId="D" HorizontalOptions="StartAndExpand" Text="Democratic" TextColor="White" Clicked="ProcessPartyButton"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="repButton" BackgroundColor="Transparent" ClassId="R"  HorizontalOptions="CenterAndExpand" Text="Republican"/><Button TextColor="White"  Clicked="ProcessPartyButton" x:Name="otherButton" BackgroundColor="Transparent" ClassId="O" HorizontalOptions="EndAndExpand" Text="Other"/>
             </StackLayout>
-            <Label FontSize="Medium" TextColor="#c5d8f7"  HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" TextColor="#c5d8f7"  HorizontalOptions="Center" Text="Enter Party" x:Name="otherPartyLabel"/>
             <Entry HorizontalOptions="Center" x:Name="otherPartyField" WidthRequest="300">
                 
                  <Entry.TextColor>
@@ -38,8 +50,10 @@
                 </Entry>
                 
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button TextColor="White" BackgroundColor="Transparent" ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button TextColor="White" BackgroundColor="Transparent" ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
             </StackLayout>
+            </RelativeLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

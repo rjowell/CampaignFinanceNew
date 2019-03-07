@@ -15,7 +15,8 @@ namespace CampaignFinanceNew
 
 
             InitializeComponent();
-
+            Random rand = new Random();
+            backImage.Source = rand.Next(5).ToString() + ".png";
             Picker[] pickers = new Picker[] { officePicker, stateSelector};
 
 

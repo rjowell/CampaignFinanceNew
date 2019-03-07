@@ -51,9 +51,9 @@ namespace CampaignFinanceNew.iOS
 
 
             localUserData = userData;
-
+            Console.WriteLine("russell shrimp");
             isCreateUser = true;
-           
+            Console.WriteLine("russell shrimp1");
             Auth.DefaultInstance.CreateUser(email, password, HandleAuthDataResultHandler);
 
 
@@ -66,8 +66,12 @@ namespace CampaignFinanceNew.iOS
 
         async void HandleAuthDataResultHandler(AuthDataResult authResult, Foundation.NSError error)
         {
-
-            //Console.WriteLine(error.UserInfo["error_name"]);
+            Console.WriteLine("rolller coaster");
+            if (error != null)
+            {
+                Console.WriteLine(error.UserInfo.Keys);
+                Console.WriteLine(error.UserInfo["error_name"].Description);
+            }
             if (error != null && error.UserInfo["error_name"].ToString() == "ERROR_EMAIL_ALREADY_IN_USE")
             {
                 Console.WriteLine("DUPLICATE_EMAIL_ERROR");
@@ -75,10 +79,12 @@ namespace CampaignFinanceNew.iOS
             }
             else
             {
-
+                Console.WriteLine(authResult);
+                Console.WriteLine("It s" + authResult.User.Uid);
                 if (isCreateUser == true)
                 {
                     localUserData.Add("firebaseID", authResult.User.Uid);
+                    Console.WriteLine("russell shrim3");
                     newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", localUserData);
                 }
                 await App.currentUser.SetUserInfo(authResult.User.Uid);

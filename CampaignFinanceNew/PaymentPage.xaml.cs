@@ -17,6 +17,8 @@ namespace CampaignFinanceNew
         public PaymentPage()
         {
             InitializeComponent();
+            Random rand = new Random();
+            backImage.Source = rand.Next(5).ToString() + ".png";
             //errorWindow.IsVisible = false;
             entries.Add(ccNumber);
             entries.Add(cvcEntry);
@@ -25,8 +27,7 @@ namespace CampaignFinanceNew
             //paymentForm.HeightRequest= Xamarin.Forms.Application.Current.MainPage.Height;
 
             noticeWindow.IsVisible = false;
-            noticeWindow.TranslationY = 200;
-            noticeWindow.TranslationX = 40;
+           
 
             MessagingCenter.Subscribe<IFirebaseAuthenticator>(this,"Go",(sender) => {
 
@@ -74,6 +75,8 @@ namespace CampaignFinanceNew
             {
                 ccNumber.IsVisible = false;
                 ccNumLabel.IsVisible = false;
+                ccGrid.IsVisible = false;
+                spacer.IsVisible = false;
                 expiryMonth.IsVisible = false;
                 expYearLabel.IsVisible = false;
                 expMonthLabel.IsVisible = false;
@@ -105,6 +108,8 @@ namespace CampaignFinanceNew
             noticeWindow.IsVisible = true;
             noticeButton.IsVisible = false;
             noticeText.Text = "Sending...";
+
+
 
             var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {

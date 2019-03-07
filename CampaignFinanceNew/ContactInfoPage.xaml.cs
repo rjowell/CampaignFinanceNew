@@ -15,7 +15,8 @@ namespace CampaignFinanceNew
         public ContactInfoPage()
         {
             InitializeComponent();
-
+            Random rand = new Random();
+            backImage.Source = rand.Next(5).ToString() + ".png";
             Console.WriteLine("index is " + statePicker.SelectedIndex);
 
                      entries.Add(contactPersonEntry);

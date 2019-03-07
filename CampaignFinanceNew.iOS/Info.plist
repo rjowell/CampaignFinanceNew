@@ -22,8 +22,8 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>American_Typewriter_Regular.ttf</string>
-		<string>DroidSans.ttf</string>
+		<string>AmericanTypewriter</string>
+		<string>DroidSans</string>
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>

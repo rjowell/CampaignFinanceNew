@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PaymentPage">
     <ContentPage.Content>
-      <RelativeLayout x:Name="masterLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
-     <ScrollView x:Name="scrollLayout" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+        <ScrollView>
+      <RelativeLayout Padding="0" FlowDirection="MatchParent">
+    <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        
+        <StackLayout Margin="20,20,20,20" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
         
            
-        <StackLayout x:Name="paymentForm" WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="" HorizontalOptions="Center" x:Name="titleLabel" FontSize="Large" TextColor="White"/>
-            <Label TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
-            <Entry x:Name="ccNumber" WidthRequest="150">
+       <Label FontFamily="{StaticResource TypewriterFont}" Text="" HorizontalOptions="Center" x:Name="titleLabel" FontSize="Large" TextColor="White"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium" HorizontalOptions="Center" x:Name="ccNumLabel" Text="Credit Card Number"/>
+            <Entry x:Name="ccNumber" WidthRequest="75">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
-            <Grid>
+            <Grid x:Name="ccGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -24,37 +29,37 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label  HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expMonthLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
+                <Label FontFamily="{StaticResource TypewriterFont}"  HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expMonthLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Month" Grid.Row="0" Grid.Column="0"/>
                 <Picker x:Name="expiryMonth" Grid.Row="1" Grid.Column="0">
                 <Picker.TextColor>
                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
                     </Picker.TextColor>    
                 </Picker>
-                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expYearLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
+                <Label FontFamily="{StaticResource TypewriterFont}" HorizontalTextAlignment="Center" HorizontalOptions="Center" x:Name="expYearLabel" TextColor="#c5d8f7" FontSize="Medium" Text="Exp. Year" Grid.Row="0" Grid.Column="1"/>
                 <Picker x:Name="expiryYear" Grid.Row="1" Grid.Column="1">
                      <Picker.TextColor>
                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
                     </Picker.TextColor>    
                 </Picker>
-                <Label TextColor="White"  Text="  " Grid.Row="0" Grid.Column="2"/>
-                <Label  x:Name="cvcLabel"  VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="CVC" Grid.Row="0" Grid.Column="3"/>
-                <Label TextColor="White"  Text="  " Grid.Row="1" Grid.Column="2"/>
+                <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White"  Text="  " Grid.Row="0" Grid.Column="2"/>
+                <Label FontFamily="{StaticResource TypewriterFont}"  x:Name="cvcLabel"  VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="CVC" Grid.Row="0" Grid.Column="3"/>
+                <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White"  Text="  " Grid.Row="1" Grid.Column="2"/>
                 <Entry x:Name="cvcEntry" WidthRequest="30" Grid.Row="1" Grid.Column="3">
                      <Entry.TextColor>
                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
                     </Entry.TextColor>    
                 </Entry>
             </Grid>
-            <Label TextColor="#c5d8f7" FontAttributes="Italic" HorizontalOptions="Center" FontSize="14" LineHeight=".9"  x:Name="ccDisclamer" Text=""/>
-            <Label Text="" FontSize="Small"/>
-            <Label TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="E-Mail"/>
-            <Label HorizontalOptions="Center" Text="(this will also be your username)" FontSize="Small" TextColor="#c5d8f7"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontAttributes="Italic" HorizontalOptions="Center" FontSize="14" LineHeight=".9"  x:Name="ccDisclamer" Text=""/>
+            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="spacer" Text="" FontSize="Small"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="E-Mail"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" Text="(this will also be your username)" FontSize="Small" TextColor="#c5d8f7"/>
             <Entry x:Name="eMailField" Keyboard="Email">
                 <Entry.TextColor>
                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
                     </Entry.TextColor>
                 </Entry>
-            <Label HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium"  Text="Password"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium"  Text="Password"/>
             <Entry x:Name="passwordField" IsPassword="true">
                 <Entry.TextColor>
                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
@@ -65,16 +70,16 @@
             </StackLayout>
                 
         </StackLayout>
-            </ScrollView>
            
-            <StackLayout x:Name="noticeWindow" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#afcbf7">
-        <Label Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
+           
+            
+            <StackLayout x:Name="noticeWindow" HeightRequest="50" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#afcbf7">
+        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
                 <Button x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
            </StackLayout>
-            
            
             </RelativeLayout>
-       
+       </ScrollView>
    
     </ContentPage.Content>
 </ContentPage>

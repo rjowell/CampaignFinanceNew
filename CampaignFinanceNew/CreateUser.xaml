@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateUser">
     <ContentPage.Content>
-        <RelativeLayout HorizontalOptions="Center" VerticalOptions="Center">
-       
-            
-            
-            
-            
-            
-            <ScrollView HeightRequest="900"  Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand" Content="thisLayout" >
-        <StackLayout HeightRequest="1600" Orientation="Vertical" x:Name="thisLayout" VerticalOptions="Start" Margin="0,15,0,15">
-             <Label x:Name="createWindowLabel" HorizontalOptions="Center" FontSize="Large" TextColor="White"/>
+        <ScrollView>
+              <RelativeLayout Padding="0" FlowDirection="MatchParent">
+    <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        <ScrollView>
+        <StackLayout RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
+         <Label x:Name="createWindowLabel" HorizontalOptions="Center" FontSize="Large" TextColor="White"/>
                     <Label Text="" FontSize="25"/>
             <Label x:Name="firstNameLabel" Text="First Name" HorizontalOptions="Center" TextColor="White"/>
             <Entry WidthRequest="300" x:Name="firstNameField" HorizontalOptions="Center"/>
@@ -74,5 +73,6 @@
             </Frame>
                 
            </RelativeLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -321,6 +321,11 @@ namespace CampaignFinanceNew
             }
         }
 
+        private void ShowUserInfo(Button sender, EventArgs e)
+        {
+            Navigation.PushAsync(new UserInfo());
+        }
+
         private void OpenCreateCampaign(Button sender, EventArgs e)
         {
 

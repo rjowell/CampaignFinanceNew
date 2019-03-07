@@ -13,7 +13,9 @@ namespace CampaignFinanceNew
         public IntroPage()
         {
             InitializeComponent();
-            if(App.newUser.isSupporter==true)
+            Random rand = new Random();
+            backImage.Source = rand.Next(5).ToString() + ".png";
+            if (App.newUser.isSupporter==true)
             {
                 introLabel.Text = supporterIntroText;
             }

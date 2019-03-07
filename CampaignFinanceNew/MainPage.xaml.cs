@@ -21,6 +21,7 @@ namespace CampaignFinanceNew
             Random rand = new Random();
             fields = new Entry[] { eMailField, passwordField };
             backImage.Source = rand.Next(5).ToString() + ".png";
+            noticeWindow.IsVisible = false;
            
 
 
@@ -201,13 +202,17 @@ namespace CampaignFinanceNew
 
 
 
-
+        public void CloseWindow(Button sender, EventArgs e)
+        {
+            noticeWindow.IsVisible = false;
+        }
 
 
 
         private async void ProcessLogin(object sender, EventArgs e)
         {
 
+            noticeWindow.IsVisible = true;
             DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
             //var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
