@@ -19,7 +19,73 @@ namespace CampaignFinanceNew.iOS
 
 
     
+        public void UpdateEMail(string email)
+        {
 
+
+
+
+                  
+                    Auth.DefaultInstance.CurrentUser.UpdateEmail( email, (error) => {
+                //Console.WriteLine("email mac");
+                if (error == null)
+                {
+                    System.Collections.Specialized.NameValueCollection eMailData = new System.Collections.Specialized.NameValueCollection();
+                    eMailData.Set("isSupporter", App.currentUser.isSupporter.ToString().ToLower());
+                    eMailData.Set("systemID", App.currentUser.systemID);
+                    eMailData.Set("eMail", email);
+                    //await newClient.UploadValuesAsync("http://www.cvxu.com/web_service/updateEmailPassword.php", eMailData);
+                    newClient.UploadValues("http://www.cvx4u.com/web_service/updateEmailPassword.php", eMailData);
+                            App.currentUser.eMail = email;
+
+
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 2);
+                }
+
+                else
+                {
+
+                    //Console.WriteLine(error);
+                    if (error.ToString()  == "The email address is already in use by another account.")
+                    {
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 1);
+                    }
+                    if (error.ToString()  == "The email address is badly formatted.")
+                    {
+
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 0);
+                    }
+                }
+
+                //Console.WriteLine(error==null);
+            });
+        }
+
+        public void SendResetLink(string email)
+        {
+            Auth.DefaultInstance.SendPasswordReset(email,(error) => {
+                Console.WriteLine("Reset erros "+error);
+
+                if(error.ToString()  == "The email address is badly formatted.")
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 0);
+                }
+                if(error.ToString()== "There is no user record corresponding to this identifier. The user may have been deleted.")
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
+                }
+
+                //The email address is badly formatted.
+                //There is no user record corresponding to this identifier. The user may have been deleted.
+            });
+        }
+
+        public void UpdatePassword(string password)
+        {
+            Auth.DefaultInstance.CurrentUser.UpdatePassword(password, (error) => {
+                MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 3);
+            });
+        }
 
         public bool GetIdInfo()
         {
@@ -27,8 +93,7 @@ namespace CampaignFinanceNew.iOS
             //var sendingParameters = new System.Collections.Specialized.NameValueCollection();
             
             userJsonData =new WebClient().DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID="+currentToken);
-            Console.WriteLine(currentToken);
-            Console.WriteLine(userJsonData);
+
             if(currentToken != null)
             {
                 return true;
@@ -51,9 +116,9 @@ namespace CampaignFinanceNew.iOS
 
 
             localUserData = userData;
-            Console.WriteLine("russell shrimp");
+           
             isCreateUser = true;
-            Console.WriteLine("russell shrimp1");
+           
             Auth.DefaultInstance.CreateUser(email, password, HandleAuthDataResultHandler);
 
 
@@ -66,25 +131,39 @@ namespace CampaignFinanceNew.iOS
 
         async void HandleAuthDataResultHandler(AuthDataResult authResult, Foundation.NSError error)
         {
-            Console.WriteLine("rolller coaster");
+           
             if (error != null)
             {
-                Console.WriteLine(error.UserInfo.Keys);
-                Console.WriteLine(error.UserInfo["error_name"].Description);
+                //Console.WriteLine(error.UserInfo["error_name"].Description);
+
+                if(error.UserInfo["error_name"].ToString() == "ERROR_EMAIL_ALREADY_IN_USE")
+                {
+                    //Console.WriteLine("DUPLICATE_EMAIL_ERROR");
+                    MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
+                }
+                if (error.UserInfo["error_name"].Description == "ERROR_INVALID_EMAIL") 
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 0);
+                }
+                if(error.UserInfo["error_name"].Description == "ERROR_USER_NOT_FOUND")
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 1);
+                }
+                if(error.UserInfo["error_name"].Description=="ERROR_WRONG_PASSWORD")
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 2);
+                }
+
+
             }
-            if (error != null && error.UserInfo["error_name"].ToString() == "ERROR_EMAIL_ALREADY_IN_USE")
-            {
-                Console.WriteLine("DUPLICATE_EMAIL_ERROR");
-                MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
-            }
+          
             else
             {
-                Console.WriteLine(authResult);
-                Console.WriteLine("It s" + authResult.User.Uid);
+
                 if (isCreateUser == true)
                 {
                     localUserData.Add("firebaseID", authResult.User.Uid);
-                    Console.WriteLine("russell shrim3");
+
                     newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", localUserData);
                 }
                 await App.currentUser.SetUserInfo(authResult.User.Uid);
@@ -124,6 +203,7 @@ namespace CampaignFinanceNew.iOS
         public void Logout()
         {
             Auth.DefaultInstance.SignOut(out Foundation.NSError error);
+            
         }
 
         public async Task<string> CreateNewUserAsync(string email, string password, System.Collections.Specialized.NameValueCollection userData)

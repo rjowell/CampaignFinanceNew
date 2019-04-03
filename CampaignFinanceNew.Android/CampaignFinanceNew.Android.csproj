@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
@@ -88,6 +88,11 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\appBackground.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\windmills.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img5.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img1.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img2.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img3.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img4.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -109,8 +114,8 @@
     <EmbeddedResource Include="Resources\drawable\menusandwich.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\American_Typewriter_Regular.ttf" />
     <AndroidAsset Include="Assets\DroidSans.ttf" />
+    <AndroidAsset Include="Assets\American_Typewriter_Regular.ttf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

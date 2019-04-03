@@ -17,10 +17,11 @@
         <Image x:Name="titleImage">
         <Image.Scale>
                     
-                   <OnPlatform x:TypeArguments="x:Double" iOS="1.8" Android="2.5"/>
+                   <OnPlatform x:TypeArguments="x:Double" iOS="1.8" Android="2.2"/>
                 </Image.Scale>
             
             </Image>
+                
         <Button FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="returning" Clicked="ProcessButtons" FontFamily="{StaticResource TypewriterFont}" Text="I am a Returning User" x:Name="returningUser"/>
         <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" TextColor="#9fc2fc" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
         <Entry  x:Name="eMailField" Keyboard="Email" WidthRequest="200"  >
@@ -36,8 +37,10 @@
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
             </Entry.TextColor>
                 </Entry>
+               
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
-        <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
+         <Button x:Name="forgotPassword" Text="Reset Password" FontSize="16" Clicked="ShowPasswordReset"/>
+                <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="candidateButton" Clicked="ProcessButtons" Text="I am a candidate" ClassId="candidate" />
     
@@ -45,11 +48,26 @@
         
     </StackLayout>
         
-        <StackLayout x:Name="noticeWindow" HeightRequest="50" WidthRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#afcbf7">
-        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
-                <Button x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
-           </StackLayout>
+          <Frame x:Name="noticeFrame" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Padding="3" BackgroundColor="White">
            
+            <StackLayout x:Name="noticeWindow" BackgroundColor="#d1e1fc" Padding="15">
+        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
+                <Button BackgroundColor="Transparent" x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
+           <Label Text="Enter E-Mail for Password Reset" x:Name="passResetLabel"/>
+                    <Entry Keyboard="Email" x:Name="passResetEntry"/>
+                    <Label x:Name="passResetError"/>
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Button x:Name="passResetSend" Clicked="SendPasswordReset" Text="Send"/><Button x:Name="passResetCancel" Clicked="CancelReset" Text="Cancel"/></StackLayout>
+                </StackLayout>
+                </Frame>
+            <!--
+             <Frame x:Name="noticeWindow" HorizontalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" Padding="10" BackgroundColor="White">
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"  BackgroundColor="Navy" HorizontalOptions="StartAndExpand" Padding="15">
+                <Label x:Name="statusLabel" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="End"/>
+                <Button Clicked="CloseWindow" Text="OK" FontSize="Medium"/>
+            </StackLayout>
+            </Frame>
+           -->
             
     
     </RelativeLayout>

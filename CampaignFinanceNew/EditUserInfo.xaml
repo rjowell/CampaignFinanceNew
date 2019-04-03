@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.EditUserInfo">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Padding="20,10,20,0">
+        <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" HorizontalOptions="Center" FontSize="28" Text="Update User Info"/>
+        <StackLayout Spacing="0">
+                <Button Clicked="OpenUserPass" TextColor="#b7cff4" HeightRequest="40" FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" Text="Click here to update E-Mail or Password"/>
+        <Button Clicked="OpenCCWindow" TextColor="#b7cff4" HeightRequest="35" FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" Text="Click here to update Credit Card" x:Name="ccUpdateButton"/>
+            </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="FirstNameLabel" Text="First Name"/>
+                <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="FirstName" Text="Edit" Clicked="EditField" x:Name="FirstNameEdit"/>
+                <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="FirstName" Text="Submit" Clicked="SubmitField" x:Name="FirstNameSubmit"/>
+                <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="FirstName" Text="Cancel" Clicked="CancelField" x:Name="FirstNameCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="FirstNameDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry HorizontalTextAlignment="Center" x:Name="FirstNameEntry" HorizontalOptions="FillAndExpand">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+             
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="LastNameLabel" Text="Last Name"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="LastName" Text="Edit" Clicked="EditField" x:Name="LastNameEdit" />
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="LastName" Text="Submit" Clicked="SubmitField" x:Name="LastNameSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="LastName" Text="Cancel" Clicked="CancelField" x:Name="LastNameCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="LastNameDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry HorizontalTextAlignment="Center" x:Name="LastNameEntry" HorizontalOptions="FillAndExpand">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="ContactPersonLabel" Text="Contact Person"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="ContactPerson" Text="Edit" Clicked="EditField" x:Name="ContactPersonEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="ContactPerson" Text="Submit" Clicked="SubmitField" x:Name="ContactPersonSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="ContactPerson" Text="Cancel" Clicked="CancelField" x:Name="ContactPersonCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="ContactPersonDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry HorizontalTextAlignment="Center" x:Name="ContactPersonEntry" HorizontalOptions="FillAndExpand">
+                     <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="MailingAddressLabel" Text="MailingAddress"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="MailingAddress" Text="Edit" Clicked="EditField" x:Name="MailingAddressEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="MailingAddress" Text="Submit" Clicked="SubmitField" x:Name="MailingAddressSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="MailingAddress" Text="Cancel" Clicked="CancelField" x:Name="MailingAddressCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="MailingAddressDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry HorizontalTextAlignment="Center" x:Name="MailingAddressEntry" HorizontalOptions="FillAndExpand">
+                     <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="CityLabel" Text="City"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="City" Text="Edit" Clicked="EditField" x:Name="CityEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="City" Text="Submit" Clicked="SubmitField" x:Name="CitySubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="City" Text="Cancel" Clicked="CancelField" x:Name="CityCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="CityDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry HorizontalTextAlignment="Center" x:Name="CityEntry" HorizontalOptions="FillAndExpand">
+                     <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="StateLabel" Text="State"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="State" Text="Edit" Clicked="EditField" x:Name="StateEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="State" Text="Submit" Clicked="SubmitField" x:Name="StateSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="State" Text="Cancel" Clicked="CancelField" x:Name="StateCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="StateDisplay" HorizontalOptions="Center" Text=""/>
+            <Picker x:Name="StateEntry">
+                <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="ZipLabel" Text="Zip Code"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="Zip" Text="Edit" Clicked="EditField" x:Name="ZipEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Zip" Text="Submit" Clicked="SubmitField" x:Name="ZipSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Zip" Text="Cancel" Clicked="CancelField" x:Name="ZipCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="ZipDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry x:Name="ZipEntry">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="PhoneLabel" Text="Phone Number"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="Phone" Text="Edit" Clicked="EditField" x:Name="PhoneEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Phone" Text="Submit" Clicked="SubmitField" x:Name="PhoneSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Phone" Text="Cancel" Clicked="CancelField" x:Name="PhoneCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="PhoneDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry x:Name="PhoneEntry"/>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="OfficeLabel" Text="Office"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="Office" Text="Edit" Clicked="EditField" x:Name="OfficeEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Office" Text="Submit" Clicked="SubmitField" x:Name="OfficeSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Office" Text="Cancel" Clicked="CancelField" x:Name="OfficeCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="OfficeDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Picker x:Name="OfficeEntry">
+                    <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+           
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" x:Name="otherOfficeLabel" Text="Other Office"/>
+          
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="otherOfficeDisplay" HorizontalOptions="Center" Text="Test--"/>
+            <Entry x:Name="otherOfficeEntry">
+                     <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+                
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="DistrictLabel" Text="District"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="District" Text="Edit" Clicked="EditField" x:Name="DistrictEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="District" Text="Submit" Clicked="SubmitField" x:Name="DistrictSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="District" Text="Cancel" Clicked="CancelField" x:Name="DistrictCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="DistrictDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry x:Name="DistrictEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+                
+                  <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="OfficeStateLabel" Text="Office State"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="OfficeState" Text="Edit" Clicked="EditField" x:Name="OfficeStateEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="OfficeState" Text="Submit" Clicked="SubmitField" x:Name="OfficeStateSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="OfficeState" Text="Cancel" Clicked="CancelField" x:Name="OfficeStateCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="OfficeStateDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Picker x:Name="OfficeStateEntry">
+                    <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+            
+           <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="AffiliationLabel" Text="Affiliation"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="Affiliation" Text="Edit" Clicked="EditField" x:Name="AffiliationEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Affiliation" Text="Submit" Clicked="SubmitField" x:Name="AffiliationSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Affiliation" Text="Cancel" Clicked="CancelField" x:Name="AffiliationCancel"/>
+             </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="AffiliationDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Picker x:Name="AffiliationEntry">
+                    <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor>    
+                </Picker>
+             
+                <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" x:Name="otherPartyLabel" Text="Other Party"/>
+            <Label TextColor="#8aaadb" FontSize="18" HorizontalTextAlignment="Center" x:Name="otherPartyDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry x:Name="otherPartyEntry">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+                
+                  <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="WebsiteLabel" Text="Website"/>
+            <Button BackgroundColor="Transparent" WidthRequest="50" TextColor="#8aaadb" ClassId="Website" Text="Edit" Clicked="EditField" x:Name="WebsiteEdit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Website" Text="Submit" Clicked="SubmitField" x:Name="WebsiteSubmit"/>
+            <Button BackgroundColor="Transparent" WidthRequest="70" TextColor="#8aaadb" ClassId="Website" Text="Cancel" Clicked="CancelField" x:Name="WebsiteCancel"/></StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" x:Name="WebsiteDisplay" HorizontalOptions="Center" Text="Test"/>
+            <Entry x:Name="WebsiteEntry">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+        
+        </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+
+
+<!-- Contact person, MailingAddress, City, state -->

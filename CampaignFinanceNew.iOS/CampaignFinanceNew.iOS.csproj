@@ -154,7 +154,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
     <PackageReference Include="Xamarin.Firebase.iOS.Auth">
       <Version>5.0.4.1</Version>
     </PackageReference>
@@ -174,11 +174,11 @@
     </BundleResource>
     <BundleResource Include="Resources\DroidSans.ttf" />
     <BundleResource Include="Resources\rowhouses.jpg" />
-    <BundleResource Include="Resources\0.png" />
-    <BundleResource Include="Resources\1.png" />
-    <BundleResource Include="Resources\2.png" />
-    <BundleResource Include="Resources\4.png" />
-    <BundleResource Include="Resources\3.png" />
+    <BundleResource Include="Resources\img5.png" />
+    <BundleResource Include="Resources\img1.png" />
+    <BundleResource Include="Resources\img2.png" />
+    <BundleResource Include="Resources\img4.png" />
+    <BundleResource Include="Resources\img3.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />

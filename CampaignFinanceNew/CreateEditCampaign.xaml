@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateEditCampaign">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout VerticalOptions="Center" Padding="20,0,20,0" Spacing="3">
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White"  HorizontalOptions="Center" FontSize="22" x:Name="titleLabel"/>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center" ClassId="CampaignName" x:Name="CampaignNameLabel" FontSize="17" VerticalTextAlignment="Center" Text="Campaign Name"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignName" x:Name="CampaignNameEdit" Clicked="EditCampaign" Text="Edit"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignName" x:Name="CampaignNameSubmit" Clicked="SubmitData" Text="Submit"/> 
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignName" x:Name="CampaignNameCancel" Clicked="CancelEdit" Text="Cancel"/> 
+            </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" ClassId="CampaignName" HorizontalTextAlignment="Center" x:Name="CampaignNameDisplay"/>
+            <Entry HorizontalTextAlignment="Center" ClassId="CampaignName" x:Name="CampaignNameEntry">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" FontSize="17" VerticalOptions="Center" ClassId="CampaignDescription" x:Name="CampaignDescriptionLabel" VerticalTextAlignment="Center" Text="Campaign Description"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignDescription" x:Name="CampaignDescriptionEdit" Clicked="EditCampaign" Text="Edit"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignDescription" x:Name="CampaignDescriptionSubmit" Clicked="SubmitData" Text="Submit"/> 
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="CampaignDescription" x:Name="CampaignDescriptionCancel" Clicked="CancelEdit" Text="Cancel"/> 
+            </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" ClassId="CampaignDescription" HorizontalTextAlignment="Center" x:Name="CampaignDescriptionDisplay"/>
+            <Editor  ClassId="CampaignDescription"  x:Name="CampaignDescriptionEntry" HeightRequest="130">
+                    <Editor.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Editor.TextColor>    
+                </Editor>
+            
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+            <Switch Toggled="ShowCrowdElements" x:Name="isCrowdfund"/>
+            <Label VerticalTextAlignment="Center" x:Name="crowedfundLabel" Text="Turn On Crowdfunding"/>
+            </StackLayout>
+            
+            
+            <StackLayout x:Name="GoalButtons" Orientation="Horizontal" HorizontalOptions="Center">
+            <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" FontSize="17" ClassId="Goal" x:Name="GoalLabel" VerticalTextAlignment="Center" Text="Goal"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="Goal" x:Name="GoalEdit" Clicked="EditCampaign" Text="Edit"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="Goal" x:Name="GoalSubmit" Clicked="SubmitData" Text="Submit"/> 
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="Goal" x:Name="GoalCancel" Clicked="CancelEdit" Text="Cancel"/> 
+            </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" ClassId="Goal" HorizontalTextAlignment="Center" x:Name="GoalDisplay"/>
+            <Entry HorizontalTextAlignment="Center" ClassId="Goal" WidthRequest="80" Keyboard="Numeric" x:Name="GoalEntry">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+            
+            <Label HorizontalOptions="Center" FontSize="13" TextColor="Red" x:Name="dateWarning" Text="Start Date must be before End Date"/>
+            
+            <StackLayout x:Name="StartDateButtons" Orientation="Horizontal" HorizontalOptions="Center">
+            <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" FontSize="17" ClassId="StartDate" x:Name="StartDateLabel" VerticalTextAlignment="Center" Text="Start Date"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="StartDate" x:Name="StartDateEdit" Clicked="EditCampaign" Text="Edit"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="StartDate" x:Name="StartDateSubmit" Clicked="SubmitData" Text="Submit"/> 
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="StartDate" x:Name="StartDateCancel" Clicked="CancelEdit" Text="Cancel"/> 
+            </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" ClassId="StartDate" HorizontalTextAlignment="Center" x:Name="StartDateDisplay"/>
+            <DatePicker ClassId="StartDate" x:Name="StartDateEntry">
+                    <DatePicker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </DatePicker.TextColor>    
+                </DatePicker>
+            
+            <StackLayout x:Name="EndDateButtons" Orientation="Horizontal" HorizontalOptions="Center">
+            <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" FontSize="17" ClassId="EndDate" x:Name="EndDateLabel" VerticalTextAlignment="Center" Text="End Date"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="EndDate" x:Name="EndDateEdit" Clicked="EditCampaign" Text="Edit"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff"  ClassId="EndDate" x:Name="EndDateSubmit" Clicked="SubmitData" Text="Submit"/> 
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" ClassId="EndDate" x:Name="EndDateCancel" Clicked="CancelEdit" Text="Cancel"/> 
+            </StackLayout>
+            <Label TextColor="#8aaadb" FontSize="18" ClassId="EndDate" HorizontalTextAlignment="Center" x:Name="EndDateDisplay"/>
+            <DatePicker ClassId="EndDate" x:Name="EndDateEntry">
+                    <DatePicker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </DatePicker.TextColor>    
+                </DatePicker>
+           
+            <StackLayout x:Name="bottomButtons" HorizontalOptions="Center" Orientation="Horizontal" Spacing="30">
+                <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" Clicked="SubmitCampaign" Text="Submit" x:Name="formSubmit"/>
+                <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" Clicked="GoBack" Text="Cancel" x:Name="formCancel"/>
+            </StackLayout>
+
+            
+        </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

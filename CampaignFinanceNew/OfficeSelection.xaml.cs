@@ -19,6 +19,7 @@ namespace CampaignFinanceNew
             backImage.Source = rand.Next(5).ToString() + ".png";
             Picker[] pickers = new Picker[] { officePicker, stateSelector};
 
+            //{0-"Select Office", 1-"U.S. Senate", 2-"U.S. House", 3-"Governor", 4-"State Senate", 5-"State House", 6-"County Board", 7-"City Council",8-"Mayor", 9-"Other" };
 
 
             stateSelector.ItemsSource = App.stateAbbr;
@@ -51,18 +52,45 @@ namespace CampaignFinanceNew
 
         }
 
-        public void ShowOtherOffice(Picker sender, EventArgs e)
+        public void ShowOtherOffice(object sender, EventArgs e)
         {
-            App.newUser.officePickerIndex = sender.SelectedIndex;
-            if(sender.SelectedIndex==9)
+            Picker current = (Picker)sender;
+
+            App.newUser.officePickerIndex = current.SelectedIndex;
+
+            if(current.SelectedIndex==1 || current.SelectedIndex==3)
+            {
+                //US Senate & Governor
+                districtLabel.IsVisible = false;
+                jurisdictionLabel.IsVisible = false;
+
+                otherOfficeField.IsVisible = false;
+                otherOfficeLabel.IsVisible = false;
+            }
+           else if(current.SelectedIndex==2 || current.SelectedIndex == 4 || current.SelectedIndex == 5 || current.SelectedIndex == 6)
+            {
+                districtLabel.Text = "District";
+                districtLabel.IsVisible = true;
+                jurisdictionLabel.IsVisible = true;
+
+                otherOfficeField.IsVisible = false;
+                otherOfficeLabel.IsVisible = false;
+            }
+
+            else if (current.SelectedIndex==9)
             {
                 otherOfficeField.IsVisible = true;
                 otherOfficeLabel.IsVisible = true;
-                districtLabel.Text = "";
+                districtLabel.IsVisible = true;
+                districtLabel.Text = "District";
+
             }
-            else if(sender.SelectedIndex==8)
+            else if(current.SelectedIndex==8 || current.SelectedIndex == 7)
             {
                 districtLabel.Text = "City";
+                otherOfficeField.IsVisible = false;
+                otherOfficeLabel.IsVisible = false;
+
                 otherOfficeField.IsVisible = false;
                 otherOfficeLabel.IsVisible = false;
 
@@ -78,9 +106,11 @@ namespace CampaignFinanceNew
 
         }
 
-        public void ProcessPartyButton(Button sender, EventArgs e)
+        public void ProcessPartyButton(object sender, EventArgs e)
         {
-            if(sender.ClassId=="D")
+            Button current = (Button)sender;
+
+            if(current.ClassId=="D")
             {
                 demButton.TextColor = Color.Blue;
                 demButton.BackgroundColor = Color.CornflowerBlue;
@@ -92,7 +122,7 @@ namespace CampaignFinanceNew
                 otherPartyLabel.IsVisible = false;
                 App.newUser.party = "Democratic";
             }
-            else if(sender.ClassId=="R")
+            else if(current.ClassId=="R")
             {
                 repButton.TextColor = Color.Blue;
                 repButton.BackgroundColor = Color.CornflowerBlue;
@@ -106,6 +136,7 @@ namespace CampaignFinanceNew
             }
             else
             {
+                Console.WriteLine("other party picked");
                 otherButton.TextColor = Color.Blue;
                 otherButton.BackgroundColor = Color.CornflowerBlue;
                 demButton.TextColor = Color.White;
@@ -114,15 +145,20 @@ namespace CampaignFinanceNew
                 repButton.BackgroundColor = Color.Transparent;
                 otherPartyField.IsVisible = true;
                 otherPartyLabel.IsVisible = true;
-                App.newUser.party = otherPartyField.Text;
+                //App.newUser.party = otherPartyField.Text;
 
             }
         }
 
-        public async void ChangeWindows(Button thing, EventArgs e)
+        public async void ChangeWindows(object thing, EventArgs e)
         {
 
+            Button current = (Button)thing;
+
             bool moveOn = true;
+
+            Console.WriteLine("pary is " + App.newUser.office);
+
             if(officePicker.SelectedIndex==-1)
             {
                 officePickerLabel.TextColor = Color.Red;
@@ -164,7 +200,7 @@ namespace CampaignFinanceNew
                 stateLabel.TextColor= Color.FromHex("#c5d8f7");
             }
 
-            if(App.newUser.party=="")
+            if(otherPartyField.IsVisible==true && otherPartyField.Text=="")
             {
                 partyLabel.TextColor = Color.Red;
                 moveOn = false;
@@ -172,6 +208,7 @@ namespace CampaignFinanceNew
             else
             {
                 partyLabel.TextColor= Color.FromHex("#c5d8f7");
+                App.newUser.party = otherPartyField.Text;
             }
 
             if(otherButton.IsEnabled==true && otherPartyField.Text=="")
@@ -185,6 +222,7 @@ namespace CampaignFinanceNew
             }
 
 
+            Console.WriteLine("office is " + App.newUser.party);
 
             if(moveOn==true)
             {
@@ -197,16 +235,21 @@ namespace CampaignFinanceNew
                     App.newUser.office = App.offices[officePicker.SelectedIndex];
 
                 }
+
+
+                Console.WriteLine("field visivile " + otherOfficeField.IsVisible);
+                Console.WriteLine("ofc si " + App.newUser.office);
+
                 App.newUser.district = jurisdictionLabel.Text;
                 App.newUser.officeState = App.stateAbbr[stateSelector.SelectedIndex];
-
-                if (thing.ClassId == "Back")
+                Console.WriteLine("distrcit s " + App.newUser.district);
+                if (current.ClassId == "Back")
                 {
                     await Navigation.PushAsync(new CreateName());
                 }
                 else
                 {
-                    await Navigation.PushAsync(new ContactInfoPage());
+                    await Navigation.PushAsync(new PositionsAndIssues());
                 }
             }
 

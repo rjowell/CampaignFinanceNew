@@ -150,15 +150,17 @@ namespace CampaignFinanceNew
             }
         }
 
-        private void ProcessPartyButton(Button sender, EventArgs e)
+        private void ProcessPartyButton(object sender, EventArgs e)
         {
-            sender.BackgroundColor = Color.Blue;
-            sender.TextColor = Color.White;
+            Button current = (Button)sender;
+
+            current.BackgroundColor = Color.Blue;
+            current.TextColor = Color.White;
 
 
             foreach (Button thisButton in partyButtons)
             {
-                if (thisButton.Text != sender.Text)
+                if (thisButton.Text != current.Text)
                 {
                     thisButton.BackgroundColor = Color.White;
                     thisButton.TextColor = Color.Default;
@@ -167,7 +169,7 @@ namespace CampaignFinanceNew
 
 
 
-            if (sender.Text == "Other")
+            if (current.Text == "Other")
             {
                 otherPartyLabel.IsVisible = true;
                 candidateParty.IsVisible = true;
@@ -177,7 +179,7 @@ namespace CampaignFinanceNew
             {
                 otherPartyLabel.IsVisible = false;
                 candidateParty.IsVisible = false;
-                partySelection = sender.Text;
+                partySelection = current.Text;
             }
         }
 

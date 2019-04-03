@@ -18,7 +18,7 @@
                 <Grid.ColumnDefinitions>
                      <ColumnDefinition/><ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Clicked="ProcessButton" x:Name="cancelButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Clicked="ProcessButton" x:Name="submitButton" Text="Submit" Grid.Row="0" Grid.Column="1"/>
+                <Button  x:Name="cancelButton" Text="Cancel" Grid.Row="0" Grid.Column="0"/><Button Clicked="ProcessButton" x:Name="submitButton" Text="Submit" Grid.Row="0" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

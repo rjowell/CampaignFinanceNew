@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OccupationPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20,0,20,0" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label HorizontalTextAlignment="Center" FontSize="25" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Occupation"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Please enter your current occupation as well as the name, city, and state of your employer"/>
+            <Label FontSize="24" Text=" "/>
+            <Label x:Name="jobTitleLabel" HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Job Ttile"/>
+            <Entry x:Name="jobTitleEntry">
+                 <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor> 
+                </Entry>
+            <Label x:Name="employerLabel" HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Name of Employer"/>
+            <Entry x:Name="employerEntry">
+                 <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor> 
+                </Entry>
+            <Label x:Name="cityLabel" HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="City"/>
+            <Entry x:Name="cityEntry">
+                 <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor> 
+                </Entry>
+            <Label x:Name="stateLabel" HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="State"/>
+            <Picker x:Name="statePicker" Margin="50,0,50,0">
+                 <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Picker.TextColor> 
+                </Picker>
+            <Label FontSize="28" Text=""/>
+             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
+            <Button x:Name="goBackButton" FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" x:Name="nextButton" TextColor="White" BackgroundColor="Transparent" ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

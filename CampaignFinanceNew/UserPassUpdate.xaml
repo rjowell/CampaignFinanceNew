@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.UserPassUpdate">
+    
+    
+    <ContentPage.Content>
+        
+        <RelativeLayout FlowDirection="LeftToRight" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center">
+        
+            <StackLayout VerticalOptions="Center">
+                <Label FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="White" Text="Change E-Mail/Password" FontSize="Large"/>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Label Text="E-Mail" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center" TextColor="White"/>
+                <Button WidthRequest="50" TextColor="#8aaadb" BackgroundColor="Transparent" x:Name="changeEmail" Clicked="EditEMail" Text="Edit"/>
+                <Button WidthRequest="70" TextColor="#8aaadb" BackgroundColor="Transparent" x:Name="eMailSubmit" Clicked="UpdateEmail" Text="Submit"/>
+                <Button WidthRequest="70" TextColor="#8aaadb" BackgroundColor="Transparent" Clicked="CancelEMail" x:Name="eMailCancel" Text="Cancel"/></StackLayout>
+            <Label x:Name="eMailLabel" TextColor="White"/>
+                    
+            <Entry WidthRequest="300" x:Name="eMailField">
+                    <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>    
+                </Entry>
+                   
+            <Label x:Name="eMailError"/>
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Label Text="Password" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center" TextColor="White"/>
+                <Button WidthRequest="50" TextColor="#8aaadb" BackgroundColor="Transparent" x:Name="changePassword" Clicked="EditPassword" Text="Edit"/>
+                <Button WidthRequest="70" TextColor="#8aaadb" BackgroundColor="Transparent" x:Name="passwordSubmit" Clicked="UpdatePassword" Text="Submit"/>
+                <Button WidthRequest="70" TextColor="#8aaadb" x:Name="passwordCancel" Clicked="CancelPassword" Text="Cancel"/></StackLayout>
+            
+            <Entry x:Name="passwordField"/>
+            <Button BackgroundColor="Transparent" Text="Go Back" FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" Clicked="GoBack"/>
+        </StackLayout>
+            <Frame x:Name="noticeWindow" HorizontalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" Padding="10" BackgroundColor="White">
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"  BackgroundColor="#d1e1fc" HorizontalOptions="StartAndExpand" Padding="15">
+                <Label FontFamily="{StaticResource TypewriterFont}" x:Name="statusLabel" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" VerticalOptions="End"/>
+                <Button BackgroundColor="Transparent" Clicked="CloseWindow" Text="OK" FontSize="Medium"/>
+            </StackLayout>
+            </Frame>
+            
+            <!--
+            <Frame x:Name="noticeFrame" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Padding="3" BackgroundColor="White">
+           
+            <StackLayout x:Name="noticeWindow" BackgroundColor="#d1e1fc" Padding="15">
+        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
+                <Button BackgroundColor="Transparent" x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
+           </StackLayout>
+                </Frame> -->
+            </RelativeLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

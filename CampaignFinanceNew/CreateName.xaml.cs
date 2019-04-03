@@ -63,10 +63,12 @@ namespace CampaignFinanceNew
             }
         }
 
-        public async void ChangeWindows(Button thing, EventArgs e)
+        public async void ChangeWindows(object thing, EventArgs e)
         {
+            Button current = (Button)thing;
+
             bool moveOn=true;
-            if(thing.ClassId=="Back")
+            if(current.ClassId=="Back")
             {
                 await Navigation.PushAsync(new MainPage());
             }

@@ -4,7 +4,7 @@
         <ResourceDictionary>
             <OnPlatform x:TypeArguments="x:String" x:Key="TypewriterFont">
                 <On Platform="iOS" Value="AmericanTypewriter"/>
-                 <On Platform="Android" Value="American_Typewriter_Regular.ttf#American Typewriter"/>
+                 <On Platform="Android" Value="American_Typewriter_Regular.ttf#AmericanTypewriter"/>
             </OnPlatform>
              <OnPlatform x:TypeArguments="x:String" x:Key="DroidFont">
                 <On Platform="iOS" Value="DroidSans"/>

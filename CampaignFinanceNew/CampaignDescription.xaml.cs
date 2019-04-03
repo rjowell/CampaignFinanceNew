@@ -25,9 +25,14 @@ namespace CampaignFinanceNew
 
         WebClient newClient = new WebClient();
 
-        public void ProcessButton(Button button, EventArgs e)
+       
+
+        public void ProcessButton(object button, EventArgs e)
         {
-            if (button.Text == "Cancel")
+            Button currentButton = (Button)button;
+
+
+            if (currentButton.Text == "Cancel")
             {
                 Navigation.PushAsync(new CandidateDashboard());
             }

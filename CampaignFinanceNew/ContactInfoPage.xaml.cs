@@ -95,8 +95,10 @@ namespace CampaignFinanceNew
 
        
 
-        public async void ProcessButton(Button sender, EventArgs e)
+        public async void ProcessButton(object sender, EventArgs e)
         {
+
+            Button current = (Button)sender;
 
             bool moveOn=true;
 
@@ -140,7 +142,7 @@ namespace CampaignFinanceNew
             App.newUser.contactPerson = contactPersonEntry.Text;
 
 
-            if(sender.ClassId=="Back")
+            if(current.ClassId=="Back")
             {
 
             
@@ -160,7 +162,16 @@ namespace CampaignFinanceNew
                 if (moveOn == true)
                 {
 
-                    await Navigation.PushAsync(new PaymentPage());
+                    if(App.newUser.isSupporter==true)
+                    {
+                        await Navigation.PushAsync(new OccupationPage());
+                    }
+                    else
+                    {
+                        await Navigation.PushAsync(new PaymentPage());
+                    }
+
+
                 }
             }
 

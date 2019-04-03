@@ -100,6 +100,8 @@ namespace CampaignFinanceNew
             {
                 contactPersonEntry.Text = App.currentUser.contactPerson;
                 contactPersonEntry.IsEnabled = false;
+                contactPersonSubmit.IsVisible = false;
+                contactPersonCancel.IsVisible = false;
 
                 officePicker.ItemsSource = App.offices;
                 officePicker.IsEnabled = false;
@@ -147,6 +149,16 @@ namespace CampaignFinanceNew
 
         }
 
+        public void OpenUserInfo(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new UserPassUpdate());
+        }
+
+        public void OpenPaymentInfo(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CreditCardUpdate());
+        }
+
         public void ProcessEdit(Button editButton, Button cancelButton, Button submitButton,VisualElement entry, int condition)
         {
             if (condition == 0)
@@ -168,7 +180,7 @@ namespace CampaignFinanceNew
                 entry.IsEnabled = false;
                 submitButton.IsVisible = false;
                 editButton.IsVisible = true;
-                cancelButton.IsVisible = true;
+                cancelButton.IsVisible = false;
             }
 
         }
@@ -177,32 +189,39 @@ namespace CampaignFinanceNew
 
 
 
-        public void ProcessButton(Button sender, EventArgs e)
+        public void ProcessButton(object sender, EventArgs e)
         {
-            switch(sender.ClassId)
+            Button current = (Button)sender;
+
+            switch(current.ClassId)
             {
                 //FirstName
                 case "0":
-                    if(sender.StyleId=="firstNameEdit")
+                    if(current.StyleId=="firstNameEdit")
                     {
                         ProcessEdit(firstNameEdit, firstNameCancel, firstNameSubmit, firstNameEntry,0);
+                        Console.WriteLine("First Name 0");
 
                     }
-                    else if(sender.StyleId=="firstNameCancel")
+                    else if(current.StyleId=="firstNameCancel")
                     {
                         ProcessEdit(firstNameEdit, firstNameCancel, firstNameSubmit, firstNameEntry, 1);
 
                         firstNameEntry.Text = App.currentUser.firstName;
+                        Console.WriteLine("First Name 1");
                     }
                     else
                     {
 
+                        Console.WriteLine("First Name 2");
+
                         sendingParameters.Set("property", "FirstName");
                         sendingParameters.Set("value", firstNameEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                                                  
+                       client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.firstName = firstNameEntry.Text;
-
+                        Console.WriteLine("First Name 2A");
                         ProcessEdit(firstNameEdit, firstNameCancel, firstNameSubmit, firstNameEntry, 2);
                          
 
@@ -211,11 +230,11 @@ namespace CampaignFinanceNew
                     break;
                     //Last Name
                 case "1":
-                    if (sender.StyleId == "lastNameEdit")
+                    if (current.StyleId == "lastNameEdit")
                     {
                         ProcessEdit(lastNameEdit, lastNameCancel, lastNameSubmit, lastNameEntry, 0);
                     }
-                    else if (sender.StyleId == "lastNameCancel")
+                    else if (current.StyleId == "lastNameCancel")
                     {
                         ProcessEdit(lastNameEdit, lastNameCancel, lastNameSubmit, lastNameEntry, 1);
                         lastNameEntry.Text = App.currentUser.lastName;
@@ -226,7 +245,7 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "LastName");
                         sendingParameters.Set("value", lastNameEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.lastName = lastNameEntry.Text;
                         ProcessEdit(lastNameEdit, lastNameCancel, lastNameSubmit, lastNameEntry, 2);
                     }
@@ -234,11 +253,11 @@ namespace CampaignFinanceNew
                     break;
                     //Contact Person
                 case "2":
-                    if (sender.StyleId == "contactPersonEdit")
+                    if (current.StyleId == "contactPersonEdit")
                     {
                         ProcessEdit(contactPersonEdit, contactPersonCancel, contactPersonSubmit, contactPersonEntry, 0);
                     }
-                    else if (sender.StyleId == "contactPersonCancel")
+                    else if (current.StyleId == "contactPersonCancel")
                     {
                        
                         contactPersonEntry.Text = App.currentUser.contactPerson;
@@ -250,20 +269,20 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "ContactPerson");
                         sendingParameters.Set("value", contactPersonEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.contactPerson = contactPersonEntry.Text;
                         ProcessEdit(contactPersonEdit, contactPersonCancel, contactPersonSubmit, contactPersonEntry, 2);
                     }
                     break;
                     //Address
                 case "3":
-                    if (sender.StyleId == "addressEdit")
+                    if (current.StyleId == "addressEdit")
                     {
 
                         ProcessEdit(addressEdit, addressCancel, addressSubmit, addressEntry, 0);
 
                     }
-                    else if (sender.StyleId == "addressCancel")
+                    else if (current.StyleId == "addressCancel")
                     {
 
                         addressEntry.Text = App.currentUser.mailingAddress;
@@ -275,18 +294,18 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "MailingAddress");
                         sendingParameters.Set("value", addressEntry.Text);
                        
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.mailingAddress = addressEntry.Text;
                         ProcessEdit(addressEdit, addressCancel, addressSubmit, addressEntry, 2);
                     }
                     break;
                     //City
                 case "4":
-                    if (sender.StyleId == "cityEdit")
+                    if (current.StyleId == "cityEdit")
                     {
                         ProcessEdit(cityEdit, cityCancel, citySubmit, cityEntry, 0);
                     }
-                    else if (sender.StyleId == "cityCancel")
+                    else if (current.StyleId == "cityCancel")
                     {
 
                         cityEntry.Text = App.currentUser.city;
@@ -298,21 +317,21 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "City");
                         sendingParameters.Set("value", cityEntry.Text);
                        
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.city = cityEntry.Text;
                         ProcessEdit(cityEdit, cityCancel, citySubmit, cityEntry, 2);
                     }
                     break;
                     //mailingstate
                 case "5":
-                    if (sender.StyleId == "stateEdit")
+                    if (current.StyleId == "stateEdit")
                     {
 
                         ProcessEdit(stateEdit, stateCancel, stateSubmit, statePicker, 0);
 
                        
                     }
-                    else if (sender.StyleId == "stateCancel")
+                    else if (current.StyleId == "stateCancel")
                     {
 
                         statePicker.SelectedIndex = Array.IndexOf(App.stateAbbr, App.currentUser.mailState);
@@ -324,20 +343,20 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "State");
                         sendingParameters.Set("value", App.stateAbbr[statePicker.SelectedIndex]);
                        
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.mailState = App.states[statePicker.SelectedIndex];
                         ProcessEdit(stateEdit, stateCancel, stateSubmit, statePicker, 2);
                     }
                     break;
                     //zipcode
                 case "6":
-                    if (sender.StyleId == "zipCodeEdit")
+                    if (current.StyleId == "zipCodeEdit")
                     {
                         ProcessEdit(zipCodeEdit, zipCodeCancel, zipCodeSubmit, zipCodeEntry, 0);
 
 
                     }
-                    else if (sender.StyleId == "zipCodeCancel")
+                    else if (current.StyleId == "zipCodeCancel")
                     {
 
                         zipCodeEntry.Text = App.currentUser.zipCode;
@@ -349,19 +368,19 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "Zip");
                         sendingParameters.Set("value", zipCodeEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.zipCode = zipCodeEntry.Text;
                         ProcessEdit(zipCodeEdit, zipCodeCancel, zipCodeSubmit, zipCodeEntry, 2);
                     }
                     break;
                 case "7":
-                    if (sender.StyleId == "phoneEdit")
+                    if (current.StyleId == "phoneEdit")
                     {
                         ProcessEdit(phoneEdit, phoneCancel, phoneSubmit, phoneEntry, 0);
 
                   
                     }
-                    else if (sender.StyleId == "phoneCancel")
+                    else if (current.StyleId == "phoneCancel")
                     {
 
                         phoneEntry.Text = App.currentUser.phoneNumber;
@@ -373,19 +392,19 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "Phone");
                         sendingParameters.Set("value", phoneEntry.Text);
                        
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.phoneNumber = phoneEntry.Text;
                         ProcessEdit(phoneEdit, phoneCancel, phoneSubmit, phoneEntry, 2);
                     }
                     break;
                 case "8":
-                    if (sender.StyleId == "officeEdit")
+                    if (current.StyleId == "officeEdit")
                     {
 
                         ProcessEdit(officeEdit, officeCancel, officeSubmit, officePicker, 0);
 
                     }
-                    else if (sender.StyleId == "officeCancel")
+                    else if (current.StyleId == "officeCancel")
                     {
                         ProcessEdit(officeEdit, officeCancel, officeSubmit, officePicker, 1);
                         if (App.currentUser.office=="Republican")
@@ -416,20 +435,20 @@ namespace CampaignFinanceNew
                             sendingParameters.Set("value", App.offices[officePicker.SelectedIndex]);
                             App.currentUser.office = App.offices[officePicker.SelectedIndex];
                         }
-                       client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                       client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
 
                         ProcessEdit(officeEdit, officeCancel, officeSubmit, officePicker, 2); 
                     }
                     break;
                 case "9":
-                    if (sender.StyleId == "districtEdit")
+                    if (current.StyleId == "districtEdit")
                     {
 
                         ProcessEdit(districtEdit, districtCancel, districtSubmit, districtEntry, 0);
 
 
                     }
-                    else if (sender.StyleId == "districtCancel")
+                    else if (current.StyleId == "districtCancel")
                     {
 
                         districtEntry.Text = App.currentUser.district;
@@ -441,13 +460,13 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "District");
                         sendingParameters.Set("value", districtEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.district = districtEntry.Text;
                         ProcessEdit(districtEdit, districtCancel, districtSubmit, districtEntry, 2);
                     }
                     break;
                 case "10":
-                    if (sender.StyleId == "officeStateEdit")
+                    if (current.StyleId == "officeStateEdit")
                     {
 
                         ProcessEdit(officeStateEdit, officeStateCancel, officeStateSubmit, officeState, 0);
@@ -455,7 +474,7 @@ namespace CampaignFinanceNew
 
 
                     }
-                    else if (sender.StyleId == "officeStateCancel")
+                    else if (current.StyleId == "officeStateCancel")
                     {
 
                         officeState.SelectedIndex = Array.IndexOf(App.stateAbbr, App.currentUser.officeState);
@@ -468,14 +487,14 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "District");
                         sendingParameters.Set("value", App.stateAbbr[officeState.SelectedIndex]);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.officeState = App.stateAbbr[officeState.SelectedIndex];
                         ProcessEdit(officeStateEdit, officeStateCancel, officeStateSubmit, officeState, 2);
                     }
 
                     break;
                 case "11":
-                    if (sender.StyleId == "partyEdit")
+                    if (current.StyleId == "partyEdit")
                     {
 
                         ProcessEdit(partyEdit, partyCancel, partySubmit, partyPicker, 0);
@@ -483,7 +502,7 @@ namespace CampaignFinanceNew
 
 
                     }
-                    else if (sender.StyleId == "partyCancel")
+                    else if (current.StyleId == "partyCancel")
                     {
                         ProcessEdit(partyEdit, partyCancel, partySubmit, partyPicker, 1);
                         if (App.currentUser.party=="Republican")
@@ -525,13 +544,13 @@ namespace CampaignFinanceNew
                         }
 
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         ProcessEdit(partyEdit, partyCancel, partySubmit, partyPicker, 2);
                     }
 
                     break;
                 case "12":
-                    if (sender.StyleId == "websiteEdit")
+                    if (current.StyleId == "websiteEdit")
                     {
 
                         ProcessEdit(websiteEdit, websiteCancel, websiteSubmit, websiteEntry, 0);
@@ -539,7 +558,7 @@ namespace CampaignFinanceNew
 
 
                     }
-                    else if (sender.StyleId == "websiteCancel")
+                    else if (current.StyleId == "websiteCancel")
                     {
 
                         websiteEntry.Text = App.currentUser.website;
@@ -554,7 +573,7 @@ namespace CampaignFinanceNew
                         sendingParameters.Set("property", "Website");
                         sendingParameters.Set("value", websiteEntry.Text);
 
-                        client.UploadValues("http://www.cvxu.com/web_service/updateUserInfo.php", sendingParameters);
+                        client.UploadValues("http://www.cvx4u.com/web_service/updateUserInfo.php", sendingParameters);
                         App.currentUser.website = websiteEntry.Text;
                         
                         ProcessEdit(websiteEdit, websiteCancel, websiteSubmit, websiteEntry, 2);

@@ -26,7 +26,7 @@ namespace CampaignFinanceNew
             entries.Add(passwordField);
             //paymentForm.HeightRequest= Xamarin.Forms.Application.Current.MainPage.Height;
 
-            noticeWindow.IsVisible = false;
+            noticeFrame.IsVisible = false;
            
 
             MessagingCenter.Subscribe<IFirebaseAuthenticator>(this,"Go",(sender) => {
@@ -42,7 +42,7 @@ namespace CampaignFinanceNew
             }
             else
             {
-                titleLabel.Text = "Login Info";
+                titleLabel.Text = "Verificaiton & Login Info";
             }
 
             foreach (Entry thisEntry in entries)
@@ -70,7 +70,7 @@ namespace CampaignFinanceNew
 
 
             StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
-            Console.WriteLine("final valu s"+App.newUser.isSupporter);
+            //Console.WriteLine("final valu s"+App.newUser.isSupporter);
             if (App.newUser.isSupporter==false)
             {
                 ccNumber.IsVisible = false;
@@ -85,38 +85,86 @@ namespace CampaignFinanceNew
                 expiryYear.IsVisible = false;
                 ccDisclamer.IsVisible = false;
             }
+            else
+            {
+                verificationURL.IsVisible = false;
+                verifyNotice.IsVisible = false;
+                verificationDescription.IsVisible = false;
+                verficationLabel.IsVisible = false;
+            }
             expiryMonth.ItemsSource = ccExpiryMonths;
             expiryYear.ItemsSource = ccExpiryYears;
+            Console.WriteLine("select " + expiryYear.SelectedIndex);
             ccDisclamer.Text = ccNotice;
         }
 
-        public async void GoBack(Button buttOff, EventArgs e)
+        public async void GoBack(object buttOff, EventArgs e)
         {
             await Navigation.PushAsync(new ContactInfoPage());
         }
 
-        public void CloseWindow(Button button, EventArgs e)
+        public void CloseWindow(object button, EventArgs e)
         {
-            noticeWindow.IsVisible = false;
+            noticeFrame.IsVisible = false;
         }
 
 
-        public void ProcessNewUser(Button sender, EventArgs e)
+        public void ProcessNewUser(object sender, EventArgs e)
         {
 
             bool moveOn = true;
-            noticeWindow.IsVisible = true;
-            noticeButton.IsVisible = false;
-            noticeText.Text = "Sending...";
+
+            if (App.newUser.isSupporter == true)
+            {
+                if (ccNumber.Text.Length != 16)
+                {
+                    ccNumLabel.TextColor = Color.Red;
+                    moveOn = false;
+                }
+
+                if (expiryMonth.SelectedIndex == -1)
+                {
+                    expMonthLabel.TextColor = Color.Red;
+                    moveOn = false;
+                }
+                if (expiryYear.SelectedIndex == -1)
+                {
+                    expYearLabel.TextColor = Color.Red;
+                    moveOn = false;
+                }
+                if (cvcEntry.Text.Length != 3)
+                {
+                    cvcLabel.TextColor = Color.Red;
+                    moveOn = false;
+                }
+            }
+            else
+            {
+                if (verificationURL.Text == "")
+                {
+                    verficationLabel.TextColor = Color.Red;
+                    moveOn = false;
+                }
+            }
+
+
+            if (moveOn == true)
+            {
 
 
 
-            var sendingParameters = new System.Collections.Specialized.NameValueCollection
+                noticeFrame.IsVisible = true;
+                noticeButton.IsVisible = false;
+                noticeText.Text = "Sending...";
+
+
+
+                var sendingParameters = new System.Collections.Specialized.NameValueCollection
                     {
                         { "firstName", App.newUser.firstName },
                         { "lastName", App.newUser.lastName },
                         { "eMail", eMailField.Text },
-                        { "isSupporter", App.newUser.isSupporter.ToString() },
+                        { "isSupporter", App.newUser.isSupporter.ToString().ToLower() },
                         { "contactPerson",App.newUser.contactPerson},
                         { "phone", App.newUser.phone },
                         { "website", App.newUser.website },
@@ -127,107 +175,70 @@ namespace CampaignFinanceNew
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
                         {"district",App.newUser.district},
-                        {"officeState",App.newUser.officeState}
+                        {"officeState",App.newUser.officeState},
+                        {"issues",App.newUser.issues},
+                        {"ideology",App.newUser.ideology},
+                        {"verificationLink",verificationURL.Text},
+                        {"jobTitle",App.newUser.jobTitle},
+                        {"employerName",App.newUser.employerName},
+                        {"employerCity",App.newUser.employerCity},
+                        {"employerState",App.newUser.employerState}
+
+
+
 
 
             };
 
 
-            if (App.newUser.isSupporter == true)
-            {
-                var tokenOptions = new Stripe.TokenCreateOptions()
+
+
+                if (App.newUser.isSupporter == true)
                 {
-                    Card = new Stripe.CreditCardOptions()
+                    var tokenOptions = new Stripe.TokenCreateOptions()
                     {
-                        Number = ccNumber.Text,
-                        ExpYear = long.Parse(ccExpiryYears[expiryYear.SelectedIndex]),
-                        ExpMonth = long.Parse(ccExpiryMonths[expiryMonth.SelectedIndex]),
-                        Cvc = cvcEntry.Text
+                        Card = new Stripe.CreditCardOptions()
+                        {
+                            Number = ccNumber.Text,
+                            ExpYear = long.Parse(ccExpiryYears[expiryYear.SelectedIndex]),
+                            ExpMonth = long.Parse(ccExpiryMonths[expiryMonth.SelectedIndex]),
+                            Cvc = cvcEntry.Text
+                        }
+                    };
+
+
+
+                    var tokenService = new Stripe.TokenService();
+
+                    try
+                    {
+                        Stripe.Token stripeToken = tokenService.Create(tokenOptions);
+                        Console.WriteLine(stripeToken.StripeResponse);
+                        sendingParameters.Set("stripeToken", stripeToken.Id);
+                        sendingParameters.Set("lastFour", ccNumber.Text.Substring(12, 4));
+                        sendingParameters.Set("ccExpiry", ccExpiryMonths[expiryMonth.SelectedIndex] + "/" + ccExpiryYears[expiryYear.SelectedIndex]);
                     }
-                };
+                    catch (StripeException stripeExcept)
+                    {
+                        Console.WriteLine("errros is " + stripeExcept.StripeError.Message + " " + stripeExcept.StripeError.Code + " " + stripeExcept.StripeError.ErrorDescription);
+                        noticeText.Text = ccWarning;
+                        noticeButton.IsVisible = true;
+                        moveOn = false;
+                        //errorWindow.IsVisible = true;
+                    }
 
 
 
-                var tokenService = new Stripe.TokenService();
-
-                try
-                {
-                    Stripe.Token stripeToken = tokenService.Create(tokenOptions);
-                    Console.WriteLine(stripeToken.StripeResponse);
-                    sendingParameters.Set("stripeToken", stripeToken.Id);
-                    sendingParameters.Set("lastFour", ccNumber.Text.Substring(12, 4));
                 }
-                catch(StripeException stripeExcept)
-                {
-                    Console.WriteLine("errros is " + stripeExcept.StripeError.Message+" "+stripeExcept.StripeError.Code+" "+stripeExcept.StripeError.ErrorDescription);
-                    noticeText.Text = ccWarning;
-                    noticeButton.IsVisible = true;
-                    moveOn = false;
-                    //errorWindow.IsVisible = true;
-                }
+
+
+
                
-
-
-            }
-
-
-
-
-
-          
-
-
-
-
-            foreach (var keys in sendingParameters.AllKeys)
-            {
-                Console.WriteLine(keys + " " + sendingParameters.Get(keys));
-                //Console.WriteLine(ccNumber.Text + " " + ccExpiryYears[expiryYear.SelectedIndex] + " " + ccExpiryMonths[expiryMonth.SelectedIndex] + " " + cvcEntry.Text);
-            }
-
-            //var CreditProcess=new CreditCardProcess("5466160369828262", "05", "21", "847");
-
-            //Console.WriteLine("jerkoff");
-            if (moveOn == true)
-            {
-                Console.WriteLine("hello rge");
-
-
-
-
                     DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
 
-               
-            }
-            //await DependencyService.Get<IFirebaseAuthenticator>().CreateNewUserAsync(eMailField.Text, passwordField.Text, sendingParameters);
 
-           
+            }
         }
     }
 }
 
-/*StripeConfiguration.SetApiKey("pk_live_HTl5JEEmjEbq772AbJ3N6Ahl");
-
-            var tokenOptions = new Stripe.TokenCreateOptions()
-            {
-                Card = new Stripe.CreditCardOptions()
-                {
-                    Number = cardNumber,
-                    ExpYear = long.Parse(cardExpYear),
-                    ExpMonth = long.Parse(cardExpMonth),
-                    Cvc = cardCVC
-                }
-            };
-
-            var tokenService = new Stripe.TokenService();
-            Stripe.Token stripeToken = tokenService.Create(tokenOptions);
-
-            var customerOptions = new CustomerCreateOptions();
-            var customerService = new CustomerService();
-            customerOptions.SourceToken = stripeToken.Id;
-            customerOptions.Email = App.newUser.eMailAddress;
-            Customer newCustomer = customerService.Create(customerOptions);
-            Console.WriteLine(newCustomer.Id);
-
-            //Console.WriteLine("Token is"+stripeToken.Id);
-*/

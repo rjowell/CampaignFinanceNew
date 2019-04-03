@@ -50,6 +50,10 @@ namespace CampaignFinanceNew.Droid
 
         NameValueCollection mainUserData;
         bool isCreateUser;
+        bool branch=false;
+        bool changeEMail;
+        int actionTaken;
+        //0 - Create User 
         string mainPassword;
         string mainEmail;
 
@@ -100,51 +104,176 @@ namespace CampaignFinanceNew.Droid
         {
             return Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid;
         }
+        bool password;
+        public void SendResetLink(string email)
+        {
+            password = true;
+            Firebase.Auth.FirebaseAuth.Instance.SendPasswordResetEmail(email).AddOnCompleteListener(this);
+        }
+
+       
+       
+     public async Task<bool> UploadUserData(string url, NameValueCollection input)
+        {
+            newClient.UploadValues(new Uri(url), input);
+            return true;
+
+        }
+
 
         public async void OnComplete(Android.Gms.Tasks.Task task)
         {
 
-            //Console.WriteLine("here you are bill");
-            bool moveOn;
+            Console.WriteLine("babby");
 
-
-
-            //
-            //Console.WriteLine("Number is"+Firebase.Auth.FirebaseAuth.Instance.Uid);
-
-            if (isCreateUser == true)
+            if (task.Exception != null)
             {
-                Console.WriteLine("this point coyote");
-                 try
-                 {
 
-                Console.WriteLine("here is " + task.Result);
-                    mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
-                    newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
-                    Console.WriteLine("this point - Android");
-                    Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
-                }
-            catch(Android.Gms.Tasks.RuntimeExecutionException fbe)
-            {
-                if(task.Exception.Message== "The email address is already in use by another account.")
+                Console.WriteLine("your problem isw" + task.Exception);
+
+                if (task.Exception.Message == "The email address is badly formatted.")
                 {
-                    //Console.WriteLine("you won");
+                    if (password == true)
+                    {
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 0);
+                    }
+                    else
+                    { 
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 0);
+                    }
+                }
+                if (task.Exception.Message == "There is no user record corresponding to this identifier. The user may have been deleted.")
+                {
+                    if (password == true)
+                    {
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
+                    }
+                    else
+                    {
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 1);
+                    }
+                }
+                if(task.Exception.Message=="The password is invalid or the user does not have a password.")
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "MainPageError", 2);
+                }
+                if (task.Exception.Message.Contains("The email address is already in use by another account"))
+                {
                     MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
                 }
 
+                //"There is no user record corresponding to this identifier. The user may have been deleted.";
+                //The email address is badly formatted.
+                //Console.WriteLine(task.Exception.Message);
+
+                //The email address is badly formatted.
+                //There is no user record corresponding to this identifier. The user may have been deleted.
             }
 
 
 
-            }
             else
             {
-                Console.WriteLine("point 2A " + Firebase.Auth.FirebaseAuth.Instance.Uid);
-                App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
-               
+
+                Console.WriteLine("babby-22");
+                if (branch == true)
+                {
+                    Console.WriteLine("modify");
+
+
+                    if (changeEMail == true)
+                    {
+
+
+                        if (task.Exception.Message != null)
+                        {
+                            if (task.Exception.Message == "The email address is badly formatted.")
+                            {
+                                MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 0);
+                            }
+                            if (task.Exception.Message == "The email address is already in use by another account.")
+                            {
+                                MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 1);
+                            }
+                        }
+                        else
+                        {
+                            NameValueCollection eMailData = new NameValueCollection();
+                            eMailData.Set("isSupporter", App.currentUser.isSupporter.ToString().ToLower());
+                            eMailData.Set("systemID", App.currentUser.systemID);
+                            eMailData.Set("eMail", newEmail);
+
+                            //newClient.UploadValuesAsync(new Uri("http://www.cvx4u.com/web_service/updateEmailPassword.php"), mainUserData);
+                           
+                           newClient.UploadValues("http://www.cvx4u.com/web_service/updateEmailPassword.php", eMailData);
+                            App.currentUser.eMail = newEmail;
+                            MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 2);
+                        }
+
+
+                        //The email address is badly formatted.
+                        //The email address is already in use by another account.
+                    }
+                    else
+                    {
+                        MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "AuthError", 3);
+                    }
+
+
+                }
+                else
+                {
+
+
+                    if (isCreateUser == true)
+                    {
+                        Console.WriteLine("this point coyote");
+                        try
+                        {
+
+                            Console.WriteLine("here is " + task.Result);
+                            mainUserData.Add("firebaseID", Firebase.Auth.FirebaseAuth.Instance.Uid);
+                            foreach(var keys in mainUserData.AllKeys)
+                            {
+                                Console.WriteLine(keys + "=" + mainUserData.Get(keys) + "&");
+                            }
+
+                            //newClient.UploadValuesAsync(new Uri("http://www.cvx4u.com/web_service/create_user.php"), mainUserData);
+                           var returnData=newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
+                            Console.WriteLine("Info is" + System.Text.Encoding.UTF8.GetString(returnData));
+                            //await newClient.UploadValues("http://www.cvx4u.com/web_service/create_user.php", mainUserData);
+                            Console.WriteLine("this point - Android");
+                            Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPassword(mainEmail, mainPassword);
+                            Console.WriteLine("ID is " + Firebase.Auth.FirebaseAuth.Instance.Uid);
+                        }
+                        catch (Android.Gms.Tasks.RuntimeExecutionException fbe)
+                        {
+                            if (task.Exception.Message == "The email address is already in use by another account.")
+                            {
+                                //Console.WriteLine("you won");
+                                MessagingCenter.Send<IFirebaseAuthenticator>(this, "Go");
+                            }
+
+                        }
+
+
+
+                    }
+                    else
+                    {
+                       
+                        App.currentUser.userFirebaseID = Firebase.Auth.FirebaseAuth.Instance.Uid;
+                       
+
+                    }
+
+                    await App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
+                    Console.WriteLine("hess piece");
+                    await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new CandidateDashboard());
+                }
             }
-            await App.currentUser.SetUserInfo(Firebase.Auth.FirebaseAuth.Instance.Uid);
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new CandidateDashboard());
+
+
         }
 
         public new void Dispose()
@@ -155,11 +284,33 @@ namespace CampaignFinanceNew.Droid
         public void Logout()
         {
             Firebase.Auth.FirebaseAuth.Instance.SignOut();
+            Console.WriteLine("Logout");
         }
 
-        public Task<string> CreateNewUserAsync(string email, string password, System.Collections.Specialized.NameValueCollection userData)
+        string newEmail;
+        public void UpdateEMail(string email)
         {
-            throw new NotImplementedException();
+            branch = true;
+            changeEMail = true;
+            newEmail = email;
+            try
+            {
+                Firebase.Auth.FirebaseAuth.Instance.CurrentUser.UpdateEmail(email).AddOnCompleteListener(this);
+            }
+            catch (Android.Gms.Tasks.RuntimeExecutionException fbe)
+            {
+                Console.WriteLine("error email is" + fbe.Message);
+            }
+
+            Console.WriteLine("Email worked");
+        }
+
+        public void UpdatePassword(string password)
+        {
+            branch = true;
+            changeEMail = false;
+            Firebase.Auth.FirebaseAuth.Instance.CurrentUser.UpdatePassword(password).AddOnCompleteListener(this);
+            Console.WriteLine("Password Worked");
         }
     }
 }

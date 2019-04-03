@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PositionsAndIssues">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="20,20,20,10">
+            <Label FontSize="25" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Positions &amp; Issues" HorizontalTextAlignment="Center"/>
+            
+            <Label FontFamily="{StaticResource TypewriterFont}" Margin="0,17,0,0" FontSize="14" HorizontalTextAlignment="Center" TextColor="White" Text="Adjust the slider to reflect your political leaning"/>
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
+                <Label FontSize="16" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Very&#13;Progressive"/>
+                <Label FontSize="16" FontFamily="{StaticResource TypewriterFont}" TextColor="White" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" Text="Very&#13;Conservative"/>
+                
+            </StackLayout>
+            <Slider Margin="0,0,0,20" HeightRequest="10" x:Name="ideologySlider" Minimum="0" Maximum="100" Value="50" MinimumTrackColor="#ff7777" MaximumTrackColor="White"/>
+            
+            <Label FontSize="25" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Issues" HorizontalTextAlignment="Center"/>
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="15" Text="Enter the top issues your campaign is focusing on, then select whether you support or oppose them. Maximum of 5"/>
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontAttributes="Italic" FontSize="13" Text="Examples: Gun Rights-Support, Income Equity-Support, Lower Taxes-Oppose"/>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Frame HorizontalOptions="FillAndExpand" Padding="2" BorderColor="White" BackgroundColor="Navy">
+                <Entry x:Name="issueEntry" HorizontalOptions="FillAndExpand">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                    </Entry.TextColor>
+                    
+                </Entry>
+                    </Frame>
+                <Button BackgroundColor="Transparent" TextColor="#c4daff" WidthRequest="80" x:Name="supportButton" Clicked="ButtonControl" Text="Support"/>
+                <Button BackgroundColor="Transparent"  TextColor="#c4daff" WidthRequest="80" Clicked="ButtonControl" x:Name="opposeButton" Text="Oppose"/>
+                <Button TextColor="#c4daff" Clicked="AddPosition" x:Name="addButton" BackgroundColor="Transparent" WidthRequest="35" FontSize="24" Text="+"/>
+            </StackLayout>
+           <Label x:Name="issueWarning" Text="Maximum Reached" TextColor="Red" FontSize="14" HorizontalOptions="Center"/>
+            <ListView HeightRequest="250" BackgroundColor="Navy" Margin="0,0,0,0" RowHeight="27" x:Name="positionDisplay">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                
+                                  <Label HorizontalOptions="Start" TextColor="White" Grid.Row="0" FontSize="17" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding issue}" x:Name="issueDescription"/>
+                                <Label TextColor="White" Grid.Row="0" Grid.Column="1" FontSize="17"  VerticalTextAlignment="Center" HorizontalOptions="End" Text="{Binding position}" x:Name="positionDescription"/>
+                                <Label Text="Delete" FontSize="14" VerticalTextAlignment="End" ClassId="{Binding issue}" TextColor="Red" x:Name="deleteLabel" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DeleteItem"/>
+                                    </Label.GestureRecognizers>    
+                                </Label>
+                                
+                            </Grid>
+                            
+                            
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                    
+                </ListView>
+            
+            <StackLayout WidthRequest="250" HorizontalOptions="Center" Orientation="Horizontal">
+                <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/>
+                <Button HorizontalOptions="EndAndExpand" FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Next" Clicked="AddToString"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

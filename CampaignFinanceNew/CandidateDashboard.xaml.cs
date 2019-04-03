@@ -17,20 +17,37 @@ namespace CampaignFinanceNew
 
         public DataTemplate CampaignTemplate { get; set; }
         public DataTemplate CrowdfundTemplate { get; set; }
+        public DataTemplate PendingTemplate { get; set; }
+        public DataTemplate NoCampaignTemplate { get; set; }
+        public DataTemplate WelcomeTemplate { get; set; }
 
-        
+        public int status { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            Console.WriteLine("this new point here "+((Campaign)item).campaignName);
-            if(((Campaign)item).campaignType==0)
+           
+
+            if (status==0)
             {
-                Console.WriteLine("point AA");
+                return PendingTemplate;
+            }
+            else if(status==1)
+            {
+                return NoCampaignTemplate;
+            }
+            else if(status==2)
+            {
+                return WelcomeTemplate;
+            }
+
+            else if (((Campaign)item).startDate=="")
+            {
+                //Console.WriteLine("point AA");
                 return CampaignTemplate;
             }
             else
             {
-                Console.WriteLine("point BB");
+                //Console.WriteLine("point BB");
                 return CrowdfundTemplate;
             }
         }
@@ -53,10 +70,14 @@ namespace CampaignFinanceNew
         public String office { get; set; }
         public String setEditButton { get; set; }
         public String setInfoButton { get; set; }
+        public String isSupporter { get; set; }
+        public String donorNoticeText { get; set; }
+        public String lastDonationDate { get; set; }
+        public String lastDonationText { get; set; }
+        public bool isContribute { get; set; }
 
 
-
-        public Campaign(int type, string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
+        public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
             Console.WriteLine("poop");
             campaignName = campName;
@@ -64,40 +85,116 @@ namespace CampaignFinanceNew
             candidateDisplayName = firstName + " " + lastName + "|Running For: " + office + " " + state + "-" + district;
             Console.WriteLine("poop2");
             startDate = start;
+            Console.WriteLine("here russ");
+            lastDonationDate = "";
+            lastDonationText = "";
             Console.WriteLine("poop3");
-            campaignType = type;
+            //campaignType = type;
             Console.WriteLine("poop4");
+            isSupporter = App.currentUser.isSupporter.ToString().ToLower();
             endDate = end;
+            if(startDate != "")
+            {
+                Console.WriteLine("crowedund");
+                progress = campProgress;
+                progressDisplay = progress + " Raised of $" + goal;
+                progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal), 2);
+            }
             Console.WriteLine("poop5");
-            progress = campProgress;
+
             Console.WriteLine("poop6");
-            progressDisplay = progress + "/" + goal;
-            Console.WriteLine("poop7");
-            progressFactor = Math.Round(Convert.ToDouble(campProgress) / Convert.ToDouble(goal),2);
-            Console.WriteLine("poop8");
+
+           Console.WriteLine("poop7 "+goal+"hh");
+           
+
+           Console.WriteLine("poop8");
             campaignDescription = campDescription;
             Console.WriteLine("poop9");
             campaignID = iD;
-            Console.WriteLine("poop10");
+            Console.WriteLine("poop10 "+start+"end date");
+
+
+
+
             fundGoal = goal;
-            Console.WriteLine("poop11 "+App.currentUser.campaignsSupported.Count);
+            //Console.WriteLine("status is" + App.currentUser.isSupporter.ToString().ToLower());
             if (App.currentUser.isSupporter==true)
             {
                 setEditButton = "Donate";
+                Console.WriteLine("poop11 " + App.currentUser.campaignsSupported.Count);
                 setInfoButton = "More Info";
                 Console.WriteLine("poop12");
+                isContribute = false;
+                Console.WriteLine("popp 23");
                 foreach (CampaignInfo current in App.currentUser.campaignsSupported)
                 {
-                    Console.WriteLine("poop13");
+                    Console.WriteLine("popp 25");
                     if (current.campaignId == campaignID)
                     {
-                        setEditButton = "Change";
+                        isContribute = true;
+                        Console.WriteLine("popp 29");
+                        Console.WriteLine(DateTime.Parse(current.dateGiven));
+                        Console.WriteLine("dooby");
+                        //Console.WriteLine(DateTime.Parse(lastDonationDate));
+
+                        if(lastDonationDate == "")
+                        {
+                            Console.WriteLine("popp 31A");
+                            if (start == "")
+                            {
+                                lastDonationDate = current.dateGiven;
+                                lastDonationText= "Your most recent donation was on " + current.dateGiven;
+                                Console.WriteLine("popp 33A");
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("popp 29AA--");
+                                lastDonationDate =  current.dateGiven;
+                                lastDonationText= "You donated to this campaign on " + current.dateGiven;
+                                setEditButton = "Change";
+                                Console.WriteLine("popp 35AA");
+
+                            }
+                        }
+
+                      
+                        else
+                        {
+
+                            Console.WriteLine("cheezburgerAA "+lastDonationDate);
+                            if (DateTime.Parse(current.dateGiven).CompareTo(DateTime.Parse(lastDonationDate)) >= 0)
+                            {
+                                Console.WriteLine("popp 31");
+                                if (start == "")
+                                {
+                                    lastDonationDate = current.dateGiven;
+                                    lastDonationText = "Your most recent donation was on " + current.dateGiven;
+                                    Console.WriteLine("popp 33");
+
+                                }
+                                else
+                                {
+                                    lastDonationDate = current.dateGiven;
+                                    lastDonationText = "You donated to this campaign on " + current.dateGiven;
+                                    setEditButton = "Change";
+                                    Console.WriteLine("popp 35");
+
+                                }
+                            }
+                           
+                        }
+
+
+
+                        //
                     }
                 }
             }
             else
             {
                 setEditButton = "Edit";
+                setInfoButton = "";
 
             }
         }
@@ -115,36 +212,12 @@ namespace CampaignFinanceNew
         NameValueCollection donationData=new NameValueCollection();
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
 
-
-      
-
-
-
-
-
-
-        public CandidateDashboard()
+        private void RefreshFieldData()
         {
-
-            //Console.WriteLine("helo georg "+App.currentUser.isSupporter);
-
-
-
-            //GetLocationInformation();
-          
-
-            Console.WriteLine("this name is" + App.currentUser.firstName);
-
-            WebClient thisClient = new WebClient();
-
-
-            //var userJsonData=thisClient.DownloadString("http://www.cvx4u.com/web_service/getUserInfo.php?firebaseID=" + App.currentUser.userFirebaseID);
-            Console.WriteLine("point B");
-            //Console.WriteLine("idents iss"+App.currentUser.userFirebaseID);
-            //App.currentUser.systemID = JObject.Parse(userJsonData).GetValue("CandidateId").ToString();
-            Console.WriteLine("point C");
+            fieldData.Clear();
             String rawData;
-            if(App.currentUser.isSupporter==true)
+            Console.WriteLine("test point1");
+            if (App.currentUser.isSupporter == true)
             {
                 rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=0");
             }
@@ -152,60 +225,136 @@ namespace CampaignFinanceNew
             {
                 rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=" + App.currentUser.systemID);
             }
-           
-            Console.WriteLine("point D "+ App.currentUser.systemID);
-            fieldData = new List<Campaign>();
-            Console.WriteLine("Data is " + rawData + " End");
-            JArray array = JArray.Parse(rawData);
-            Console.WriteLine("point E");
-
-            //thisLabel.Text = thisThing.ToString();
-            //public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
-
-            //Console.WriteLine(array);
-            foreach (JObject thisThing in array)
+            Console.WriteLine("test poin2");
+            array = JArray.Parse(rawData);
+            Console.WriteLine("test point3");
+            /*if (App.currentUser.userApproved == "0")
             {
-                Console.WriteLine("point F "+thisThing.GetValue("CampaignType"));
-                Campaign thisCampaign = new Campaign(Convert.ToInt32(thisThing.GetValue("CampaignType")),thisThing.GetValue("CampaignID").ToString(),thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(),thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(),thisThing.GetValue("Goal").ToString());
+                fieldData.Add(new Campaign("", "", "", "", "", "", "", "", "", "", "",""));
+            }
+            else
+            {*/
+                foreach (JObject thisThing in array)
+                {
+                    Console.WriteLine("test poin4");
+                    Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(), thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(), thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(), thisThing.GetValue("Goal").ToString());
+                    Console.WriteLine("test point5");
+                    thisCampaign.posIndex = (fieldData.Count).ToString();
 
-                //Data is [{"CampaignName":"Help us win in 2020!","CampaignType":"1","CampaignDescription":"We need to win in 2020!","Goal":"1235556","StartDate":"1\/1\/1900","EndDate":"1\/1\/1900","FirstName":"Lucy","LastName":"Brown","CandidateOffice":null,"State":"CA","District":null,"AmountRaised":0,"CampaignID":"C1001_1"},{"CampaignName":"Help us beat the democrats","CampaignType":"0","CampaignDescription":"this thing is great","Goal":"100000","StartDate":"1\/1\/1900","EndDate":"1\/1\/1900","FirstName":"Lucy","LastName":"Brown","CandidateOffice":null,"State":"CA","District":null,"AmountRaised":0,"CampaignID":"C1001_2"}] End
+                    fieldData.Add(thisCampaign);
+                }
+            //}
+        }
 
 
-                Console.WriteLine("point G");
-                thisCampaign.posIndex = (fieldData.Count).ToString();
-                Console.WriteLine("Current count is " + thisCampaign.posIndex);
-                fieldData.Add(thisCampaign);
-                Console.WriteLine("point H");
 
+        protected override void OnAppearing()
+        {
 
+            titleLabel.Text = "Welcome," + App.currentUser.firstName;
+            menuBlock.IsVisible = false;
+            RefreshFieldData();
+            campaignDisplay.ItemsSource = null;
+
+            List<String> singleList = new List<string>();
+            singleList.Add("");
+
+            //Console.WriteLine("football player");
+            if(App.currentUser.userApproved=="0")
+            {
+                campaignCellPicker.status = 0;
+                campaignDisplay.ItemsSource = singleList;
+            }
+            else if(fieldData.Count==0)
+            {
+                if(App.currentUser.isSupporter==true)
+                {
+                    campaignCellPicker.status = 1;
+                    campaignDisplay.ItemsSource = singleList;
+                }
+                else
+                {
+                    campaignCellPicker.status = 2;
+                    campaignDisplay.ItemsSource = singleList;
+                }
+            }
+            else
+            {
+
+                campaignDisplay.ItemsSource = fieldData;
             }
 
-            foreach(Campaign theese in fieldData)
-            {
-                Console.WriteLine(theese.campaignID + " " + theese.campaignName + " " + theese.candidateDisplayName + " " + theese.progressFactor);
-            }
 
+        }
 
+        DonationWindow currentWindow;
 
+        JArray array;
+
+        WebClient thisClient = new WebClient();
+
+        CampaignCellSelector campaignCellPicker;
+
+        public CandidateDashboard()
+        {
 
 
             InitializeComponent();
-            confirmTo.IsVisible = false;
 
-            confirmLabel.IsVisible = false;
-
-            confirmAmount.IsVisible = false;
-
-            confirmCampaign.IsVisible = false;
-            donateWindow.IsVisible = false;
-            titleLabel.Text = "Welcome," + App.currentUser.firstName;
-            if (App.currentUser.isSupporter==false)
+            if (App.currentUser.isSupporter==true || App.currentUser.userApproved=="0")
             {
-                createCampaignButton.IsVisible = true;
+                Console.WriteLine("step bobby-223");
+                createCampaignButton.IsVisible = false;
+            }
+
+
+
+            refreshLocButton.Clicked += async (sender, e) => {
+
+                await App.currentLocation.GetLocationInformation();
+
                
 
-            }
+
+                NameValueCollection nvc = new NameValueCollection();
+
+                String locationInfo = App.currentLocation.rawData+"    DCWard: "+App.currentLocation.dcWard+" DCANC: "+App.currentLocation.dcAnc+"  State: " + App.currentLocation.state + " County: " + App.currentLocation.countyType + " " + App.currentLocation.countyName + " City: " + App.currentLocation.cityName +
+                 " City Council: " + App.currentLocation.cityCouncilDistrict + " County Council: " + App.currentLocation.countyCouncilDistrict + " State Senate: " + App.currentLocation.stateSenateDistrict + " State House: " + App.currentLocation.stateHouseDistrict;
+
+
+                nvc.Set("locationData", locationInfo);
+
+
+                client.UploadValues("http://www.cvx4u.com/web_service/locationTest.php", nvc);
            
+            
+             
+               };
+
+                        campaignCellPicker = new CampaignCellSelector();
+
+
+
+
+
+            fieldData = new List<Campaign>();
+
+
+            RefreshFieldData();
+
+
+
+
+
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
+
+
+            donateWindow.IsVisible = false;
+            titleLabel.Text = "Welcome," + App.currentUser.firstName;
+           
+
 
             menuBlock.IsVisible = false;
            
@@ -214,17 +363,28 @@ namespace CampaignFinanceNew
             menuButton.Source = ImageSource.FromResource("CampaignFinanceNew.menusandwich.png");
             searchButton.Source= ImageSource.FromResource("CampaignFinanceNew.searchglass.png");
             //menuButton.Image = (Xamarin.Forms.FileImageSource)ImageSource.FromResource("CampaignFinanceNew.MenuSandwich.png");      
-            CampaignCellSelector  campaignCellPicker = new CampaignCellSelector();
-            Console.WriteLine("this is the song");
-            campaignDisplay.ItemsSource = fieldData;
-            Console.WriteLine("this is the song-1");
-            /*campaignDisplay.ItemTemplate = new CampaignCellSelector {
 
-                CampaignTemplate = campaignTemplate, 
-                CrowdfundTemplate = crowdfundTemplate
-            
-            };*/
-            Console.WriteLine("this is the song-2");
+
+            Console.WriteLine("look here doof");
+            Console.WriteLine(App.currentUser.userApproved == "0");
+            campaignDisplay.ItemsSource = null;
+            if(App.currentUser.userApproved=="0")
+            {
+                Console.WriteLine("football player");
+                List<String> defaltList = new List<String>();
+                defaltList.Add("");
+                //campaignDisplay.ItemsSource = defaltList;
+            }
+            else
+            {
+                //campaignDisplay.ItemsSource = fieldData;
+            }
+
+
+
+
+
+
 
 
 
@@ -232,46 +392,81 @@ namespace CampaignFinanceNew
 
         }
         String currentSelectedCampaign;
-        private void ShowDonateWindow(Button sender, EventArgs e)
+        String currentSelectedCampaignID;
+        bool isChangeDonation;
+        private void ShowDonateWindow(object sender, EventArgs e)
         {
-            currentSelectedCampaign=sender.Parent.Parent.ClassId;
-            donateWindow.IsVisible = true;
-            donateConfirm.IsVisible = false;
+            Button current = (Button)sender;
 
-            donateSubmit.ClassId = sender.ClassId;
-            //currentSelectedCampaign = sender.ClassId;
+            Console.WriteLine("button text i "+ current.Parent.Parent.ClassId);
+            currentSelectedCampaign = current.Parent.Parent.AutomationId.ToString();
+            Console.WriteLine("Campaign is" + currentSelectedCampaign);
+            if (current.Text=="Edit")
+            {
+                Navigation.PushAsync(new CreateEditCampaign(current.Parent.Parent.ClassId));
+            }
+            else if(current.Text=="Change")
+            {
+                Console.WriteLine("change123");
+                foreach (CampaignInfo currentThing in App.currentUser.campaignsSupported)
+                {
+                    Console.WriteLine(currentThing.campaignId + " " + currentThing.dateGiven);
+                }
+                //Console.WriteLine("Id is "+sender.Parent.Parent.ClassId);
+                currentWindow = new DonationWindow(donateWindow, current.Parent.Parent.ClassId, current.Parent.Parent.AutomationId, true, App.currentUser.campaignsSupported.Find(x => x.campaignId == current.Parent.Parent.ClassId).amount);
+                currentWindow.openWindow();
+
+
+            }
+            else
+            {
+                Console.WriteLine("nochange");
+                currentWindow = new DonationWindow(donateWindow, current.Parent.Parent.ClassId, current.Parent.Parent.AutomationId, false, "");
+                currentWindow.openWindow();
+
+
+            }
+
+
+
         }
 
 
         double confirmDonationAmount;
-        private void ConfirmDonation(Button sender, EventArgs e)
+        private void ConfirmDonation(object sender, EventArgs e)
         {
 
-            Console.WriteLine("Confirmer");
-            donateSubmit.IsVisible = false;
-            confirmDonationAmount = Convert.ToDouble(donationField.Text);
-            donateConfirm.IsVisible = true;
+            currentWindow.confirmDonation();
 
-                confirmAmount.Text = "$ " + confirmDonationAmount;
-           
-            confirmCampaign.Text = currentSelectedCampaign;
-                donateQuery.IsVisible = false;
-                
-                donationField.IsVisible = false;
-                confirmTo.IsVisible = true;
-                confirmLabel.IsVisible = true;
 
-                confirmAmount.IsVisible = true;
-                confirmCampaign.IsVisible = true;
            
 
 
         }
 
-        private void CloseWindow(Button sender, EventArgs e)
+        private async void OpenEditWindow(object sender, EventArgs e)
         {
-            donateWindow.IsVisible = false;
-            Console.WriteLine("Campaing ins "+sender.ClassId);
+            Button current = (Button)sender;
+
+            if(current.Text=="More Info")
+            {
+                await Navigation.PushAsync(new CampaignDetails(current.ClassId));
+            }
+            else
+            {
+                await Navigation.PushAsync(new CreateEditCampaign(current.ClassId));
+            }
+            //Console.WriteLine("Camp no is " + sender.ClassId);
+            //Navigation.PushAsync(new CreateCampaign(sender.ClassId));
+        }
+
+        private void CloseWindow(object sender, EventArgs e)
+        {
+
+            currentWindow.closeWindow();
+
+
+
         }
 
 
@@ -279,37 +474,32 @@ namespace CampaignFinanceNew
        
 
 
-        private void ProcessDonation(Button sender, EventArgs e)
+        private void ProcessDonation(object sender, EventArgs e)
         {
 
-
-            Console.WriteLine("processor");
-
+            currentWindow.ProcessDonation();
 
 
-                donationData.Add("supporterID", App.currentUser.systemID);
-                donationData.Add("donorAmount", confirmDonationAmount.ToString());
-                donationData.Add("campaignID", donateSubmit.ClassId);
+            RefreshFieldData();
 
-
-            Byte[] newData = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData);
-            Console.WriteLine(System.Text.Encoding.UTF8.GetString(newData));
-                //App.currentUser.ProcessCampDonations(client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString());
-                //App.currentUser.campaignsSupported = client.UploadValues(new Uri("http://www.cvx4u.com/web_service/processDonation.php"), donationData).ToString().Split(',');
-                campaignDisplay.ItemsSource = null;
+            campaignDisplay.ItemsSource = null;
                 campaignDisplay.ItemsSource = fieldData;
 
 
 
+
+
+
         }
 
-        public void SignOutUser(Button sender, EventArgs e)
+        public void SignOutUser(object sender, EventArgs e)
         {
             DependencyService.Get<IFirebaseAuthenticator>().Logout();
+            Navigation.PushAsync(new MainPage());
 
         }
        
-        private void ShowMenu(Button sender, EventArgs e)
+        private void ShowMenu(object sender, EventArgs e)
         {
             if(menuBlock.IsVisible==true)
             {
@@ -321,21 +511,23 @@ namespace CampaignFinanceNew
             }
         }
 
-        private void ShowUserInfo(Button sender, EventArgs e)
+        private void ShowUserInfo(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new UserInfo());
+            Navigation.PushAsync(new EditUserInfo());
         }
 
-        private void OpenCreateCampaign(Button sender, EventArgs e)
+        private void OpenCreateCampaign(object sender, EventArgs e)
         {
 
-            if (sender.ClassId == null)
+            Button current = (Button)sender;
+
+            if (current.ClassId == null)
             {
-                //Navigation.PushAsync(new CreateCampaign(null));
+                Navigation.PushAsync(new CreateEditCampaign(""));
             }
             else
             {
-                //Navigation.PushAsync(new CreateCampaign(fieldData[Convert.ToInt32(sender.ClassId)]));
+                Navigation.PushAsync(new CreateEditCampaign(current.ClassId));
             }
 
             //Console.WriteLine("The is is "+ sender.ClassId);

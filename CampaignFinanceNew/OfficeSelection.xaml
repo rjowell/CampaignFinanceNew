@@ -19,7 +19,7 @@
             <OnPlatform x:TypeArguments="Color" Android="#c4d5ef" iOS="Black"/>
             </Picker.TextColor>
                 </Picker>
-             <Label FontFamily="{StaticResource TypewriterFont}" x:Name="otherOfficeLabel" HorizontalOptions="Center" Text="Enter Office"/>
+             <Label FontFamily="{StaticResource TypewriterFont}" x:Name="otherOfficeLabel" TextColor="White" HorizontalOptions="Center" Text="Enter Office"/>
             <Entry HorizontalOptions="Center" WidthRequest="250" x:Name="otherOfficeField">
                  <Entry.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>

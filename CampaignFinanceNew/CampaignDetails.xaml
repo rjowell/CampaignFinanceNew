@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="#004b6e" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CampaignDetails">
+    <ContentPage.Content>
+    <RelativeLayout FlowDirection="MatchParent">
+       
+        <Frame CornerRadius="5" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}" Padding="3" BackgroundColor="#d7e3f7">
+        <StackLayout HorizontalOptions="FillAndExpand" Margin="3,2,2,2" Padding="1,1,1,1" Spacing="2">
+            <Label TextColor="Navy" FontSize="26" x:Name="campiagnTitle" Text="Campaign Title"/>
+            <Label FontSize="19" TextColor="#2b2f35" x:Name="campaignDescription" Text="Description text here. It's really awesome don't you know to read this shit all day longgg "/>
+            <Label Text=" "/>
+                <Label TextColor="#424d5e" FontAttributes="Italic" x:Name="candidateName" Text="Candidate Jowell"/>
+            <Label TextColor="#424d5e" FontAttributes="Italic" x:Name="candidateOffice" Text="Running for"/>
+            <Label TextColor="#424d5e" FontAttributes="Italic" x:Name="officeDistrict" Text="fgdfgfdg"/>
+        <Button x:Name="donateButton" Clicked="ShowDonateWindow" Text="Donate" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" TextColor="#093f96"/>
+            <Label FontAttributes="Italic" FontSize="13" x:Name="campaignDonorNotice" IsVisible="{Binding isContribute}" Text="{Binding lastDonationText}"/>
+                 
+                </StackLayout>
+                   
+            </Frame>
+        
+       
+             <Frame x:Name="donateWindow" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=0,Constant=50}"   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.7}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Padding="5" BackgroundColor="Navy">
+           
+            <StackLayout x:Name="noticeWindow" BackgroundColor="#d1e1fc" Padding="3">
+        <Label TextColor="Navy" FontSize="17" HorizontalTextAlignment="Center" x:Name="confirmLabel" Text="Are you sure you want to donate"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="$"/>
+                    <Label TextColor="Navy" FontSize="20" HorizontalTextAlignment="Center" x:Name="confirmAmount" Text=""/></StackLayout>
+                    <Label TextColor="Navy" FontSize="17" HorizontalTextAlignment="Center" x:Name="confirmTo" Text="To"/>
+                    <Label TextColor="Navy" FontSize="20" HorizontalTextAlignment="Center" x:Name="confirmCampaign" Text=""/>
+                   <Label TextColor="Navy" FontSize="20" HorizontalTextAlignment="Center" x:Name="thankYouText" Text=""/>
+                   
+                    <Label x:Name="donateQuery" TextColor="Navy" HorizontalTextAlignment="Center" Text="How much would you like to donate to this campaign?" FontSize="Medium"/>
+                 <Label x:Name="numberIncorrect" FontSize="15" TextColor="Red" Text="Amount Invalid"/>
+                        
+                    <StackLayout x:Name="entryLayout" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label x:Name="dollarSign" VerticalOptions="Center" Text="$" FontSize="Large" HorizontalOptions="Center"/>
+                    <Entry HorizontalTextAlignment="Start" HorizontalOptions="Center" Keyboard="Numeric" x:Name="donationField" MaxLength="5" WidthRequest="70">
+                         <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="Black" iOS="Black"/>
+            </Entry.TextColor>
+                </Entry>
+                        </StackLayout> 
+                    <StackLayout x:Name="buttonLayout" Orientation="Horizontal" HorizontalOptions="Center">
+                          <Button FontSize="Medium" x:Name="donateSubmit" BackgroundColor="Transparent" TextColor="Navy" Clicked="ConfirmDonation" Text="Submit" HorizontalOptions="Start"  />
+                         <Button FontSize="Medium" x:Name="donateConfirm" BackgroundColor="Transparent" TextColor="Navy" Clicked="ProcessDonation" Text="Confirm" HorizontalOptions="Start"  />
+                           
+                        <Button FontSize="Medium" x:Name="donateCancel" BackgroundColor="Transparent" TextColor="Navy" Clicked="HideDonateWindow" Text="Cancel" HorizontalOptions="Start"  />
+                         
+                        <Button FontSize="Medium" x:Name="thankYouButton" BackgroundColor="Transparent" TextColor="Navy" Clicked="HideDonateWindow" Text="OK" HorizontalOptions="Start"  />
+                         
+                    </StackLayout>
+                </StackLayout>
+                </Frame>
+            
+             </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+
+            

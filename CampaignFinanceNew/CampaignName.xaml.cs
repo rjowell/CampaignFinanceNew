@@ -13,9 +13,11 @@ namespace CampaignFinanceNew
             campaignTitle.Text = App.newCampaign.campaignName;
         }
 
-        private void ProcessButton(Button sender, EventArgs e)
+        private void ProcessButton(object sender, EventArgs e)
         {
-            if(sender.Text=="Cancel")
+            Button currentButton = (Button)sender;
+
+            if(currentButton.Text=="Cancel")
             {
                 App.newCampaign = new CurrentCampaign();
                 Navigation.PushAsync(new CandidateDashboard());

@@ -51,6 +51,14 @@
                 </Entry>
             </Grid>
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontAttributes="Italic" HorizontalOptions="Center" FontSize="14" LineHeight=".9"  x:Name="ccDisclamer" Text=""/>
+            
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="Candidate Verification" x:Name="verficationLabel"/>
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" FontSize="Small" x:Name="verificationDescription" TextColor="#c5d8f7" Text="Please enter the URL of your jurisdiciton's official eleciton website (ex. Secretary of State, Clerk, etc.) so that we can verify your candidacy." />
+             <Label x:Name="verifyNotice" TextColor="#c5d8f7" HorizontalTextAlignment="Center" Text="NOTICE: This site MUST be from an official government domain"/>
+            <Entry x:Name="verificationURL" Keyboard="Url"/>        
+            
+                    
+                    
             <Label FontFamily="{StaticResource TypewriterFont}" x:Name="spacer" Text="" FontSize="Small"/>
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="E-Mail"/>
             <Label FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" Text="(this will also be your username)" FontSize="Small" TextColor="#c5d8f7"/>
@@ -72,12 +80,13 @@
         </StackLayout>
            
            
-            
-            <StackLayout x:Name="noticeWindow" HeightRequest="50" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#afcbf7">
-        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
-                <Button x:Name="noticeButton" Text="OK" Clicked="CloseWindow"/>
-           </StackLayout>
+             <Frame x:Name="noticeFrame" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Padding="3" BackgroundColor="White">
            
+            <StackLayout x:Name="noticeWindow" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#afcbf7">
+        <Label FontFamily="{StaticResource TypewriterFont}" Text="" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="noticeText"/>
+                <Button x:Name="noticeButton" BackgroundColor="Transparent" TextColor="White" Text="OK" Clicked="CloseWindow"/>
+           </StackLayout>
+           </Frame>
             </RelativeLayout>
        </ScrollView>
    

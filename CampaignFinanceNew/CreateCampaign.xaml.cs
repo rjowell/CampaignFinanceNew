@@ -4,6 +4,7 @@ using System.Net.Http;
 using Xamarin.Forms;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace CampaignFinanceNew
 {
@@ -16,32 +17,25 @@ namespace CampaignFinanceNew
         Campaign currentCampaign;
 
 
+        InputView[] fields;
+        bool isCreateCampaign;
+
         public CreateCampaign()
         {
             InitializeComponent();
+            fields = new InputView[]{campaignName,campaignDescription,fundGoal};
 
-            /*
-            if(currentData==null)
+            String currentEntry="";
+
+            if(currentEntry!=null)
             {
-                currentCampaign = null;
-                titleLabel.Text = "Create Campaign";
-                submitButton.Text = "Submit Campaign";
+                var currentString = sendClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?campaignID=");
+                JObject currentCampaignData = JObject.Parse(currentString);
             }
-            else
-            {
-                titleLabel.Text = "Edit Campaign";
-                submitButton.Text = "Submit Changes";
-                currentCampaign = currentData;
-                campaignName.Text = currentData.campaignName;
-                campaignDescription.Text = currentData.campaignDescription;
-                fundGoal.Text = currentData.fundGoal;
-                String[] startDateRaw = currentData.startDate.Split('/');
-                String[] endDateRaw = currentData.endDate.Split('/');
-                Console.WriteLine(startDateRaw[0]+" "+startDateRaw[1]+" "+startDateRaw[2]);
-                startDate.Date = new DateTime().AddMonths(Convert.ToInt32(startDateRaw[0])-1).AddDays(Convert.ToInt32(startDateRaw[1])-1).AddYears(Convert.ToInt32(startDateRaw[2])-1);
-                endDate.Date = new DateTime().AddMonths(Convert.ToInt32(endDateRaw[0])-1).AddDays(Convert.ToInt32(endDateRaw[1])-1).AddYears(Convert.ToInt32(endDateRaw[2])-1);
-            }
-            */
+
+
+
+
 
         }
 
@@ -49,6 +43,70 @@ namespace CampaignFinanceNew
         {
             Navigation.PushAsync(new CandidateDashboard());
         }
+
+        bool moveOn;
+        private async Task<bool> CheckForBlanks(Button sender, EventArgs e)
+        {
+            if(campaignName.Text=="")
+            {
+                nameLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            if(campaignDescription.Text=="")
+            {
+                descLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            if(crowdfundOn.IsToggled==true && fundGoal.Text=="")
+            {
+                fundLabel.TextColor = Color.Red;
+                moveOn = false;
+            }
+            if(crowdfundOn.IsToggled && DateTime.Compare(startDate.Date,endDate.Date) >=0 )
+            {
+                startDateLabel.TextColor = Color.Red;
+                endDateLabel.TextColor = Color.Red;
+                moveOn = false;
+
+            }
+            if(moveOn==true)
+            {
+                await SubmitCampaign();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+
+        private async Task<bool> SubmitCampaign()
+        {
+            var sendingParameters = new System.Collections.Specialized.NameValueCollection();
+            sendingParameters.Add("campaignName", campaignName.Text);
+            sendingParameters.Add("campaignDescription", campaignDescription.Text);
+            sendingParameters.Add("goal", fundGoal.Text);
+            sendingParameters.Add("isCrowdfund", crowdfundOn.IsToggled.ToString().ToLower());
+            sendingParameters.Add("startDate", startDate.Date.ToShortDateString());
+            sendingParameters.Add("endDate", endDate.Date.ToShortDateString());
+            sendingParameters.Add("candidateId", App.currentUser.systemID);
+            sendingParameters.Add("newCampaign", isCreateCampaign.ToString().ToLower());
+
+            sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
+
+            return true;
+
+
+        }
+
+
+
+
 
         private void SubmitCampaignAsync(object sender, EventArgs e)
         {
@@ -71,13 +129,14 @@ namespace CampaignFinanceNew
             {
                 sendingParameters.Add("campaignID", currentCampaign.campaignID);
             }
+            /*
             Console.WriteLine("change is  " + sendingParameters.Get("campaignID"));
             Console.WriteLine("change isa  " + sendingParameters.Get("campaignName"));
             Console.WriteLine("change isb  " + sendingParameters.Get("campaignDescription"));
             Console.WriteLine("change isc  " + sendingParameters.Get("goal"));
             Console.WriteLine("change isd  " + sendingParameters.Get("startDate"));
             Console.WriteLine("change ise  " + sendingParameters.Get("endDate"));
-            Console.WriteLine("change isf  " + sendingParameters.Get("candidateId"));
+            Console.WriteLine("change isf  " + sendingParameters.Get("candidateId"));*/
 
             var response=sendClient.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingParameters);
 

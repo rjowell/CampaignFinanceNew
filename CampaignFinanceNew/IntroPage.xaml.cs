@@ -26,7 +26,7 @@ namespace CampaignFinanceNew
 
         }
 
-        public async void Start(Button butt, EventArgs e)
+        public async void Start(object butt, EventArgs e)
         {
             await Navigation.PushAsync(new CreateName());
         }

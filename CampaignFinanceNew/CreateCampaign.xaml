@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateCampaign">
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateCampaign">
     <ContentPage.Content>
-          <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label x:Name="titleLabel" Text="" HorizontalOptions="Center"/>
-        <Label Text="Campaign Title" HorizontalOptions="Center"/>
-        <Entry x:Name="campaignName" Text="{Binding campaignName}" WidthRequest="300"/>
-        <Label Text="Campaign Tagline/Description" HorizontalOptions="Center"/>
-        <Entry x:Name="campaignDescription" Text="{Binding campaignDescription}" WidthRequest="300"/>
-        <Label Text="Fundraising Goal" HorizontalOptions="Center"/>
-        <Entry Keyboard="Numeric" x:Name="fundGoal" Text="{Binding fundGoal}" WidthRequest="20"/>
-        <Label Text="Start Date" HorizontalOptions="Center"/>
+          <StackLayout Margin="20,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+        <Label FontFamily="{StaticResource TypewriterFont}" x:Name="titleLabel" Text="" HorizontalOptions="Center"/>
+           
+        <Label x:Name="nameLabel" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Campaign Title/Tagline" HorizontalOptions="Center"/>
+        <Entry x:Name="campaignName" Text="{Binding campaignName}" MaxLength="25">
+            <Entry.TextColor>
+                     <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                </Entry.TextColor>    
+            </Entry>
+        <Label x:Name="descLabel" FontFamily="{StaticResource TypewriterFont}" Text="Campaign Description" HorizontalOptions="Center" TextColor="White"/>
+            <Editor  x:Name="campaignDescription" HeightRequest="100" MaxLength="250" Text="{Binding campaignDescription}">
+            <Editor.TextColor>
+                         <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+                </Editor.TextColor>    
+            </Editor>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Switch x:Name="crowdfundOn" Scale=".6" FlowDirection="LeftToRight" HorizontalOptions="Start"/><Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" VerticalOptions="Center" Text="Turn On Crowdfunding?"/>
+        </StackLayout>
+            
+                <Label x:Name="fundLabel" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Fundraising Goal" HorizontalOptions="Center"/>
+        <Entry Keyboard="Numeric" x:Name="fundGoal" MaxLength="8" WidthRequest="75" Text="{Binding fundGoal}"/>
+        
+            <Label x:Name="startDateLabel" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Start Date" HorizontalOptions="Center"/>
         <DatePicker x:Name="startDate" Date="{Binding startDate}"></DatePicker>
-        <Label Text="End Date" HorizontalOptions="Center"/>
+        <Label x:Name="endDateLabel" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="End Date" HorizontalOptions="Center"/>
             <DatePicker x:Name="endDate" Date="{Binding endDate}"></DatePicker>
-             <StackLayout Orientation="Horizontal">
+                
+             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
             <Button x:Name="submitButton" Text="" Clicked="SubmitCampaignAsync"/><Button x:Name="cancelButton" Text="Cancel" Clicked="GoToCampaignWindow"/>
                     
         </StackLayout>

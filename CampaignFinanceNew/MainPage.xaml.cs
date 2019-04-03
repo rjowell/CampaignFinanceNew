@@ -15,15 +15,79 @@ namespace CampaignFinanceNew
 
         Entry[] fields;
 
+        public void OpenUserWindow(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PositionsAndIssues());
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            Console.WriteLine("this point");
+            await App.currentLocation.GetLocationInformation();
+
+        }
+
+
         public MainPage()
         {
             InitializeComponent();
-            Random rand = new Random();
-            fields = new Entry[] { eMailField, passwordField };
-            backImage.Source = rand.Next(5).ToString() + ".png";
-            noticeWindow.IsVisible = false;
-           
 
+            Console.WriteLine(App.currentLocation.cityName + " " + App.currentLocation.state);
+
+            //App.currentLocation.GetLocationInformation();
+
+            
+
+        Random rand = new Random();
+            fields = new Entry[] { eMailField, passwordField };
+            backImage.Source = "img"+rand.Next(5).ToString() + ".png";
+            noticeFrame.IsVisible = false;
+
+            // MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
+
+            MessagingCenter.Subscribe<IFirebaseAuthenticator, int>(this, "ResetError", (sender, arg) => {
+
+                passResetError.IsVisible = true;
+            if(arg==0)
+                {
+                    passResetError.Text = "Your e-mail is not in the correct format.";
+                }
+            if(arg==1)
+                {
+                    passResetError.Text = "That e-mail is not in our system";
+                }
+
+            });
+
+            MessagingCenter.Subscribe<IFirebaseAuthenticator,int>(this, "MainPageError", (sender,arg) => {
+
+                passResetLabel.IsVisible = false;
+                passResetEntry.IsVisible = false;
+                passResetSend.IsVisible = false;
+                passResetError.IsVisible = false;
+                noticeText.IsVisible = true;
+                noticeButton.IsVisible = true;
+                passResetCancel.IsVisible = false;
+
+                if (arg==0)
+                {
+                    noticeText.Text = "Your e-mail is not in the correct format";
+                   
+                    noticeFrame.IsVisible = true;
+                }
+                if(arg==1)
+                {
+                    noticeText.Text = "That e-mail is not in our system";
+                    noticeFrame.IsVisible = true;
+                }
+                if(arg==2)
+                {
+                    noticeText.Text = "Password Incorrect";
+                    noticeFrame.IsVisible = true;
+                }
+
+            });
 
             foreach (Entry current in fields)
             {
@@ -44,6 +108,7 @@ namespace CampaignFinanceNew
             eMailField.IsVisible = false;
             passwordLabel.IsVisible = false;
             passwordField.IsVisible = false;
+            forgotPassword.IsVisible = false;
             supporterButton.IsVisible = false;
             candidateButton.IsVisible = false;
             loginButton.IsVisible = false;
@@ -51,31 +116,22 @@ namespace CampaignFinanceNew
 
 
 
-       /*
-        * <Image x:Name="titleImage" Scale="2"/> 
-        <Button  ClassId="0" Text="I am a Returning User" x:Name="returningUser"/>
-        <Label TextColor="White" x:Name="eMailLabel" Text="E-Mail" HorizontalOptions="Center"/>
-        <Entry x:Name="eMailField" Keyboard="Email" WidthRequest="300"  />
-        <Label TextColor="White"   Text="Password" x:Name="passwordLabel" HorizontalOptions="Center"/>
-        <Entry WidthRequest="300"  x:Name="passwordField"/>
-        <Button x:Name="loginButton" Text="Login"/>
-        <Button ClassId="1" Text="I am a New User" />
-        <Button x:Name="supporterButton" Text="I want to support candidates"/>
-        <Button Text="I am a candidate" />*/
-
         }
 
 
-        public void ShowOptions(Button sender, EventArgs e)
+        public void ShowOptions(object sender, EventArgs e)
         {
-            Console.WriteLine("Clas is " + sender.ClassId);
+            Button current = (Button)sender;
 
-            if(sender.ClassId=="0")
+            Console.WriteLine("Clas is " + current.ClassId);
+
+            if(current.ClassId=="0")
             {
                 eMailLabel.IsVisible = true;
                 eMailField.IsVisible = true;
                 passwordLabel.IsVisible = true;
                 passwordField.IsVisible = true;
+                forgotPassword.IsVisible = true;
                 supporterButton.IsVisible = false;
                 candidateButton.IsVisible = false;
                 loginButton.IsVisible = true;
@@ -86,6 +142,7 @@ namespace CampaignFinanceNew
                 eMailField.IsVisible = false;
                 passwordLabel.IsVisible = false;
                 passwordField.IsVisible = false;
+                forgotPassword.IsVisible = false;
                 supporterButton.IsVisible = true;
                 candidateButton.IsVisible = true;
                 loginButton.IsVisible = false;
@@ -93,118 +150,28 @@ namespace CampaignFinanceNew
 
         }
 
-
-        public async Task<string> GetLocationInformation()
+        public void ShowPasswordReset(object sender, EventArgs e)
         {
-
-            var locator = CrossGeolocator.Current;
-
-           
-
-            var googleCivicURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAwpzFeq7FYHdVY__3vFL9QyTP2oCekkio&address=";
-            Console.WriteLine("this pos");
-            var currentPosition= await locator.GetPositionAsync();var address = await locator.GetAddressesForPositionAsync(currentPosition);
-            Console.WriteLine("this pos-3");
-            string currentUserString=""; 
-            foreach(var item in address)
-            {
-
-                //Console.WriteLine(item.AdminArea + " " + item.CountryCode + " " + item.FeatureName + " " + item.Locality + " " + item.PostalCode + " " + item.SubAdminArea + " " + item.SubLocality + " " + item.SubThoroughfare + " " + item.Thoroughfare);
-
-                // MD US 6707 Democracy Blvd Bethesda 20817 Montgomery  6707 Democracy Blvd
-
-               currentUserString=item.FeatureName.Replace(" ", "%20") + "%20"+item.Locality.Replace(" ","%20")+"%20"+item.AdminArea;
-                }
-            Console.WriteLine(currentUserString);
-            WebClient newClient = new WebClient();
-            //var rawLocationData = newClient.DownloadString(googleCivicURL + currentUserString);
-            Console.WriteLine(googleCivicURL + currentUserString);
-            JObject parseData = JObject.Parse(newClient.DownloadString(googleCivicURL + currentUserString));
-            Console.WriteLine("cheese-2");
-            JObject divisionData = JObject.Parse(parseData.GetValue("divisions").ToString());
-            Console.WriteLine("cheese-3");
-            //JArray newData = JArray.Parse(parseData.GetValue("divisions").ToString());
-            Console.WriteLine("cheese-43");
-            var currKeys = divisionData.Properties();
-
-            foreach(var things in currKeys)
-            {
-                string[] currentThings=things.Name.Split('/');
-
-                string[] currentItem = currentThings[currentThings.Length - 1].Split(':');
-                Console.WriteLine(currentItem[0]+" "+currentItem[1]);
-                if(currentItem[0]=="state")
-                {
-                    App.currentLocation.state = currentItem[1];
-                    Console.WriteLine(currentItem[0]+" State is "+currentItem[1]);
-                }
-                else if(currentItem[0]=="county")
-                {
-                    App.currentLocation.getCountyType = 0;
-                    App.currentLocation.countyName = currentItem[1];
-                    Console.WriteLine(currentItem[0]+" County is "+currentItem[1]);
-
-                }
-                else if(currentItem[0]=="parish")
-                {
-                    App.currentLocation.getCountyType = 1;
-                    App.currentLocation.countyName = currentItem[1];
-                }
-                else if (currentItem[0] == "borough")
-                {
-                    App.currentLocation.getCountyType = 2;
-                    App.currentLocation.countyName = currentItem[1];
-                }
-                else if (currentItem[0] == "cd")
-                {
-                    App.currentLocation.congressDistrict = Convert.ToInt32(currentItem[1]);
-                    Console.WriteLine(currentItem[0]+" Cd is "+currentItem[1]);
-                }
-                else if (currentItem[0] == "sldl")
-                {
-                    App.currentLocation.stateHouseDistrict = Convert.ToInt32(currentItem[1]);
-                    Console.WriteLine(currentItem[0]+" sldl is "+currentItem[1]);
-                }
-                else if (currentItem[0] == "sldu")
-                {
-                    App.currentLocation.stateSenateDistrict = Convert.ToInt32(currentItem[1]);
-                    Console.WriteLine(currentItem[0]+" sldu is "+currentItem[1]);
-                }
-              
-                else if (currentItem[0] == "place")
-                {
-                    App.currentLocation.cityName = currentItem[1].Replace('_', ' ');
-                    Console.WriteLine(currentItem[0]+" Place is "+currentItem[1]);
-                }
-                else if (currentThings[currentThings.Length-2].Split(':')[0]=="place")
-                {
-                    App.currentLocation.cityCouncilDistrict =   Convert.ToInt32(currentItem[1]);
-                }
-                else if (currentThings[currentThings.Length - 2].Split(':')[0] == "county" || currentThings[currentThings.Length - 2].Split(':')[0] == "parish" || currentThings[currentThings.Length - 2].Split(':')[0] == "borough")
-                {
-                    App.currentLocation.countyCouncilDistrict = Convert.ToInt32(currentItem[1]);
-                }
-                else
-                {
-
-                }
-
-                //Console.WriteLine(currentThings[currentThings.Length - 1]);
-
-            }
-
-
-
-            return "hello";
+            noticeFrame.IsVisible = true;
+            noticeText.IsVisible = false;
+            noticeButton.IsVisible = false;
+            passResetLabel.IsVisible = true;
+            passResetEntry.IsVisible = true;
+            passResetSend.IsVisible = true;
+            passResetError.IsVisible = true;
+            passResetCancel.IsVisible = true;
         }
 
 
 
 
 
-        public void CloseWindow(Button sender, EventArgs e)
+
+
+
+        public void CloseWindow(object sender, EventArgs e)
         {
-            noticeWindow.IsVisible = false;
+            noticeFrame.IsVisible = false;
         }
 
 
@@ -213,6 +180,7 @@ namespace CampaignFinanceNew
         {
 
             noticeWindow.IsVisible = true;
+            Console.WriteLine("dulles");
             DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(eMailField.Text, passwordField.Text);
 
             //var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().GetIdInfo();
@@ -228,10 +196,22 @@ namespace CampaignFinanceNew
 
         }
 
-
-        private async void ProcessButtons(Button sender, EventArgs e)
+        private void SendPasswordReset(object sender, EventArgs e)
         {
-            switch(sender.ClassId)
+            DependencyService.Get<IFirebaseAuthenticator>().SendResetLink(passResetEntry.Text);
+        }
+
+        private void CancelReset(object sender, EventArgs e)
+        {
+            noticeFrame.IsVisible = false;
+        }
+
+
+        private async void ProcessButtons(object sender, EventArgs e)
+        {
+            Button current = (Button)sender;
+
+            switch(current.ClassId)
             {
                 case "returning":
                     Console.WriteLine("button returning");
@@ -239,6 +219,7 @@ namespace CampaignFinanceNew
                     eMailField.IsVisible = true;
                     passwordLabel.IsVisible = true;
                     passwordField.IsVisible = true;
+                    forgotPassword.IsVisible = true;
                     supporterButton.IsVisible = false;
                     candidateButton.IsVisible = false;
                     loginButton.IsVisible = true;
@@ -248,6 +229,7 @@ namespace CampaignFinanceNew
                     eMailLabel.IsVisible = false;
                     eMailField.IsVisible = false;
                     passwordLabel.IsVisible = false;
+                    forgotPassword.IsVisible = false;
                     passwordField.IsVisible = false;
                     supporterButton.IsVisible = true;
                     candidateButton.IsVisible = true;

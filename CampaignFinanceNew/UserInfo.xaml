@@ -1,43 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.UserInfo">
+    <ContentPage.BackgroundColor>
+             <OnPlatform x:TypeArguments="Color" Android="#5e82bc" iOS="Navy"/> 
+                    
+    </ContentPage.BackgroundColor>
+    
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="StartAndExpand">
-        <StackLayout HorizontalOptions="StartAndExpand">
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+        <StackLayout Padding="0,15,0,0" HorizontalOptions="CenterAndExpand">
+                <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White"  HorizontalOptions="Center" FontSize="Large" Text="Update User Info"/>
+                <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#91bbff" Clicked="OpenUserInfo" Text="Click Here to Update E-mail or Password"/>
                 
+                <Button FontFamily="{StaticResource TypewriterFont}" TextColor="#91bbff" BackgroundColor="Transparent" Text="Click Here to modify payment info"/>
            
-         <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal"> <Label VerticalOptions="Center" x:Name="firstNameLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="First Name"/>
-        <Button TextColor="Black" Clicked="ProcessButton" ClassId="0" StyleId="firstNameEdit" x:Name="firstNameEdit" BackgroundColor="Transparent" WidthRequest="30" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="0" StyleId="firstNameSubmit" BackgroundColor="Transparent"  Text="Submit" x:Name="firstNameSubmit"/>
-                <Button Clicked="ProcessButton" ClassId="0" StyleId="firstNameCancel" BackgroundColor="Transparent"  Text="Cancel" x:Name="firstNameCancel"/>
+         <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal"> <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center" x:Name="firstNameLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="First Name"/>
+        <Button  TextColor="#9fc2fc" Clicked="ProcessButton" ClassId="0" StyleId="firstNameEdit" x:Name="firstNameEdit" WidthRequest="50" BackgroundColor="Transparent" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="0" StyleId="firstNameSubmit" WidthRequest="70" BackgroundColor="Transparent"  Text="Submit" x:Name="firstNameSubmit"/>
+                <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="0" StyleId="firstNameCancel" WidthRequest="70" BackgroundColor="Transparent"  Text="Cancel" x:Name="firstNameCancel"/>
                 </StackLayout>       
-       <Entry HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="220" x:Name="firstNameEntry"/>
+       <Entry HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="220" x:Name="firstNameEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>
+                    
+                </Entry>
         
                 
             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">    
-                <Label x:Name="lastNameLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Last Name"/>
-                    <Button Clicked="ProcessButton" ClassId="1" StyleId="lastNameEdit" x:Name="lastNameEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="1" StyleId="lastNameSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="lastNameSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="1" StyleId="lastNameCancel" x:Name="lastNameCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
-        </StackLayout><Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="lastNameEntry"/>
-        
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" x:Name="lastNameLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Last Name"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="1" StyleId="lastNameEdit" x:Name="lastNameEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="1" StyleId="lastNameSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="lastNameSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="1" StyleId="lastNameCancel" x:Name="lastNameCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
+        </StackLayout><Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="lastNameEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
                 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal"> 
-                <Label x:Name="contactPersonLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Contact Person"/>
-                    <Button Clicked="ProcessButton" ClassId="2" StyleId="contactPersonEdit" x:Name="contactPersonEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="2" StyleId="contactPersonSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="contactPersonSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="2" StyleId="contactPersonCancel" x:Name="contactPersonCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
-        </StackLayout><Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="contactPersonEntry"/>
-        
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" x:Name="contactPersonLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Contact Person"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="2" StyleId="contactPersonEdit" x:Name="contactPersonEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="2" StyleId="contactPersonSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="contactPersonSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="2" StyleId="contactPersonCancel" x:Name="contactPersonCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
+        </StackLayout><Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="contactPersonEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
                
               <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label x:Name="addressLabel" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Address"/>
-                    <Button Clicked="ProcessButton" ClassId="3" StyleId="addressEdit" x:Name="addressEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="3" StyleId="addressSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="addressSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="3" StyleId="addressCancel" x:Name="addressCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                    <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" x:Name="addressLabel" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Address"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="3" StyleId="addressEdit" x:Name="addressEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="3" StyleId="addressSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="addressSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="3" StyleId="addressCancel" x:Name="addressCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
         
                     
                 </StackLayout>
-             <Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="addressEntry"/>
+             <Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="addressEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
         
                 
                 
@@ -45,84 +68,114 @@
                 
                 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">       
-                <Label x:Name="cityLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Text="City"/>
-                    <Button Clicked="ProcessButton" ClassId="4" StyleId="cityEdit" x:Name="cityEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button  Clicked="ProcessButton" ClassId="4" StyleId="citySubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="citySubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="4" StyleId="cityCancel" x:Name="cityCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" x:Name="cityLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Text="City"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="4" StyleId="cityEdit" x:Name="cityEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"   Clicked="ProcessButton" ClassId="4" StyleId="citySubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="citySubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="4" StyleId="cityCancel" x:Name="cityCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 
                 </StackLayout>
-        <Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="cityEntry"/>
-       
+        <Entry WidthRequest="220" HorizontalTextAlignment="Center" HorizontalOptions="Center"  x:Name="cityEntry">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal"> 
-                <Label x:Name="stateLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="State"/>
-                    <Button Clicked="ProcessButton" ClassId="5" StyleId="stateEdit" x:Name="stateEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="5" StyleId="stateSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="stateSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="5" StyleId="stateCancel" x:Name="stateCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" x:Name="stateLabel" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="State"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="5" StyleId="stateEdit" x:Name="stateEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="5" StyleId="stateSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="stateSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="5" StyleId="stateCancel" x:Name="stateCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-        <Picker x:Name="statePicker" WidthRequest="150"/>
+        <Picker x:Name="statePicker" WidthRequest="150">
+                <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Picker.TextColor>    
+                </Picker>
                 
             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">   
-        <Label  VerticalOptions="Center"  x:Name="zipCodeLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Zip Code"/>
-        <Button Clicked="ProcessButton" ClassId="6" StyleId="zipCodeEdit" x:Name="zipCodeEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="6" StyleId="zipCodeSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="zipCodeSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="6" StyleId="zipCodeCancel" x:Name="zipCodeCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+        <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  x:Name="zipCodeLabel" HorizontalTextAlignment="Center" HorizontalOptions="Center"  Text="Zip Code"/>
+        <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="6" StyleId="zipCodeEdit" x:Name="zipCodeEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="6" StyleId="zipCodeSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="zipCodeSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="6" StyleId="zipCodeCancel" x:Name="zipCodeCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-                    <Entry x:Name="zipCodeEntry" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="70"/>
+                    <Entry x:Name="zipCodeEntry" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="70">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
          
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label  VerticalOptions="Center"  x:Name="phoneNumber" Text="Phone Number" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-       <Button Clicked="ProcessButton" ClassId="7" StyleId="phoneEdit" x:Name="phoneEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="7" StyleId="phoneSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="phoneSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="7" StyleId="phoneCancel" x:Name="phoneCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  x:Name="phoneNumber" Text="Phone Number" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+       <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="7" StyleId="phoneEdit" x:Name="phoneEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="7" StyleId="phoneSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="phoneSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="7" StyleId="phoneCancel" x:Name="phoneCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
                     
                     
-                    <Entry x:Name="phoneEntry" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="190"/>
+                    <Entry x:Name="phoneEntry" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="190">
+                <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>    
+                </Entry>
         
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-        <Label VerticalOptions="Center"  x:Name="officeLabel" Text="Office" HorizontalTextAlignment="Center" HorizontalOptions="Center"  />
-         <Button Clicked="ProcessButton" ClassId="8" StyleId="officeEdit" x:Name="officeEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="8" StyleId="officeSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="officeSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="8" StyleId="officeCancel" x:Name="officeCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+        <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  x:Name="officeLabel" Text="Office" HorizontalTextAlignment="Center" HorizontalOptions="Center"  />
+         <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="8" StyleId="officeEdit" x:Name="officeEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="8" StyleId="officeSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="officeSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="8" StyleId="officeCancel" x:Name="officeCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-                    <Picker x:Name="officePicker"/>
+                    <Picker x:Name="officePicker">
+                <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Picker.TextColor>    
+                </Picker>
                 
              <StackLayout HorizontalOptions="Center" Orientation="Horizontal">    
-        <Label VerticalOptions="Center"  x:Name="districtLabel" Text="District/Jurisdiction" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
-        <Button Clicked="ProcessButton" ClassId="9" StyleId="districtEdit" x:Name="districtEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="9" StyleId="districtSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="districtSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="9" StyleId="districtCancel" x:Name="districtCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+        <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  x:Name="districtLabel" Text="District/Jurisdiction" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+        <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="9" StyleId="districtEdit" x:Name="districtEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="9" StyleId="districtSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="districtSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="9" StyleId="districtCancel" x:Name="districtCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-                    <Entry x:Name="districtEntry" HorizontalTextAlignment="Center"/>
+                    <Entry x:Name="districtEntry" HorizontalTextAlignment="Center">  <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>  </Entry>
                
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal"> 
-       <Label VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="officeStateLabel" Text="Office State"/>
-                <Button Clicked="ProcessButton" ClassId="10" StyleId="officeStateEdit" x:Name="officeStateEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="10" StyleId="officeStateSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="officeStateSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="10" StyleId="officeStateCancel" x:Name="officeStateCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+       <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="officeStateLabel" Text="Office State"/>
+                <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="10" StyleId="officeStateEdit" x:Name="officeStateEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="10" StyleId="officeStateSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="officeStateSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="10" StyleId="officeStateCancel" x:Name="officeStateCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-                    <Picker x:Name="officeState"/>
+                    <Picker x:Name="officeState">
+                 <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Picker.TextColor>  </Picker>
                 
                 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal"> 
-                <Label VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="partyLabel" Text="Party"/>
-                 <Button Clicked="ProcessButton" ClassId="11" StyleId="partyEdit" x:Name="partyEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="11" StyleId="partySubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="partySubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="11" StyleId="partyCancel" x:Name="partyCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="partyLabel" Text="Party"/>
+                 <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="11" StyleId="partyEdit" x:Name="partyEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="11" StyleId="partySubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="partySubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="11" StyleId="partyCancel" x:Name="partyCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
-                   <Picker x:Name="partyPicker"/>
+                   <Picker x:Name="partyPicker">
+                 <Picker.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Picker.TextColor>  </Picker>
                 
-                <Label VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="otherPartyLabel" Text="Enter Party"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="otherPartyLabel" Text="Enter Party"/>
                 <Entry x:Name="otherPartyEntry"/>
                 
                  <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="websiteLabel" Text="Campaign Website"/>
-                <Button Clicked="ProcessButton" ClassId="12" StyleId="websiteEdit" x:Name="websiteEdit" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="10" Text="Edit"/>
-                    <Button Clicked="ProcessButton" ClassId="12" StyleId="websiteSubmit" BackgroundColor="Transparent" WidthRequest="60" Text="Submit" x:Name="websiteSubmit"/>
-                    <Button Clicked="ProcessButton" ClassId="12" StyleId="websiteCancel" x:Name="websiteCancel" WidthRequest="55" BackgroundColor="Transparent" Text="Cancel"/>
+                <Label TextColor="White" FontFamily="{StaticResource TypewriterFont}" VerticalOptions="Center"  HorizontalOptions="Center" HorizontalTextAlignment="Center" x:Name="websiteLabel" Text="Campaign Website"/>
+                <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="12" StyleId="websiteEdit" x:Name="websiteEdit" BackgroundColor="Transparent" WidthRequest="50" Text="Edit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="12" StyleId="websiteSubmit" BackgroundColor="Transparent" WidthRequest="70" Text="Submit" x:Name="websiteSubmit"/>
+                    <Button  TextColor="#9fc2fc"  Clicked="ProcessButton" ClassId="12" StyleId="websiteCancel" x:Name="websiteCancel" WidthRequest="70" BackgroundColor="Transparent" Text="Cancel"/>
                 </StackLayout>
                     
-                    <Entry x:Name="websiteEntry"/>
+                    <Entry x:Name="websiteEntry">
+                 <Entry.TextColor>
+                        <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/> 
+                    </Entry.TextColor>  </Entry>
         </StackLayout>
             </ScrollView>
         
