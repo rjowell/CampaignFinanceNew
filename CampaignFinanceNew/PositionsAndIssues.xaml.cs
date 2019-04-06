@@ -144,7 +144,7 @@ namespace CampaignFinanceNew
                 }
 
                 App.newUser.issues = currentInfo;
-                App.newUser.ideology = ideologySlider.Value.ToString();
+            App.newUser.ideology = Math.Round(ideologySlider.Value, 1).ToString();
             Console.WriteLine(ideologySlider.Value.ToString());
             Console.WriteLine(currentInfo);
 

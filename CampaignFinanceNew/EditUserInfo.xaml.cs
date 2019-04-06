@@ -268,67 +268,117 @@ namespace CampaignFinanceNew
             PhoneEntry.Text = App.currentUser.phoneNumber;
             PhoneEntry.IsVisible = false;
 
-            OfficeEntry.SelectedIndex = Array.IndexOf(App.offices, App.currentUser.office);
-            OfficeDisplay.Text = App.currentUser.office;
-            OfficeEntry.IsVisible = false;
-            otherOfficeEntry.IsVisible = false;
-            if(App.currentUser.office=="Other")
+            if (App.currentUser.isSupporter == false)
             {
-                otherOfficeLabel.IsVisible = true;
-                otherOfficeEntry.Text = App.currentUser.office;
-                otherPartyDisplay.Text= App.currentUser.office;
-                otherOfficeEntry.IsVisible = true;
-                otherPartyDisplay.IsVisible = true;
-                
-            }
-            else
-            {
-                otherOfficeLabel.IsVisible = false;
+                OfficeEntry.SelectedIndex = Array.IndexOf(App.offices, App.currentUser.office);
+                OfficeDisplay.Text = App.currentUser.office;
+                OfficeEntry.IsVisible = false;
                 otherOfficeEntry.IsVisible = false;
-                otherOfficeDisplay.IsVisible = false;
-                otherPartyDisplay.IsVisible = false;
-            }
+                if (App.currentUser.office == "Other")
+                {
+                    otherOfficeLabel.IsVisible = true;
+                    otherOfficeEntry.Text = App.currentUser.office;
+                    otherPartyDisplay.Text = App.currentUser.office;
+                    otherOfficeEntry.IsVisible = true;
+                    otherPartyDisplay.IsVisible = true;
 
-            DistrictDisplay.Text = App.currentUser.district;
-            DistrictEntry.Text = App.currentUser.district;
-            DistrictEntry.IsVisible = false;
+                }
+                else
+                {
+                    otherOfficeLabel.IsVisible = false;
+                    otherOfficeEntry.IsVisible = false;
+                    otherOfficeDisplay.IsVisible = false;
+                    otherPartyDisplay.IsVisible = false;
+                }
 
-            OfficeStateDisplay.Text = App.currentUser.officeState;
-            Console.WriteLine("Office state is" + App.currentUser.officeState);
-            OfficeStateEntry.SelectedIndex= Array.IndexOf(App.stateAbbr, App.currentUser.officeState);
-            OfficeStateEntry.IsVisible = false;
-            //officeEntry.IsEnabled = false;
+                DistrictDisplay.Text = App.currentUser.district;
+                DistrictEntry.Text = App.currentUser.district;
+                DistrictEntry.IsVisible = false;
 
-            AffiliationDisplay.Text = App.currentUser.party;
+                OfficeStateDisplay.Text = App.currentUser.officeState;
+                Console.WriteLine("Office state is" + App.currentUser.officeState);
+                OfficeStateEntry.SelectedIndex = Array.IndexOf(App.stateAbbr, App.currentUser.officeState);
+                OfficeStateEntry.IsVisible = false;
+                //officeEntry.IsEnabled = false;
 
-            Console.WriteLine("current index " + Array.IndexOf(offices, App.currentUser.party));
-            AffiliationEntry.SelectedIndex=Array.IndexOf(offices,App.currentUser.party);
-            AffiliationEntry.IsVisible = false;
-            otherPartyEntry.IsVisible = false;
-            if(AffiliationEntry.SelectedIndex==2)
-            {
+                AffiliationDisplay.Text = App.currentUser.party;
 
-                otherPartyEntry.Text = App.currentUser.party;
-                otherPartyLabel.IsVisible = true;
-                otherPartyEntry.IsVisible = true;
-                otherPartyDisplay.IsVisible = true;
-                otherPartyDisplay.Text= App.currentUser.party;
+                Console.WriteLine("current index " + Array.IndexOf(offices, App.currentUser.party));
+                AffiliationEntry.SelectedIndex = Array.IndexOf(offices, App.currentUser.party);
+                AffiliationEntry.IsVisible = false;
+                otherPartyEntry.IsVisible = false;
+                if (AffiliationEntry.SelectedIndex == 2)
+                {
 
+                    otherPartyEntry.Text = App.currentUser.party;
+                    otherPartyLabel.IsVisible = true;
+                    otherPartyEntry.IsVisible = true;
+                    otherPartyDisplay.IsVisible = true;
+                    otherPartyDisplay.Text = App.currentUser.party;
+
+                }
+                else
+                {
+                    otherPartyLabel.IsVisible = false;
+                    otherPartyEntry.IsVisible = false;
+                    otherPartyDisplay.IsVisible = false;
+                }
+
+                WebsiteDisplay.Text = App.currentUser.website;
+                WebsiteEntry.Text = App.currentUser.website;
+                WebsiteEntry.IsVisible = false;
+
+                ContactPersonDisplay.Text = App.currentUser.contactPerson;
+                ContactPersonEntry.Text = App.currentUser.contactPerson;
+                ContactPersonEntry.IsVisible = false;
             }
             else
             {
-                otherPartyLabel.IsVisible = false;
-                otherPartyEntry.IsVisible = false;
-                otherPartyDisplay.IsVisible = false;
+                OfficeEntry.SelectedIndex = Array.IndexOf(App.offices, App.currentUser.office);
+                OfficeDisplay.Text = App.currentUser.office;
+                OfficeEntry.IsVisible = false;
+                otherOfficeEntry.IsVisible = false;
+                OfficeLabel.IsVisible = false;
+                OfficeEdit.IsVisible = false;
+                OfficeSubmit.IsVisible = false;
+
+                DistrictEdit.IsVisible = false;
+                DistrictLabel.IsVisible = false;
+                DistrictCancel.IsVisible = false;
+                DistrictSubmit.IsVisible = false;
+                DistrictDisplay.IsVisible = false;
+                DistrictEntry.Text = App.currentUser.district;
+                DistrictEntry.IsVisible = false;
+
+
+                OfficeStateDisplay.IsVisible = false;
+                OfficeStateSubmit.IsVisible = false;
+                OfficeStateCancel.IsVisible = false;
+                OfficeStateLabel.IsVisible = false;
+                OfficeStateEntry.IsVisible = false;
+                OfficeStateEdit.IsVisible = false;
+
+                AffiliationEdit.IsVisible = false;
+                AffiliationEntry.IsVisible = false;
+                AffiliationLabel.IsVisible = false;
+                AffiliationCancel.IsVisible = false;
+                AffiliationSubmit.IsVisible = false;
+                AffiliationDisplay.IsVisible = false;
+
+                WebsiteEdit.IsVisible = false;
+                WebsiteEntry.IsVisible = false;
+                WebsiteLabel.IsVisible = false;
+                WebsiteCancel.IsVisible = false;
+                WebsiteSubmit.IsVisible = false;
+                WebsiteDisplay.IsVisible = false;
+
+                ContactPersonEdit.IsVisible = false;
+                ContactPersonEntry.IsVisible = false;
+                ContactPersonLabel.IsVisible = false;
+                ContactPersonCancel.IsVisible = false;
+                ContactPersonSubmit.IsVisible = false;
+                ContactPersonDisplay.IsVisible = false;
             }
-
-            WebsiteDisplay.Text = App.currentUser.website;
-            WebsiteEntry.Text = App.currentUser.website;
-            WebsiteEntry.IsVisible = false;
-
-            ContactPersonDisplay.Text = App.currentUser.contactPerson;
-            ContactPersonEntry.Text = App.currentUser.contactPerson;
-            ContactPersonEntry.IsVisible = false;
         }
     }
 }

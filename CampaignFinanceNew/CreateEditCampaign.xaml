@@ -33,7 +33,7 @@
             
             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
             <Switch Toggled="ShowCrowdElements" x:Name="isCrowdfund"/>
-            <Label VerticalTextAlignment="Center" x:Name="crowedfundLabel" Text="Turn On Crowdfunding"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" VerticalTextAlignment="Center" x:Name="crowedfundLabel" Text="Turn On Crowdfunding"/>
             </StackLayout>
             
             

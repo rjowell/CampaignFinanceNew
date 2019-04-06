@@ -66,22 +66,7 @@ namespace CampaignFinanceNew
             donateWindow.IsVisible = false;
             campaignIDNumber = campaignNumber;
 
-            //Init donate window
-            /*
-            confirmLabel.IsVisible = false;
-            confirmAmount.IsVisible = false;
-            confirmAmount.Text = "";
-            confirmTo.IsVisible = false;
-            donateConfirm.IsVisible = false;
-            /*
-            foreach(CampaignInfo things in App.currentUser.campaignsSupported)
-            {
-                if(things.campaignId==donateSubmit.ClassId)
-                {
-                    contributeDate = things.dateGiven;
-                    break;
-                }
-            }*/
+
 
             
 
@@ -89,12 +74,7 @@ namespace CampaignFinanceNew
 
             string rawData = client.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?campaignID="+campaignNumber);
             JObject sortedData = JObject.Parse(rawData);
-            //Console.WriteLine(sortedData.GetValue("CampaignName")+" "+ sortedData.GetValue("CampaignDescription"));
-
-            /*<Label x:Name="campiagnTitle"/>
-            <Label x:Name="campaignDescription"/>
-            <Label x:Name="candidateName"/>
-            <Label x:Name="candidateOffice"/>*/
+           
 
             campiagnTitle.Text = sortedData.GetValue("CampaignName").ToString();
             campaignDescription.Text= sortedData.GetValue("CampaignDescription").ToString();

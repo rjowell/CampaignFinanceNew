@@ -23,32 +23,41 @@ namespace CampaignFinanceNew
 
         public int status { get; set; }
 
+       
+
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-           
 
-            if (status==0)
+
+            if (((Campaign)item).status==0)
             {
+                
+                Console.WriteLine("chappiedead");
                 return PendingTemplate;
             }
-            else if(status==1)
+            else if (((Campaign)item).status == 1)
             {
+                Console.WriteLine("chappie");
                 return NoCampaignTemplate;
-            }
-            else if(status==2)
-            {
-                return WelcomeTemplate;
-            }
 
-            else if (((Campaign)item).startDate=="")
+            }
+            else if (((Campaign)item).status == 2)
             {
-                //Console.WriteLine("point AA");
-                return CampaignTemplate;
+                Console.WriteLine("chappie-killlleeed");
+                return WelcomeTemplate;
             }
             else
             {
-                //Console.WriteLine("point BB");
-                return CrowdfundTemplate;
+             if (((Campaign)item).startDate == "")
+                {
+                    Console.WriteLine("point AA");
+                    return CampaignTemplate;
+                }
+                else
+                {
+                    Console.WriteLine("point BB");
+                    return CrowdfundTemplate;
+                }
             }
         }
     }
@@ -75,9 +84,12 @@ namespace CampaignFinanceNew
         public String lastDonationDate { get; set; }
         public String lastDonationText { get; set; }
         public bool isContribute { get; set; }
+        public bool showGetDonors { get; set; }
+
+        public int status { get; set; }
 
 
-        public Campaign(string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
+        public Campaign(int mode,string iD, string campName, string campDescription, string firstName, string lastName, string office, string state, string district, string start, string end, string campProgress, string goal)
         {
             Console.WriteLine("poop");
             campaignName = campName;
@@ -85,6 +97,7 @@ namespace CampaignFinanceNew
             candidateDisplayName = firstName + " " + lastName + "|Running For: " + office + " " + state + "-" + district;
             Console.WriteLine("poop2");
             startDate = start;
+            status = mode;
             Console.WriteLine("here russ");
             lastDonationDate = "";
             lastDonationText = "";
@@ -92,6 +105,15 @@ namespace CampaignFinanceNew
             //campaignType = type;
             Console.WriteLine("poop4");
             isSupporter = App.currentUser.isSupporter.ToString().ToLower();
+
+            if(isSupporter=="false")
+            {
+                showGetDonors = true;
+            }
+            else
+            {
+                showGetDonors = false;
+            }
             endDate = end;
             if(startDate != "")
             {
@@ -201,7 +223,7 @@ namespace CampaignFinanceNew
     }
 
 
-
+ 
 
     public partial class CandidateDashboard : ContentPage
     {
@@ -212,32 +234,72 @@ namespace CampaignFinanceNew
         NameValueCollection donationData=new NameValueCollection();
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
 
+
+
+            private async void SendDonorList(object sender, EventArgs e)
+            {
+            Button current = (Button)sender;
+
+            eMailWindow.IsVisible = true;
+            confirmationLabel.IsVisible = false;
+            okButton.IsVisible = false;
+
+            NameValueCollection sendData = new NameValueCollection();
+            sendData.Set("campaignName", current.Parent.Parent.ClassId);
+            sendData.Set("eMail", App.currentUser.eMail);
+
+            String result= System.Text.Encoding.Default.GetString(client.UploadValues("http://www.cvx4u.com/web_service/getDonors.php",sendData));
+
+            Console.WriteLine("state is " + result);
+            confirmationLabel.Text = "A list of donors to this campaign has been sent to '"+App.currentUser.eMail+"'";
+            Console.WriteLine("thisis the song");
+            confirmationLabel.IsVisible = true;
+            Console.WriteLine("that doesn't end");
+            okButton.IsVisible = true;
+            eMailSendingLabel.IsVisible = false;
+        }
+
+
         private void RefreshFieldData()
         {
             fieldData.Clear();
             String rawData;
-            Console.WriteLine("test point1");
+            String locationData = "state=" + App.currentLocation.state + "&county=" + App.currentLocation.countyName + "&usCongressDist=" + App.currentLocation.congressDistrict + "&lowerStateHouse=" + App.currentLocation.stateHouseDistrict + "&upperStateHouse=" + App.currentLocation.stateSenateDistrict + "&cityName=" + App.currentLocation.cityName;
+            //Console.WriteLine("test point1");
+            Console.WriteLine(locationData);
+                
             if (App.currentUser.isSupporter == true)
             {
-                rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=0");
+                rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=0&"+locationData);
             }
             else
             {
                 rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=" + App.currentUser.systemID);
             }
-            Console.WriteLine("test poin2");
+            Console.WriteLine("test poin2 "+rawData);
+
+            NameValueCollection thisInfo = new NameValueCollection();
+
+            thisInfo.Set("locationData", locationData);
+
+            thisClient.UploadValues("http://www.cvx4u.com/web_service/locationTest.php",thisInfo);
+
             array = JArray.Parse(rawData);
             Console.WriteLine("test point3");
+
+
+            // 5269 River Rd, Bethesda, MD
+
             /*if (App.currentUser.userApproved == "0")
             {
                 fieldData.Add(new Campaign("", "", "", "", "", "", "", "", "", "", "",""));
             }
             else
             {*/
-                foreach (JObject thisThing in array)
+            foreach (JObject thisThing in array)
                 {
                     Console.WriteLine("test poin4");
-                    Campaign thisCampaign = new Campaign(thisThing.GetValue("CampaignID").ToString(), thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(), thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(), thisThing.GetValue("Goal").ToString());
+                    Campaign thisCampaign = new Campaign(3,thisThing.GetValue("CampaignID").ToString(), thisThing.GetValue("CampaignName").ToString(), thisThing.GetValue("CampaignDescription").ToString(), thisThing.GetValue("FirstName").ToString(), thisThing.GetValue("LastName").ToString(), thisThing.GetValue("CandidateOffice").ToString(), thisThing.GetValue("State").ToString(), thisThing.GetValue("District").ToString(), thisThing.GetValue("StartDate").ToString(), thisThing.GetValue("EndDate").ToString(), thisThing.GetValue("AmountRaised").ToString(), thisThing.GetValue("Goal").ToString());
                     Console.WriteLine("test point5");
                     thisCampaign.posIndex = (fieldData.Count).ToString();
 
@@ -253,7 +315,9 @@ namespace CampaignFinanceNew
 
             titleLabel.Text = "Welcome," + App.currentUser.firstName;
             menuBlock.IsVisible = false;
+            Console.WriteLine("chocolate factory");
             RefreshFieldData();
+            Console.WriteLine("chocolate factory-1");
             campaignDisplay.ItemsSource = null;
 
             List<String> singleList = new List<string>();
@@ -262,20 +326,30 @@ namespace CampaignFinanceNew
             //Console.WriteLine("football player");
             if(App.currentUser.userApproved=="0")
             {
-                campaignCellPicker.status = 0;
-                campaignDisplay.ItemsSource = singleList;
+                Console.WriteLine("not appo");
+                //campaignCellPicker.status = 0;
+                fieldData.Clear();
+                fieldData.Add(new Campaign(0, "", "", "", "", "", "", "", "", "", "", "",""));
+                campaignDisplay.ItemsSource = fieldData;
             }
             else if(fieldData.Count==0)
             {
-                if(App.currentUser.isSupporter==true)
+                if (App.currentUser.isSupporter == true)
                 {
-                    campaignCellPicker.status = 1;
-                    campaignDisplay.ItemsSource = singleList;
+                    Console.WriteLine("mcdonalds");
+                    //campaignCellPicker.status = 1;
+                    fieldData.Clear();
+                    fieldData.Add(new Campaign(1, "", "", "", "", "", "", "", "", "", "", "", ""));
+                    campaignDisplay.ItemsSource = fieldData;
+                    Console.WriteLine("dominaosugar land");
                 }
                 else
                 {
-                    campaignCellPicker.status = 2;
-                    campaignDisplay.ItemsSource = singleList;
+                    Console.WriteLine("burger king");
+                    // campaignCellPicker.status = 2;
+                    fieldData.Clear();
+                    fieldData.Add(new Campaign(2, "", "", "", "", "", "", "", "", "", "", "", ""));
+                    campaignDisplay.ItemsSource = fieldData;
                 }
             }
             else
@@ -298,8 +372,14 @@ namespace CampaignFinanceNew
         public CandidateDashboard()
         {
 
-
+            campaignCellPicker = new CampaignCellSelector();
+            campaignCellPicker.status = 1;
             InitializeComponent();
+
+            Random rand = new Random();
+            //fields = new Entry[] { eMailField, passwordField };
+            backImage.Source = "img" + rand.Next(6).ToString() + ".png";
+            //noticeFrame.IsVisible = false;
 
             if (App.currentUser.isSupporter==true || App.currentUser.userApproved=="0")
             {
@@ -308,6 +388,12 @@ namespace CampaignFinanceNew
             }
 
 
+            okButton.Clicked += (sender, e) => {
+
+                eMailWindow.IsVisible = false;
+            };
+
+            eMailWindow.IsVisible = false;
 
             refreshLocButton.Clicked += async (sender, e) => {
 
@@ -331,20 +417,14 @@ namespace CampaignFinanceNew
              
                };
 
-                        campaignCellPicker = new CampaignCellSelector();
-
-
+                        
 
 
 
             fieldData = new List<Campaign>();
 
-
+           
             RefreshFieldData();
-
-
-
-
 
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -367,7 +447,7 @@ namespace CampaignFinanceNew
 
             Console.WriteLine("look here doof");
             Console.WriteLine(App.currentUser.userApproved == "0");
-            campaignDisplay.ItemsSource = null;
+            //campaignDisplay.ItemsSource = null;
             if(App.currentUser.userApproved=="0")
             {
                 Console.WriteLine("football player");

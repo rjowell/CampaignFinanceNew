@@ -174,8 +174,10 @@ namespace CampaignFinanceNew
                         { "state", App.newUser.state},
                         {"zipCode", App.newUser.zipCode},
                         {"office", App.newUser.office},
-                        {"district",App.newUser.district},
+                        {"officeDistrict",App.newUser.officeDistrict},
                         {"officeState",App.newUser.officeState},
+                        {"officeCity",App.newUser.officeCity},
+                        {"officeCounty",App.newUser.officeCounty},
                         {"issues",App.newUser.issues},
                         {"ideology",App.newUser.ideology},
                         {"verificationLink",verificationURL.Text},
@@ -232,9 +234,8 @@ namespace CampaignFinanceNew
                 }
 
 
-
-               
-                    DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
+                //Console.WriteLine("send county is"+App.newUser.officeCounty);
+                   DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
 
 
             }

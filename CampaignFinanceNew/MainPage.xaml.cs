@@ -25,6 +25,7 @@ namespace CampaignFinanceNew
             base.OnAppearing();
             Console.WriteLine("this point");
             await App.currentLocation.GetLocationInformation();
+            Console.WriteLine(App.currentLocation.state + " " + App.currentLocation.cityName);
 
         }
 
@@ -37,11 +38,11 @@ namespace CampaignFinanceNew
 
             //App.currentLocation.GetLocationInformation();
 
-            
+            NavigationPage.SetHasNavigationBar(this, false);
 
-        Random rand = new Random();
+            Random rand = new Random();
             fields = new Entry[] { eMailField, passwordField };
-            backImage.Source = "img"+rand.Next(5).ToString() + ".png";
+            backImage.Source = "img"+rand.Next(6).ToString() + ".png";
             noticeFrame.IsVisible = false;
 
             // MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
@@ -249,7 +250,11 @@ namespace CampaignFinanceNew
                     App.newUser.firstName = "";
                     App.newUser.lastName = "";
                     App.newUser.office = "";
-                    App.newUser.district = "";
+                    //App.newUser.district = "";
+                    App.newUser.officeCity = "";
+                    App.newUser.officeState = "";
+                    App.newUser.officeCounty = "";
+                    App.newUser.officeDistrict = "";
                     App.newUser.party = "";
                     App.newUser.streetAddress = "";
                     App.newUser.city = "";
@@ -271,7 +276,10 @@ namespace CampaignFinanceNew
                     App.newUser.firstName = "";
                     App.newUser.lastName = "";
                     App.newUser.office = "";
-                    App.newUser.district = "";
+                    App.newUser.officeCity = "";
+                    App.newUser.officeState = "";
+                    App.newUser.officeCounty = "";
+                    App.newUser.officeDistrict = "";
                     App.newUser.party = "";
                     App.newUser.streetAddress = "";
                     App.newUser.city = "";

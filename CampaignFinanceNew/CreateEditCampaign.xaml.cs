@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
@@ -223,7 +224,10 @@ namespace CampaignFinanceNew
 
         }
 
-        private void SubmitCampaign(object sender, EventArgs e)
+
+       
+
+        private async void SubmitCampaign(object sender, EventArgs e)
         {
             bool moveOn = true;
             if (CampaignNameEntry.Text == "")
@@ -257,8 +261,16 @@ namespace CampaignFinanceNew
             if (moveOn == true)
             {
 
-
+                sendingData.Set("campaignName", CampaignNameEntry.Text);
+                sendingData.Set("campaignDescription", CampaignDescriptionEntry.Text);
+                if (isCrowdfund.IsToggled)
+                {
+                    sendingData.Set("goal", GoalEntry.Text);
+                    sendingData.Set("startDate", StartDateEntry.Date.ToShortDateString());
+                    sendingData.Set("endDate", EndDateEntry.Date.ToShortDateString());
+                }
                 client.UploadValues("http://www.cvx4u.com/web_service/create_campaign.php", sendingData);
+                await Navigation.PushAsync(new CandidateDashboard());
             }
         }
 
@@ -311,8 +323,10 @@ namespace CampaignFinanceNew
                 }
 
                 isCrowdfund.IsToggled = false;
-                isCrowdfund.IsEnabled = false;
-                
+                isCrowdfund.IsEnabled = true;
+
+                CampaignNameEntry.IsVisible = true;
+                CampaignDescriptionEntry.IsVisible = true;
 
 
 

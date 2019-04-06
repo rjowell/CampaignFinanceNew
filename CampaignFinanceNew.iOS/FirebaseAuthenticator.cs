@@ -64,7 +64,7 @@ namespace CampaignFinanceNew.iOS
         public void SendResetLink(string email)
         {
             Auth.DefaultInstance.SendPasswordReset(email,(error) => {
-                Console.WriteLine("Reset erros "+error);
+                //Console.WriteLine("Reset erros "+error);
 
                 if(error.ToString()  == "The email address is badly formatted.")
                 {

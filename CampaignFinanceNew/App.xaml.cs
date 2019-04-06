@@ -29,12 +29,17 @@ namespace CampaignFinanceNew
         public String mailState { get; set; }
         public String ccLastFour { get; set; }
         public String ccExpiryDate { get; set; }
-        public String officeState { get; set; }
+
         public String zipCode { get; set; }
         public String eMail { get; set; }
         public String userApproved { get; set; }
         public String phoneNumber { get; set; }
         public String office { get; set; }
+        public String officeState { get; set; }
+        public String officeCounty { get; set; }
+        public String officeCity { get; set; }
+        public String officeDistrict { get; set; }
+
         public String district { get; set; }
         public String party { get; set; }
         public String website { get; set; }
@@ -142,7 +147,10 @@ namespace CampaignFinanceNew
             {
                 systemID = currentUserString.GetValue("CandidateId").ToString();
                 office = currentUserString.GetValue("Office").ToString();
-                district = currentUserString.GetValue("District").ToString();
+                //district = currentUserString.GetValue("District").ToString();
+                officeCity= currentUserString.GetValue("OfficeCity").ToString();
+                officeCounty= currentUserString.GetValue("OfficeCounty").ToString();
+                officeDistrict= currentUserString.GetValue("OfficeDistrict").ToString();
                 contactPerson = currentUserString.GetValue("ContactPerson").ToString();
                 userApproved = currentUserString.GetValue("IsApproved").ToString();
                 party = currentUserString.GetValue("Affiliation").ToString();
@@ -167,7 +175,7 @@ namespace CampaignFinanceNew
         public String firstName { get; set; }
         public String lastName { get; set; }
         public String office { get; set; }
-        public String district { get; set; }
+        public String officeDistrict { get; set; }
         public String party { get; set; }
         public String streetAddress { get; set; }
         public String city { get; set; }
@@ -180,6 +188,8 @@ namespace CampaignFinanceNew
         public bool isSupporter { get; set; }
         public String contactPerson { get; set; }
         public String officeState { get; set; }
+        public String officeCity { get; set; }
+        public String officeCounty { get; set; }
         public String ideology { get; set; }
 
         public String issues { get; set; }
@@ -217,7 +227,7 @@ namespace CampaignFinanceNew
 
 
 
-            var googleCivicURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAwpzFeq7FYHdVY__3vFL9QyTP2oCekkio&address=1400%20Wilson%20Blvd%20Arlington%20VA";
+            var googleCivicURL = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAwpzFeq7FYHdVY__3vFL9QyTP2oCekkio&address=";
             Console.WriteLine("this pos");
             Console.WriteLine("next point");
 
@@ -233,8 +243,19 @@ namespace CampaignFinanceNew
             foreach (var item in address)
             {
 
-                Console.
-                currentUserString = item.FeatureName.Replace(" ", "%20") + "%20" + item.Locality.Replace(" ", "%20") + "%20" + item.AdminArea.Replace(" ", "%20");
+                string feature;
+                if(item.FeatureName.IndexOf('-')!=-1)
+                {
+                    feature= item.FeatureName.Substring(item.FeatureName.IndexOf('–') + 1).Replace(" ", "%20");
+                }
+                else
+                {
+                    feature = item.FeatureName.Replace(" ", "%20");
+                }
+
+
+                Console.WriteLine(item.FeatureName.Substring(item.FeatureName.IndexOf('–')+1).Replace(" ","%20")   );
+                currentUserString = feature + "%20" + item.Locality.Replace(" ", "%20") + "%20" + item.AdminArea.Replace(" ", "%20");
                 Console.WriteLine("String is "+currentUserString);
                 rawData = currentUserString;
             }
@@ -242,7 +263,7 @@ namespace CampaignFinanceNew
             WebClient newClient = new WebClient();
             //var rawLocationData = newClient.DownloadString(googleCivicURL + currentUserString);
             //Console.WriteLine(googleCivicURL + currentUserString);
-            JObject parseData = JObject.Parse(newClient.DownloadString(googleCivicURL/* + currentUserString*/));
+            JObject parseData = JObject.Parse(newClient.DownloadString(googleCivicURL + currentUserString));
             //Console.WriteLine("cheese-2");
             JObject divisionData = JObject.Parse(parseData.GetValue("divisions").ToString());
             //Console.WriteLine("cheese-3");
@@ -390,8 +411,9 @@ namespace CampaignFinanceNew
 
         public App()
         {
+            Console.WriteLine("poopyyy");
             InitializeComponent();
-
+            Console.WriteLine("poopyyy-111");
 
 
             //Console.WriteLine(address);
@@ -412,8 +434,7 @@ namespace CampaignFinanceNew
 
         protected override void OnStart()
         {
-
-
+           
         }
 
         protected override void OnSleep()

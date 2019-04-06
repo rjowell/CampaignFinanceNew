@@ -179,6 +179,8 @@
     <BundleResource Include="Resources\img2.png" />
     <BundleResource Include="Resources\img4.png" />
     <BundleResource Include="Resources\img3.png" />
+    <BundleResource Include="Resources\img0.png" />
+    <BundleResource Include="Resources\img6.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SandwichMenu.imageset\" />

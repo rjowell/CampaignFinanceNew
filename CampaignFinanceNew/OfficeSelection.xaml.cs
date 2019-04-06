@@ -234,15 +234,33 @@ namespace CampaignFinanceNew
                 {
                     App.newUser.office = App.offices[officePicker.SelectedIndex];
 
+                    if(officePicker.SelectedIndex==2 || officePicker.SelectedIndex == 4 || officePicker.SelectedIndex == 5)
+                    {
+                        App.newUser.officeDistrict = jurisdictionLabel.Text;
+                    }
+                    if(officePicker.SelectedIndex==6)
+                    {
+                        App.newUser.officeCounty = jurisdictionLabel.Text;
+                    }
+                    if(officePicker.SelectedIndex==7 || officePicker.SelectedIndex == 8)
+                    {
+                        App.newUser.officeCity = jurisdictionLabel.Text;
+                    }
+
+                    //{0-"Select Office", 1-"U.S. Senate", 2-"U.S. House", 3-"Governor", 4-"State Senate", 5-"State House", 6-"County Board", 7-"City Council",8-"Mayor", 9-"Other" };
+
+
+
+
                 }
 
 
                 Console.WriteLine("field visivile " + otherOfficeField.IsVisible);
                 Console.WriteLine("ofc si " + App.newUser.office);
 
-                App.newUser.district = jurisdictionLabel.Text;
+                //App.newUser.district = jurisdictionLabel.Text;
                 App.newUser.officeState = App.stateAbbr[stateSelector.SelectedIndex];
-                Console.WriteLine("distrcit s " + App.newUser.district);
+                Console.WriteLine("distrcit s " + App.newUser.officeCounty);
                 if (current.ClassId == "Back")
                 {
                     await Navigation.PushAsync(new CreateName());

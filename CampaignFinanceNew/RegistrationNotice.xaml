@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.RegistrationNotice">
+    <ContentPage.Content>
+        <RelativeLayout>
+         <StackLayout Margin="40,20,40,20" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
+        
+        <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="18" Text="To complete the registration process, you will need the following informaiton:"/>
+        <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="16" x:Name="noticeLabel"/> 
+        <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel" x:Name="cancelButton"/>
+                    <Button HorizontalOptions="EndAndExpand" FontSize="Large" TextColor="#9fc2fc" BackgroundColor="Transparent" Text="Start" x:Name="startButton"/>
+            
+                </StackLayout>
+            
+            
+            </StackLayout>
+            </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
