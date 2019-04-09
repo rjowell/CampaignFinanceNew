@@ -221,6 +221,10 @@ namespace CampaignFinanceNew.Droid
 
 
                 }
+                else if(password==true)
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 2);
+                }
                 else
                 {
 
@@ -259,6 +263,7 @@ namespace CampaignFinanceNew.Droid
 
 
                     }
+
                     else
                     {
                        

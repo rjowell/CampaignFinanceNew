@@ -15,11 +15,13 @@ namespace CampaignFinanceNew
         public ContactInfoPage()
         {
             InitializeComponent();
-            Random rand = new Random();
-            backImage.Source = rand.Next(5).ToString() + ".png";
-            Console.WriteLine("index is " + statePicker.SelectedIndex);
 
-                     entries.Add(contactPersonEntry);
+            //Console.WriteLine("index is " + statePicker.SelectedIndex);
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            backImage.Source = App.currentUser.getBackImage();
+
+            entries.Add(contactPersonEntry);
            entries.Add(addressEntry);
             entries.Add(cityEntry);
             //entries.Add(statePicker);
@@ -152,7 +154,7 @@ namespace CampaignFinanceNew
                      }
                     else
                     {
-                         await Navigation.PushAsync(new OfficeSelection());
+                         await Navigation.PushAsync(new PositionsAndIssues());
                      }
                  }
 

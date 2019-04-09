@@ -39,7 +39,7 @@
                 </Entry>
                
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="White" Clicked="ProcessButtons" x:Name="loginButton" Text="Login" ClassId="login"/>
-         <Button x:Name="forgotPassword" Text="Reset Password" FontSize="16" Clicked="ShowPasswordReset"/>
+         <Button x:Name="forgotPassword" Text="Reset Password" FontSize="16" Clicked="ShowPasswordReset" TextColor="#9fc2fc" BackgroundColor="Transparent"/>
                 <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large" BackgroundColor="Transparent" TextColor="White" ClassId="newUser" Clicked="ProcessButtons" Text="I am a New User" />
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="supporterButton" Clicked="ProcessButtons" ClassId="supporter" Text="I want to support candidates"/>
         <Button FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" BackgroundColor="Transparent" TextColor="#9fc2fc" x:Name="candidateButton" Clicked="ProcessButtons" Text="I am a candidate" ClassId="candidate" />
@@ -56,8 +56,8 @@
            <Label Text="Enter E-Mail for Password Reset" x:Name="passResetLabel"/>
                     <Entry Keyboard="Email" x:Name="passResetEntry"/>
                     <Label x:Name="passResetError"/>
-                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Button x:Name="passResetSend" Clicked="SendPasswordReset" Text="Send"/><Button x:Name="passResetCancel" Clicked="CancelReset" Text="Cancel"/></StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Button FontFamily="{StaticResource TypewriterFont}" TextColor="#294470" FontSize="18" BackgroundColor="Transparent" x:Name="passResetSend" HorizontalOptions="StartAndExpand" Clicked="SendPasswordReset" Text="Send"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="#294470" FontSize="18" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" x:Name="passResetCancel" Clicked="CancelReset" Text="Cancel"/></StackLayout>
                 </StackLayout>
                 </Frame>
             <!--

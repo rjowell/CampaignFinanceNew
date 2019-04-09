@@ -14,8 +14,12 @@ namespace CampaignFinanceNew
         public CreateName()
         {
             InitializeComponent();
-            Random rand = new Random();
-            backImage.Source = rand.Next(5).ToString() + ".png";
+
+
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
+            backImage.Source = App.currentUser.getBackImage();
             labels = new Label[] {firstNameLabel, lastNameLabel};
             fields = new Entry[] {firstNameField, lastNameField};
             Console.WriteLine("false is"+App.newUser.isSupporter);

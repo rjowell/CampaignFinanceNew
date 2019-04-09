@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OccupationPage">
     <ContentPage.Content>
-        <StackLayout Margin="20,0,20,0" HorizontalOptions="Center" VerticalOptions="Center">
+        
+         <RelativeLayout HorizontalOptions="Center" Padding="0" FlowDirection="MatchParent">
+         <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        
+        
+        
+        <StackLayout Margin="20,50,20,0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
             <Label HorizontalTextAlignment="Center" FontSize="25" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Occupation"/>
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Please enter your current occupation as well as the name, city, and state of your employer"/>
             <Label FontSize="24" Text=" "/>
@@ -31,9 +39,13 @@
                 </Picker>
             <Label FontSize="28" Text=""/>
              <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button x:Name="goBackButton" FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" x:Name="nextButton" TextColor="White" BackgroundColor="Transparent" ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button x:Name="goBackButton" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" ClassId="Back" HorizontalOptions="Start" FontSize="Large" Text="Go Back"/><Button FontSize="Large" FontFamily="{StaticResource TypewriterFont}" x:Name="nextButton" TextColor="#9fc2fc" BackgroundColor="Transparent" ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
             
         </StackLayout>
+            </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
+
+
+<!--  FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc"  -->

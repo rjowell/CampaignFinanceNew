@@ -72,8 +72,7 @@
                             
             <Label x:Name="campNameLabel" TextColor="Navy" FontSize="20" Text="{Binding campaignName}"/>
             
-            <Label x:Name="candidateLabel" FontSize="12" FontAttributes="Italic" Text="{Binding candidateDisplayName}" TextColor="#424d5e"/>
-            
+           <Button FontAttributes="Italic" TextColor="#2a36e0" HeightRequest="15" HorizontalOptions="StartAndExpand" x:Name="openCandidateInfo" FontSize="12" ClassId="{Binding campaignID}" Clicked="OpenCandidateWindow" Text="{Binding candidateDisplayName}"/>
                         
             <Label Margin="0,12,0,5" x:Name="campaignDescription" Text="{Binding campaignDescription}" FontSize="13" TextColor="Black"/>
                         
@@ -98,8 +97,8 @@
                             
             <Label x:Name="campNameLabel" TextColor="Navy" FontSize="20" Text="{Binding campaignName}"/>
             
-            <Label  x:Name="candidateLabel" FontSize="12" FontAttributes="Italic" TextColor="#424d5e" Text="{Binding candidateDisplayName}"/>
-            
+            <Button HeightRequest="15" HorizontalOptions="StartAndExpand" TextColor="#2a36e0" x:Name="openCandidateInfo" FontSize="12" ClassId="{Binding campaignID}" Clicked="OpenCandidateWindow" Text="{Binding candidateDisplayName}"/>
+              
                         
             <Label Margin="0,12,0,5" FontSize="13" TextColor="Black" x:Name="campaignDescription" Text="{Binding campaignDescription}"/>
             <Label TextColor="Black" FontAttributes="Italic" FontSize="12" Text="{Binding progressDisplay}"/>
@@ -185,7 +184,7 @@
                   <StackLayout Padding="10" Margin="0,50,0,0" x:Name="menuBlock" BackgroundColor="Navy" Grid.Row="1" Grid.Column="0">
                     
                     <Button BackgroundColor="Transparent" TextColor="#dbe7f9" x:Name="createCampaignButton" Text="Create Campaign" Clicked="OpenCreateCampaign"/>
-                    <Button BackgroundColor="Transparent" TextColor="#dbe7f9" Text="Edit Profile" Clicked="ShowUserInfo"/>
+                    <Button x:Name="editProfileButton" BackgroundColor="Transparent" TextColor="#dbe7f9" Text="Edit Profile" Clicked="ShowUserInfo"/>
                 <Button x:Name="refreshLocButton" BackgroundColor="Transparent" TextColor="#dbe7f9" Text="Refresh Location"/>    
                 <Button BackgroundColor="Transparent" TextColor="#dbe7f9" Clicked="SignOutUser" Text="Logout"/>
                     

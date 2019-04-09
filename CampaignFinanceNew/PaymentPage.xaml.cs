@@ -17,8 +17,11 @@ namespace CampaignFinanceNew
         public PaymentPage()
         {
             InitializeComponent();
-            Random rand = new Random();
-            backImage.Source = rand.Next(5).ToString() + ".png";
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
+            backImage.Source = App.currentUser.getBackImage();
+
             //errorWindow.IsVisible = false;
             entries.Add(ccNumber);
             entries.Add(cvcEntry);

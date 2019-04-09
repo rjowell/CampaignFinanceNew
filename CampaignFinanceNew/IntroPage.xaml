@@ -10,7 +10,11 @@
             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
         
         <Label FontFamily="{StaticResource TypewriterFont}" x:Name="introLabel" HorizontalTextAlignment="Center" FontSize="18" TextColor="White"/>
-        <Button FontSize="Large" TextColor="#9fc2fc" BackgroundColor="Transparent" Text="Start" Clicked="Start"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button HorizontalOptions="StartAndExpand" x:Name="cancelButton" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Text="Cancel"/>
+                <Button HorizontalOptions="EndAndExpand" FontSize="Large" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" Text="Start" Clicked="Start"/>
+        
+                </StackLayout>
             </StackLayout>
             </RelativeLayout>
     </ContentPage.Content>

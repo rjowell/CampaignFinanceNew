@@ -220,7 +220,20 @@ namespace CampaignFinanceNew
         {
             InitializeComponent();
 
-           postData= new System.Collections.Specialized.NameValueCollection();
+            goBackButton.Clicked += (sender, e) => {
+
+                Navigation.PushAsync(new CandidateDashboard());
+            
+            };
+
+            if(App.currentUser.isSupporter==false)
+            {
+                ccUpdateButton.IsVisible = false;
+            }
+
+            backImage.Source = App.currentUser.getBackImage();
+            NavigationPage.SetHasNavigationBar(this, false);
+            postData = new System.Collections.Specialized.NameValueCollection();
 
             postData.Set("userID", App.currentUser.systemID);
             postData.Set("isSupporter", App.currentUser.isSupporter.ToString().ToLower());

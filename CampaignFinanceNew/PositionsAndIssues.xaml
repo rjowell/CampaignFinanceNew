@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.PositionsAndIssues">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Margin="20,20,20,10">
+        
+             <RelativeLayout Padding="0" FlowDirection="MatchParent" HorizontalOptions="Center" VerticalOptions="Center">
+    
+            <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        
+        
+        <StackLayout RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}" Margin="15,30,15,15"  VerticalOptions="Center" HorizontalOptions="Center">
+        
+        
+        <!--<StackLayout VerticalOptions="Center" Margin="20,20,20,10">-->
             <Label FontSize="25" FontFamily="{StaticResource TypewriterFont}" TextColor="White" Text="Positions &amp; Issues" HorizontalTextAlignment="Center"/>
             
             <Label FontFamily="{StaticResource TypewriterFont}" Margin="0,17,0,0" FontSize="14" HorizontalTextAlignment="Center" TextColor="White" Text="Adjust the slider to reflect your political leaning"/>
@@ -30,7 +42,7 @@
                 <Button TextColor="#c4daff" Clicked="AddPosition" x:Name="addButton" BackgroundColor="Transparent" WidthRequest="35" FontSize="24" Text="+"/>
             </StackLayout>
            <Label x:Name="issueWarning" Text="Maximum Reached" TextColor="Red" FontSize="14" HorizontalOptions="Center"/>
-            <ListView HeightRequest="250" BackgroundColor="Navy" Margin="0,0,0,0" RowHeight="27" x:Name="positionDisplay">
+            <ListView HeightRequest="250" BackgroundColor="Transparent" Margin="0,0,0,0" RowHeight="27" x:Name="positionDisplay">
                 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -41,13 +53,13 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="230"/>
+                                    <ColumnDefinition Width="185"/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 
                                   <Label HorizontalOptions="Start" TextColor="White" Grid.Row="0" FontSize="17" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding issue}" x:Name="issueDescription"/>
-                                <Label TextColor="White" Grid.Row="0" Grid.Column="1" FontSize="17"  VerticalTextAlignment="Center" HorizontalOptions="End" Text="{Binding position}" x:Name="positionDescription"/>
+                                <Label TextColor="White" Grid.Row="0" Grid.Column="1" FontSize="17"  VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" Text="{Binding position}" x:Name="positionDescription"/>
                                 <Label Text="Delete" FontSize="14" VerticalTextAlignment="End" ClassId="{Binding issue}" TextColor="Red" x:Name="deleteLabel" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                                 <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="DeleteItem"/>
@@ -65,9 +77,10 @@
                 </ListView>
             
             <StackLayout WidthRequest="250" HorizontalOptions="Center" Orientation="Horizontal">
-                <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/>
+                <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" x:Name="goBackButton" Text="Go Back"/>
                 <Button HorizontalOptions="EndAndExpand" FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Next" Clicked="AddToString"/>
             </StackLayout>
         </StackLayout>
+            </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

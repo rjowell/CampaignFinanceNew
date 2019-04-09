@@ -282,6 +282,12 @@ namespace CampaignFinanceNew
 
             campaignNumber = campaignID;
 
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
+
+            backImage.Source = App.currentUser.getBackImage();
+
             dateWarning.IsVisible = false;
 
             CampaignNameEntry.IsVisible = false;

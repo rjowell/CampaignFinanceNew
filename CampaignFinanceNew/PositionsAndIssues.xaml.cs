@@ -30,56 +30,75 @@ namespace CampaignFinanceNew
         String issues="";
 
         TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
-       
+
+        Double sliderValue;
 
         public PositionsAndIssues()
         {
             InitializeComponent();
-           
+
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            //sliderValue = Double.Parse(App.newUser.ideology);
+
+            goBackButton.Clicked += (sender, e) =>
+            {
+
+                Navigation.PushAsync(new OfficeSelection());
+
+            };
+
+            backImage.Source = App.currentUser.getBackImage();
+
             listData = new List<IssuePosition>();
             //App.newUser = new NewUserInfo();
 
             issueWarning.IsVisible = false;
 
-            tapGestureRecognizer.Tapped += (s, e) => {
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
 
                 Label currentLabel = (Label)s;
 
                 listData.Remove(listData.Find((obj) => obj.issue == currentLabel.ClassId));
-                
+
 
                 positionDisplay.ItemsSource = null;
                 positionDisplay.ItemsSource = listData;
             };
 
 
-
+            Console.WriteLine(App.newUser.issues == null);
 
             //deleteLabel.GestureRecognizers.Add(tapGestureRecognizer);
 
-            if (issues != "")
+            if (App.newUser.issues != null)
             {
+                issues = App.newUser.issues;
                 String[] issueItems = issues.Split(',');
-
+                Console.WriteLine(issues);
                 foreach (String things in issueItems)
                 {
-                    String[] thisItem = things.Split('=');
-                    String supportString;
-                    if (thisItem[1] == "1")
+                    if (things != "")
                     {
-                        supportString = "Support";
+                        String[] thisItem = things.Split('=');
+                        String supportString;
+                        if (thisItem[1] == "1")
+                        {
+                            supportString = "Support";
+                        }
+                        else
+                        {
+                            supportString = "Oppose";
+                        }
+                        listData.Add(new IssuePosition(thisItem[0], supportString));
                     }
-                    else
-                    {
-                        supportString = "Oppose";
-                    }
-                    listData.Add(new IssuePosition(thisItem[0], supportString));
+
+                    positionDisplay.ItemsSource = listData;
                 }
 
-                positionDisplay.ItemsSource = listData;
+
             }
-
-
         }
 
         private void ButtonControl(object sender, EventArgs e)
@@ -115,7 +134,7 @@ namespace CampaignFinanceNew
         private void DeleteItem(object sender, EventArgs e)
         {
 
-            Button current = (Button)sender;
+            Label current = (Label)sender;
 
             listData.Remove(listData.Find((obj) => obj.issue==current.ClassId));
 

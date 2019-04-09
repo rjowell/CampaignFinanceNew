@@ -78,7 +78,7 @@
             </Entry>
        
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="White" FontSize="Large" ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large"  BackgroundColor="Transparent" TextColor="White"  ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" TextColor="#9fc2fc" FontSize="Large" ClassId="Back" HorizontalOptions="Start" Clicked="ProcessButton" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" FontSize="Large"  BackgroundColor="Transparent" TextColor="#9fc2fc"  ClassId="Next" Clicked="ProcessButton" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
              </StackLayout>
             

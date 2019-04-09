@@ -54,12 +54,12 @@
             
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="Candidate Verification" x:Name="verficationLabel"/>
             <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" FontSize="Small" x:Name="verificationDescription" TextColor="#c5d8f7" Text="Please enter the URL of your jurisdiciton's official eleciton website (ex. Secretary of State, Clerk, etc.) so that we can verify your candidacy." />
-             <Label x:Name="verifyNotice" TextColor="#c5d8f7" HorizontalTextAlignment="Center" Text="NOTICE: This site MUST be from an official government domain"/>
+             <Label FontFamily="{StaticResource TypewriterFont}" x:Name="verifyNotice" TextColor="#c5d8f7" HorizontalTextAlignment="Center" Text="NOTICE: This site MUST be from an official government domain"/>
             <Entry x:Name="verificationURL" Keyboard="Url"/>        
             
                     
                     
-            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="spacer" Text="" FontSize="Small"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="spacer" Text=" " FontSize="25"/>
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="#c5d8f7" FontSize="Medium"  HorizontalTextAlignment="Center" Text="E-Mail"/>
             <Label FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" Text="(this will also be your username)" FontSize="Small" TextColor="#c5d8f7"/>
             <Entry x:Name="eMailField" Keyboard="Email">
@@ -74,7 +74,7 @@
                     </Entry.TextColor>
                 </Entry>
               <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/><Button TextColor="White" BackgroundColor="Transparent" FontSize="Large" ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button ClassId="Back" HorizontalOptions="Start" Clicked="GoBack" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" ClassId="Next" Clicked="ProcessNewUser" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
                 
         </StackLayout>

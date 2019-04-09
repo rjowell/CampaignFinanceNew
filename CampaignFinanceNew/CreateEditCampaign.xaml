@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.CreateEditCampaign">
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout VerticalOptions="Center" Padding="20,0,20,0" Spacing="3">
+        
+        
+        
+           <RelativeLayout Padding="0" FlowDirection="MatchParent">
+         <Image Aspect="AspectFill" x:Name="backImage" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+    
+    
+            
+        
+        
+       
+         <StackLayout RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"  VerticalOptions="Center" HorizontalOptions="Center">
+        
             <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White"  HorizontalOptions="Center" FontSize="22" x:Name="titleLabel"/>
             
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -85,6 +99,8 @@
 
             
         </StackLayout>
-            </ScrollView>
+            
+               
+            </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

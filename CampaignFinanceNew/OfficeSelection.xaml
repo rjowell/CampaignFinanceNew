@@ -13,7 +13,7 @@
         
             
         <Label FontFamily="{StaticResource TypewriterFont}" Text="Campaign Information" TextColor="White" HorizontalOptions="Center" FontSize="Large"/>
-            <Label FontFamily="{StaticResource TypewriterFont}" x:Name="officePickerLabel" FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
+            <Label  FontFamily="{StaticResource TypewriterFont}" x:Name="officePickerLabel" FontSize="Medium" TextColor="#c5d8f7" HorizontalOptions="Center" Text="What office are you running for?"/>
         <Picker x:Name="officePicker" FontSize="Small" WidthRequest="200" SelectedIndexChanged="ShowOtherOffice" HorizontalOptions="Center">
                 <Picker.TextColor>
             <OnPlatform x:TypeArguments="Color" Android="#c4d5ef" iOS="Black"/>
@@ -50,7 +50,7 @@
                 </Entry>
                 
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Back" Clicked="ChangeWindows" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button x:Name="goBackButton" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" ClassId="Next" Clicked="ChangeWindows" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
             </StackLayout>
             </RelativeLayout>

@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.EditUserInfo">
-    <ContentPage.Content>
-        <ScrollView>
-        <StackLayout Padding="20,10,20,0">
+ <ContentPage.Content>
+       
+        
+        
+        
+        
+        
+        <RelativeLayout Padding="0" FlowDirection="MatchParent">
+            <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+           
+            
+            <Grid Margin="0,40,0,0" HorizontalOptions="FillAndExpand" WidthRequest="335">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+       
+            
+            
+            
+            <ScrollView HorizontalOptions="End" Grid.Row="0" Grid.Column="0">
+            <StackLayout HorizontalOptions="FillAndExpand">
+             
+        
+        
         <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" HorizontalOptions="Center" FontSize="28" Text="Update User Info"/>
         <StackLayout Spacing="0">
+                <Button x:Name="goBackButton" TextColor="#b7cff4" HeightRequest="40" FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" Text="Go Back"/>
+                            
                 <Button Clicked="OpenUserPass" TextColor="#b7cff4" HeightRequest="40" FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" Text="Click here to update E-Mail or Password"/>
-        <Button Clicked="OpenCCWindow" TextColor="#b7cff4" HeightRequest="35" FontFamily="{StaticResource TypewriterFont}" BackgroundColor="Transparent" Text="Click here to update Credit Card" x:Name="ccUpdateButton"/>
+        <Button Clicked="OpenCCWindow" TextColor="#b7cff4" HeightRequest="35" FontFamily="{StaticResource TypewriterFont}"  BackgroundColor="Transparent" Text="Click here to update Credit Card" x:Name="ccUpdateButton"/>
             </StackLayout>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label FontFamily="{StaticResource TypewriterFont}" TextColor="White" FontSize="19" VerticalTextAlignment="Center" x:Name="FirstNameLabel" Text="First Name"/>
@@ -180,8 +208,13 @@
                 </Entry>
             
         
-        </StackLayout>
-            </ScrollView>
+        
+           
+                </StackLayout>
+                </ScrollView>
+                 </Grid>
+            </RelativeLayout>
+             
     </ContentPage.Content>
 </ContentPage>
 

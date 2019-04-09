@@ -106,7 +106,9 @@ namespace CampaignFinanceNew
             Console.WriteLine("poop4");
             isSupporter = App.currentUser.isSupporter.ToString().ToLower();
 
-            if(isSupporter=="false")
+           
+
+            if (isSupporter=="false")
             {
                 showGetDonors = true;
             }
@@ -235,6 +237,17 @@ namespace CampaignFinanceNew
         //AIzaSyDfeiCRXoUEb2ZNaq9WmgadSmeEKAiCIlw
 
 
+            private void OpenCandidateWindow(object sender, EventArgs e)
+        {
+            Button current = (Button)sender;
+            Console.WriteLine("cheese burger");
+            menuBlock.IsVisible = false;
+            Console.WriteLine(current.Parent.ClassId);
+            Navigation.PushAsync(new ViewCandidate(current.Parent.ClassId.Substring(1,4)));
+
+        }
+
+
 
             private async void SendDonorList(object sender, EventArgs e)
             {
@@ -276,6 +289,7 @@ namespace CampaignFinanceNew
             {
                 rawData = thisClient.DownloadString("http://www.cvx4u.com/web_service/getCampaigns.php?id=" + App.currentUser.systemID);
             }
+            /*
             Console.WriteLine("test poin2 "+rawData);
 
             NameValueCollection thisInfo = new NameValueCollection();
@@ -283,7 +297,7 @@ namespace CampaignFinanceNew
             thisInfo.Set("locationData", locationData);
 
             thisClient.UploadValues("http://www.cvx4u.com/web_service/locationTest.php",thisInfo);
-
+            */
             array = JArray.Parse(rawData);
             Console.WriteLine("test point3");
 
@@ -387,6 +401,7 @@ namespace CampaignFinanceNew
                 createCampaignButton.IsVisible = false;
             }
 
+           
 
             okButton.Clicked += (sender, e) => {
 
@@ -399,20 +414,12 @@ namespace CampaignFinanceNew
 
                 await App.currentLocation.GetLocationInformation();
 
-               
 
 
-                NameValueCollection nvc = new NameValueCollection();
 
-                String locationInfo = App.currentLocation.rawData+"    DCWard: "+App.currentLocation.dcWard+" DCANC: "+App.currentLocation.dcAnc+"  State: " + App.currentLocation.state + " County: " + App.currentLocation.countyType + " " + App.currentLocation.countyName + " City: " + App.currentLocation.cityName +
-                 " City Council: " + App.currentLocation.cityCouncilDistrict + " County Council: " + App.currentLocation.countyCouncilDistrict + " State Senate: " + App.currentLocation.stateSenateDistrict + " State House: " + App.currentLocation.stateHouseDistrict;
+                RefreshFieldData();
 
 
-                nvc.Set("locationData", locationInfo);
-
-
-                client.UploadValues("http://www.cvx4u.com/web_service/locationTest.php", nvc);
-           
             
              
                };
@@ -594,6 +601,7 @@ namespace CampaignFinanceNew
         private void ShowUserInfo(object sender, EventArgs e)
         {
             Navigation.PushAsync(new EditUserInfo());
+            menuBlock.IsVisible = false;
         }
 
         private void OpenCreateCampaign(object sender, EventArgs e)
@@ -609,6 +617,8 @@ namespace CampaignFinanceNew
             {
                 Navigation.PushAsync(new CreateEditCampaign(current.ClassId));
             }
+
+             menuBlock.IsVisible = false;
 
             //Console.WriteLine("The is is "+ sender.ClassId);
 

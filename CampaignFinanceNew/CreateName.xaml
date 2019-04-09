@@ -29,7 +29,7 @@
             </Entry.TextColor>
            </Entry>
             <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
-            <Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="White" BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows"  ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
+            <Button FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows"  ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
             </StackLayout>
         
            

@@ -10,12 +10,35 @@ namespace CampaignFinanceNew
         public OccupationPage()
         {
             InitializeComponent();
+
+
+            Entry[] entries = { jobTitleEntry, employerEntry, cityEntry };
+
             statePicker.ItemsSource = App.stateAbbr;
+
+            foreach(Entry these in entries)
+            {
+                these.Completed += (sender, e) => { 
+                
+                    if(Array.IndexOf(entries,these)==2)
+                    {
+                        statePicker.Focus();
+                    }
+                    else
+                    {
+                        entries[Array.IndexOf(entries, these) + 1].Focus();
+                    }
+                
+                };
+            }
 
             jobTitleEntry.Text = App.newUser.jobTitle;
             employerEntry.Text = App.newUser.employerName;
             cityEntry.Text = App.newUser.employerCity;
+            NavigationPage.SetHasNavigationBar(this, false);
 
+
+            backImage.Source = App.currentUser.getBackImage();
 
             goBackButton.Clicked+= (sender, e) => {
 

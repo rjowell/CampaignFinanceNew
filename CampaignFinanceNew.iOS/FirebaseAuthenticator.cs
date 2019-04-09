@@ -66,13 +66,17 @@ namespace CampaignFinanceNew.iOS
             Auth.DefaultInstance.SendPasswordReset(email,(error) => {
                 //Console.WriteLine("Reset erros "+error);
 
-                if(error.ToString()  == "The email address is badly formatted.")
+                if(error != null &&  error.ToString()  == "The email address is badly formatted.")
                 {
                     MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 0);
                 }
-                if(error.ToString()== "There is no user record corresponding to this identifier. The user may have been deleted.")
+                else if(error != null && error.ToString()== "There is no user record corresponding to this identifier. The user may have been deleted.")
                 {
                     MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
+                }
+                else
+                {
+                    MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 2);
                 }
 
                 //The email address is badly formatted.

@@ -23,6 +23,11 @@ namespace CampaignFinanceNew
             passwordField.Text = "*************";
 
 
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            backImage.Source = App.currentUser.getBackImage();
+
+
             MessagingCenter.Subscribe<IFirebaseAuthenticator,int>(this, "AuthError", (sender,arg) => {
 
                 if(arg==0)

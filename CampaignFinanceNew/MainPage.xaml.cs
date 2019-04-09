@@ -40,9 +40,9 @@ namespace CampaignFinanceNew
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Random rand = new Random();
+           
             fields = new Entry[] { eMailField, passwordField };
-            backImage.Source = "img"+rand.Next(6).ToString() + ".png";
+            backImage.Source = App.currentUser.getBackImage();
             noticeFrame.IsVisible = false;
 
             // MessagingCenter.Send<IFirebaseAuthenticator, int>(this, "ResetError", 1);
@@ -57,6 +57,10 @@ namespace CampaignFinanceNew
             if(arg==1)
                 {
                     passResetError.Text = "That e-mail is not in our system";
+                }
+            if(arg==2)
+                {
+                    noticeFrame.IsVisible = false;
                 }
 
             });
