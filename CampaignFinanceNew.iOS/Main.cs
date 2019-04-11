@@ -14,6 +14,7 @@ namespace CampaignFinanceNew.iOS
         {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
+            Console.WriteLine("test 123");
             UIApplication.Main(args, null, "AppDelegate");
         }
     }

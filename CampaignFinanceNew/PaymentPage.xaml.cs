@@ -103,7 +103,7 @@ namespace CampaignFinanceNew
 
         public async void GoBack(object buttOff, EventArgs e)
         {
-            await Navigation.PushAsync(new ContactInfoPage());
+            await Navigation.PushAsync(new HowToGetPayment());
         }
 
         public void CloseWindow(object button, EventArgs e)
@@ -187,7 +187,10 @@ namespace CampaignFinanceNew
                         {"jobTitle",App.newUser.jobTitle},
                         {"employerName",App.newUser.employerName},
                         {"employerCity",App.newUser.employerCity},
-                        {"employerState",App.newUser.employerState}
+                        {"employerState",App.newUser.employerState},
+                        {"payoutAddress",App.newUser.payoutAddress},
+                        {"payoutEMail",App.newUser.payoutEMail},
+                        {"payoutOther",App.newUser.payoutOther}
 
 
 
@@ -236,7 +239,7 @@ namespace CampaignFinanceNew
 
                 }
 
-
+                Console.WriteLine("district in is " + App.newUser.officeDistrict);
                 //Console.WriteLine("send county is"+App.newUser.officeCounty);
                    DependencyService.Get<IFirebaseAuthenticator>().CreateNewUser(eMailField.Text, passwordField.Text, sendingParameters);
 

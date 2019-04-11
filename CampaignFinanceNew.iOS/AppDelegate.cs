@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 using Foundation;
 using UIKit;
 
@@ -23,7 +24,10 @@ namespace CampaignFinanceNew.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Console.WriteLine("test 1234");
             Firebase.Core.App.Configure();
+
+            Console.WriteLine("test 1235");
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

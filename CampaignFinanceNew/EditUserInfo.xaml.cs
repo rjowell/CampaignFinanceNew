@@ -316,8 +316,16 @@ namespace CampaignFinanceNew
 
                 AffiliationDisplay.Text = App.currentUser.party;
 
-                Console.WriteLine("current index " + Array.IndexOf(offices, App.currentUser.party));
-                AffiliationEntry.SelectedIndex = Array.IndexOf(offices, App.currentUser.party);
+                //Console.WriteLine("current index " + Array.IndexOf(offices, App.currentUser.party));
+                if(Array.IndexOf(offices,App.currentUser.party)==-1)
+                {
+                    AffiliationEntry.SelectedIndex = 2;
+                }
+                else
+                {
+                    AffiliationEntry.SelectedIndex = Array.IndexOf(offices, App.currentUser.party);
+                }
+               
                 AffiliationEntry.IsVisible = false;
                 otherPartyEntry.IsVisible = false;
                 if (AffiliationEntry.SelectedIndex == 2)

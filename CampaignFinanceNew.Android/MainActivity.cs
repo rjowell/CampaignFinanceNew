@@ -10,7 +10,7 @@ using Firebase;
 
 namespace CampaignFinanceNew.Droid
 {
-    [Activity(Label = "CampaignFinanceNew", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "ActNearMe", Icon = "@mipmap/icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -21,6 +21,8 @@ namespace CampaignFinanceNew.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FirebaseApp.InitializeApp(Application.Context);
+            //Firebase.Analytics.FirebaseAnalytics mFirebaseAnalytics = Firebase.Analytics.FirebaseAnalytics.GetInstance(this); ;
+            Firebase.Analytics.FirebaseAnalytics.GetInstance(this);
             LoadApplication(new App());
         }
     }

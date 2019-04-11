@@ -24,8 +24,8 @@ namespace CampaignFinanceNew
         {
             base.OnAppearing();
             Console.WriteLine("this point");
-            await App.currentLocation.GetLocationInformation();
-            Console.WriteLine(App.currentLocation.state + " " + App.currentLocation.cityName);
+            //await App.currentLocation.GetLocationInformation();
+            Console.WriteLine("loc is=="+App.currentLocation.state + " " + App.currentLocation.cityName);
 
         }
 

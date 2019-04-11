@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.HowToGetPayment">
+    <ContentPage.Content>
+         <RelativeLayout Padding="0" FlowDirection="MatchParent" HorizontalOptions="Center" VerticalOptions="Center">
+    <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        
+        <StackLayout Margin="22,30,22,22">
+        <Label HorizontalTextAlignment="Center" FontSize="Large" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="White" Text="Payment Processing"/>
+        <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="For regular campaigns, payments are processed every week.&#10;For crowdfunding campaigns, payments are processed only if your goal is met."/>
+        <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="&#10;How would you like to receive your payouts?"/>
+        <Picker x:Name="paymentSelect">
+                    <Picker.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Picker.TextColor>
+                </Picker>
+            <StackLayout x:Name="eMailBox">
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" x:Name="payPalDesc" Text="Enter E-Mail Address for PayPal account"/>
+            
+            <Entry x:Name="eMailEntry">
+                     <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                   
+                    </Entry>
+                </StackLayout>
+            <StackLayout x:Name="addressBox">
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" x:Name="addressLabel" Text="Enter Address to send check"/>
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" Text="Address"/>
+            <Entry x:Name="addressEntry">
+                        <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                   
+                    </Entry>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" VerticalTextAlignment="End" Text="City" Grid.Row="0" Grid.Column="0"/>
+                <Entry  x:Name="cityEntry" Grid.Row="1" Grid.Column="0">
+                                <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                   
+                    </Entry>
+                <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" VerticalTextAlignment="End" Text="State" Grid.Row="0" Grid.Column="1"/>
+                <Picker x:Name="statePicker" Grid.Row="1" Grid.Column="1">
+                             <Picker.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Picker.TextColor>
+                </Picker>
+                <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" VerticalTextAlignment="End" x:Name="zipCode" Grid.Row="0" Text="Zip Code" Grid.Column="2"/>
+                <Entry x:Name="zipCodeEntry" Grid.Row="1" Grid.Column="2">
+                                <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                   
+                    </Entry>
+                
+                
+            </Grid>
+                </StackLayout>
+            <StackLayout  x:Name="otherBox">
+            <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource TypewriterFont}" HorizontalOptions="Center" TextColor="#c5d8f7" FontSize="Medium" x:Name="otherDescription" Text="Tell us how you would like to receive your funds. We will follow up if necessary"/>
+                <Entry x:Name="otherEntry">
+                            <Entry.TextColor>
+            <OnPlatform x:TypeArguments="Color" Android="White" iOS="Black"/>
+            </Entry.TextColor>
+                   
+                    </Entry>
+                    </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button FontSize="Large" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" x:Name="goBackButton" Text="Go Back"/><Button FontSize="Large" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" x:Name="submitButton" Text="Continue"/>
+                    </StackLayout>
+            </StackLayout>
+        
+            </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!-- <StackLayout WidthRequest="250" HorizontalOptions="Center"  Orientation="Horizontal">
+            <Button  BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows" ClassId="Back" HorizontalOptions="Start" Text="Go Back"/><Button FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Clicked="ChangeWindows"  ClassId="Next" HorizontalOptions="EndAndExpand" Text="Next"/>
+            </StackLayout>-->

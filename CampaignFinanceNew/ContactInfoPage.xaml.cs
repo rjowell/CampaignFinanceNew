@@ -170,7 +170,7 @@ namespace CampaignFinanceNew
                     }
                     else
                     {
-                        await Navigation.PushAsync(new PaymentPage());
+                        await Navigation.PushAsync(new HowToGetPayment());
                     }
 
 

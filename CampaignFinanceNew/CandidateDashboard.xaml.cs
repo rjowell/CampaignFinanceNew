@@ -402,6 +402,12 @@ namespace CampaignFinanceNew
             }
 
            
+            contactButton.Clicked += (sender, e) => {
+
+                Navigation.PushAsync(new ContactPage());
+            
+            };
+
 
             okButton.Clicked += (sender, e) => {
 
@@ -494,11 +500,11 @@ namespace CampaignFinanceNew
             }
             else if(current.Text=="Change")
             {
-                Console.WriteLine("change123");
+                /*Console.WriteLine("change123");
                 foreach (CampaignInfo currentThing in App.currentUser.campaignsSupported)
                 {
                     Console.WriteLine(currentThing.campaignId + " " + currentThing.dateGiven);
-                }
+                }*/
                 //Console.WriteLine("Id is "+sender.Parent.Parent.ClassId);
                 currentWindow = new DonationWindow(donateWindow, current.Parent.Parent.ClassId, current.Parent.Parent.AutomationId, true, App.currentUser.campaignsSupported.Find(x => x.campaignId == current.Parent.Parent.ClassId).amount);
                 currentWindow.openWindow();

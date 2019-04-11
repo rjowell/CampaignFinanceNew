@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.ContactPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" Text="Contact Us"/>
+            <Label FontFamily="{StaticResource TypewriterFont}" FontSize="Medium" TextColor="White" HorizontalTextAlignment="Center" Text="Enter Your Message Here:"/>
+            <Editor HeightRequest="300" WidthRequest="250" x:Name="messageBox"/>
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Button FontFamily="{StaticResource TypewriterFont}" x:Name="sendButton" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Text="Send"/><Button x:Name="cancelButton" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource TypewriterFont}" TextColor="#9fc2fc" BackgroundColor="Transparent" FontSize="Large" Text="Cancel"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

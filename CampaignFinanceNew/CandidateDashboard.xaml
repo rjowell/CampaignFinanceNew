@@ -187,7 +187,8 @@
                     <Button x:Name="editProfileButton" BackgroundColor="Transparent" TextColor="#dbe7f9" Text="Edit Profile" Clicked="ShowUserInfo"/>
                 <Button x:Name="refreshLocButton" BackgroundColor="Transparent" TextColor="#dbe7f9" Text="Refresh Location"/>    
                 <Button BackgroundColor="Transparent" TextColor="#dbe7f9" Clicked="SignOutUser" Text="Logout"/>
-                    
+                <Button BackgroundColor="Transparent" x:Name="contactButton" TextColor="#dbe7f9" Text="Contact Us"/>
+                       
                     
                 
                 </StackLayout>
@@ -199,7 +200,7 @@
             <StackLayout x:Name="noticeWindow" BackgroundColor="#d1e1fc" Padding="3">
         <Label TextColor="Navy" FontSize="17" HorizontalTextAlignment="Center" x:Name="confirmLabel" Text="Are you sure you want to donate"/>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="$"/>
+                   
                     <Label TextColor="Navy" FontSize="20" HorizontalTextAlignment="Center" x:Name="confirmAmount" Text=""/></StackLayout>
                     <Label TextColor="Navy" FontSize="17" HorizontalTextAlignment="Center" x:Name="confirmTo" Text="To"/>
                     <Label TextColor="Navy" FontSize="20" HorizontalTextAlignment="Center" x:Name="confirmCampaign" Text=""/>

@@ -57,6 +57,9 @@
     <PackageReference Include="Xamarin.Firebase.Auth">
       <Version>60.1142.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>60.1142.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -95,6 +98,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\img4.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\img0.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\img6.png" />
+    <AndroidResource Include="Resources\drawable\splash_background.xml" />
+    <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\drawable\splash1.png" />
+    <AndroidResource Include="Resources\drawable\splash2.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img7.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img8.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

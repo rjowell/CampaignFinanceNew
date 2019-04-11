@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Navy" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CampaignFinanceNew.OccupationPage">
     <ContentPage.Content>
-        
+        <ScrollView>
          <RelativeLayout HorizontalOptions="Center" Padding="0" FlowDirection="MatchParent">
          <Image Aspect="AspectFill" x:Name="backImage" Source="" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
@@ -44,6 +44,7 @@
             
         </StackLayout>
             </RelativeLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>
 

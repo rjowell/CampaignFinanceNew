@@ -57,7 +57,7 @@ namespace CampaignFinanceNew
         public String getBackImage()
         {
 
-            return "img" + rand.Next(6).ToString() + ".png";
+            return "img" + rand.Next(8).ToString() + ".png";
         }
 
 
@@ -191,6 +191,9 @@ namespace CampaignFinanceNew
         public String state { get; set; }
         public int officePickerIndex { get; set; }
         public String zipCode { get; set; }
+        public String payoutEMail { get; set; }
+        public String payoutAddress { get; set; }
+        public String payoutOther { get; set; }
         public String phone { get; set; }
         public String website { get; set; }
         public String eMailAddress { get; set; }
